@@ -1,0 +1,241 @@
+.AA{
+    padding-left: 10%;
+    display: block;
+    margin: 0 auto;
+    padding-right: 10%;
+    padding-top: 5%;
+}
+
+.ge{
+    color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-top: 4%;
+    font-size: 40px;
+    padding-left: 10%;
+
+
+}
+
+.text{
+    font-size: 19px;
+    font-family: "Georgia";
+    padding-left: 10%;
+    padding-right: 10%;
+
+}
+.te{
+    font-size: 18px;
+    font-family: "Georgia";
+    padding-left: 10%;
+}
+.g{
+    color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 35px;
+    padding-left: 10%;
+
+}
+.go{
+
+    font-size: 18px;
+    font-family: "Georgia";
+    padding-left: 23%;
+    padding-top: 3%;
+
+
+
+
+}
+
+.ga{
+    padding-left: 10%;
+    color: #7a9bc9 ;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-top: 25px;
+    font-size: 25px;
+}
+.gx{
+
+    color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-top: 10%;
+    font-size: 35px;
+    padding-left: 23%;
+
+
+}
+.a{
+    padding-right: 25%;
+    padding-top: 5%;
+    padding-left: 30%;
+}
+.tex{
+    font-size: 19px;
+    font-family: "Georgia";
+    padding-left: 10%;
+    padding-top: 1%;
+    padding-right: 10%;
+
+
+}
+.t{
+    font-size: 19px;
+    font-family: "Georgia";
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.r{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+    padding-left: 31%;
+    padding-top: 2%;
+
+
+}
+.y{
+    color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 35px;
+    padding-left: 31%;
+    padding-top: 15%;
+
+
+}
+.xx{
+    padding-left: 10%;
+    /* position: abolute; */
+    padding-top: 5%;
+
+}
+.aa{
+    text-align: center;
+}
+.gw{
+    color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 35px;
+    text-align: center;
+    padding-top: 2%;
+
+}
+.gn{
+    font-size: 19px;
+    font-family: "Georgia";
+    text-align: center;
+    padding-left: 8%;
+    padding-right: 8%;
+}
+
+.xa{
+    color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    padding-top: 6%;
+    text-align: center;
+
+}
+.xi{
+    font-family: "Georgia";
+    font-size: 18px;
+    text-align: center;
+
+
+
+
+
+}
+.mm{
+    color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-top: 6%;
+    font-size: 35px;
+    padding-left: 40%;
+}
+
+.m{
+    font-size: 18px;
+    font-family: "Georgia";
+    padding-left: 40%;
+    padding-top: 3%;
+}
+@media only screen and (max-width:500px) {
+    .g{
+        font-size: 150%;
+    }
+    .gw{
+        font-size: 150%;
+    }
+
+    .ge{
+     font-size:150% ;
+     padding-right: 10%;
+
+     }
+    
+     .te {
+      font-size: 100%;
+      padding-right: 10%;
+
+     
+     
+     
+       }  
+       .gx{
+        font-size:150% ;
+        padding-left: 10%;
+        }
+        .go{
+            font-size:100% ;
+            padding-left: 10%;
+            padding-right: 10%;
+
+            }
+            .a{
+                font-size: 100%;
+                padding-left: 5%;
+        
+            
+              }
+              .y{
+                font-size:150% ;
+                padding-left: 10%;
+                padding-right: 10%;
+
+
+                }      
+                .r{
+                    font-size:120% ;
+                    padding-left: 10%;
+                    padding-right: 10%;
+
+    
+                    } 
+                    .mm{
+                        font-size:150% ;
+                        padding-left: 10%;
+                        padding-right: 10%;
+
+        
+                        } 
+                        .m{
+                            font-size:100% ;
+                            padding-left: 10%;
+                            padding-right: 10%;
+            
+                            }
+                            .xi{
+                                padding-right: 8%;
+                                padding-left: 8%;
+
+                            }
+                            .xa{
+                                font-size: 150%;
+                            }
+                            .xx{
+                                width: 100%;
+                                padding-left: 6%;
+                                padding-right: 6%;
+                            }
+
+    }  

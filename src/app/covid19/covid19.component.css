@@ -1,0 +1,293 @@
+.AA{
+    /* height: 20%; */
+    /* width: 5%; */
+    padding-left: 10%;
+    display: block;
+    margin: 0 auto;
+    padding-right: 10%;
+    padding-top: 5%;
+}
+.ge{
+    color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-top: 2%;
+    font-size: 30px;
+    /* padding-left: 6%; */
+    padding-left: 10%;
+    padding-right: 10%;
+
+
+
+
+}
+.g{
+     color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-top: 8%;
+    font-size: 30px;
+    /* padding-left: 6%; */
+    padding-left: 10%;
+}
+.text{
+    font-size: 20px;
+    /* padding-top: 2%; */
+    font-family: "Georgia";
+    /* padding-left: 6%; */
+    padding-left: 10%;
+    padding-right: 10%;
+
+}
+.ga{
+    padding-left: 10%;
+    color: #7a9bc9 ;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* padding-top: 1%; */
+
+    font-size: 20px;
+}
+.text{
+    font-size: 17px;
+    padding-top: 1%;
+    font-family: "Georgia";
+    /* padding-left: 6%; */
+    padding-left: 10%;
+
+}
+.a{
+    font-weight: bold;
+}
+.r{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+    padding-left: 24%;
+    /* padding-top: 10%; */
+    padding-right: 20%;
+
+
+}
+.y{
+    color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    padding-left: 24%;
+    padding-top: 8%;
+    /* letter-spacing: .11em; */
+
+
+}
+.xx{
+    position: abolute;
+    padding-top: 2%;
+    padding-left: 10%;
+
+}  
+.di{
+    padding-left: 23%;
+    /* padding-top: 15%; */
+    padding-bottom: 3%;
+    padding-right: 23%;
+
+
+
+}
+.da{
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-left: 20%;
+    padding-right: 20%;
+
+
+}
+.dx{
+    font-size: 15px;
+    padding-left: 15%;
+    padding-top: 6%;
+    padding-right: 15%;
+
+
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+.do{
+    padding-left: 15%; 
+
+
+}
+.la{
+
+    padding-left: 15%;
+    padding-top: 5%;
+}
+.lo{
+    /* padding-left: 15%;  */
+    padding-top: 4%;
+
+
+}
+.lx{
+    font-size: 15px;
+    padding-left: 20%;
+    padding-right: 20%;
+
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.ya{
+    position: abolute;
+    padding-left: 8%;
+
+
+}
+.xa{
+    color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    text-align: center;
+
+}
+.xi{
+    font-family: "Georgia";
+    font-size: 18px;
+    text-align: center;
+
+
+
+
+
+}
+@media only screen and (max-width:500px) {
+    .ge{
+       
+        padding-top: 6%;
+        font-size: 100%;
+        /* padding-left: 6%; */
+        padding-left: 10%;
+    
+        
+    
+    
+    }
+    .ga{
+       
+        padding-top: 6%;
+        font-size: 100%;
+        /* padding-left: 6%; */
+        padding-left: 10%;
+    
+        
+    
+    
+    }
+    .text{
+        font-size: 90%;
+        /* padding-top: 2%; */
+        padding-left: 10%;
+    
+    }
+    .rr{
+        font-size: 100%;
+        /* padding-left: 5%; */
+        padding-left: 6%;
+        
+    
+
+    }
+    .g{
+        font-size: 100%;
+        padding-left: 6%;
+        padding-right: 6%;
+      
+    
+    }
+    .mm{
+        font-size: 100%;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+      
+    .dx{
+        font-size: 100%;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+    .lx{
+        font-size: 100%;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+    .di{
+        font-size: 120%;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+    .la{
+        font-size: 120%;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+    .da{
+        font-size: 100%;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+    .do{
+        font-size: 100%;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+    .lo{
+        font-size: 100%;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+    .y{
+        font-size: 100%;
+        /* padding-top: 2%; */
+        padding-left: 6%;
+        padding-right: 6%;
+
+    }
+    .r{
+        font-size: 100%;
+        /* padding-top: 2%; */
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+    .ye{
+        font-size: 120%;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+      
+    .tex{
+        font-size: 100%;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+    .m{
+        font-size: 120%;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+      
+      
+    .l{
+        font-size: 100%;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+      
+    .xa{
+        font-size: 100%;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+      
+    .xi{
+        font-size: 100%;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+      
+      
+      
+}

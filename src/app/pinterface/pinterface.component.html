@@ -1,0 +1,133 @@
+<div class="ax">
+
+<div class="container">
+  <div class="ghjk">
+    <label for="appt">Bonjour {{nomprenom}} </label>
+  </div>
+    <div class="title ">Enregistrement d’un rendez-vous    <span><button type="button" class="btn btn-danger" routerLink="/connecte">déconnexion</button> </span></div>
+    <div class="content dd">
+      <form class="dd" [formGroup]="addForm" >
+        <input type="hidden" name="id" formControlName="id">
+
+        <div class="user-details ">
+         
+
+          <div class="input-box">
+            <label for="date">Choisissez une date: </label>
+            <input type="date" id="date" name="date" formControlName="date" required>
+          </div>
+        
+          <div class="input-box">
+            <label for="appt">Choisissez une heure: </label>
+            <input #hourInput type="time" id="heure" name="heure" formControlName="heure" min="09:00" max="17:00" required [disabled]="isHourDisabled">
+            <small>Les heures d’ouverture sont de 9h à 17h</small>
+            <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+          </div>
+          <div class="input-box ">
+                <label for="" class="details "> Votre conditions:</label>
+                <select class="form-select " aria-label="Default select example" id="condition" name="condition" formControlName="conditions">
+                  <option selected ></option>
+                  <option value="Cancer">Cancer</option>
+                  <option value="Migraine">Migraine</option>
+                  <option value="plaies diabétique">plaies diabétique</option>
+                  <option value="Surdite brusque">Surdite brusque</option>
+                  <option value="Paralysie faciale">Paralysie faciale</option>
+                  <option value="Autisme">Autisme</option>
+                  <option value="Rétablissement aprés une opération de chirurgie plastique">chirurgie plastique</option>
+                  <option value="AVC">AVC</option>
+                  <option value="pour le bien être">pour le bien être</option>
+        
+        
+        
+                </select>
+                 
+              </div>
+<div class="input-box">
+              <label for="msg" >Message:</label>
+              <textarea class="form-control " id="msg" rows="2" name="msg" formControlName="msg" placeholder="Message"></textarea>
+            </div> 
+
+        </div>
+      
+        <div class="button ss ">
+          <input type="button" value="Ajouter/Modifier" (click)="ajout()">
+        </div>
+      </form>
+    
+
+
+<!-- ------------------**********************---------------------------- -->
+<div class=""*ngIf="voir" >
+  <div   class=" row tbl-fixed" >
+<div class="sales-boxes">
+  <div class="recent-sales box" >
+    <div class="title">Votre Etats de validation</div>
+    <table class=" table-striped table table-condensed  "  >
+      <thead>
+          <tr>
+             
+              <th>
+                  Nom Prénom
+              </th>
+              <th>
+               Adresse email  
+              </th>
+              <th>
+                téléphone
+              </th>
+            
+              <th>
+                  localisation
+              </th>
+              <th>
+                Date
+              </th>
+              <th>
+                Conditions
+              </th>
+              <th>
+                Sexe
+              </th>
+              <th>
+                Heure 
+            </th>
+              <th>
+                Message
+            </th>
+            <th>
+              Etat de validation
+          </th>
+            
+             
+          </tr>
+      </thead>
+      
+         <tbody>
+            <tr >
+     
+      <td>{{nomprenom}}</td>
+      <td>{{email}}</td>
+      <td>{{tel}}</td>
+      <td>{{loc}}</td>
+      <td>{{date}}</td>
+      <td>{{conditions}}</td>
+      <td>{{sexe}}</td>
+
+      <td>{{heure}}</td>
+      <td>{{msg}}</td> 
+      <td>{{act}}</td>
+      
+      
+    
+
+    </tr>
+  </tbody>
+
+</table> 
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

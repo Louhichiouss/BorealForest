@@ -1,0 +1,202 @@
+<nav class="navbar    navbar-expand-md  back  "  >
+    <div class="container-fluid ">
+        <div class="offcanvas-body"> 
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              
+               
+    <div class="offcanvas offcanvas-end tx " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+
+        
+      <DIV class="hmlp">
+      
+<section id="sidebar" >
+    <a href="#" class="brand">
+      <i class='bx bxs-smile text'></i>
+      <span class="te" >Bienvenue admin</span>
+    </a>
+    <ul class="side-menu top">
+    
+      <li class="active">
+        <a routerLink="/admin">
+          <i class='bx bxs-dashboard text' ></i>
+          <span class="tex">Tableau de bord</span>
+        </a>
+      </li>
+      <li >
+          <a routerLink="/patient">
+            <i class='bx bxs-group text ' ></i>
+            <span class="tex"  >Gestion Patient</span>
+          </a>
+        </li>
+      <li >
+        <a routerLink="/matriel">
+          <i class='bx bxs-shopping-bag-alt text' ></i>
+          <span class="tex" >Gestion de Matériels</span>
+        </a>
+      </li>
+     
+      <li>
+        <a routerLink="/rendezvous">
+          <i class='bx bxs-message-dots text' ></i>
+          <span class="tex" > Rendez-vous</span>
+        </a>
+      </li>
+      <li>
+          <a routerLink="/recette">
+            <i class='bx bxs-doughnut-chart text' ></i>
+            <span class="tex"> Recette et Dépense</span>
+          </a>
+        </li>
+    </ul>
+    <ul class="side-menu">
+      <ul class="side-menu" >
+        <li class="active vv">
+          <div class="dropdown">
+
+          <a  >
+            <i class='bx bxs-cog text ' ></i>
+              <a class="nav-link dropdown-toggle  vv" routerLink="/Parametre" id="navbarDropdown"
+                  role="button  " data-bs-toggle="dropdown" aria-expanded="false"data-toggle="dropdown" aria-haspopup="true">
+                  <i class=""></i>Paramétre
+              </a>
+              <ul class="dropdown-menu vv" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" routerLink="/profil" >Profil</a></li>
+                <li><a class="dropdown-item" routerLink="/connecte">Déconnexion</a></li>
+            </ul>
+        </a>
+      </div>
+
+        </li>
+        <li>
+          <a routerLink="/accueil" class="logout">
+            <i class='bx bxs-log-out-circle text' ></i>
+            <span class="tex">Se déconnecter</span>
+          </a>
+        </li>
+      </ul>
+    </ul>
+    
+  </section>
+</DIV>
+  <div class="offcanvas-header back mm" >
+    <a class="navbar-brand " > </a>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  </div>
+  </div>
+  </div>
+</nav>
+  <!-- SIDEBAR -->
+  
+  
+  
+  <!-- CONTENT -->
+  <section id="content">
+    <!-- NAVBAR -->
+    <nav>
+      <form action="#">
+       
+      </form>
+
+      <div class="notification-box">
+
+        <input type="" id="" hidden>
+  <label for="" ></label>
+  <a routerLink="/notification"class="notification">
+   <i class='bx bxs-bell' ></i>
+   <span class="num">{{am}}</span>
+  </a>
+   </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+      <div class="" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
+                    role="button" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown" aria-haspopup="true">
+                    <i class="fas fa-user me-2"></i>Admin
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" routerLink="/parametre">Paramétre</a></li>
+                    <li><a class="dropdown-item" routerLink="/connecte">Déconnexion</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    </nav>
+   
+    <main>
+      <div class="head-title">
+        <div class="left">
+          <ul class="breadcrumb">
+            <li>
+              <a href="#">Tableau de bord</a>
+            </li>
+            <li><i class='bx bx-chevron-right' ></i></li>
+            <li>
+              <a class="active" >Profil</a>
+            </li>
+          </ul>
+        </div>
+        
+      </div>
+  
+   
+  
+      
+    </main>
+  </section>
+  <!-- CONTENT -->
+
+  
+<div>
+
+</div>
+  <form [formGroup]="addForm">
+    <input type="hidden" name="id" formControlName="id">
+
+<div class="container rounded bg-white mt-5 mb-5">
+  <h4 class="te">Profile</h4>
+
+<div class="row">
+  <div class="col-md-5 border-right">
+    <div class="dss"><img class="rounded-circle mt-5" width="150px" [src]="imageur"><span class="font-weight-bold"></span>Oxyboreal2@gmail.com<span class="text-black-50"></span><span> </span></div>
+</div> 
+    <div class="col-md-5 border-right">
+        <div class="p-3 py-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-6"><label class="labels">Nom</label>
+                <input type="text" class="form-control" placeholder="" value=""formControlName="nom" id="nom" name="nom"></div>
+                <div class="col-md-6"><label class="labels">Prénom</label>
+                <input type="text" class="form-control" value="" placeholder="" formControlName="prenom" id="prenom" name="prenom"></div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12"><label class="labels">Numero téléphone</label>
+                <input type="text" class="form-control" placeholder="" value=""formControlName="tel" id="tel" name="tel"></div>
+                <div class="col-md-12"><label class="labels">Nom d'utilisateur</label>
+                <input type="text" class="form-control" placeholder="" value="" formControlName="email" id="email" name="email"></div>
+                <div class="col-md-12"><label class="labels">Mot de passe</label>
+                <input type="text" class="form-control" placeholder="" value=""formControlName="password" id="password" name="password"></div>
+            </div>
+           
+        </div>
+    </div>
+ 
+</div>
+</div>
+  </form> 
+
+
+
+
+
+
+
+  

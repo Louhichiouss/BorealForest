@@ -1,0 +1,16 @@
+
+
+
+<div class="wid">
+
+<ng-container *ngIf="!hideHeaderAndFooter">
+    <app-header></app-header>
+  </ng-container>
+  
+  <router-outlet></router-outlet>
+  
+  <ng-container *ngIf="!hideHeaderAndFooter">
+    <app-footer></app-footer>
+  </ng-container>
+</div>
+

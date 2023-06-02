@@ -1,0 +1,91 @@
+
+
+ <div >
+  <img src="../assets/img/132.png" class="d-block w-100 AA"  alt="..." width="80%" height="80%">
+</div>
+
+ 
+ <div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center mb-4b ge">prendre un rendez-vous </h2>
+      <form *ngIf="showLoginForm" [formGroup]="addForm" >
+        <div class="form-group">
+          <label>Adresse email:<span class="login-danger"></span></label>
+
+          <label for="email" class="yy"></label>
+          <input type="email" class="form-control" id=" email" placeholder="Adresse email" formControlName="email">
+        </div>
+        
+        <div class="form-group">
+          <label>Mot de passe:<span class="login-danger"></span></label>
+
+          <label for="password" class="yy"></label>
+          <input type="password" class="form-control" id="password" placeholder="Mot de passe"formControlName="mp">
+        </div>
+        <button type="button" class="btn btn-primary btn-block bb"(click)=" login()">Connecter</button>
+      </form>
+
+      <form *ngIf="!showLoginForm"[formGroup]="addForm">
+        <div class="form-group">
+          <label>Nom et Prénom: <span class="login-danger">*</span></label>
+
+          <label for="username"class="yy"></label>
+          <input type="text" class="form-control" id="username" placeholder="Nom et Prénom"formControlName="username">
+        </div>
+        <div class="form-group">
+          <label>Adresse email: <span class="login-danger">*</span></label>
+
+          <label for="email"class="yy"></label>
+          <input type="email" class="form-control" id="email" placeholder="adresse email" formControlName="email">
+        </div>
+        <div class="form-group">
+          <label>Téléphone: <span class="login-danger">*</span></label>
+
+          <label for="tel"class="yy"></label>
+          <input type="text" class="form-control" id="tel" placeholder="téléphone"formControlName="tel">
+        </div>
+      
+        <div>
+          <label>Localisation<span class="login-danger">*</span></label>
+
+<select class="form-control select" formControlName="loc" >
+<option>Tunis</option>
+<option>Sousse</option>
+</select>
+        </div>
+         
+        <div>
+          <label>Sexe<span class="login-danger">*</span></label>
+
+<select class="form-control select" formControlName="sexe" >
+<option>Homme</option>
+<option>Femme</option>
+</select>
+        </div>
+        
+        
+        <div class="form-group">
+          <label>Mot de passe:<span class="login-danger">*</span></label>
+
+          <label for="password"class="yy"></label>
+          <input type="password" class="form-control" id="mp" placeholder="Mot de passe"formControlName="mp">
+        </div>
+        <div class="form-group">
+          <label>Confirmez le mot de passe:<span class="login-danger">*</span></label>
+
+          <label for="confirm-password" class="yy"></label>
+          <input type="password" class="form-control" id="cmp" placeholder="Confirmez le mot de passe" formControlName="cmp">
+        </div>
+        <button type="button" class="btn btn-primary btn-block bb" (click)="ajout()" >S'inscrire</button>
+      </form>
+
+      <div class="form-group form-check mt-4">
+        <input type="checkbox" class="form-check-input" id="toggle-form" (click)="toggleForm()">
+        <label class="form-check-label yy" for="toggle-form"> Pas encore inscrit? Inscrivez-vous ici.</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+

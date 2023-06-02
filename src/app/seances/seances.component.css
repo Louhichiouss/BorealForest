@@ -1,0 +1,157 @@
+.mg{
+    width: 180px;
+    height: 120px;
+}
+
+.gg{
+    
+    position: absolute;
+    top: 25%;
+   
+    
+    padding-bottom: 50px;
+    color: white;
+    padding-left: 10%;
+   
+    
+    
+  }
+  .text{
+    font-size:400%;
+   
+
+   
+   
+    color: #233F8D ;
+   
+
+  }
+  .text1 {
+     font-size: 20px;
+    color: #F0FFF0;
+
+
+    
+
+  }
+  .bri{
+    
+    padding-left: 11%;
+    padding-right: 20%;
+    padding-top: 40px;
+    
+
+  }
+ 
+  .abs{
+    position: absolute;
+    width: 100%;
+   
+  margin-top: 47%;
+   
+  }
+  .r1{
+    color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+
+  }
+.aa{
+    color: black;
+}
+.img1{
+    text-align: center;
+   
+  
+    
+}
+
+.AA{
+  padding-left: 10%;
+  display: block;
+  margin: 0 auto;
+  padding-right: 10%;
+  padding-top: 5%;
+}
+.xa{
+  color: #233F8D ;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 30px;
+  padding-top: 4%;
+  text-align: center;
+
+}
+.xi{
+  font-family: "Georgia";
+  font-size: 18px;
+  text-align: center;
+
+
+
+
+
+}
+.a{
+ 
+ width:120% ;
+ text-align: left;
+
+}
+.e{
+  font-family: "Georgia";
+
+}
+@media only screen and (max-width:500px) {
+  .g{
+      font-size: 150%;
+  }
+  .gw{
+      font-size: 150%;
+  }
+
+  .ge{
+   font-size:150% ;
+   padding-right: 10%;
+
+   }
+  
+   .te {
+    font-size: 100%;
+    padding-right: 10%;
+
+   
+   
+   
+     }  
+     .gx{
+      font-size:150% ;
+      padding-left: 10%;
+      }
+      .go{
+          font-size:100% ;
+          padding-left: 10%;
+          padding-right: 10%;
+
+          }
+          .a{
+              font-size: 100%;
+              padding-left: 5%;
+      
+          
+            }
+          
+                          .xi{
+                              padding-right: 8%;
+                              padding-left: 8%;
+
+                          }
+                          .xa{
+                              font-size: 150%;
+                          }
+                          .xx{
+                              width: 100%;
+                              padding-left: 6%;
+                              padding-right: 6%;
+                          }
+
+  }  

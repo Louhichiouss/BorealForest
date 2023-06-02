@@ -1,0 +1,53 @@
+.mg{
+    width: 180px;
+    height: 120px;
+}
+.a{
+
+  
+    color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-top: 10%;
+    font-size: 40px;
+    padding-left: 10%;
+
+
+
+
+
+}
+.AA{
+    padding-left: 10%;
+    display: block;
+    margin: 0 auto;
+    padding-right: 10%;
+    padding-top: 5%;
+}
+.ge{
+    color: white ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 35px;
+    padding-top: 5%;
+    text-align: center;
+
+}
+
+.card{
+   
+        background: #233F8D;
+       
+        padding: 2em;
+        opacity: 0.9;
+        border-radius: 30px;
+        width: auto;
+        height: auto;
+        max-width: 550px;
+    color: white;
+        text-align: center;
+       
+
+      }
+
+.bgb{
+    margin: 7px;
+}

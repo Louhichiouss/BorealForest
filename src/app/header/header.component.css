@@ -1,0 +1,91 @@
+.mg{
+    width: 180px;
+    height: 120px;
+}
+/* 
+.menu-area li a {
+    letter-spacing: 1px;
+    font-size: 18px;
+   color: white;
+    position: relative;
+    overflow: hidden;
+    
+
+ 
+}
+
+.menu-area li a:hover {
+    text-decoration:underline;
+    background-color: none;
+}
+    */
+   
+
+/* .navbar-nav li .active {
+    text-decoration: underline;
+} */
+.back{
+    background-color: #233F8D;
+ 
+  
+} 
+.tx{
+ font-weight: bold;
+ color: white;
+
+}
+.nav-item a {
+
+    color: white;
+    font-weight: bold;
+}
+.nav-item a:hover{
+    text-decoration: underline;
+
+}
+.dropdown-menu a:hover{
+    text-decoration: underline;
+    background-color:#233F8D ;
+   
+
+}
+/* .dec{
+    text-decoration: none;
+    color: white;
+    text-align: center;
+} */
+/* .cn{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    overflow: hidden;
+  
+    width: max-content;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px; */
+    
+ 
+    
+    
+    
+/* } */
+@media(min-width:860px) {
+    
+.dropdown:hover >.dropdown-menu{
+
+        display: block;
+        margin-top: 0;
+    }
+
+}
+/* .navbar-default .navbar-nav > .active:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    content: " ";
+    border-bottom: 5px solid #5BC0EB;
+} */
+

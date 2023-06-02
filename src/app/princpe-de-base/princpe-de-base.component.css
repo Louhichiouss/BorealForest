@@ -1,0 +1,156 @@
+.mg{
+    width: 180px;
+    height: 120px;
+}
+.text{
+    font-size: 18px;
+    font-family: "Georgia";
+    padding-left: 10%;
+    padding-right: 10%;
+
+}
+.ge{
+    color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-top: 4%;
+    font-size: 40px;
+    padding-left: 10%;
+
+
+}
+.ga{
+    padding-left: 10%;
+    color: #7a9bc9 ;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* padding-top: 25px; */
+    font-size: 25px;
+}
+
+.tex{
+    font-size: 19px;
+    font-family: "Georgia";
+    padding-left: 10%;
+    padding-top: 1%;
+    font-weight: bold;
+    padding-right: 10%;
+}
+.a{
+   padding-top: 2%;
+   text-align: center;
+}
+.AA{
+    height: 20%;
+    width: 5%;
+    padding-left: 10%;
+    display: block;
+    margin: 0 auto;
+    padding-right: 10%;
+    padding-top: 5%;
+}
+.xa{
+    color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    padding-top: 4%;
+    text-align: center;
+
+}
+.xi{
+    font-family: "Georgia";
+    font-size: 18px;
+    text-align: center;
+
+
+
+
+
+}
+
+.pa{
+
+    margin-left: 20%;
+    margin-right: 20%;
+}
+.ss{
+    margin-left: 10%;
+}
+@media only screen and (max-width:500px) {
+    .g{
+        font-size: 150%;
+    }
+    .gw{
+        font-size: 150%;
+    }
+
+    .ge{
+     font-size:150% ;
+     padding-right: 10%;
+
+     }
+    
+     .te {
+      font-size: 100%;
+      padding-right: 10%;
+
+     
+     
+     
+       }  
+       .gx{
+        font-size:150% ;
+        padding-left: 10%;
+        }
+        .go{
+            font-size:100% ;
+            padding-left: 10%;
+            padding-right: 10%;
+
+            }
+            .a{
+                font-size: 100%;
+                padding-left: 5%;
+        
+            
+              }
+              .y{
+                font-size:150% ;
+                padding-left: 10%;
+                padding-right: 10%;
+
+
+                }      
+                .r{
+                    font-size:120% ;
+                    padding-left: 10%;
+                    padding-right: 10%;
+
+    
+                    } 
+                    .mm{
+                        font-size:150% ;
+                        padding-left: 10%;
+                        padding-right: 10%;
+
+        
+                        } 
+                        .m{
+                            font-size:100% ;
+                            padding-left: 10%;
+                            padding-right: 10%;
+            
+                            }
+                            .xi{
+                                padding-right: 8%;
+                                padding-left: 8%;
+
+                            }
+                            .xa{
+                                font-size: 150%;
+                            }
+                            .xx{
+                                width: 100%;
+                                padding-left: 6%;
+                                padding-right: 6%;
+                            }
+
+    }  

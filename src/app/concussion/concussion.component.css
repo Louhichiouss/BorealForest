@@ -1,0 +1,364 @@
+.ge{
+    padding-left: 10%;
+    color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-top: 2%;
+    font-size:200%;
+
+
+
+
+}
+.ga{
+    padding-left: 10%;
+    color: #7a9bc9 ;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* padding-top: 25px; */
+    font-size: 25px;
+}
+.text{
+font-size: 18px;
+padding-top: 2%;
+padding-left: 10%;
+font-family: "Georgia";
+padding-right: 10%;
+}
+.text1{
+    font-size: 18px;
+    /* padding-top: 20px; */
+    padding-left: 10%;
+    padding-right: 10%;
+    font-family: "Georgia";
+    /* text-align: center; */
+    /* letter-spacing: .11em; */
+    }
+    .jp{
+        width: 80%;
+        height: 80%;
+       padding-top: 2%;
+       /* padding-left: %; */
+       display: block;
+    }
+    .ty{
+        padding-left: 10%;
+        color: #233F8D ;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        padding-top: 2%;
+        font-size: 30px;
+
+        
+        
+    }
+   
+   
+    .da{
+        font-size: 20px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+       padding-left: 8%;
+
+
+    }
+    .dx{
+        font-size: 18px;
+        padding-left: 8%;
+
+             font-family:  Georgia, Times, 'Times New Roman', serif;
+             width: 100%;
+
+
+    }
+    .d22{
+        font-size: 20px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+       padding-left: 40%;
+
+
+
+    }
+    .d33{
+        font-size: 18px;
+        padding-left: 37%;
+        width: 100%;
+
+
+
+             font-family:  Georgia, Times, 'Times New Roman', serif;
+
+
+    }
+    .do{
+                 padding-left: 15%; 
+
+    }
+   
+    .bv{
+        margin-left: 113%;
+    }
+    .co{
+        color: #233F8D ;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        /* padding-top: 2%; */
+        font-size: 30px;
+        padding-left: 10%;
+        padding-top: 2%;
+
+
+    }
+    .ca{
+        font-size: 25px;
+        font-weight: bold;
+        white-space:pre-wrap;
+        padding-top: 2%;
+    }
+    .ka{
+        padding-left: 8%;
+        padding-top: 2%;
+        
+    }
+    .xx{
+        height: 700px;
+        width: 1000px;
+        /* padding-left: 200px; */
+        display: block;
+        margin: 0 auto;
+    }
+    .la{
+        font-size: 18px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        padding-left: 10%;
+        /* padding-top: %; */
+
+    }
+    .le{
+        font-size: 18px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+    .ki{
+        padding-left: 8%;
+        padding-top: 2%;
+    }
+    .AA{
+        height: 20%;
+        width: 5%;
+        padding-left: 10%;
+        display: block;
+        margin: 0 auto;
+        padding-right: 10%;
+        padding-top: 5%;
+    }
+    .rr{
+        color: #233F8D ;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 30px;
+        padding-left: 18%;
+        padding-top: 10%;
+
+    }
+    .ra{
+        font-size: 20px;
+        font-family: "Georgia";
+        /* padding-left: 7%; */
+        /* padding-top: 20; */
+
+    }
+    .xa{
+        text-align: center;
+        color: #233F8D ;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 30px;
+
+    }
+    .xi{
+        text-align: center;
+        font-family: "Georgia";
+        font-size: 18px;
+
+
+
+
+
+    }
+    .r{
+        font-size: 20px;
+        font-family: "Georgia";
+        padding-left: 18%;
+        /* padding-top: 20; */
+        padding-right: 15%;
+
+    
+    }
+    .dp{
+         padding-left: 19%;
+         padding-top: 3%;
+
+
+    }
+    .dg{
+        padding-left: 30%;
+        padding-top: 3%;
+    }
+   .c{
+    padding-top: 15%;
+    padding-bottom: 5%;
+
+   }
+   @media only screen and (max-width:500px) {
+
+    .ge{
+        padding-top: 2%;
+        font-size:100%;
+    
+    }
+    .ga{
+        padding-left: 10%;
+        color: #7a9bc9 ;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        /* padding-top: 25px; */
+        font-size: 15px;
+    }
+    .text{
+        font-size: 13px;
+        padding-top: 2%;
+        padding-left: 10%;
+        font-family: "Georgia";
+        padding-right: 10%;
+        }
+        .text1{
+            font-size: 13px;
+            /* padding-top: 20px; */
+            padding-left: 10%;
+            padding-right: 10%;
+            font-family: "Georgia";
+            /* text-align: center; */
+            /* letter-spacing: .11em; */
+            }
+            .ty{
+                padding-left: 10%;
+                color: #233F8D ;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                padding-top: 2%;
+                font-size: 100%;
+        
+                
+                
+            }
+            .dp{
+                padding-left: 10%;
+                padding-top: 3%;
+                width: 50px;
+                height: 50px;
+       
+       
+           }
+           .da{
+            font-size:100%;
+            padding-left: 1%;
+
+    
+        }
+        .dx{
+            font-size: 100%;
+            padding-left: 1%;
+
+    
+    
+        }
+        .dg{
+            padding-left: 10%;
+            padding-top: 3%;
+            width: 50px;
+            height: 50px;
+   
+    
+        }
+        .d22{
+            font-size: 100%;
+            padding-left: 15%;
+    
+    
+    
+        }
+        .d33{
+            font-size: 100%;
+            padding-left: 15%;
+    
+    
+    
+    
+    
+        }
+        .co{
+            color: #233F8D ;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            /* padding-top: 2%; */
+            font-size: 100%;
+            padding-left: 10%;
+            padding-top: 2%;
+    
+    
+        }
+        .xx{
+            height: 100%;
+            width: 100%;
+            /* padding-left: 200px; */
+            display: block;
+            margin: 0 auto;
+            padding-left: 2%;
+            padding-right: 2%;
+        }
+        .la{
+            font-size: 100%;
+            padding-left: 10%;
+            padding-top: 10%;
+          
+    
+        }
+        .le{
+            font-size: 100%;
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+        .r{
+            font-size: 100%;
+            padding-left: 18%;
+            /* padding-top: 20; */
+            padding-right: 15%;
+    
+        
+        }
+        .rr{
+        
+            font-size: 100%;
+            padding-left: 18%;
+          
+    
+        }
+        .c{
+          
+           
+            width: 100%;
+            height: 100%;
+            padding-left: 2%;
+            padding-right: 2%;
+        
+           }
+           .xi{
+            padding-right: 8%;
+            padding-left: 8%;
+
+        }
+        .xa{
+            font-size: 150%;
+        }
+        .xx{
+            width: 100%;
+            padding-left: 12%;
+            padding-right: 6%;
+        }
+
+   }
+   
+
+

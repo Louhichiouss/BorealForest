@@ -1,0 +1,31 @@
+
+
+<div >
+  <img src="../assets/img/1222.png" class="d-block w-100 AA"  alt="..." width="80%" height="80%">
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center mb-4b a">Contactez-nous </h2>
+    
+      <form [formGroup]="addForm" >
+        <label for="nom" ></label>
+    <input type="text" class="form-control " id="nom" name="nom" formControlName="nom" placeholder="Nom et Prénom">
+  <label for="email" ></label>
+  <input type="email" class="form-control " id="email" name="email" formControlName="email" placeholder="Adresse Email" >
+    <label for="tel" ></label>
+    <input type="text" class="form-control " id="tel" name="tel" formControlName="tel" placeholder="Numéro télephone">
+    
+    <label for="msg" ></label>
+    <textarea class="form-control " id="msg" rows="3" name="msg" formControlName="msg" placeholder="Message"></textarea>
+     
+       
+       
+      
+    <button type="button" class="btn btn-primary bgb btn-lgb" (click)=" ajout()">Envoyer</button>
+    <button type="reset" class="btn btn-primary bgb">Réinitialiser</button>
+
+      </form>
+
+      </div>
+    </div>

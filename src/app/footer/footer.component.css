@@ -1,0 +1,104 @@
+
+.tu{
+    font-weight: bold;
+font-size: 20px;
+color: white;
+}
+.ad{
+font-size: 25px;
+color: white;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+.fo{
+    background-color: #233F8D;
+    color: white;
+   
+  margin-top: 6%;
+  width: 100%;
+  max-width: 1920px;
+  min-width: 480px;
+  overflow: hidden;
+
+
+}
+.bgb{
+    background-color: #233F8D;
+  }
+.imgf{
+
+    position: fixed-top;
+}
+.ngf{
+    padding: 20px;
+}
+.aa{
+    color: white;
+    margin-left: 24%;
+  
+    margin-top: 30px;
+  
+}
+
+
+       .as{
+
+       text-align: center;
+       margin-top: 30px;
+       } 
+       .d{
+        color: white;
+        margin-left: 16px;
+        font-size: 25px;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+
+       }
+p{
+    color: white;
+}
+    li a {
+        color: white;
+    } 
+    .cc{
+        background-color: #233F8D;
+    }  
+    .nav-item a:hover{
+        text-decoration: underline;
+    
+    }
+    .dropdown-menu a:hover{
+        text-decoration: underline;
+        background-color:#233F8D ;
+       
+    
+    }
+.pos{
+
+    position: absolute;
+    margin-bottom: 20%;
+    width: 100%;
+    max-width: 1920px;
+    min-width: 480px;
+    overflow: hidden;
+  
+  
+
+
+    
+}
+.mfp{
+text-align: center;
+}
+.ps{
+    padding-bottom: 20px;
+    
+}
+.mf1{
+   text-align: center;
+}
+
+li a:hover{
+
+    text-decoration: underline;
+}

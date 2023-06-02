@@ -1,0 +1,263 @@
+.AA{
+    padding-left: 10%;
+    display: block;
+    margin: 0 auto;
+    padding-right: 10%;
+    padding-top: 5%;
+}
+
+.ge{
+    color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-top: 4%;
+    font-size: 40px;
+    padding-left: 10%;
+
+
+}
+
+.text{
+    font-size: 19px;
+    font-family: "Georgia";
+    padding-left: 10%;
+    padding-right: 10%;
+
+}
+.tex{
+    font-size: 19px;
+    font-family: "Georgia";
+    padding-left: 10%;
+    padding-right: 10%;
+
+}
+.go{
+
+    font-size: 18px;
+    font-family: "Georgia";
+    padding-top: 2%;
+
+
+
+
+
+}
+.gx{
+
+    color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-top: 10%;
+    font-size: 35px;
+    padding-left: 21%;
+
+
+}
+.g{
+    font-size: 18px;
+    font-family: "Georgia";
+    padding-left: 30%;
+}
+.a{
+    padding-right: 25%;
+    padding-top: 3%;
+    padding-left: 30%;
+}
+.f{
+    color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-top: 4%;
+    font-size: 35px;
+    padding-left: 30%;
+}
+.l{
+    font-size: 18px;
+    font-family: "Georgia";
+    padding-top: 2%;
+    padding-left: 21%;
+
+}
+.aa{
+
+    padding-top: 3%;
+    padding-left: 35%;
+}
+.x{
+    color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 40px;
+    padding-left: 10%;
+}
+.r{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+    padding-left: 30%;
+    /* padding-top: 10%; */
+
+
+}
+.y{
+    color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    padding-left: 30%;
+    padding-top: 15%;
+
+
+}
+.xx{
+    padding-left: 11%;
+    /* position: abolute; */
+    padding-top: 5%;
+
+}
+.xa{
+    color: #233F8D ;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    padding-top: 6%;
+    text-align: center;
+
+}
+.xi{
+    font-family: "Georgia";
+    font-size: 18px;
+    text-align: center;
+
+
+
+
+
+}
+@media only screen and (max-width:500px) {
+    .g{
+        font-size: 150%;
+    }
+    .gw{
+        font-size: 150%;
+    }
+
+    .ge{
+     font-size:100% ;
+     padding-left: 3%;
+
+     }
+    
+     .te {
+      font-size: 100%;
+      padding-right: 10%;
+
+     
+     
+     
+       }  
+       .text {
+        font-size: 100%;
+        padding-left: 10%;
+
+  
+       
+       
+       
+         } 
+         .tex {
+            font-size: 100%;
+            padding-left: 3%;
+    
+      
+           
+           
+           
+             } 
+         .ra{
+            font-size:100% ;
+            padding-left: 8%;
+
+         }
+       .gx{
+        font-size:150% ;
+        padding-left: 10%;
+        }
+        .go{
+            font-size:100% ;
+            padding-left: 10%;
+            padding-right: 10%;
+
+            }
+            .aa{
+               padding-left: 6%;
+                width: 100%;
+            
+              }
+              .xx{
+                padding-left: 6%;
+                 width: 100%;
+             
+               }
+              .y{
+                font-size:150% ;
+                padding-left: 10%;
+                padding-right: 10%;
+
+
+                }      
+                .x{
+                    font-size:150% ;
+                    padding-left: 10%;
+                    padding-right: 10%;
+    
+    
+                    }
+                .f{
+                    font-size:100% ;
+                    padding-left: 10%;
+    
+    
+                    } 
+                    .g{
+                        font-size:100% ;
+                        padding-left: 10%;
+                        padding-right: 10%;
+        
+        
+                        } 
+                        .l{
+                            font-size:100% ;
+                            padding-left: 10%;
+                            padding-right: 10%;
+            
+            
+                            } 
+                .r{
+                    font-size:120% ;
+                    padding-left: 10%;
+                    padding-right: 10%;
+
+    
+                    } 
+                    .mm{
+                        font-size:150% ;
+                        padding-left: 10%;
+                        padding-right: 10%;
+
+        
+                        } 
+                        .m{
+                            font-size:100% ;
+                            padding-left: 10%;
+                            padding-right: 10%;
+            
+                            }
+                            .xi{
+                                padding-right: 8%;
+                                padding-left: 8%;
+
+                            }
+                            .xa{
+                                font-size: 150%;
+                            }
+                            .xx{
+                                width: 100%;
+                                padding-left: 6%;
+                                padding-right: 6%;
+                            }
+
+    }  
