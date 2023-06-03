@@ -7,6 +7,11 @@
     padding-right: 10%;
     padding-top: 5%;
 }
+.long{
+width: 130%;
+padding-right: 40px;
+margin-right: 40px;
+}
 .ge{
     color: #233F8D ;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -154,6 +159,18 @@
 
 
 }
+.long22{
+    width: 130%;
+}
+.long2{
+
+    height: 50%;
+    width: 100%;
+}
+.long23{
+width:130%
+
+}
 @media only screen and (max-width:500px) {
     .ge{
        
@@ -166,6 +183,23 @@
     
     
     }
+    .long22{
+        height: 120%;
+        
+    }
+    .long23{
+        width:100%
+        
+        }
+    .long2{width: 100%;
+        height: 90%;
+
+        
+    }
+    .long{
+        width: 100%;
+       
+        }
     .ga{
        
         padding-top: 6%;
