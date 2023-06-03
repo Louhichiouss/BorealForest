@@ -8,6 +8,7 @@
     padding-top: 5%;
 }
 .long{
+    padding-top: 20%;
 width: 130%;
 padding-right: 40px;
 margin-right: 40px;
@@ -163,9 +164,9 @@ margin-right: 40px;
     width: 130%;
 }
 .long2{
-
-    height: 50%;
-    width: 100%;
+ padding-top: 60%;
+    height: 70%;
+    width: 120%;
 }
 .long23{
 width:130%
