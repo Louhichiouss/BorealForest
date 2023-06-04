@@ -160,10 +160,10 @@ this.service.getSignlePatient(this.patient_id).subscribe((
     
     ajout() { 
     
-//       if (this.addForm.get('P_email').invalid) {
-//         alert('Veuillez saisir une adresse e-mail valide.');
-//         return;
-//       }
+      if (this.addForm.get('P_email').invalid) {
+        alert('Veuillez saisir une adresse e-mail valide.');
+        return;
+      }
 //       console.log(this.addForm.value.P_tel.length)
       if (this.addForm.value.P_tel.length>8) {
         alert('Veuillez saisir une format de numéro de téléphone valide.');
