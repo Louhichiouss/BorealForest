@@ -65,10 +65,10 @@ export class ConnecteComponent {
         alert('Veuillez saisir une format de numéro de téléphone valide.');
         return;
       }
-      if (this.addForm.value.mp.length < 8 ) {
-        alert("Veuillez saisir un mot de passe d'au moins 8 caractères");
-        return;
-      }
+//       if (this.addForm.value.mp.length < 8 ) {
+//         alert("Veuillez saisir un mot de passe d'au moins 8 caractères");
+//         return;
+//       }
 
       
       if (this.addForm.value.mp !== this.addForm.value.cmp) {
