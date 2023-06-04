@@ -425,7 +425,7 @@ this.series11 = [1,2,3,4,6,9,8];
   charttheme:ApexTheme={
     palette: "palette2"
   }
-  chartLabels = ["Paralysie faciale", "Surdite brusque", "Migrane", "AVC", "plaies diabétique", "Cancer", "Rétablissement aprés une opération de chirurgie plastique", "pour le bien être", "Autisme"];
+  chartLabels = ["Paralysie faciale", "Surdite brusque", "Migrane", "AVC", "plaies diabetique", "Cancer", "Retablissement apres une operation de chirurgie plastique", "pour le bien etre", "Autisme"];
 
   chartTitle: ApexTitleSubtitle = {
     text: 'Etat Santé',
