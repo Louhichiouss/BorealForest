@@ -24,7 +24,7 @@ export class ServiceService {
     
     
   }
-  baseUrl: string="http://localhost/api/"
+  baseUrl: string="http://boreal.houssem.tn/api/"
   
 
    ajouterUser(user:User){
