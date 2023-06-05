@@ -77,9 +77,7 @@ export class ConnecteComponent {
         return;
       }
       if (this.addForm.value.mp.length < 8 ) {
-        // alert("Veuillez saisir un mot de passe d'au moins 8 caractères");
-        this.errorMessage2 = "Veuillez saisir un mot de passe d'au moins 8 caractères";
-
+        alert("Veuillez saisir un mot de passe d'au moins 8 caractères");
         return;
       }
 
