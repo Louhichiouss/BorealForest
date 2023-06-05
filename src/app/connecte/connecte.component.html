@@ -38,12 +38,16 @@
 
           <label for="email"class="yy"></label>
           <input type="email" class="form-control" id="email" placeholder="adresse email" formControlName="email">
+          <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+
         </div>
         <div class="form-group">
           <label>Téléphone: <span class="login-danger">*</span></label>
 
           <label for="tel"class="yy"></label>
           <input type="text" class="form-control" id="tel" placeholder="téléphone"formControlName="tel">
+          <div class="error-message" *ngIf="errorMessage1">{{ errorMessage1 }}</div>
+
         </div>
       
         <div>
@@ -70,12 +74,16 @@
 
           <label for="password"class="yy"></label>
           <input type="password" class="form-control" id="mp" placeholder="Mot de passe"formControlName="mp">
+          <div class="error-message" *ngIf="errorMessage2">{{ errorMessage2 }}</div>
+
         </div>
         <div class="form-group">
           <label>Confirmez le mot de passe:<span class="login-danger">*</span></label>
 
           <label for="confirm-password" class="yy"></label>
           <input type="password" class="form-control" id="cmp" placeholder="Confirmez le mot de passe" formControlName="cmp">
+          <div class="error-message" *ngIf="errorMessage3">{{ errorMessage3 }}</div>
+
         </div>
         <button type="button" class="btn btn-primary btn-block bb" (click)="ajout()" >S'inscrire</button>
       </form>

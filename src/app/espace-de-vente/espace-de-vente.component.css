@@ -21,25 +21,59 @@
 }
 .te{
 
-    padding-left: 10%;
     font-size: 25px;
     font-family: "Georgia";
+font-weight: bold;
 
 
 
     
 }
-.t{
+
+.mlk{
+    padding-top: 10%;
+padding-left: 15%;
+padding-right: 15%;
+}
+.row{
+    background-color: #233F8D;
+}
+.uio{ background-color: #233F8D;
+    color: white;
+    padding-top: 5%;
+}
+.aze{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.oo{
+    padding-top: 2%;
+}
+.xx{
     padding-left: 10%;
-    font-size: 20px;
+    padding-right: 20%;
+    /* position: abolute; */
+    padding-top: 5%;
+    text-align: center;
+
+  
+}
+.aaaa{
+    
+    padding-top: 3%;
+    padding-left: 10%;
+
+}
+
+.t{
     font-family: "Georgia";
+
 
 }
 .a{
     padding-left: 35%;
     padding-right: 35%;
-    width: 100%;
-    height: 100%;
+    
 }
 .AA{
     padding-left: 10%;
@@ -71,6 +105,35 @@
     text-align: center;
 }
 @media only screen and (max-width:500px) {
+     .table thead {
+    display: none;
+  }
+
+  .table,
+  .table tbody,
+  .table tr,
+  .table td,
+  .table th {
+    display: block;
+    width: 100%;
+  }
+
+  .table tr {
+    margin-bottom: 12px;
+  }
+
+  .table td {
+    position: relative;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;  }
+
+  .table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    font-weight: bold;
+    text-align: left;
+  }
     
     .text6{
         color: #233F8D ;
@@ -100,8 +163,30 @@
 
       
        }
+       .uio{ background-color: #233F8D;
+        color: white;
+        padding-top: 5%;
+     
+    }
+    /* .mlk{
+        padding-left: 5%;
+        width: 50%;
+        padding-right: 5%;
+    } */
+    .aze{
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-weight: bold;
+
     
-            }
+    }
+    /* .poi{
+height: 50%;
+width: 50%;
+    } */
+}
+    
+            
             .text{
                 font-size: 100%;
                 /* padding-top: 2%; */
@@ -179,8 +264,8 @@
             
             }
             .xi{
-                padding-right: 8%;
-                padding-left: 8%;
+                padding-right: 20%;
+                padding-left: 20%;
 
             }
             .xa{

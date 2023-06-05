@@ -13,6 +13,13 @@ import { AppComponent } from '../app.component';
 export class ConnecteComponent {
   [x: string]: any;
  addForm:any
+ errorMessage: string = '';
+ errorMessage1: string = '';
+ errorMessage2: string = '';
+ errorMessage3: string = '';
+
+
+
  med:Med []=[]
  hideHeaderAndFooter=false
  x=''
@@ -58,21 +65,29 @@ export class ConnecteComponent {
     }
     ajout(){
       if (this.addForm.get('email').invalid) {
-        alert('Veuillez saisir une adresse e-mail valide.');
+        
+        this.errorMessage = 'Veuillez saisir une adresse e-mail valide.';
+
         return;
       }
       if (this.addForm.value.tel.length>8) {
-        alert('Veuillez saisir une format de numéro de téléphone valide.');
+        // alert('Veuillez saisir une format de numéro de téléphone valide.');
+        this.errorMessage1 = 'Veuillez saisir une format de numéro de téléphone valide.';
+
         return;
       }
       if (this.addForm.value.mp.length < 8 ) {
-        alert("Veuillez saisir un mot de passe d'au moins 8 caractères");
+        // alert("Veuillez saisir un mot de passe d'au moins 8 caractères");
+        this.errorMessage2 = "Veuillez saisir un mot de passe d'au moins 8 caractères";
+
         return;
       }
 
       
       if (this.addForm.value.mp !== this.addForm.value.cmp) {
-        alert('Les mots de passe doivent correspondre.');
+        // alert('Les mots de passe doivent correspondre.');
+        this.errorMessage3 = "Les mots de passe doivent correspondre.";
+
         return;
       }
       if((this.addForm.value.email=='')||(this.addForm.value.mp=='')){
