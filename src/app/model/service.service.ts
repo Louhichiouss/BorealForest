@@ -24,11 +24,13 @@ export class ServiceService {
     
     
   }
-<<<<<<< HEAD
-  baseUrl: string="http://boreal.houssem.tn/api/"
-=======
-  baseUrl: string="https://boreal.hossem.tn/api/"
->>>>>>> a43bb19f5d252d97f5ad8bf5bc734389dda62211
+    baseUrl: string="http://boreal.houssem.tn/api/"
+
+// <<<<<<< HEAD
+//   baseUrl: string="http://boreal.houssem.tn/api/"
+// =======
+//   baseUrl: string="https://boreal.hossem.tn/api/"
+// >>>>>>> a43bb19f5d252d97f5ad8bf5bc734389dda62211
   
 
    ajouterUser(user:User){
