@@ -12,6 +12,7 @@ import { User } from '../model/user';
 export class ContactNousComponent implements OnInit {
   addForm:any
   users :User[]=[]
+  errorMessage1: string = '';
 
   constructor(private service : ServiceService,private formBuilder:FormBuilder ,private router:Router) {
     this.addForm= this.formBuilder.group({
@@ -47,8 +48,12 @@ export class ContactNousComponent implements OnInit {
         // alert(' .');
       },
       error => {
-        alert('votre message a été envoyé.');
         this.addForm.reset();
+        this.errorMessage1 = '';
+
+        this.errorMessage1 = 'Votre message a été envoyé.';
+
+        
       }
     )
   }
