@@ -13,16 +13,12 @@ import { AppComponent } from '../app.component';
 export class ConnecteComponent {
   [x: string]: any;
  addForm:any
- errorMessage: string = '';
- errorMessage1: string = '';
- errorMessage2: string = '';
- errorMessage3: string = '';
-
-
-
  med:Med []=[]
  hideHeaderAndFooter=false
  x=''
+ errorMessage: string = '';
+ errorMessage1: string = '';
+ errorMessage3: string = '';
   showLoginForm: boolean = true;
   admin:admin[]=[]
   constructor(     private appcomponent: AppComponent
@@ -63,71 +59,56 @@ export class ConnecteComponent {
     toggleForm() {
       this.showLoginForm = !this.showLoginForm;
     }
-    ajout(){
+    ajout() {
+      this.errorMessage = '';
+
       if (this.addForm.get('email').invalid) {
-        
         this.errorMessage = 'Veuillez saisir une adresse e-mail valide.';
-
         return;
       }
-      if (this.addForm.value.tel.length>8) {
-        // alert('Veuillez saisir une format de numéro de téléphone valide.');
-        this.errorMessage1 = 'Veuillez saisir une format de numéro de téléphone valide.';
+      this.errorMessage1 = '';
 
+      if (this.addForm.value.tel.length > 8) {
+        this.errorMessage1 = 'Veuillez saisir un format de numéro de téléphone valide.';
         return;
       }
-      if (this.addForm.value.mp.length < 8 ) {
-        alert("Veuillez saisir un mot de passe d'au moins 8 caractères");
-        return;
-      }
+      this.errorMessage3 = '';
 
-      
       if (this.addForm.value.mp !== this.addForm.value.cmp) {
-        // alert('Les mots de passe doivent correspondre.');
-        this.errorMessage3 = "Les mots de passe doivent correspondre.";
-
+        this.errorMessage3 = 'Les mots de passe doivent correspondre.';
         return;
       }
-      if((this.addForm.value.email=='')||(this.addForm.value.mp=='')){
-        alert('champs obligatoires')
-       }else{
-   
-      for (let i = 0; i < this.med.length; i++) {
-        if(this.med[i].email==this.addForm.value.email){
-          // alert("Email est déjà utilisée")
-          this.x='yes'
-        
-        }
-         
-          }
-          if(this.x=='yes'){
-  
-            alert("Email est déjà utilisée")
-            // this.router.navigate(['/connecte'])
-          }
-          else if(this.x!='yes') { 
-           
-  console.log(this.addForm.value);
-  this.service.ajouterMed(this.addForm.value).subscribe(
-    (data: any) => {
-      alert(" S'insecrire est réussite.");
       
-      this.router.navigate(['/connecte/'+1])
-    },
-    error => {
-      alert('An error occurred while adding the patient.');
-    }
-    
-    
-  )
+      if (this.addForm.value.email === '' || this.addForm.value.mp === '') {
+        alert('Champs obligatoires');
+        return;
+      } else {
+        for (let i = 0; i < this.med.length; i++) {
+          if (this.med[i].email == this.addForm.value.email) {
+            this.x = 'yes';
+          }
+        }
         
-  
+        if (this.x == 'yes') {
+          alert('Email est déjà utilisée');
+        } else {
+          console.log(this.addForm.value);
+          this.service.ajouterMed(this.addForm.value).subscribe(
+            (data: any) => {
+              alert("L'inscription a réussi.");
+              this.router.navigate(['/connecte/'+1]);
+            },
+            error => {
+              alert('An error occurred while adding the patient.');
+            }
+          );
+        }
       }
-  
+      
+      // Reset error messages
+      this.x = '';
     }
-    this.x = '';
-
-    }
+    
     login(){
       
       
@@ -169,4 +150,5 @@ export class ConnecteComponent {
     }
   
 
+  
   }
