@@ -1,5 +1,7 @@
 
 
+
+
 <div >
   <img src="../assets/img/1222.png" class="d-block w-100 AA"  alt="..." width="80%" height="80%">
 </div>
@@ -24,6 +26,8 @@
       
     <button type="button" class="btn btn-primary bgb btn-lgb" (click)=" ajout()">Envoyer</button>
     <button type="reset" class="btn btn-primary bgb">Réinitialiser</button>
+    <div class="error-message" *ngIf="errorMessage1">{{ errorMessage1 }}</div>
+
 
       </form>
 
