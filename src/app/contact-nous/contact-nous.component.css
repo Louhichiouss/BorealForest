@@ -31,7 +31,12 @@
     text-align: center;
 
 }
-
+.error-message{
+    color: green;
+    text-align: center;
+font-weight: bold;  
+font-family: Georgia, 'Times New Roman', Times, serif;
+}
 .card{
    
         background: #233F8D;
