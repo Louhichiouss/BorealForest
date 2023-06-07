@@ -227,12 +227,12 @@ if ((this.patient[i].P_c=='Autisme') ) {
  
  this.Au=this.Au+1
  
-} if((this.patient[i].P_c=='pour le bien être') ) {
+} if((this.patient[i].P_c=='pour le bien etre') ) {
    this.Be=this.Be+1
    
    
 
-}if((this.patient[i].P_c=='Rétablissement aprés une opération de chirurgie plastique') ) {
+}if((this.patient[i].P_c=='Retablissement apres une operation de chirurgie plastique') ) {
 
   this.Rcp=this.Rcp+1
   
@@ -243,7 +243,7 @@ if ((this.patient[i].P_c=='Autisme') ) {
   this.Ca=this.Ca+1
 
 
-}if((this.patient[i].P_c=='plaies diabétique') ) {
+}if((this.patient[i].P_c=='plaies diabetique') ) {
 
 
   this.Pd=this.Pd+1
