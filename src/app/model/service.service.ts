@@ -24,7 +24,7 @@ export class ServiceService {
     
     
   }
-    baseUrl: string="https://boreal.hossem.tn/api/"
+    baseUrl: string="https://server.oxyboreal.com/api/"
 
 // <<<<<<< HEAD
 //   baseUrl: string="http://boreal.houssem.tn/api/"
