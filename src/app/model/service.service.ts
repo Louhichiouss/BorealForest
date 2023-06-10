@@ -24,14 +24,12 @@ export class ServiceService {
     
     
   }
-    baseUrl: string="https://server.oxyboreal.com/api/"
-
 // <<<<<<< HEAD
 //   baseUrl: string="http://boreal.houssem.tn/api/"
 // =======
 //   baseUrl: string="https://boreal.hossem.tn/api/"
 // >>>>>>> a43bb19f5d252d97f5ad8bf5bc734389dda62211
-  
+   baseUrl: string="http://server.oxyboreal.com/api/";
 
    ajouterUser(user:User){
       // this.user.push(user)
@@ -230,5 +228,8 @@ export class ServiceService {
           message: string;
         }
       
+      
+            
+
       
             
