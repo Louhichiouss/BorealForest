@@ -596,7 +596,20 @@
     
     
     
-    
+    .r{
+      color: #cc0000;
+         font-weight: bold;
+    }
+    .v{
+      color: #6aa84f;
+      font-weight: bold;
+    }
+    .b{
+      color: #3c78d8;
+      font-weight: bold;
+
+
+    }
     
     @media screen and (max-width: 576px) {
       #content nav form .form-input input {
