@@ -75,16 +75,24 @@ am:any
       this.service.moveEvent(params).subscribe(result => console.log("Resized"));
     },
     onTimeRangeSelected: async args => {
+      const colors = [
+        {name: "Bleu", id: "#3c78d8"},
+        {name: "vert", id: "#6aa84f"},
+       
+        {name: "Rouge", id: "#cc0000"},
+      ];
 
       const form = [
         {name: "Name", id: "text"},
         {name: "Start", id: "start", type: "datetime"},
         {name: "End", id: "end", type: "datetime"},
+        {name: "Color", id: "barColor", type: "select", options: colors},
       ];
 
       const data = {
         start: args.start,
-        end: args.end
+        end: args.end,
+        barColor: "#3c78d8"
       };
 
       const modal = await DayPilot.Modal.form(form, data);
@@ -127,3 +135,4 @@ am:any
 
 
 }
+
