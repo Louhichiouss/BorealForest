@@ -211,11 +211,12 @@ export class ServiceService {
         moveEvent(params: MoveEventParams): Observable<BackendResult> {
           return this.http.post(this.url+"api/backend_move.php", params) as Observable<BackendResult>;
         }}
-        export interface CreateEventParams {
+         export interface CreateEventParams {
           id?: string | number;
           start: string;
           end: string;
           text: string;
+          barColor:string;
         }
         
         export interface MoveEventParams {
