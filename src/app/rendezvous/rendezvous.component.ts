@@ -36,8 +36,8 @@ am:any
 
   navigatorConfig: DayPilot.NavigatorConfig = {
     selectMode: "Week",
-    showMonths: 2,
-    skipMonths: 2
+    showMonths: 1,
+    skipMonths: 1
   };
 
   calendarConfig: DayPilot.CalendarConfig = {
