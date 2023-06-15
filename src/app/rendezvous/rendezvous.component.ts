@@ -30,19 +30,7 @@ export class RendezvousComponent implements OnInit {
   }
 
 
-  get columns(): any[] {
-    let result = [];
-    let first = DayPilot.Date.today().firstDayOfWeek();
-  
-    for (let i = 0; i < 7; i++) { // Iterate for 7 days to cover Monday to Sunday
-      let day = first.addDays(i);
-      let dayOfWeek = day.getDayOfWeek();
-  
-      result.push({ start: day, name: day.toString("ddd M/d/yyyy") });
-    }
-    return result;
-  }
-  
+
 
   navigatorConfig: DayPilot.NavigatorConfig = {
     selectMode: "Week",
@@ -52,8 +40,7 @@ export class RendezvousComponent implements OnInit {
  
   calendarConfig: DayPilot.CalendarConfig = {
     startDate: DayPilot.Date.today(),
-    viewType: "Resources",
-    columns: this.columns,
+    viewType: "Week",
     eventDeleteHandling: "Update",
     onEventDeleted: args => {
       if (window.confirm("Are you sure you want to delete this event?")) {
