@@ -87,8 +87,8 @@ export class Patient {
         P_region: string,
         P_c: string,
         P_sexe: string,
-        P_nbs: string,
-        P_pt: string,
+        P_nbs: number,
+        P_pt: number,
 
     ) {
         this.P_id = P_id
@@ -110,8 +110,8 @@ export class Patient {
     P_region: string
     P_c: string
     P_sexe: string
-    P_nbs: string
-    P_pt: string
+    P_nbs: number
+    P_pt: number
 
 
 
@@ -127,7 +127,7 @@ export class matriel {
         Nom: string,
         Description: string,
         Quantite: string,
-        Prix: string,
+        Prix: number,
         Date: Date
     ) {
         this.id = id
@@ -141,7 +141,7 @@ export class matriel {
     Nom: string
     Description: string
     Quantite: string
-    Prix: string
+    Prix: number
     Date: Date
 
 
