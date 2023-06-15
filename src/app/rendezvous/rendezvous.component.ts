@@ -1,4 +1,3 @@
-
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { ServiceService, MoveEventParams } from '../model/service.service';
@@ -7,6 +6,7 @@ import { firstValueFrom } from "rxjs";
 
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+
 @Component({
   selector: 'calendar-component',
   templateUrl: './rendezvous.component.html',
@@ -14,35 +14,46 @@ import localeFr from '@angular/common/locales/fr';
 })
 export class RendezvousComponent implements OnInit {
   @ViewChild("calendar") calendar!: DayPilotCalendarComponent;
-am:any
-  patients: any;
+  am: any;
+ 
 
+  constructor(private appcomponent: AppComponent, private service: ServiceService) {}
 
-
-    constructor(private appcomponent: AppComponent, private service: ServiceService ) {
-  }
-  
   events!: any[];
 
   get date(): DayPilot.Date {
     return this.calendarConfig.startDate as DayPilot.Date;
   }
 
-  
-
   set date(val: DayPilot.Date) {
     this.calendarConfig.startDate = val;
   }
+
+
+  get columns(): any[] {
+    let result = [];
+    let first = DayPilot.Date.today().firstDayOfWeek();
+  
+    for (let i = 0; i < 7; i++) { // Iterate for 7 days to cover Monday to Sunday
+      let day = first.addDays(i);
+      let dayOfWeek = day.getDayOfWeek();
+  
+      result.push({ start: day, name: day.toString("ddd M/d/yyyy") });
+    }
+    return result;
+  }
+  
 
   navigatorConfig: DayPilot.NavigatorConfig = {
     selectMode: "Week",
     showMonths: 1,
     skipMonths: 1
   };
-
+ 
   calendarConfig: DayPilot.CalendarConfig = {
     startDate: DayPilot.Date.today(),
-    viewType: "Week",
+    viewType: "Resources",
+    columns: this.columns,
     eventDeleteHandling: "Update",
     onEventDeleted: args => {
       if (window.confirm("Are you sure you want to delete this event?")) {
@@ -54,15 +65,11 @@ am:any
       console.log("New start time:", args.newStart);
       console.log("New end time:", args.newEnd);
       let params: MoveEventParams = {
-        
         id: args.e.id(),
         newStart: args.newStart,
         newEnd: args.newEnd
-        
       };
-      this.service.moveEvent(params).subscribe(result => 
-        
-        console.log("Moved"));
+      this.service.moveEvent(params).subscribe(result => console.log("Moved"));
     },
     onEventResized: args => {
       console.log("New start time:", args.newStart);
@@ -76,17 +83,16 @@ am:any
     },
     onTimeRangeSelected: async args => {
       const colors = [
-        {name: "Bleu", id: "#3c78d8"},
-        {name: "vert", id: "#6aa84f"},
-       
-        {name: "Rouge", id: "#cc0000"},
+        { name: "Bleu", id: "#3c78d8" },
+        { name: "vert", id: "#6aa84f" },
+        { name: "Rouge", id: "#cc0000" },
       ];
 
       const form = [
-        {name: "Name", id: "text"},
-        {name: "Start", id: "start", type: "datetime"},
-        {name: "End", id: "end", type: "datetime"},
-        {name: "Color", id: "barColor", type: "select", options: colors},
+        { name: "Name", id: "text" },
+        { name: "Start", id: "start", type: "datetime" },
+        { name: "End", id: "end", type: "datetime" },
+        { name: "Color", id: "barColor", type: "select", options: colors },
       ];
 
       const data = {
@@ -110,29 +116,19 @@ am:any
     }
   };
 
-    ngOnInit(): void {
-          this.appcomponent.hideHeaderAndFooter=true;
+  ngOnInit(): void {
+    this.appcomponent.hideHeaderAndFooter = true;
 
-          registerLocaleData(localeFr);
+    registerLocaleData(localeFr);
 
-           
-    this.service.getpinterface().subscribe((result: any) => {
-      this.patients = result.data;
-      // console.log(this.patients);
-    
-
-    this.am=this.patients.length
-    // console.log(this.am)
-
-  });
   }
+
   viewChange(): void {
     this.service.getEvents(this.calendar.control.visibleStart(), this.calendar.control.visibleEnd()).subscribe(result => {
       this.events = result;
       console.log("Events retrieved from backend:", result);
     });
   }
-
-
 }
+
 
