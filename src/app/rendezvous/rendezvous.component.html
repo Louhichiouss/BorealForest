@@ -45,11 +45,17 @@
         </a>
       </li>
       <li>
-          <a routerLink="/recette">
-            <i class='bx bxs-doughnut-chart text' ></i>
-            <span class="tex"> Recette et Dépense</span>
-          </a>
-        </li>
+        <a routerLink="/recette">
+          <i class='bx bxs-doughnut-chart text' ></i>
+          <span class="tex"> Recette </span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/depense">
+          <i class='bx bx-line-chart text'></i>
+          <span class="tex"> Dépense </span>
+        </a>
+      </li>
     </ul>
       <ul class="side-menu">
         <ul class="side-menu" >
@@ -158,13 +164,13 @@
     </main>
   </section>
   <!-- CONTENT -->
-<div class="alin">
+
+  <div class="alin">
     <p>
       Rouge: <span class="r">Annulé</span>&nbsp;&nbsp;
       Vert: <span class="v">Passé</span>&nbsp;&nbsp;
       Bleu: <span class="b">Réservé</span>
     </p>
- <p class="pda1"><span  >Dimanche   </span>  <span class="pda">Lundi   </span><span class="pda"> Mardi</span>  <span class="pda">Mercredi </span ><span class="pda">Jeudi</span> <span class="pda">Vendredi</span><span class="pda">Samedi</span>      </p>
   </div>
   <div class="column-left">
     <daypilot-navigator [config]="navigatorConfig" [(date)]="date"></daypilot-navigator>
@@ -175,6 +181,10 @@
     
     </daypilot-calendar>
   </div>
+  
+  
+  
+
   
  
 
