@@ -241,3 +241,27 @@ export class admin {
         password: string
 
 }
+export  class depense {
+    constructor(
+        id: number,
+       depense: number,
+       description: string,
+       date: string,
+       jour: string,
+       region:string
+    ){
+        this.id = id
+        this.depense = depense
+        this. description = description
+        this.date = date
+        this.jour = jour
+        this.region  = region
+    }
+    id: number
+   depense: number
+   description :string
+    date: string
+    jour: string
+    region :string
+
+}
