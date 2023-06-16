@@ -118,16 +118,16 @@ dayofweek:any=[]
         const dataArr = [0, 0, 0, 0, 0, 0, 0];
     
         // Loop through the recipes and add the benefice to the appropriate day of the week
-        for (let i = 0; i < this.recettes.length; i++) {
-          const date = new Date(this.recettes[i].date);
-          const benefice = this.recettes[i].beneficie;
-          // console.log(benefice)
-          if (date >= currentWeekStart && date <= currentWeekEnd) {
-            const dayIndex = date.getDay();
-            dataArr[dayIndex] += benefice;
-            console.log(dataArr[dayIndex])
-          }
-        }
+        // for (let i = 0; i < this.recettes.length; i++) {
+        //   const date = new Date(this.recettes[i].date);
+        //   const benefice = this.recettes[i].beneficie;
+        //   // console.log(benefice)
+        //   if (date >= currentWeekStart && date <= currentWeekEnd) {
+        //     const dayIndex = date.getDay();
+        //     dataArr[dayIndex] += benefice;
+        //     console.log(dataArr[dayIndex])
+        //   }
+        // }
     
         // Set the chart data to the array we just built
         this.series11 = [
@@ -227,12 +227,12 @@ if ((this.patient[i].P_c=='Autisme') ) {
  
  this.Au=this.Au+1
  
-} if((this.patient[i].P_c=='pour le bien etre') ) {
+} if((this.patient[i].P_c=='pour le bien être') ) {
    this.Be=this.Be+1
    
    
 
-}if((this.patient[i].P_c=='Retablissement apres une operation de chirurgie plastique') ) {
+}if((this.patient[i].P_c=='Rétablissement aprés une opération de chirurgie plastique') ) {
 
   this.Rcp=this.Rcp+1
   
@@ -243,7 +243,7 @@ if ((this.patient[i].P_c=='Autisme') ) {
   this.Ca=this.Ca+1
 
 
-}if((this.patient[i].P_c=='plaies diabetique') ) {
+}if((this.patient[i].P_c=='plaies diabétique') ) {
 
 
   this.Pd=this.Pd+1
@@ -320,10 +320,10 @@ this.series11 = [1,2,3,4,6,9,8];
         // console.log(result); // check if the data is received properly
         this.recettes=result.data
         this.tr = [];
-        for (let i = 0; i < this.recettes.length; i++) {
-          this.tr.push(this.recettes[i].beneficie.toString());
-        // this.sum=this.sum+this.tr
-        }
+        // for (let i = 0; i < this.recettes.length; i++) {
+        //   this.tr.push(this.recettes[i].beneficie.toString());
+        // // this.sum=this.sum+this.tr
+        // }
         // console.log(this.tr);
         // console.log(this.tr.length);
         this.sum = 0;
