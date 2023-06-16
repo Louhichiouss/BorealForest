@@ -1,4 +1,5 @@
 
+
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -274,5 +275,3 @@ this.service.getSignlePatient(this.patient_id).subscribe((
         );
       }
     }
-
-
