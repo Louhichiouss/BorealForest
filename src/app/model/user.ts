@@ -88,7 +88,7 @@ export class Patient {
         P_c: string,
         P_sexe: string,
         P_nbs: number,
-       P_n: number,
+        P_n: number,
         P_pt: number,
 
     ) {
@@ -101,7 +101,7 @@ export class Patient {
         this.P_c = P_c
         this.P_sexe = P_sexe
         this.P_nbs = P_nbs
-      this.P_n = P_n
+        this.P_n= P_n
         this.P_pt = P_pt
     }
     P_id: number
@@ -113,8 +113,7 @@ export class Patient {
     P_c: string
     P_sexe: string
     P_nbs: number
-
-  P_n: number
+    P_n :number
     P_pt: number
 
 
@@ -130,7 +129,7 @@ export class matriel {
         id: number,
         Nom: string,
         Description: string,
-        Quantite: string,
+        Quantite: number,
         Prix: number,
         Date: Date
     ) {
@@ -144,7 +143,7 @@ export class matriel {
     id: number
     Nom: string
     Description: string
-    Quantite: string
+    Quantite: number
     Prix: number
     Date: Date
 
