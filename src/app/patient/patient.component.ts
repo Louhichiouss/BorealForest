@@ -30,6 +30,7 @@ patient_id:any ;
   cc:any;
   s:any;
   nb:any;
+  nbt:any;
   pt:any;
 am:any
 z:any
@@ -62,6 +63,8 @@ z:any
       P_c:['',Validators.required],
       P_sexe:['',Validators.required],
       P_nbs:['',Validators.required],
+      P_n:['',Validators.required],
+
       P_pt:['',Validators.required],
 
 
@@ -106,6 +109,8 @@ this.service.getSignlePatient(this.patient_id).subscribe((
     this.cc=this.c.P_c
     this.s=this.c.P_sexe
     this.nb=this.c.P_nbs
+    this.nbt=this.c.P_n
+
     this.pt=this.c.P_pt
 
 
@@ -136,7 +141,7 @@ this.service.getSignlePatient(this.patient_id).subscribe((
         this.voir=true
         this.tous=false
   
-        console.log(this.patient1+"ddfdffddf")
+        // console.log(this.patient1+"ddfdffddf")
           return;
         }
         else{
@@ -170,7 +175,7 @@ this.service.getSignlePatient(this.patient_id).subscribe((
         return;
       }
     
-      if ((this.addForm.value.P_nom=='') || (this.addForm.value.P_prenom=='') || (this.addForm.value.P_tel=='') ||(this.addForm.value.P_email=='') || (this.addForm.value.P_region=='') || (this.addForm.value.P_c=='')|| (this.addForm.value.P_sexe=='') || (this.addForm.value.P_nbs=='') || (this.addForm.value.P_pt=='')) {
+      if ((this.addForm.value.P_nom=='') || (this.addForm.value.P_prenom=='') || (this.addForm.value.P_tel=='') ||(this.addForm.value.P_email=='') || (this.addForm.value.P_region=='') || (this.addForm.value.P_c=='')|| (this.addForm.value.P_sexe=='')  || (this.addForm.value.P_pt=='')) {
         alert('champs obligatoires');
       } else {
          for(var i = 0; i <this.patients.length; i++){
@@ -242,7 +247,7 @@ this.service.getSignlePatient(this.patient_id).subscribe((
       return;
     }
   
-    if ((this.addForm.value.P_nom=='') || (this.addForm.value.P_prenom=='') || (this.addForm.value.P_tel=='') ||(this.addForm.value.P_email=='') || (this.addForm.value.P_region=='') || (this.addForm.value.P_c=='')|| (this.addForm.value.P_sexe=='') || (this.addForm.value.P_nbs=='') || (this.addForm.value.P_pt=='')) {
+    if ((this.addForm.value.P_nom=='') || (this.addForm.value.P_prenom=='') || (this.addForm.value.P_tel=='') ||(this.addForm.value.P_email=='') || (this.addForm.value.P_region=='') || (this.addForm.value.P_c=='')|| (this.addForm.value.P_sexe=='') || (this.addForm.value.P_pt=='')) {
       alert('champs obligatoires');
       return;
     }
@@ -270,7 +275,4 @@ this.service.getSignlePatient(this.patient_id).subscribe((
       }
     }
 
-
-
-  
 
