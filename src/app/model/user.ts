@@ -158,27 +158,23 @@ export class recette {
     constructor(
         id: number,
         recette: number,
-        depense: number,
-        description: string,
-        beneficie: number,
         date: string,
-        jour: string
+        jour: string,
+        region:string
     ) {
         this.id = id
         this.recette = recette
-        this.depense = depense
-        this.description = description
-        this.beneficie = beneficie
+      
         this.date = date
         this.jour = jour
+        this.region  = region
     }
     id: number
     recette: number
-    depense: number
-    description: string
-    beneficie: number
+   
     date: string
     jour: string
+    region :string
 
 }
 
