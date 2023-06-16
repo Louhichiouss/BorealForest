@@ -35,8 +35,8 @@
           <i class='bx bxs-shopping-bag-alt text' ></i>
           <span class="tex" >Gestion de Matériels</span>
         </a>
-      </li>
-     
+      </li>  
+      
       <li>
         <a routerLink="/rendezvous">
           <i class='bx bxs-message-dots text' ></i>
@@ -206,16 +206,7 @@
             <input type="text" class="form-control" id="recette" name="recette" formControlName="recette">
           </div>
 
-          <div class="form-group">
-            <label for="depense" class="col-form-label">Dépense par jour:</label>
-            <input type="text" class="form-control" id="depense" name="depense" formControlName="depense">
-          </div>
-
-          <div class="form-group " width="100px">
-            <label for="description" class="col-form-label">Description de  Dépense  :</label>
-            <textarea  class="form-control " id="description" name="description" formControlName="description"  ></textarea>
-          </div>
-
+      
          
           <div class="form-group">
             <label for="date"> date:</label>
@@ -241,6 +232,14 @@
        
           
 
+          <div class="form-group">
+            <label for="region" class="col-form-label">Région:</label>
+            <select class="form-select" aria-label="Default select example" name="region" formControlName="region">
+              <option selected></option>
+              <option value="Tunis">Tunis</option>
+              <option value="Sousse">Sousse</option>
+            </select>
+          </div>
         
         </form>
       </div>
@@ -262,12 +261,8 @@
             <th>
                 ID
             </th>
-            <th>
-                Recette par jour
-            </th>
-            <th>
-                Dépense par jour
-            </th>
+            
+          
            
            
             <th>
@@ -276,6 +271,9 @@
             <th>
                 Jour
              </th>
+             <th>
+              Région
+            </th>
             <th>
                Option
             </th>
@@ -286,13 +284,11 @@
         <tr >
 <td>{{i+1}}</td>
 <td>{{rect.recette}}</td>
-<td>{{rect.depense}}</td>
-<td>{{rect.beneficie}}</td>
 
 <td>{{rect.date}}</td>
 <td>{{rect.jour}}</td>
 
-
+<td>{{rect.region}}</td>
 
 
 
@@ -348,19 +344,16 @@
             <th>
                 Recette par jour
             </th>
-            <th>
-                Dépense par jour
-            </th>
-           <th>
-            béneficie net par jour
-           </th>
-           
+      
             <th>
                Date
             </th>
             <th>
                 Jour
              </th>
+             <th>
+              Région
+            </th>
             <th>
                Option
             </th>
@@ -371,11 +364,10 @@
         <tr >
 <td>{{i+1}}</td>
 <td>{{rec.recette}}</td>
-<td>{{rec.depense}}</td>
-<td> {{rec.beneficie}}</td>
 <td>{{rec.date}}</td>
 <td>{{rec.jour}}</td>
 
+<td>{{rec.region}}</td>
 
 
 
@@ -437,15 +429,8 @@
             <input type="text" class="form-control" id="recette" name="recette" formControlName="recette">
           </div>
 
-          <div class="form-group">
-            <label for="depense" class="col-form-label">Dépense par jour:</label>
-            <input type="text" class="form-control" id="depense" name="depense" formControlName="depense">
-          </div>
+    
 
-          <div class="form-group">
-            <label for="description" class="col-form-label">Description de  Dépense  :</label>
-            <input type="text" class="form-control" id="description" name="description" formControlName="description">
-          </div>
 
       
           <div class="form-group">
@@ -469,7 +454,14 @@
 
             </select>
           </div>
-       
+          <div class="form-group">
+            <label for="region" class="col-form-label">Région:</label>
+            <select class="form-select" aria-label="Default select example" name="region" formControlName="region">
+              <option selected></option>
+              <option value="Tunis">Tunis</option>
+              <option value="Sousse">Sousse</option>
+            </select>
+          </div>
           
 
         
@@ -506,13 +498,7 @@
               <label for="recette" class="col-form-label"><span class="oo">Recette par jour:</span> {{r}}</label>
             </div>
   
-            <div class="form-group">
-              <label for="depense" class="col-form-label"> <span class="oo">Dépense par jour:</span>{{d}}</label>
-            </div>
-  
-            <div class="form-group">
-              <label for="description" class="col-form-label"> <span class="oo"> Description de  Dépense:</span> {{de}}</label>
-            </div>
+            
   
          
             <div class="form-group">
@@ -525,7 +511,11 @@
              
             </div>
          
-            
+          
+          <div class="form-group">
+           <label for="jour" class="col-form-label"> <span class="oo">Région: </span>{{re}}</label>
+          
+         </div>
   
           
           </form>
