@@ -27,7 +27,7 @@ trr:any =[];
 trrr:any =[];
 sum:any;
 z:any
-
+re:any
 recette_id:any;
   /////////
   getForm:any
@@ -56,13 +56,13 @@ constructor(private appcompant:AppComponent,private http:HttpClient,     private
   this.addForm = this.formbuilder.group({
     id:[],
     recette:['',Validators.required],
-    depense:['',Validators.required],
-    description:['',Validators.required],
-    beneficie:['',Validators.required],
+    
     date:['',Validators.required],
     jour:['',Validators.required],
-   
+      
+region:['',Validators.required],
 
+   
 
 
 
@@ -80,17 +80,7 @@ ngOnInit(): void {
     (result:any)=>{
       this.recettes=result.data
    
-       for (let i = 0; i < this.recettes.length; i++) {
-         this.trr.push(this.recettes[i].recette.toString());
-        this.trrr.push(this.recettes[i].depense.toString());
-       }
-    // console.log(this.trr)
-    // console.log(this.trrr)
-      //   for (let i = 0; i < this.trr.length; i++){
-      //  for (let j= 0; j < this.trrr.length; j++) {
-      //   this.sum = parseInt(this.trr[i])-parseInt(this.trrr[j])
-      //   console.log(this.sum)
-      //   }}
+ 
 
     }),
   this.recette_id=this.url.snapshot.params['id'];
@@ -102,10 +92,10 @@ if (this.recette_id > 0) {
     this.addForm.patchValue(data.data)
     this.c = (data.data)
     this.r = this.c.recette
-    this.d = this.c.depense
-    this.de = this.c.description
+
     this.da = this.c.date
     this.j = this.c.jour
+    this.re = this.c.region
   });
 }
 
@@ -159,7 +149,7 @@ setMyval(){
 
 ajout(){
   // console.log(this.addForm.value);
-  if ((this.addForm.value.recette=='') || (this.addForm.value.depense=='') || (this.addForm.value.description=='')  || (this.addForm.value.date=='')|| (this.addForm.value.jour=='') ) {
+  if ((this.addForm.value.recette=='')   || (this.addForm.value.date=='')|| (this.addForm.value.jour=='') || (this.addForm.value.region=='') ) {
     alert('champs obligatoires');
   } 
    
@@ -195,7 +185,7 @@ ajout(){
 
   }
   edit(){
-    if ((this.addForm.value.recette=='') || (this.addForm.value.depense=='') || (this.addForm.value.description=='')  || (this.addForm.value.date=='')|| (this.addForm.value.jour=='') ) {
+    if ((this.addForm.value.recette=='') || (this.addForm.value.depense=='') || (this.addForm.value.description=='')  || (this.addForm.value.date=='')|| (this.addForm.value.jour=='') || (this.addForm.value.region=='') ) {
       alert('champs obligatoires');
     } else {
     
