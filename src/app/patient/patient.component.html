@@ -236,10 +236,13 @@
         </div>
      
         <div class="form-group">
-          <label for="nbs" class="col-form-label">Nombre de séance:</label>
-          <input type="text" class="form-control" id="P_nbs" name="P_nbs" formControlName="P_nbs">
+          <label for="nbs" class="col-form-label">Nombre de séance déja fait:</label>
+          <input type="number" class="form-control" id="P_nbs" name="P_nbs" formControlName="P_nbs">
         </div>
-
+        <div class="form-group">
+          <label for="nbs" class="col-form-label">Nombre de séance pour faire:</label>
+          <input type="number" class="form-control" id="P_n" name="P_n" formControlName="P_n">
+        </div>
         <div class="form-group">
           <label for="pt" class="col-form-label">Payement total:</label>
           <input type="text" class="form-control" id="P_pt" name="P_pt" formControlName="P_pt">         
@@ -254,7 +257,7 @@
           <option value="Surdite brusque">Surdite brusque</option>
           <option value="Paralysie faciale">Paralysie faciale</option>
           <option value="Autisme">Autisme</option>
-          <option value="Retablissement apres une operation de chirurgie plastique">Rétablissement aprés une opération de chirurgie plastique</option>
+          <option value="Rétablissement aprés une operation de chirurgie plastique">Rétablissement aprés une opération de chirurgie plastique</option>
           <option value="AVC">AVC</option>
           <option value="pour le bien etre">pour le bien être</option>
 
@@ -306,9 +309,11 @@
               Etat santé
           </th>
             <th>
-              Nombre de séance
+              Nombre de séance déja fait
           </th>
-            
+          <th>
+            Nombre de séance pour faire
+        </th>
             <th>
                 Payement total
             </th>
@@ -329,6 +334,8 @@
   <td>{{patient1.P_c}}</td>
   
   <td>{{patient1.P_nbs}}</td>
+  <td>{{patient1.P_n}}</td>
+
   <td>{{patient1.P_pt}} DT</td>
   
   
@@ -409,9 +416,11 @@
             Etat santé
         </th>
           <th>
-            Nombre de séance
+            Nombre de séance déja fait
         </th>
-          
+        <th>
+          Nombre de séance pour faire
+      </th>
           <th>
               Payement total
           </th>
@@ -432,6 +441,8 @@
 <td>{{pat.P_c}}</td>
 
 <td>{{pat.P_nbs}}</td>
+<td>{{pat.P_n}}</td>
+
 <td>{{pat.P_pt}} DT</td>
 
 
@@ -525,13 +536,13 @@
           <option selected></option>
           <option value="Cancer">Cancer</option>
           <option value="Migraine">Migraine</option>
-          <option value="plaies diabetique">plaies diabétique</option>
+          <option value="plaies diabétique">plaies diabetique</option>
           <option value="Surdite brusque">Surdite brusque</option>
           <option value="Paralysie faciale">Paralysie faciale</option>
           <option value="Autisme">Autisme</option>
-          <option value="Retablissement apres une operation de chirurgie plastique">Rétablissement aprés une opération de chirurgie plastique</option>
+          <option value="Rétablissement aprés une opération de chirurgie plastique">Retablissement aprés une opération de chirurgie plastique</option>
           <option value="AVC">AVC</option>
-          <option value="pour le bien etre">pour le bien être</option>
+          <option value="pour le bien être">pour le bien etre</option>
 
 
 
@@ -546,10 +557,13 @@
             <option value="Homme">Homme</option>
           </select>
         </div>
-     
         <div class="form-group">
-          <label for="nbs" class="col-form-label">Nombre de séance:</label>
-          <input type="text" class="form-control" id="P_nbs" name="P_nbs" formControlName="P_nbs">
+          <label for="nbs" class="col-form-label">Nombre de séance déja fait:</label>
+          <input type="number" class="form-control" id="P_nbs" name="P_nbs" formControlName="P_nbs">
+        </div>
+        <div class="form-group">
+          <label for="nbs" class="col-form-label">Nombre de séance pour faire:</label>
+          <input type="number" class="form-control" id="P_n" name="P_n" formControlName="P_n">
         </div>
 
         <div class="form-group">
@@ -609,9 +623,11 @@
           </div>
        
           <div class="form-group">
-            <label for="nbs" class="col-form-label"><span class="oo">Nombre de séance:</span> {{nb}}</label>
+            <label for="nbs" class="col-form-label"><span class="oo">Nombre de séance déja fait:</span> {{nb}}</label>
           </div>
-  
+          <div class="form-group">
+            <label for="nbs" class="col-form-label"><span class="oo">Nombre de séance pour faire:</span> {{nbt}}</label>
+          </div>
           <div class="form-group">
             <label for="pt" class="col-form-label"><span class="oo">Payement total:</span> {{pt}}</label>
          </div>
@@ -625,6 +641,16 @@
   </div>
   </div>
   
+
+
+
+
+
+
+
+
+
+
 
 
 
