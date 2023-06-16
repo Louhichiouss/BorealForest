@@ -46,6 +46,7 @@ import { ParametreComponent } from './parametre/parametre.component';
 import { PinterfaceComponent } from './pinterface/pinterface.component';
 import { ProfilComponent } from './profil/profil.component';
 import { NotificationComponent } from './notification/notification.component';
+import { DepenseComponent } from './depense/depense.component';
 
 
 const routes: Routes = [
@@ -108,6 +109,7 @@ const routes: Routes = [
     {path:"connecte/:id",component:ConnecteComponent},
     {path:"pinterface/:id/:id",component:PinterfaceComponent},
     
+    {path:"depense",component:DepenseComponent},
 
 
 
