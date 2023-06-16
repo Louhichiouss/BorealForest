@@ -63,6 +63,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { ProfilComponent } from './profil/profil.component';
 import { NotificationComponent } from './notification/notification.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { DepenseComponent } from './depense/depense.component';
 
 
 // FullCalendarModule.registerPlugins([
@@ -124,6 +125,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
       PinterfaceComponent,
       ProfilComponent,
       NotificationComponent,
+      DepenseComponent,
  
     
   ],
