@@ -11,7 +11,7 @@ import EventId = DayPilot.EventId;
   providedIn: 'root'
 })
 export class ServiceService {
-  url: string="https://service.oxyboreal.com/api"
+  url: string="https://service.oxyboreal.com/api/"
  user:User []=[]
  med:Med []=[]
  patient:Patient []=[]
@@ -29,7 +29,7 @@ export class ServiceService {
 // =======
 //   baseUrl: string="https://boreal.hossem.tn/api/"
 // >>>>>>> a43bb19f5d252d97f5ad8bf5bc734389dda62211
-   baseUrl: string="http://localhost/api/";
+   baseUrl: string="https://service.oxyboreal.com/api/";
 
    ajouterUser(user:User){
       // this.user.push(user)
