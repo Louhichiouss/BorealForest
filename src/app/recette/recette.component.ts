@@ -112,39 +112,27 @@ this.am=this.patients.length
 
 }
 
-retourn():void{
-  this.z=0
+retourn(): void {
+  this.recettess = [];
 
-    
-  for(var i = 0; i <this.recettes.length; i++){
-    if((this.recettes[i].jour==this.getForm.value.jour)){
-  
+  for (var i = 0; i < this.recettes.length; i++) {
+    if (this.recettes[i].jour === this.getForm.value.jour) {
       this.recettess.push(this.recettes[i]);
-
-    this.voir=true
-    this.tous=false
-
-    console.log(this.recettess)
-    return;
-    }
-    else{
-      this.z=this.z+1
-      
-    }
+    } 
   }
 
-  if(this.z>0){
-    alert("Le jour n'existe pas ou incorrecte")
-    return;
+  if (this.recettess.length > 0) {
+    this.voir = true;
+    this.tous = false;
+    console.log(this.recettess);
+  } else {
+    alert("Le jour n'existe pas ou est incorrect");
   }
- 
-  
-
 }
-setMyval(){
 
-  this.voir=false
-  this.tous=true
+setMyval(): void {
+  this.voir = false;
+  this.tous = true;
 }
 
 ajout(){
