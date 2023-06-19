@@ -4,14 +4,14 @@ import { Router } from '@angular/router';
 import {DayPilot} from "@daypilot/daypilot-lite-angular";
 import {Observable, catchError, throwError} from 'rxjs';
 
-import { Med, Patient, User, admin, matriel, recette, register } from './user';
+import { Med, Patient, User, admin, depense, matriel, recette, register } from './user';
 import EventData = DayPilot.EventData;
 import EventId = DayPilot.EventId;
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceService {
-  url: string="https://server.oxyboreal.com/api/"
+  url: string="http://localhost/api/"
  user:User []=[]
  med:Med []=[]
  patient:Patient []=[]
@@ -24,14 +24,12 @@ export class ServiceService {
     
     
   }
-    baseUrl: string="https://server.oxyboreal.com/api/"
-
 // <<<<<<< HEAD
 //   baseUrl: string="http://boreal.houssem.tn/api/"
 // =======
 //   baseUrl: string="https://boreal.hossem.tn/api/"
 // >>>>>>> a43bb19f5d252d97f5ad8bf5bc734389dda62211
-  
+   baseUrl: string="http://localhost/api/";
 
    ajouterUser(user:User){
       // this.user.push(user)
@@ -177,11 +175,29 @@ export class ServiceService {
 
               } 
               
-              //  describe('ImageUploadService',()=>{
-
-
-    //  })
-
+              ajouterdepense(depenses:depense){
+                // this.user.push(user)
+                // console.log(this.user)
+                return this.http.post(this.baseUrl+'insert7.php',depenses)
+              }
+              getdepense(){
+                // console.log(this.user)
+                return this.http.get<depense[]>(this.baseUrl+'view9.php');
+                
+              }
+              getSignledepense(id:any){
+                // console.log(this.user)
+                return this.http.get<depense[]>(this.baseUrl+'view9.php?id='+id);
+              }
+              editdepense(depenses:depense){
+                // this.user.push(user)
+                // console.log(this.user)
+return this.http.put(this.baseUrl+'update5.php',depenses)
+}
+Deletedepense(id:any){
+  console.log(id)
+  return this.http.delete(this.baseUrl+'delete3.php?id='+id)
+                    }
     DeletePatient2(id:any){
       console.log(id)
       return this.http.delete(this.baseUrl+'delete4.php?id='+id)
@@ -211,7 +227,7 @@ export class ServiceService {
         moveEvent(params: MoveEventParams): Observable<BackendResult> {
           return this.http.post(this.url+"api/backend_move.php", params) as Observable<BackendResult>;
         }}
-         export interface CreateEventParams {
+        export interface CreateEventParams {
           id?: string | number;
           start: string;
           end: string;
@@ -232,4 +248,4 @@ export class ServiceService {
         }
       
       
-            
+      
