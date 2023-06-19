@@ -110,6 +110,7 @@ const routes: Routes = [
     {path:"pinterface/:id/:id",component:PinterfaceComponent},
     
     {path:"depense",component:DepenseComponent},
+    {path:"depense/:id",component:DepenseComponent},
 
 
 
