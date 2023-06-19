@@ -196,7 +196,7 @@ return this.http.put(this.baseUrl+'update5.php',depenses)
 }
 Deletedepense(id:any){
   console.log(id)
-  return this.http.delete(this.baseUrl+'delete3.php?id='+id)
+  return this.http.delete(this.baseUrl+'delete5.php?id='+id)
                     }
     DeletePatient2(id:any){
       console.log(id)
