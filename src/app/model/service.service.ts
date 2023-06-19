@@ -11,7 +11,7 @@ import EventId = DayPilot.EventId;
   providedIn: 'root'
 })
 export class ServiceService {
-  url: string="https://service.oxyboreal.com"
+  url: string="https://service.oxyboreal.com/api"
  user:User []=[]
  med:Med []=[]
  patient:Patient []=[]
