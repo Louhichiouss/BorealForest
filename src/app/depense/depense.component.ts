@@ -26,7 +26,8 @@ export class DepenseComponent implements OnInit {
   de:any;
   da:any;
   j:any;
- 
+  x:any;
+
   sum:any;
   z:any
   re:any
@@ -91,38 +92,30 @@ ngOnInit(): void {
   console.log(this.c)
 }
 
-retourn():void{
-  this.z=0
+retourn(): void {
+  this.depensess = [];
 
-    
-  for(var i = 0; i <this.depenses.length; i++){
-    if((this.depenses[i].jour==this.getForm.value.jour)){
-  
+  for (var i = 0; i < this.depenses.length; i++) {
+    if (this.depenses[i].jour === this.getForm.value.jour) {
       this.depensess.push(this.depenses[i]);
-
-    this.voir=true
-    this.tous=false
-
-    console.log(this.depensess)
-    return;
-    }
-    else{
-      this.z=this.z+1
-      
     }
   }
 
-  if(this.z>0){
-    alert("Le jour n'existe pas ou incorrecte")
-    return;
+  if (this.depensess.length > 0) {
+    this.voir = true;
+    this.tous = false;
+    console.log(this.getForm.value.jour);
+  } else {
+    alert("Le jour n'existe pas ou est incorrect");
   }
 }
- 
-setMyval(){
 
-  this.voir=false
-  this.tous=true
+
+setMyval(): void {
+  this.voir = false;
+  this.tous = true;
 }
+
 ajout(){
   // console.log(this.addForm.value);
   if ((this.addForm.value.depense=='') || (this.addForm.value.description=='')   || (this.addForm.value.date=='')|| (this.addForm.value.jour=='') || (this.addForm.value.region=='') ) {
