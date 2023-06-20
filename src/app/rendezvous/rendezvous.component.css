@@ -1,3 +1,12 @@
+.pda{
+  padding-left: 8%;
+  font-weight: bold;
+  
+}
+.pda1{
+  padding-left:30%;
+  font-weight: bold;
+}
 
 @media only screen and (min-width: 1024px) {
   .pda {
@@ -8,16 +17,7 @@
   .pda1 {
     padding-left: 36%;
     font-weight: bold;
-  }}
-  
-.pda{
-  padding-left:8%;
-  font-weight: bold;
-  
-}
-.pda1{
-  padding-left:30%;
-  font-weight: bold;
+  }
 }
 .xx{
 
