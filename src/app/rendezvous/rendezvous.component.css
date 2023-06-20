@@ -1,3 +1,4 @@
+
 .pda{
   padding-left: 8%;
   font-weight: bold;
@@ -55,7 +56,37 @@
     }
     .sx{
     padding: 5px;}
-    
+    .alin{
+      text-align: center;
+    }
+    .calendar-header {
+      background-color: #f2f2f2;
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+      font-size: 14px;
+      color: #333;
+    }
+    .day-header {
+      font-weight: bold;
+      text-align: center;
+      width: 14.2857%; /* Distribute equally for 7 days */
+    }
+    .r{
+      color: #cc0000;
+         font-weight: bold;
+    }
+    .v{
+      color: #6aa84f;
+      font-weight: bold;
+    }
+    .b{
+      color: #3c78d8;
+      font-weight: bold;
+
+
+    }
     @media only screen and (max-width:500px) {
         
       .xx{
@@ -611,25 +642,10 @@
       }
     }
     
-     .alin{
-      text-align: center;
-    }
     
     
-    .r{
-      color: #cc0000;
-         font-weight: bold;
-    }
-    .v{
-      color: #6aa84f;
-      font-weight: bold;
-    }
-    .b{
-      color: #3c78d8;
-      font-weight: bold;
-
-
-    }
+    
+    
     
     @media screen and (max-width: 576px) {
       #content nav form .form-input input {
@@ -698,50 +714,7 @@ margin-left: 30%;
 margin-right: 10%;
 margin-bottom: 10%;
 }
-.e-tooltip-wrap.e-schedule-event-tooltip .airline-flex-row {
-  display: flex;
-  padding: 0 5px;
-  line-height: 20px;
-}
 
-.e-tooltip-wrap.e-schedule-event-tooltip .airline-flex-col {
-  flex: 0 0 50%;
-}
-
-.e-tooltip-wrap.e-schedule-event-tooltip .text-right {
-  text-align: right;
-}
-
-.e-tooltip-wrap.e-schedule-event-tooltip .margin-right {
-  margin-left: -21px;
-}
-
-.e-tooltip-wrap.e-schedule-event-tooltip .text-size {
-  font-size: 14px;
-}
-
-.e-tooltip-wrap.e-schedule-event-tooltip .border-right {
-  border-right: 1px solid #fff;
-}
-
-.e-tooltip-wrap.e-schedule-event-tooltip .airline-fare {
-  padding-left: 8px;
-}
-
-.schedule-resources.e-schedule .e-appointment .template-wrapper {
-  color: black;
-  width: 100%;
-}
-
-.fluent-dark .schedule-resources.e-schedule .e-appointment .template-wrapper,
-.bootstrap5-dark .schedule-resources.e-schedule .e-appointment .template-wrapper,
-.tailwind-dark .schedule-resources.e-schedule .e-appointment .template-wrapper,
-.bootstrap-dark .schedule-resources.e-schedule .e-appointment .template-wrapper,
-.fabric-dark .schedule-resources.e-schedule .e-appointment .template-wrapper,
-.material-dark .schedule-resources.e-schedule .e-appointment .template-wrapper,
-.highcontrast .schedule-resources.e-schedule .e-appointment .template-wrapper {
-  color: #fff;
-}
 
 .schedule-resources.e-schedule .e-work-cells.best-price {
   background-color: #FFFBDF;
@@ -1578,41 +1551,14 @@ body {
 
 
 
-@keyframes bell {
-  0% { transform: rotate(0); }
-  10% { transform: rotate(30deg); }
-  20% { transform: rotate(0); }
-  80% { transform: rotate(0); }
-  90% { transform: rotate(-30deg); }
-  100% { transform: rotate(0); }
-}
-@keyframes rad {
-  0% { transform: translateX(0); }
-  10% { transform: translateX(6px); }
-  20% { transform: translateX(0); }
-  80% { transform: translateX(0); }
-  90% { transform: translateX(-6px); }
-  100% { transform: translateX(0); }
-}
-@keyframes zoom {
-  0% { opacity: 0; transform: scale(0); }
-  10% { opacity: 1; transform: scale(1); }
-  50% { opacity: 1; }
-  51% { opacity: 0; }
-  100% { opacity: 0; }
-}
-@keyframes moon-moving {
-  0% {
-    transform: translate(-200%, 600%);
-  }
-  100% {
-    transform: translate(800%, -200%);
-  }
-}
+
 
 .num{
   animation: zoom 2s 2s both infinite;
 }
+
+
+
 
 
 
