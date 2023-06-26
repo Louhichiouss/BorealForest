@@ -9,9 +9,28 @@
   box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     
 }
-.wx{ 
+.wx{
   font-weight: bold;
 }
+
+.recette-mois {
+  font-family:Georgia, 'Times New Roman', Times, serif ;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333333;
+  padding-top: 2%;
+}
+.recette-annee{
+  font-family:Georgia, 'Times New Roman', Times, serif ;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333333;
+  padding-top: 2%;
+}
+.cvp{
+  font-size: 18px;
+  color: white;
+  b
 .axxxx{
   margin-top: 2% ;
   margin-left: 7%;
