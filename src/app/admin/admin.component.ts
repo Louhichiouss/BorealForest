@@ -17,8 +17,13 @@ import { ChartOptions } from 'chart.js';
 
 
 export class AdminComponent implements OnInit {
-  
-
+  chart2: any;
+  xaxis2:any;
+  dataLabels2: any;
+  grid2: any;
+  stroke2:any;
+  title2: any;
+  series22: any;
   series11: any;
   chart1: any;
   xaxis1:any;
@@ -26,6 +31,24 @@ export class AdminComponent implements OnInit {
   grid1: any;
   stroke1:any;
   title1: any;
+/**********************************************************DEpence souse et tunis */
+chart3: any;
+  xaxis3:any;
+  dataLabels3: any;
+  grid3: any;
+  stroke3:any;
+  title3: any;
+  series3: any;
+
+  series4: any;
+  chart4: any;
+  xaxis4:any;
+  dataLabels4: any;
+  grid4: any;
+  stroke4:any;
+  title4: any;
+  depenses:any;
+/******************************************************************************** */
   z:any
   // @ViewChild("chart") chart: AdminComponent;
   // public chartOptions: Partial<ChartOptions>;
@@ -40,7 +63,22 @@ export class AdminComponent implements OnInit {
   Rcp:number=0;
   Be:number=0;
   Au:number=0;
+  Dp:number=0;
+  Aut:number=0;
   /************************************************ */
+  Sbs:number=0;
+  Pfs:number=0;
+  Mis:number=0;
+  Avcs:number=0;
+  Pds:number=0;
+  Cas:number=0;
+  Rcps:number=0;
+  Bes:number=0;
+  Aus:number=0;
+  Dps:number=0;
+  Auts:number=0;
+
+  /*********************************************** */
   [x: string]: any;
   voir
   tous
@@ -55,6 +93,8 @@ Matriel1:any=[]
   patient:any=[]
   Matriels: matriel[] = [];
   Matriel:any=[]
+  month:any
+
 
 
 p:any
@@ -80,8 +120,14 @@ dayofweek:any=[]
     private cdr: ChangeDetectorRef,
     private url: ActivatedRoute
   ){
+       
+    // Get the current month
+const currentDate = new Date();
+const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
 
-    
+// Log the current month to the console
+console.log(currentMonth);
+
  this.getForm=this.formbuilder.group({
     
       P_tel:['',Validators.required],
@@ -95,6 +141,172 @@ dayofweek:any=[]
     this.tous1= true
     this.voir2=false
     this.tous2= true
+    this.service.getdepense().subscribe(
+      (result:any)=>{
+        this.depenses=result.data
+
+        this.dayofweek = [];
+        const currentDate = new Date();
+        const currentWeekStart = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - currentDate.getDay());
+        const currentWeekEnd = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - currentDate.getDay() + 6);
+        for (let i = 0; i < this.depenses.length; i++) {
+          const date = new Date(this.depenses[i].date);
+          if (date >= currentWeekStart && date <= currentWeekEnd) {
+            const day = date.toLocaleDateString('fr', { weekday: 'long' });
+            this.dayofweek.push(day);
+            // console.log(`${this.recettes[i].date} est un ${day}`);
+            // console.log(this.recettes[i].beneficie)
+          }
+        }
+
+        const dataArr1 = [0, 0, 0, 0, 0, 0, 0]; // depence tunis
+        const dataArr2 = [0, 0, 0, 0, 0, 0, 0];  //depence sousse
+        for (let i = 0; i < this.depenses.length; i++) {
+          const date = new Date(this.depenses[i].date);
+          const depence = parseFloat(this.depenses[i].depense);
+          console.log(this.depenses[i].depense)
+          if (date >= currentWeekStart && date <= currentWeekEnd) {
+            if(this.depenses[i].region== "Tunis")
+            {    const dayIndex = date.getDay();
+            dataArr1[dayIndex] += depence;}
+
+
+            else if(this.depenses[i].region== "Sousse")
+            {    const dayIndex = date.getDay();
+            dataArr2[dayIndex] += depence;
+            // console.log(dataArr2[dayIndex])
+          }
+
+
+          // console.log(dataArr1)
+            
+          }
+        }
+ 
+         /***************************************************** depece tunis */
+       this.series3 = [
+        {
+          name: 'Depence',
+          data: dataArr1
+        }
+      ];
+  
+      this.chart3 = {
+        height: 350,
+        width: 500,
+        type: 'line',
+        zoom: {
+          enabled: false
+        },
+        dropShadow: {
+          enabled: true,
+          color: '#113',
+          top: -1,
+          left: 1,
+          blur: 6,
+          opacity: 0.8
+        }
+      };
+  
+      this.xaxis3= {
+        categories: [
+          'dimanche',
+          'lundi',
+          'mardi',
+          'mercredi',
+          'jeudi',
+          'vendredi',
+          'samedi',
+         
+        ]
+      };
+  
+      this.dataLabels3= {
+        enabled: true
+      };
+  
+      this.grid3 = {
+        row: {
+          colors: ['black', 'transparent'],
+          opacity: 0.5
+        }
+      };
+  
+      this.stroke3 = {
+        curve: 'straight'
+      };
+  
+      this.title3 = {
+        text: 'Dépence de cette semaine à Tunis',
+        align: 'centre'
+      };
+       /*********************************************************** */
+
+
+       /*********************depence sousse****************************** */
+
+       this.series4 = [
+        {
+          name: 'Depence',
+          data: dataArr2
+        }
+      ];
+  
+      this.chart4 = {
+        height: 350,
+        width: 500,
+        type: 'line',
+        zoom: {
+          enabled: false
+        },
+        dropShadow: {
+          enabled: true,
+          color: '#113',
+          top: -1,
+          left: 1,
+          blur: 6,
+          opacity: 0.8
+        }
+      };
+  
+      this.xaxis4 = {
+        categories: [
+          'dimanche',
+          'lundi',
+          'mardi',
+          'mercredi',
+          'jeudi',
+          'vendredi',
+          'samedi',
+         
+        ]
+      };
+  
+      this.dataLabels4= {
+        enabled: true
+      };
+  
+      this.grid4 = {
+        row: {
+          colors: ['black', 'transparent'],
+          opacity: 0.5
+        }
+      };
+  
+      this.stroke4 = {
+        curve: 'straight'
+      };
+  
+      this.title4 = {
+        text: 'Dépence de cette semaine à Sousse',
+        align: 'centre'
+      };
+
+
+       /**************************************************** */
+   
+  
+      }),
     this.service.getrecette().subscribe(
       (result: any) => {
         this.recettes = result.data;
@@ -115,31 +327,47 @@ dayofweek:any=[]
         // console.log(this.dayofweek);
     
         // Initialize an empty array with 0 values for each day of the week
-        const dataArr = [0, 0, 0, 0, 0, 0, 0];
+        const dataArr = [0, 0, 0, 0, 0, 0, 0];  //recette tunis
+         const dataArrS = [0, 0, 0, 0, 0, 0, 0]; // recette sousse
+       
     
         // Loop through the recipes and add the benefice to the appropriate day of the week
-        // for (let i = 0; i < this.recettes.length; i++) {
-        //   const date = new Date(this.recettes[i].date);
-        //   const benefice = this.recettes[i].beneficie;
-        //   // console.log(benefice)
-        //   if (date >= currentWeekStart && date <= currentWeekEnd) {
-        //     const dayIndex = date.getDay();
-        //     dataArr[dayIndex] += benefice;
-        //     console.log(dataArr[dayIndex])
-        //   }
-        // }
+        for (let i = 0; i < this.recettes.length; i++) {
+          const date = new Date(this.recettes[i].date);
+          const benefice = this.recettes[i].recette;
+          // console.log(benefice)
+          if (date >= currentWeekStart && date <= currentWeekEnd) {
+            if(this.recettes[i].region== "Tunis")
+            {    const dayIndex = date.getDay();
+            dataArr[dayIndex] += benefice;}
+
+
+            else if(this.recettes[i].region== "Sousse")
+            {    
+              
+            const dayIndex = date.getDay();
+            dataArrS[dayIndex] += benefice;
+          
+          }
+
+
+           
+           
+          }
+        }
     
         // Set the chart data to the array we just built
         this.series11 = [
           {
-            name: 'Bénéfice Net',
+            name: 'Recette',
             data: dataArr
+            
           }
         ];
     
         this.chart1 = {
           height: 350,
-          width: 800,
+          width: 500,
           type: 'line',
           zoom: {
             enabled: false
@@ -183,13 +411,80 @@ dayofweek:any=[]
         };
     
         this.title1 = {
-          text: 'Bénéfice Net',
+          text: 'Recette de cette semaine à Tunis',
           align: 'centre'
         };
+
+
+       //******************************************************* */
+
+      
+       this.series22 = [
+        {
+          name: 'Recette',
+          data: dataArrS
+        }
+      ];
+  
+      this.chart2 = {
+        height: 350,
+        width: 500,
+        
+        type: 'line',
+        zoom: {
+          enabled: false
+        },
+        dropShadow: {
+          enabled: true,
+          color: '#113',
+          top: -1,
+          left: 1,
+          blur: 6,
+          opacity: 0.8
+        }
+      };
+  
+      this.xaxis2 = {
+        categories: [
+          'dimanche',
+          'lundi',
+          'mardi',
+          'mercredi',
+          'jeudi',
+          'vendredi',
+          'samedi',
+         
+        ]
+      };
+  
+      this.dataLabels2= {
+        enabled: true
+      };
+  
+      this.grid2 = {
+        row: {
+          colors: ['black', 'transparent'],
+          opacity: 0.5
+        }
+      };
+  
+      this.stroke2 = {
+        curve: 'straight'
+      };
+  
+      this.title2 = {
+        text: 'Recette de cette semaine à Sousse',
+        align: 'centre'
+      };
+
+        
+  //**************************************************** */
+
       }
     );
     
   }
+ 
   ngOnInit(): void {
     
 
@@ -206,6 +501,13 @@ dayofweek:any=[]
 
         }
       )
+
+
+      const currentDate = new Date();
+    const currentMonthName = currentDate.toLocaleString('fr-FR', { month: 'long' });
+    console.log(currentMonthName);
+    
+    this.month = currentMonthName;
     // this.service.getEvents(this.calendar.control.visibleStart(), this.calendar.control.visibleEnd()).subscribe(result => {
     //   this.events = result;
     //   console.log("Events retrieved from backend:  oussema bkrowno");
@@ -223,56 +525,131 @@ this.p=this.patients.length
 // console.log(this.patient)
 
 for (let i = 0; i < this.patient.length; i++) {
-if ((this.patient[i].P_c=='Autisme') ) {
+if ((this.patient[i].P_c=='Autisme'&& this.patient[i].P_region=='Tunis') ) {
  
  this.Au=this.Au+1
  
-} if((this.patient[i].P_c=='pour le bien être') ) {
+} if((this.patient[i].P_c=='pour le bien être'&& this.patient[i].P_region=='Tunis') ) {
    this.Be=this.Be+1
    
    
 
-}if((this.patient[i].P_c=='Rétablissement aprés une opération de chirurgie plastique') ) {
+}if((this.patient[i].P_c=='Rétablissement aprés une opération de chirurgie plastique'&& this.patient[i].P_region=='Tunis') ) {
 
   this.Rcp=this.Rcp+1
   
 
 
-}if((this.patient[i].P_c=='Cancer') ) {
+}if((this.patient[i].P_c=='Cancer'&& this.patient[i].P_region=='Tunis') ) {
 
   this.Ca=this.Ca+1
 
 
-}if((this.patient[i].P_c=='plaies diabétique') ) {
+}if((this.patient[i].P_c=='plaies diabétique'&& this.patient[i].P_region=='Tunis') ) {
 
 
   this.Pd=this.Pd+1
 
 }
-if((this.patient[i].P_c=='AVC') ) {
+if((this.patient[i].P_c=='AVC'&& this.patient[i].P_region=='Tunis') ) {
 
 
   this.Avc=this.Avc+1
 
 }
-if((this.patient[i].P_c=='Migrane') ) {
+if((this.patient[i].P_c=='Migrane'&& this.patient[i].P_region=='Tunis') ) {
 
 
   this.Mi=this.Mi+1
 
 }
-if((this.patient[i].P_c=='Surdite brusque') ) {
+if((this.patient[i].P_c=='Surdite brusque'&& this.patient[i].P_region=='Tunis') ) {
 
 
   this.Sb=this.Sb+1
 
 }
-if((this.patient[i].P_c=='Paralysie faciale') ) {
+if((this.patient[i].P_c=='Paralysie faciale'&& this.patient[i].P_region=='Tunis') ) {
 
 
   this.Pf=this.Pf+1
 
 }
+if((this.patient[i].P_c=='Dépression'&& this.patient[i].P_region=='Tunis') ) {
+
+
+  this.Dp=this.Dp+1
+
+}
+if((this.patient[i].P_c=='Autre'&& this.patient[i].P_region=='Tunis') ) {
+
+
+  this.Aut=this.Aut+1
+
+}
+/***** */
+if ((this.patient[i].P_c=='Autisme'&& this.patient[i].P_region=='Sousse') ) {
+ 
+  this.Aus=this.Aus+1
+  
+ } if((this.patient[i].P_c=='pour le bien être'&& this.patient[i].P_region=='Sousse') ) {
+    this.Bes=this.Bes+1
+    
+    
+ 
+ }if((this.patient[i].P_c=='Rétablissement aprés une opération de chirurgie plastique'&& this.patient[i].P_region=='Sousse') ) {
+ 
+   this.Rcps=this.Rcps+1
+   
+ 
+ 
+ }if((this.patient[i].P_c=='Cancer'&& this.patient[i].P_region=='Sousse') ) {
+ 
+   this.Cas=this.Cas+1
+ 
+ 
+ }if((this.patient[i].P_c=='plaies diabétique'&& this.patient[i].P_region=='Sousse') ) {
+ 
+ 
+   this.Pds=this.Pds+1
+ 
+ }
+ if((this.patient[i].P_c=='AVC'&& this.patient[i].P_region=='Sousse') ) {
+ 
+ 
+   this.Avcs=this.Avcs+1
+ 
+ }
+ if((this.patient[i].P_c=='Migrane'&& this.patient[i].P_region=='Sousse') ) {
+ 
+ 
+   this.Mis=this.Mis+1
+ 
+ }
+ if((this.patient[i].P_c=='Surdite brusque'&& this.patient[i].P_region=='Sousse') ) {
+ 
+ 
+   this.Sbs=this.Sbs+1
+ 
+ }
+ if((this.patient[i].P_c=='Paralysie faciale'&& this.patient[i].P_region=='Sousse') ) {
+ 
+ 
+   this.Pfs=this.Pfs+1
+ 
+ }
+ if((this.patient[i].P_c=='Dépression'&& this.patient[i].P_region=='Sousse') ) {
+ 
+ 
+   this.Dps=this.Dps+1
+ 
+ }
+ if((this.patient[i].P_c=='Autre'&& this.patient[i].P_region=='Sousse') ) {
+ 
+ 
+   this.Auts=this.Auts+1
+ 
+ }
 
 
 
@@ -286,8 +663,10 @@ if((this.patient[i].P_c=='Paralysie faciale') ) {
 
 }
 
-this.chartSeries = [this.Pf, this.Sb, this.Mi, this.Avc, this.Pd, this.Ca, this.Rcp, this.Be, this.Au];
+this.chartSeriess = [this.Pfs, this.Sbs, this.Mis, this.Avcs, this.Pds, this.Cas, this.Rcps, this.Bes, this.Aus, this.Dps, this.Auts];
+this.chartSeries = [this.Pf, this.Sb, this.Mi, this.Avc, this.Pd, this.Ca, this.Rcp, this.Be, this.Au, this.Dp,this.Aut];
 this.series11 = [1,2,3,4,6,9,8];
+this.series22 = [1,2,3,4,6,9,8];
 
       }
 
@@ -320,10 +699,10 @@ this.series11 = [1,2,3,4,6,9,8];
         // console.log(result); // check if the data is received properly
         this.recettes=result.data
         this.tr = [];
-        // for (let i = 0; i < this.recettes.length; i++) {
-        //   this.tr.push(this.recettes[i].beneficie.toString());
-        // // this.sum=this.sum+this.tr
-        // }
+        for (let i = 0; i < this.recettes.length; i++) {
+          // this.tr.push(this.recettes[i].beneficie.toString());
+        // this.sum=this.sum+this.tr
+        }
         // console.log(this.tr);
         // console.log(this.tr.length);
         this.sum = 0;
@@ -363,7 +742,7 @@ this.series11 = [1,2,3,4,6,9,8];
   title = 'apex-ng-14';
   chartSeries: ApexNonAxisChartSeries = [];
   chartDetails: ApexChart = {
-    width: 800,
+    width: 490,
     zoom: {
       enabled: false
     },
@@ -425,10 +804,10 @@ this.series11 = [1,2,3,4,6,9,8];
   charttheme:ApexTheme={
     palette: "palette2"
   }
-  chartLabels = ["Paralysie faciale", "Surdite brusque", "Migrane", "AVC", "plaies diabetique", "Cancer", "Retablissement apres une operation de chirurgie plastique", "pour le bien etre", "Autisme"];
+  chartLabels = ["Paralysie faciale", "Surdite brusque", "Migrane", "AVC", "plaies diabetique", "Cancer", "Retablissement", "pour le bien etre", "Autisme","Dépression","Autre"];
 
   chartTitle: ApexTitleSubtitle = {
-    text: 'Etat Santé',
+    text: 'Etat Santé de patient "Tunis"',
     align: 'center'
   };
  chartresponsive: ApexResponsive[] = [
@@ -452,9 +831,103 @@ this.series11 = [1,2,3,4,6,9,8];
   };
 
 
+/*************************************************************** */
+
+title6 = 'apex-ng-14';
+chartSeriess: ApexNonAxisChartSeries = [];
+chartDetailss: ApexChart = {
+  width: 490,
+  zoom: {
+    enabled: false
+  },
+  type: "donut",
+  dropShadow: {
+    enabled: true,
+    color: "#113",
+    top:-1,
+    left: 2,
+    blur: 6,
+    opacity: 0.8
+  }
+};
+chartstrokee:ApexStroke={
+  width: 0
+
+};
+chartfills: ApexFill = {
+  type: "pattern",
+  opacity: 9,
+  pattern: {
+    style: [
+      // "verticalLines",
+      "squares",
+      "squares",
+      "squares",
+      "squares",
+      "squares",
+      // "horizontalLines",
+      // "circles",
+      // "slantedLines"
+    ]
+  }
+};
+
+chartplotOptionss:ApexPlotOptions={
+
+  pie: {
+    donut: {
+      labels: {
+        show: true,
+        total: {
+          showAlways: true,
+          show: true
+        }
+      }
+    }
+  }
+};
+chartstatess:ApexStates={
+  hover: {
+    filter: {
+      type: "none"
+    }
+  }
+};
+
+
+chartthemee:ApexTheme={
+  palette: "palette2"
+}
+chartLabelss = ["Paralysie faciale", "Surdite brusque", "Migrane", "AVC", "plaies diabetique", "Cancer", "Retablissement", "pour le bien etre", "Autisme","Dépression","Autre"];
+
+chartTitles: ApexTitleSubtitle = {
+  text: 'Etat Santé de patient "Sousse"',
+  align: 'center'
+};
+chartresponsives: ApexResponsive[] = [
+{
+  breakpoint: 480,
+  options: {
+    chart: {
+      width: 100
+    },
+    legend: {
+      position: "bottom"
+    }
+  }
+}
+];
+
+
+chartDataLabelss: ApexDataLabels = {
+  enabled: true
+  
+};
 
 
 
+
+/************************************************************************ */
 
   retour():void{
 
@@ -553,4 +1026,5 @@ this.series11 = [1,2,3,4,6,9,8];
   }
  
   }
+
 
