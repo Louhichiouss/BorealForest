@@ -177,7 +177,7 @@ console.log(currentMonth);
             // console.log(dataArr2[dayIndex])
           }
 
-
+        
           // console.log(dataArr1)
             
           }
@@ -235,9 +235,13 @@ console.log(currentMonth);
       this.stroke3 = {
         curve: 'straight'
       };
-  
+   // Calculate the week number
+   const weekNumber = Math.ceil((currentWeekEnd.getDate() - currentWeekStart.getDate() + 1) / 7);
+   // Get the month and year of the current week
+   const month = currentWeekStart.toLocaleDateString('fr', { month: 'long' });
+   const year = currentWeekStart.getFullYear();
       this.title3 = {
-        text: 'Dépence de cette semaine à Tunis',
+        text: `Depense de  semaine ${weekNumber} dans ${month} à Tunis ${year}`,
         align: 'centre'
       };
        /*********************************************************** */
@@ -298,7 +302,7 @@ console.log(currentMonth);
       };
   
       this.title4 = {
-        text: 'Dépence de cette semaine à Sousse',
+        text: `Depense de  semaine ${weekNumber} dans ${month} à Sousse ${year}`,
         align: 'centre'
       };
 
@@ -409,9 +413,13 @@ console.log(currentMonth);
         this.stroke1 = {
           curve: 'straight'
         };
-    
+       // Calculate the week number
+   const weekNumber = Math.ceil((currentWeekEnd.getDate() - currentWeekStart.getDate() + 1) / 7);
+   // Get the month and year of the current week
+   const month = currentWeekStart.toLocaleDateString('fr', { month: 'long' });
+   const year = currentWeekStart.getFullYear();
         this.title1 = {
-          text: 'Recette de cette semaine à Tunis',
+          text: `Recette de semaine ${weekNumber} dans  ${month} à Tunis ${year}`,
           align: 'centre'
         };
 
@@ -473,7 +481,7 @@ console.log(currentMonth);
       };
   
       this.title2 = {
-        text: 'Recette de cette semaine à Sousse',
+        text: `Recette de semaine ${weekNumber} dans  ${month} à Sousse ${year}`,
         align: 'centre'
       };
 
@@ -1026,5 +1034,4 @@ chartDataLabelss: ApexDataLabels = {
   }
  
   }
-
 
