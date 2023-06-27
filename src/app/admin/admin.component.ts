@@ -241,7 +241,7 @@ console.log(currentMonth);
    const month = currentWeekStart.toLocaleDateString('fr', { month: 'long' });
    const year = currentWeekStart.getFullYear();
       this.title3 = {
-        text: `Depense de  semaine ${weekNumber} dans ${month} à Tunis ${year}`,
+        text: `Depense de  semaine ${weekNumber} ${month} à Tunis ${year}`,
         align: 'centre'
       };
        /*********************************************************** */
@@ -302,7 +302,7 @@ console.log(currentMonth);
       };
   
       this.title4 = {
-        text: `Depense de  semaine ${weekNumber} dans ${month} à Sousse ${year}`,
+        text: `Depense de  semaine ${weekNumber}  ${month} à Sousse ${year}`,
         align: 'centre'
       };
 
@@ -419,7 +419,7 @@ console.log(currentMonth);
    const month = currentWeekStart.toLocaleDateString('fr', { month: 'long' });
    const year = currentWeekStart.getFullYear();
         this.title1 = {
-          text: `Recette de semaine ${weekNumber} dans  ${month} à Tunis ${year}`,
+          text: `Recette de semaine ${weekNumber}   ${month} à Tunis ${year}`,
           align: 'centre'
         };
 
@@ -481,7 +481,7 @@ console.log(currentMonth);
       };
   
       this.title2 = {
-        text: `Recette de semaine ${weekNumber} dans  ${month} à Sousse ${year}`,
+        text: `Recette de semaine ${weekNumber}  ${month} à Sousse ${year}`,
         align: 'centre'
       };
 
