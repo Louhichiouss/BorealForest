@@ -49,6 +49,9 @@ chart3: any;
   title4: any;
   depenses:any;
 /******************************************************************************** */
+// the reccette  month value
+totalRecette:any;
+totalDepence:any;
   z:any
   // @ViewChild("chart") chart: AdminComponent;
   // public chartOptions: Partial<ChartOptions>;
@@ -241,7 +244,7 @@ console.log(currentMonth);
    const month = currentWeekStart.toLocaleDateString('fr', { month: 'long' });
    const year = currentWeekStart.getFullYear();
       this.title3 = {
-        text: `Depense de  semaine ${weekNumber} ${month} à Tunis ${year}`,
+        text: `Depense de  semaine ${weekNumber} dans ${month} à Tunis ${year}`,
         align: 'centre'
       };
        /*********************************************************** */
@@ -302,7 +305,7 @@ console.log(currentMonth);
       };
   
       this.title4 = {
-        text: `Depense de  semaine ${weekNumber}  ${month} à Sousse ${year}`,
+        text: `Depense de  semaine ${weekNumber} dans ${month} à Sousse ${year}`,
         align: 'centre'
       };
 
@@ -419,7 +422,7 @@ console.log(currentMonth);
    const month = currentWeekStart.toLocaleDateString('fr', { month: 'long' });
    const year = currentWeekStart.getFullYear();
         this.title1 = {
-          text: `Recette de semaine ${weekNumber}   ${month} à Tunis ${year}`,
+          text: `Recette de semaine ${weekNumber} dans  ${month} à Tunis ${year}`,
           align: 'centre'
         };
 
@@ -481,7 +484,7 @@ console.log(currentMonth);
       };
   
       this.title2 = {
-        text: `Recette de semaine ${weekNumber}  ${month} à Sousse ${year}`,
+        text: `Recette de semaine ${weekNumber} dans  ${month} à Sousse ${year}`,
         align: 'centre'
       };
 
@@ -495,8 +498,57 @@ console.log(currentMonth);
  
   ngOnInit(): void {
     
+ //pour calculer la depence du moins
+ 
+ this.service.getdepense().subscribe(
+  (result:any)=>{
+    this.depenses=result.data
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth();
+   this.totalDepence = 0;
+
+    for (let i = 0; i < this.depenses.length; i++) {
+      const recetteDate = new Date(this.depenses[i].date);
+      const recetteMonth = recetteDate.getMonth();
+
+      if (recetteMonth === currentMonth) {
+        const recetteAmount = this.depenses[i].depense;
+       this.totalDepence += recetteAmount;
+      }
+    }
+    console.log(this.totalDepence)
+
+  
+  
+  
+  
+  
+  
+  })
+ // pour calculer recette du cette moins 
 
 
+ this.service.getrecette().subscribe(
+  (result: any) => {
+    this.recettes = result.data;
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth();
+   this.totalRecette = 0;
+
+    for (let i = 0; i < this.recettes.length; i++) {
+      const recetteDate = new Date(this.recettes[i].date);
+      const recetteMonth = recetteDate.getMonth();
+
+      if (recetteMonth === currentMonth) {
+        const recetteAmount = this.recettes[i].recette;
+       this.totalRecette += recetteAmount;
+      }
+    }
+
+    // console.log('Total Recette:', this.totalRecette);
+  });
+
+ /*************************************************** */
 
   
     this.appcomponent.hideHeaderAndFooter=true;
@@ -513,7 +565,7 @@ console.log(currentMonth);
 
       const currentDate = new Date();
     const currentMonthName = currentDate.toLocaleString('fr-FR', { month: 'long' });
-    console.log(currentMonthName);
+    // console.log(currentMonthName);
     
     this.month = currentMonthName;
     // this.service.getEvents(this.calendar.control.visibleStart(), this.calendar.control.visibleEnd()).subscribe(result => {
@@ -947,7 +999,7 @@ chartDataLabelss: ApexDataLabels = {
       this.voir=true
       this.tous=false
 
-      console.log(this.patient11+"ddfdffddf")
+      // console.log(this.patient11+"ddfdffddf")
       return;
       }
       else{
@@ -1034,4 +1086,3 @@ chartDataLabelss: ApexDataLabels = {
   }
  
   }
-
