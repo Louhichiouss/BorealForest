@@ -83,10 +83,16 @@ margin-right: 40px;
 }
 .xx{
     position: abolute;
-    padding-top: 2%;
+    padding-top: 3%;
     padding-left: 10%;
+    padding-right: 10%;
 
 }  
+.er{
+    position: abolute;
+    padding-top: 4%;
+    padding-left: 10%;
+}
 .di{
     padding-left: 23%;
     /* padding-top: 15%; */
@@ -325,4 +331,5 @@ width:130%
       
       
       
+}
 }
