@@ -617,7 +617,7 @@ if((this.patient[i].P_c=='AVC'&& this.patient[i].P_region=='Tunis') ) {
   this.Avc=this.Avc+1
 
 }
-if((this.patient[i].P_c=='Migrane'&& this.patient[i].P_region=='Tunis') ) {
+if((this.patient[i].P_c=='Migraine'&& this.patient[i].P_region=='Tunis') ) {
 
 
   this.Mi=this.Mi+1
@@ -680,7 +680,7 @@ if ((this.patient[i].P_c=='Autisme'&& this.patient[i].P_region=='Sousse') ) {
    this.Avcs=this.Avcs+1
  
  }
- if((this.patient[i].P_c=='Migrane'&& this.patient[i].P_region=='Sousse') ) {
+ if((this.patient[i].P_c=='Migraine'&& this.patient[i].P_region=='Sousse') ) {
  
  
    this.Mis=this.Mis+1
@@ -864,7 +864,7 @@ this.series22 = [1,2,3,4,6,9,8];
   charttheme:ApexTheme={
     palette: "palette2"
   }
-  chartLabels = ["Paralysie faciale", "Surdite brusque", "Migrane", "AVC", "plaies diabetique", "Cancer", "Retablissement", "pour le bien être", "Autisme","Dépression","Autre"];
+  chartLabels = ["Paralysie faciale", "Surdite brusque", "Migraine", "AVC", "plaies diabetique", "Cancer", "Retablissement", "pour le bien être", "Autisme","Dépression","Autre"];
 
   chartTitle: ApexTitleSubtitle = {
     text: 'Etat Santé de patient "Tunis"',
@@ -958,7 +958,7 @@ chartstatess:ApexStates={
 chartthemee:ApexTheme={
   palette: "palette2"
 }
-chartLabelss = ["Paralysie faciale", "Surdite brusque", "Migrane", "AVC", "plaies diabetique", "Cancer", "Retablissement", "pour le bien être", "Autisme","Dépression","Autre"];
+chartLabelss = ["Paralysie faciale", "Surdite brusque", "Migraine", "AVC", "plaies diabetique", "Cancer", "Retablissement", "pour le bien être", "Autisme","Dépression","Autre"];
 
 chartTitles: ApexTitleSubtitle = {
   text: 'Etat Santé de patient "Sousse"',
