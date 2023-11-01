@@ -638,7 +638,7 @@ if ((this.patient[i].P_c=='Autisme'&& this.patient[i].P_region=='Tunis') ) {
    
    
 
-}if((this.patient[i].P_c=='Rétablissement aprés une opération de chirurgie plastique'&& this.patient[i].P_region=='Tunis') ) {
+}if((this.patient[i].P_c=='Retablissement'&& this.patient[i].P_region=='Tunis') ) {
 
   this.Rcp=this.Rcp+1
   
@@ -701,7 +701,7 @@ if ((this.patient[i].P_c=='Autisme'&& this.patient[i].P_region=='Sousse') ) {
     
     
  
- }if((this.patient[i].P_c=='Rétablissement aprés une opération de chirurgie plastique'&& this.patient[i].P_region=='Sousse') ) {
+ }if((this.patient[i].P_c=='Retablissement'&& this.patient[i].P_region=='Sousse') ) {
  
    this.Rcps=this.Rcps+1
    
