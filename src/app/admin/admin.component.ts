@@ -238,15 +238,45 @@ console.log(currentMonth);
       this.stroke3 = {
         curve: 'straight'
       };
-   // Calculate the week number
-   const weekNumber = Math.ceil((currentWeekEnd.getDate() - currentWeekStart.getDate() + 1) / 7);
-   // Get the month and year of the current week
-   const month = currentWeekStart.toLocaleDateString('fr', { month: 'long' });
-   const year = currentWeekStart.getFullYear();
-      this.title3 = {
-        text: `Depense de  semaine ${weekNumber} dans ${month} à Tunis ${year}`,
-        align: 'centre'
-      };
+    // ... your existing code ...
+
+// ... your existing code ...
+// ... your existing code ...
+
+// ... your existing code ...
+
+const currentDat = new Date();
+
+// Calculate the start and end dates of the current month
+const currentMonthStart = new Date(currentDat.getFullYear(), currentDat.getMonth(), 1);
+const currentMonthEnd = new Date(currentDat.getFullYear(), currentDat.getMonth() + 1, 0);
+
+// Calculate the week number within the current month
+function getWeekInMonth(date: Date): number {
+  const currentDate = new Date(date);
+  const daysInMonth = currentMonthEnd.getDate();
+  const daysIntoMonth = currentDate.getDate();
+  return Math.ceil((daysIntoMonth + currentMonthStart.getDay() - 1) / 7);
+}
+
+const weekNumberInMonth = getWeekInMonth(currentDat);
+
+// Get the month and year of the current month
+const month = currentMonthStart.toLocaleDateString('fr', { month: 'long' });
+const year = currentMonthStart.getFullYear();
+
+// Update your title3 property
+this.title3 = {
+  text: `Dépense de la semaine ${weekNumberInMonth} dans ${month} à Tunis ${year}`,
+  align: 'centre'
+};
+
+// ... rest of your existing code ...
+
+
+
+
+
        /*********************************************************** */
 
 
@@ -305,7 +335,7 @@ console.log(currentMonth);
       };
   
       this.title4 = {
-        text: `Depense de  semaine ${weekNumber} dans ${month} à Sousse ${year}`,
+        text: `Dépense de  semaine ${weekNumberInMonth} dans ${month} à Sousse ${year}`,
         align: 'centre'
       };
 
@@ -416,15 +446,29 @@ console.log(currentMonth);
         this.stroke1 = {
           curve: 'straight'
         };
-       // Calculate the week number
-   const weekNumber = Math.ceil((currentWeekEnd.getDate() - currentWeekStart.getDate() + 1) / 7);
-   // Get the month and year of the current week
-   const month = currentWeekStart.toLocaleDateString('fr', { month: 'long' });
-   const year = currentWeekStart.getFullYear();
-        this.title1 = {
-          text: `Recette de semaine ${weekNumber} dans  ${month} à Tunis ${year}`,
-          align: 'centre'
-        };
+ // Calculate the start and end dates of the current month
+const currentMonthStart = new Date(currentWeekStart.getFullYear(), currentWeekStart.getMonth(), 1);
+const currentMonthEnd = new Date(currentWeekStart.getFullYear(), currentWeekStart.getMonth() + 1, 0);
+
+// Calculate the week number within the current month
+function getWeekInMonth(date: Date): number {
+  const currentDate = new Date(date);
+  const daysInMonth = currentMonthEnd.getDate();
+  const daysIntoMonth = currentDate.getDate();
+  return Math.ceil((daysIntoMonth + currentMonthStart.getDay() - 1) / 7);
+}
+
+const weekNumberInMonth = getWeekInMonth(currentWeekStart);
+
+// Get the month and year of the current month
+const month = currentMonthStart.toLocaleDateString('fr', { month: 'long' });
+const year = currentMonthStart.getFullYear();
+
+// Update your title1 property
+this.title1 = {
+  text: `Recette de la semaine ${weekNumberInMonth} dans ${month} à Tunis ${year}`,
+  align: 'centre'
+};
 
 
        //******************************************************* */
@@ -484,7 +528,7 @@ console.log(currentMonth);
       };
   
       this.title2 = {
-        text: `Recette de semaine ${weekNumber} dans  ${month} à Sousse ${year}`,
+        text: `Recette de semaine ${weekNumberInMonth} dans  ${month} à Sousse ${year}`,
         align: 'centre'
       };
 
@@ -594,7 +638,7 @@ if ((this.patient[i].P_c=='Autisme'&& this.patient[i].P_region=='Tunis') ) {
    
    
 
-}if((this.patient[i].P_c=='Retablissement'&& this.patient[i].P_region=='Tunis') ) {
+}if((this.patient[i].P_c=='Rétablissement aprés une opération de chirurgie plastique'&& this.patient[i].P_region=='Tunis') ) {
 
   this.Rcp=this.Rcp+1
   
@@ -657,7 +701,7 @@ if ((this.patient[i].P_c=='Autisme'&& this.patient[i].P_region=='Sousse') ) {
     
     
  
- }if((this.patient[i].P_c=='Retablissement'&& this.patient[i].P_region=='Sousse') ) {
+ }if((this.patient[i].P_c=='Rétablissement aprés une opération de chirurgie plastique'&& this.patient[i].P_region=='Sousse') ) {
  
    this.Rcps=this.Rcps+1
    
@@ -1086,3 +1130,4 @@ chartDataLabelss: ApexDataLabels = {
   }
  
   }
+
