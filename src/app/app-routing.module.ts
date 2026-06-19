@@ -47,8 +47,8 @@ import { PinterfaceComponent } from './pinterface/pinterface.component';
 import { ProfilComponent } from './profil/profil.component';
 import { NotificationComponent } from './notification/notification.component';
 import { DepenseComponent } from './depense/depense.component';
-
-
+import { MarketingComponent } from './marketing/marketing.component';
+import { FactureComponent } from './facture/facture.component';
 const routes: Routes = [
   {path:'',redirectTo:'accueil',pathMatch:'full'  },
   
@@ -114,10 +114,9 @@ const routes: Routes = [
 
 
 
+  { path: 'marketing', component: MarketingComponent },
 
-
-
-
+{ path: 'facture', component: FactureComponent },
 
 
 
@@ -135,3 +134,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
