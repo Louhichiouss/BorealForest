@@ -1,9 +1,6 @@
-
-
-import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { ServiceService } from '../model/service.service';
 import { Patient } from '../model/user';
@@ -14,264 +11,252 @@ import { Patient } from '../model/user';
   styleUrls: ['./patient.component.css']
 })
 export class PatientComponent implements OnInit {
-  patients :Patient[]=[];
-  voir
-  tous
-  addForm:any
-patient_id:any ;
-   getForm:any
-   patient1:any=[]
-   ////////
-  c:any;
-  n:any;
-  p:any;
-  t:any;
-  e:any;
-  r:any;
-  cc:any;
-  s:any;
-  nb:any;
-  nbt:any;
-  pt:any;
-am:any
-z:any
-  patientss: any;
-  x: any;
-  patient: any;
-  
-  constructor(private appcompant:AppComponent,private http:HttpClient,private service:ServiceService ,private formbuilder:FormBuilder , private router:Router, private cdr:ChangeDetectorRef , 
-    private url :ActivatedRoute
-    ) {
-       
-    this.getForm=this.formbuilder.group({
-    
-      P_tel:['',Validators.required],
-    
-      
+  patients: Patient[] = [];
+  filteredPatients: Patient[] = [];
 
+  searchText = '';
+  centerFilter = '';
+  am = 0;
 
+  tunisCount = 0;
+  sousseCount = 0;
+  sfaxCount = 0;
+logo = '';
+photo = '';
+  showFormModal = false;
+  showDetailsModal = false;
+  isEditMode = false;
+  selectedPatient: any = null;
 
-    })
-    this.voir=false
-    this.tous= true
-    this.addForm = this.formbuilder.group({
-      P_id:[],
-      P_nom:['',Validators.required],
-      P_prenom:['',Validators.required],
-      P_tel:['',Validators.required],
-      P_email: ['', [Validators.required, Validators.email]],
-      P_region:['',Validators.required],
-      P_c:['',Validators.required],
-      P_sexe:['',Validators.required],
-      P_nbs:['',Validators.required],
-      P_n:['',Validators.required],
+  todayDate = new Date();
 
-      P_pt:['',Validators.required],
-
-
-
-
-
-    
-    })
-  }
-
-  
-
-
-
-
-    ngOnInit(): void {
-      this.appcompant.hideHeaderAndFooter=true;
-    
-      this.service.getpatient().subscribe(
-        (result:any)=>{
-          this.patients=result.data
-      
-          // console.log(this.patients)
-        }
-
-      )
-      this.patient_id=this.url.snapshot.params['id'];
-  
-    // console.log (this.patient_id)
-    if (this.patient_id>0){
-this.service.getSignlePatient(this.patient_id).subscribe((
-  (data:any)=>{
-    // console.log(data.data) 
-    this.addForm.patchValue(data.data)
-    this.c=(data.data)
-    console.log(this.c)
-    this.n=this.c.P_nom
-    this.p=this.c.P_prenom
-    this.t=this.c.P_tel
-    this.e=this.c.P_email
-    this.r=this.c.P_region
-    this.cc=this.c.P_c
-    this.s=this.c.P_sexe
-    this.nb=this.c.P_nbs
-    this.nbt=this.c.P_n
-
-    this.pt=this.c.P_pt
-
-
-
-  }
-))
-
-    }
-
-     
-    this.service.getpinterface().subscribe((result: any) => {
-      this.patientss = result.data;
-      // console.log(this.patients);
-    
-
-    this.am=this.patientss.length
-    // console.log(this.am)
-
+  patientForm = this.fb.group({
+    P_id: [null],
+    P_nom: ['', Validators.required],
+    P_prenom: ['', Validators.required],
+    P_tel: ['', Validators.required],
+    P_email: ['', [Validators.required, Validators.email]],
+    P_region: ['', Validators.required],
+    P_c: ['', Validators.required],
+    P_sexe: ['', Validators.required],
+    P_nbs: [0, Validators.required],
+    P_n: [0, Validators.required],
+    P_pt: ['', Validators.required],
+    P_notes: ['']
   });
 
-    }
-    retour():void{
-      this.z=0
-      for(var i = 0; i <this.patients.length; i++){
-        if((this.patients[i].P_tel==this.getForm.value.P_tel)){
-      
-        this.patient1=(this.patients[i])
-        this.voir=true
-        this.tous=false
-  
-        // console.log(this.patient1+"ddfdffddf")
-          return;
-        }
-        else{
-          this.z=this.z+1
-          
-        }
-      }
-    
-     
-      if(this.z>0){
-        alert("Le numéro téléphone n'existe pas ou incorrecte")
-        return;
-      }
-  
-    }
-    setMyval(){
+  constructor(
+    private appComponent: AppComponent,
+    private service: ServiceService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
-      this.voir=false
-      this.tous=true
-    }
-    
-    ajout() { 
-    
-      if (this.addForm.get('P_email').invalid) {
-        alert('Veuillez saisir une adresse e-mail valide.');
-        return;
-      }
-//       console.log(this.addForm.value.P_tel.length)
-      if (this.addForm.value.P_tel.length>8) {
-        alert('Veuillez saisir une format de numéro de téléphone valide.');
-        return;
-      }
-    
-      if ((this.addForm.value.P_nom=='') || (this.addForm.value.P_prenom=='') || (this.addForm.value.P_tel=='') ||(this.addForm.value.P_email=='') || (this.addForm.value.P_region=='') || (this.addForm.value.P_c=='')|| (this.addForm.value.P_sexe=='')  || (this.addForm.value.P_pt=='')) {
-        alert('champs obligatoires');
-      } else {
-         for(var i = 0; i <this.patients.length; i++){
-          if (this.patients[i].P_tel==this.addForm.value.P_tel) {
-            this.x='yes';
-            console.log(this.addForm.value.P_tel)
-          }
-          
+  ngOnInit(): void {
+    this.appComponent.hideHeaderAndFooter = true;
 
-        }
-        if (this.x=='yes') {
-          alert("numero téléphone  est déjà utilisée");
-        } else { 
-          this.service.ajouterpatient(this.addForm.value).subscribe(
-            (data: any) => {
-              alert(' ajout patient.');
-            
-             
-              this.addForm.reset();
-              this.cdr.detectChanges();
-            },
-            error => {
-              alert('ajouter annuler.');
-            }
-          );
-        }
-      }
-      this.x='';
-      this.router.navigate(['/patient'], { skipLocationChange: true }).then(() => {
-        this.router.navigate([this.router.url]);
+  this.loadAdmin();
+
+  this.loadPatients();
+  this.loadNotifications();
+  }
+
+  loadPatients(): void {
+    this.service.getpatient().subscribe((result: any) => {
+      const rows = result?.data || result || [];
+
+      this.patients = rows.sort(
+        (a: any, b: any) => Number(b.P_id) - Number(a.P_id)
+      );
+
+      this.updateCounts();
+      this.applyFilters();
+    });
+  }
+
+  loadNotifications(): void {
+    this.service.getpinterface().subscribe((result: any) => {
+      this.am = (result?.data || result || []).length;
+    });
+  }
+
+ updateCounts(): void {
+  this.tunisCount = this.patients.filter((p: any) => p.P_region === 'Tunis').length;
+  this.sousseCount = this.patients.filter((p: any) => p.P_region === 'Sousse').length;
+  this.sfaxCount = this.patients.filter((p: any) => p.P_region === 'Sfax').length;
+}
+
+  formatHeaderDate(): string {
+    return this.todayDate.toLocaleDateString('fr-FR', {
+      weekday: 'short',
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    });
+  }
+
+  applyFilters(): void {
+    const q = (this.searchText || '').toLowerCase().trim();
+
+    this.filteredPatients = this.patients.filter((p: any) => {
+      const fullName = `${p.P_nom || ''} ${p.P_prenom || ''}`.toLowerCase();
+      const tel = String(p.P_tel || '').toLowerCase();
+      const pathologie = String(p.P_c || '').toLowerCase();
+      const email = String(p.P_email || '').toLowerCase();
+      const notes = String(p.P_notes || '').toLowerCase();
+
+      const matchSearch =
+        !q ||
+        fullName.includes(q) ||
+        tel.includes(q) ||
+        pathologie.includes(q) ||
+        email.includes(q) ||
+        notes.includes(q);
+
+      const matchCenter = !this.centerFilter || p.P_region === this.centerFilter;
+
+      return matchSearch && matchCenter;
+    });
+  }
+
+  resetFilters(): void {
+    this.searchText = '';
+    this.centerFilter = '';
+    this.applyFilters();
+  }
+
+  openAddModal(): void {
+    this.isEditMode = false;
+    this.selectedPatient = null;
+
+    this.patientForm.reset({
+      P_id: null,
+      P_nom: '',
+      P_prenom: '',
+      P_tel: '',
+      P_email: 'unknown@gmail.com',
+      P_region: '',
+      P_c: '',
+      P_sexe: '',
+      P_nbs: 0,
+      P_n: 0,
+      P_pt: '',
+      P_notes: ''
+    });
+
+    this.showFormModal = true;
+  }
+
+  openEditModal(patient: any): void {
+    this.isEditMode = true;
+    this.selectedPatient = patient;
+
+    this.patientForm.patchValue({
+      P_id: patient.P_id,
+      P_nom: patient.P_nom || '',
+      P_prenom: patient.P_prenom || '',
+      P_tel: patient.P_tel || '',
+      P_email: patient.P_email || '',
+      P_region: patient.P_region || '',
+      P_c: patient.P_c || '',
+      P_sexe: patient.P_sexe || '',
+      P_nbs: patient.P_nbs || 0,
+      P_n: patient.P_n || 0,
+      P_pt: patient.P_pt || '',
+      P_notes: patient.P_notes || ''
+    });
+
+    this.showFormModal = true;
+  }
+
+  closeFormModal(): void {
+    this.showFormModal = false;
+  }
+
+  openDetailsModal(patient: Patient): void {
+    this.selectedPatient = patient;
+    this.showDetailsModal = true;
+  }
+
+  closeDetailsModal(): void {
+    this.showDetailsModal = false;
+  }
+
+  savePatient(): void {
+    if (this.patientForm.invalid) {
+      alert('Veuillez remplir tous les champs obligatoires.');
+      return;
+    }
+
+    const phone = String(this.patientForm.value.P_tel || '');
+
+    if (phone.length > 8) {
+      alert('Veuillez saisir un numéro de téléphone valide (8 chiffres maximum).');
+      return;
+    }
+
+    const payload: any = this.patientForm.value;
+
+    if (this.isEditMode) {
+      this.service.editPatient(payload).subscribe({
+        next: () => {
+          alert('Patient modifié avec succès.');
+          this.closeFormModal();
+          this.loadPatients();
+          this.router.navigate(['/patient']);
+        },
+        error: () => alert('Échec de modification.')
       });
-    }
-    
-    
-    
-    
-    
-    
-   
-    status = false;
-    addToggle()
-    {
-      this.status = !this.status;       
-    }
-
-
-
-    DeletePatient( pat:any){
-      const confirmation = window.confirm("Voulez-vous vraiment supprimer ce patient ?");
-      if (confirmation) {
-      // console.log(id)
-      this.service. DeletePatient(pat.P_id).subscribe(data=>{
-
-
-        this.patients=this.patients.filter((u: any)=> u!==pat);
-
- 
-      })
-
-
-    }}
-  edit(){
-    if (this.addForm.get('P_email').invalid) {
-      alert('Veuillez saisir une adresse e-mail valide.');
       return;
     }
-    if (this.addForm.value.P_tel.length>8) {
-      alert('Veuillez saisir une format de numéro de téléphone valide.');
-      return;
-    }
-  
-    if ((this.addForm.value.P_nom=='') || (this.addForm.value.P_prenom=='') || (this.addForm.value.P_tel=='') ||(this.addForm.value.P_email=='') || (this.addForm.value.P_region=='') || (this.addForm.value.P_c=='')|| (this.addForm.value.P_sexe=='') || (this.addForm.value.P_pt=='')) {
-      alert('champs obligatoires');
-      return;
-    }
-    // else {
-    //   for (let i = 0; i < this.patient.length; i++) {
-    //     if (this.patient[i].P_tel==this.addForm.value.P_tel) {
 
-          
-    //     }
-    //   }
-    //  { 
-        this.service.editPatient(this.addForm.value).subscribe(
-          (data: any) => {
-            alert('   patient modifier.');
-            console.log(data)
-          
-           
-            this.addForm.reset();
-            this.cdr.detectChanges();
-          },
-          error => {
-            alert('echec de modification.');
-          }
+    const duplicate = this.patients.some((p: any) => String(p.P_tel) === phone);
+
+    if (duplicate) {
+      alert('Ce numéro de téléphone existe déjà.');
+      return;
+    }
+
+    this.service.ajouterpatient(payload).subscribe({
+      next: () => {
+        alert('Patient ajouté avec succès.');
+        this.closeFormModal();
+        this.loadPatients();
+      },
+      error: () => alert('Échec ajout patient.')
+    });
+  }
+
+  deletePatient(patient: Patient): void {
+    if (!confirm('Voulez-vous vraiment supprimer ce patient ?')) return;
+
+    this.service.DeletePatient((patient as any).P_id).subscribe({
+      next: () => {
+        this.patients = this.patients.filter(
+          (p: any) => p.P_id !== (patient as any).P_id
         );
-      }
+        this.updateCounts();
+        this.applyFilters();
+      },
+      error: () => alert('Suppression échouée.')
+    });
+  }
+
+  loadAdmin(): void {
+  this.service.getSignladmin(1).subscribe({
+    next: (res: any) => {
+
+      const admin = res?.data || {};
+
+      this.logo = admin.logo || '';
+      this.photo = admin.img || '';
+
+      console.log('LOGO =>', this.logo);
+      console.log('PHOTO =>', this.photo);
+    },
+    error: (err) => {
+      console.log(err);
     }
+  });
+}
+}
