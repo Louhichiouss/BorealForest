@@ -1,0 +1,240 @@
+:host {
+  --navy:#0A2342; --teal:#1A8FA0; --ice:#E8F4F8; --grey-bg:#F0F4F7;
+  --grey-border:#D4E2EA; --muted:#6B8299; --danger:#DC2626; --sidebar-w:260px;
+  font-family:'Segoe UI',system-ui,sans-serif; display:block;
+}
+
+*{box-sizing:border-box}
+a{text-decoration:none}
+.bf-app-shell{min-height:100vh;background:var(--grey-bg)}
+.bf-sidebar{width:var(--sidebar-w);background:var(--navy);color:white;position:fixed;inset:0 auto 0 0;z-index:1000;display:flex;flex-direction:column}
+.bf-sidebar-header{padding:20px 18px;border-bottom:1px solid rgba(255,255,255,.08)}
+.bf-logo-block{display:flex;gap:12px;align-items:center}
+.bf-logo-icon{width:40px;height:40px;border-radius:12px;background:var(--teal);display:grid;place-items:center}
+.bf-logo-title{font-weight:800;font-size:16px}.bf-logo-sub{font-size:10px;color:rgba(255,255,255,.5)}
+.bf-sidebar-nav{padding:14px 10px;flex:1;display:flex;flex-direction:column;gap:4px}
+.bf-nav-item{display:flex;gap:12px;color:rgba(255,255,255,.7);padding:12px 15px;border-radius:8px;font-weight:600;font-size:13.5px}
+.bf-nav-item.active,.bf-nav-item:hover{background:linear-gradient(90deg,var(--teal),#22B5CC);color:white}
+.bf-sidebar-footer{padding:14px;border-top:1px solid rgba(255,255,255,.08)}
+.bf-admin-mini{display:flex;gap:10px;align-items:center;margin-bottom:12px}.bf-admin-avatar{width:36px;height:36px;border-radius:50%;background:var(--teal);display:grid;place-items:center;font-weight:800}
+.bf-admin-name{font-weight:700;font-size:13px}.bf-admin-role{font-size:11px;color:rgba(255,255,255,.45)}
+.bf-logout{display:block;color:#FCA5A5;background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.3);padding:10px 12px;border-radius:8px;font-size:13px}
+
+.bf-main{margin-left:var(--sidebar-w);min-height:100vh}
+.bf-topbar{height:60px;background:white;border-bottom:1px solid var(--grey-border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:100}
+.bf-topbar-title{color:var(--navy);font-weight:800;font-size:16px}.bf-topbar-right{display:flex;align-items:center;gap:12px}
+.bf-date-pill{font-size:12px;color:var(--muted);background:var(--ice);padding:5px 12px;border:1px solid var(--grey-border);border-radius:999px}
+.bf-user-dot{width:32px;height:32px;border-radius:50%;background:var(--ice);display:grid;place-items:center}
+.bf-page-content{padding:24px}.bf-page-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;gap:16px;flex-wrap:wrap}
+.bf-page-head h1{color:var(--navy);font-size:24px;margin:0}.bf-header-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bf-search-box{min-width:230px;display:flex;align-items:center;gap:8px;border:1px solid var(--grey-border);background:white;border-radius:8px;padding:0 12px}
+.bf-search-box input{border:none;outline:none;flex:1;height:38px}.bf-select{height:38px;border:1px solid var(--grey-border);border-radius:8px;padding:0 12px;background:white;font-weight:700}
+.bf-btn{background:white;border:1px solid var(--grey-border);color:var(--navy);padding:9px 14px;border-radius:8px;cursor:pointer;font-weight:700}
+.bf-btn-primary{background:var(--teal);border-color:var(--teal);color:white}
+.bf-table-card{background:white;border-radius:10px;box-shadow:0 2px 12px rgba(10,35,66,.08);overflow:auto}
+.bf-data-table{width:100%;border-collapse:collapse;min-width:1120px;font-size:13px}
+.bf-data-table th{background:var(--navy);color:white;text-align:left;padding:13px 14px;font-size:11.5px;text-transform:uppercase}
+.bf-data-table td{padding:12px 14px;border-bottom:1px solid var(--grey-bg)}
+.bf-badge,.status-badge{display:inline-flex;padding:5px 10px;border-radius:999px;font-size:11px;font-weight:800}
+.badge-tunis{background:#EDE9FE;color:#5B21B6}.badge-sousse{background:#E0F2FE;color:#075985}.badge-sfax{background:#FEF9C3;color:#854D0E}
+.status-paid{background:#D1FAE5;color:#047857}.status-unpaid{background:#FEE2E2;color:#DC2626}.status-partial{background:#FEF3C7;color:#B45309}
+.bf-actions button{border:none;background:transparent;cursor:pointer;margin-right:6px}.empty-state{text-align:center;color:var(--muted);padding:28px!important}
+
+.bf-modal-backdrop{position:fixed;inset:0;background:rgba(10,35,66,.55);backdrop-filter:blur(4px);z-index:3000;display:grid;place-items:center;padding:20px}
+.bf-modal{background:white;width:min(520px,100%);max-height:92vh;overflow:auto;border-radius:14px}
+.bf-modal-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--grey-border);padding:18px 20px}
+.bf-modal-head button,.invoice-preview-head button{border:none;background:transparent;font-size:28px;color:var(--muted);cursor:pointer}
+.bf-form-grid{padding:20px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.bf-form-grid label{color:var(--muted);font-weight:800;font-size:12px;text-transform:uppercase;display:flex;flex-direction:column;gap:6px}
+.bf-form-grid input,.bf-form-grid select{height:40px;border:1px solid var(--grey-border);border-radius:8px;padding:0 10px}
+.full{grid-column:1/-1}.total-box{background:var(--ice);border:1px solid var(--grey-border);border-radius:8px;padding:12px 16px}
+.total-box p{display:flex;justify-content:space-between;margin:0;padding:7px 0}.bf-modal-actions{display:flex;justify-content:flex-end;gap:10px}
+
+.invoice-preview-modal{background:white;width:min(650px,90vw);max-height:90vh;overflow-y:auto;border-radius:14px}
+.invoice-preview-head{display:flex;justify-content:space-between;padding:18px 24px;border-bottom:1px solid var(--grey-border)}
+.invoice-preview-head h2{margin:0;color:var(--navy);font-size:18px}
+.invoice-paper{padding:22px;background:white;color:#111;font-size:11px}
+.invoice-header-model{display:flex;justify-content:space-between;align-items:flex-start}
+.invoice-header-model h1{font-size:30px;color:#0A2A66;margin:0}
+.invoice-logo-round{width:55px;height:55px;border-radius:50%;background:#0A2A66;color:white;display:grid;place-items:center;font-weight:900}
+.invoice-blue-line{height:2px;background:#2f6fd6;margin:8px 0 14px}.invoice-blue-line.large{margin-top:55px}
+.invoice-info-box{display:grid;grid-template-columns:1.3fr 1fr;gap:70px;margin-top:28px}.invoice-grey-box{background:#f1f1f1;padding:12px}
+.invoice-info-box p{margin:4px 0}
+.invoice-real-table{width:100%;border-collapse:collapse;margin-top:10px}
+.invoice-real-table th,.invoice-real-table td{border:1px solid #111;padding:8px;text-align:left}
+.invoice-totals-model{margin-top:22px;margin-left:10px;line-height:1.8}.signature{text-align:center;font-weight:800;margin:35px 0}
+.invoice-footer-model{border-top:2px solid #2f6fd6;padding-top:14px;display:flex;justify-content:space-between;font-size:10px}
+.invoice-bottom-blue{height:22px;background:#3f73d3;margin-top:14px}.invoice-actions{display:flex;justify-content:flex-end;gap:10px;padding:16px 24px;border-top:1px solid var(--grey-border)}
+
+/* Keep preview readable on screen without affecting PDF/print */
+.invoice-preview-modal {
+  width: min(680px, 92vw);
+  max-height: 92vh;
+}
+
+.invoice-paper {
+  max-width: 100%;
+}
+
+/* Do not put print CSS here. Printing is handled by printInvoice() in TypeScript. */
+.invoice-logo-round{
+  width:120px;
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:transparent;
+}
+
+.invoice-logo-round img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+}
+
+/* ===== LOGO FIX FOR FACTURE PREVIEW ===== */
+.invoice-logo-round{
+  width:120px !important;
+  height:80px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+  background:transparent !important;
+  border-radius:0 !important;
+  flex-shrink:0 !important;
+}
+
+.invoice-logo-round img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  display:block !important;
+}
+.patient-search-wrapper {
+  position: relative;
+}
+
+.patient-results {
+  position: absolute;
+  top: 72px;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #D4E2EA;
+  border-radius: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 99999;
+  box-shadow: 0 8px 25px rgba(0,0,0,.15);
+}
+
+.patient-result-item {
+  padding: 10px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.patient-result-item:hover {
+  background: #E8F4F8;
+}
+
+.patient-result-item small {
+  color: #6B8299;
+  font-size: 11px;
+}
+
+.bf-table-scroll{
+    max-height: 560px;   /* around 9-10 rows */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* sticky header */
+.bf-data-table thead th{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #08264a;
+}
+
+/* scrollbar */
+.bf-table-scroll::-webkit-scrollbar{
+    width: 8px;
+}
+
+.bf-table-scroll::-webkit-scrollbar-track{
+    background: #edf2f7;
+}
+
+.bf-table-scroll::-webkit-scrollbar-thumb{
+    background: #22b5cc;
+    border-radius: 20px;
+}
+
+.bf-logo-icon img,
+.bf-admin-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.bf-logo-icon img{
+  border-radius:10px;
+}
+
+.bf-admin-avatar img{
+  border-radius:50%;
+}
+.bf-sidebar-header{
+  padding:20px 22px;
+}
+
+.bf-logo-block{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.bf-logo-icon{
+  width:42px;
+  height:42px;
+  min-width:42px;
+  background:transparent;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+
+/* ===== SIDEBAR LOGO FIX ===== */
+.bf-logo-icon{
+  width:42px !important;
+  height:42px !important;
+  min-width:42px !important;
+  background:transparent !important;
+  border-radius:10px !important;
+  overflow:hidden !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+
+.bf-logo-icon img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  border-radius:10px !important;
+  display:block !important;
+}
+
+.bf-logo-sub{
+  font-size:11px;
+  color:rgba(255,255,255,.65);
+  margin-top:3px;
+}
+
