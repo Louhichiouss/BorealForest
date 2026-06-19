@@ -64,7 +64,8 @@ import { ProfilComponent } from './profil/profil.component';
 import { NotificationComponent } from './notification/notification.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { DepenseComponent } from './depense/depense.component';
-
+import { MarketingComponent } from './marketing/marketing.component';
+import { FactureComponent } from './facture/facture.component';
 
 // FullCalendarModule.registerPlugins([
 //   interactionPlugin,
@@ -126,6 +127,8 @@ import { DepenseComponent } from './depense/depense.component';
       ProfilComponent,
       NotificationComponent,
       DepenseComponent,
+      MarketingComponent,
+      FactureComponent
  
     
   ],
@@ -154,3 +157,4 @@ import { DepenseComponent } from './depense/depense.component';
 
 })
 export class AppModule { }
+
