@@ -1,396 +1,382 @@
-<nav class="navbar    navbar-expand-md  back  "  >
-    <div class="container-fluid ">
-        <div class="offcanvas-body"> 
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              
-               
-    <div class="offcanvas offcanvas-end tx " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-
-        
-      <DIV class="hmlp">
-      
-<section id="sidebar" >
-    <a href="#" class="brand">
-      <i class='bx bxs-smile text'></i>
-      <span class="te" >Bienvenue admin</span>
-    </a>
-    <ul class="side-menu top">
-    
-      <li class="active">
-        <a href="#">
-          <i class='bx bxs-dashboard text' ></i>
-          <span class="tex">Tableau de bord</span>
-        </a>
-      </li>
-      <li >
-          <a routerLink="/patient">
-            <i class='bx bxs-group text ' ></i>
-            <span class="tex"  >Gestion Patient</span>
-          </a>
-        </li>
-      <li >
-        <a routerLink="/matriel">
-          <i class='bx bxs-shopping-bag-alt text' ></i>
-          <span class="tex" >Gestion de Matériels</span>
-        </a>
-      </li>
-     
-      <li>
-        <a routerLink="/rendezvous">
-          <i class='bx bxs-message-dots text' ></i>
-          <span class="tex" > Rendez-vous</span>
-        </a>
-      </li>
-      <li>
-          <a routerLink="/recette">
-            <i class='bx bxs-doughnut-chart text' ></i>
-            <span class="tex"> Recette </span>
-          </a>
-        </li>
-      <li>
-      <a routerLink="/depense">
-        <i class='bx bx-line-chart text'></i>
-        <span class="tex"> Dépense </span>
-      </a>
-    </li>
-    </ul>
-    <ul class="side-menu">
-      <ul class="side-menu" >
-        <li class="active vv">
-          <div class="dropdown">
-
-          <a  >
-            <i class='bx bxs-cog text ' ></i>
-              <a class="nav-link dropdown-toggle  vv" routerLink="/parametre" id="navbarDropdown"
-                  role="button  " data-bs-toggle="dropdown" aria-expanded="false"data-toggle="dropdown" aria-haspopup="true">
-                  <i class=""></i>Paramétre
-              </a>
-              <ul class="dropdown-menu vv" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" routerLink="/profil" >Profil</a></li>
-                <li><a class="dropdown-item" routerLink="/connecte">Déconnexion</a></li>
-            </ul>
-        </a>
-      </div>
-
-        </li>
-        <li>
-          <a routerLink="/accueil" class="logout">
-            <i class='bx bxs-log-out-circle text' ></i>
-            <span class="tex">Se déconnecter</span>
-          </a>
-        </li>
-      </ul>
-    </ul>
-    
-  </section>
-</DIV>
-  <div class="offcanvas-header back mm" >
-    <a class="navbar-brand " > </a>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  </div>
-  </div>
-  </div>
-</nav>
-  <!-- SIDEBAR -->
-  
-  
-  
-  <!-- CONTENT -->
-  <section id="content">
-    <!-- NAVBAR -->
-    <nav>
-      <form action="#">
-       
-      </form>
-
- 
-      <div class="notification-box">
-
-        <input type="" id="" hidden>
-<label for="" ></label>
-<a routerLink="/notification"class="notification">
-   <i class='bx bxs-bell' ></i>
-   <span class="num">{{am}}</span>
-</a>
-   </div>
-
-
-      <span class="navbar-toggler-icon"></span>
-
-      <div class="" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
-                    role="button" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown" aria-haspopup="true">
-                    <i class="fas fa-user me-2"></i>Admin
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" routerLink="/profil">Profil</a></li>
-                    <li><a class="dropdown-item" routerLink="/parametre">Paramétre</a></li>
-                    <li><a class="dropdown-item" routerLink="/connecte">Déconnexion</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    </nav>
-   
-    <main>
-      <div class="head-title">
-        <div class="left">
-          <ul class="breadcrumb">
-            <li>
-              <a href="#">Tableau de bord</a>
-            </li>
-            <li><i class='bx bx-chevron-right' ></i></li>
-            <li>
-              <a class="active" >Tableau de bord</a>
-            </li>
-          </ul>
+<div class="bf-app-shell">
+  <aside class="bf-sidebar">
+    <div class="bf-sidebar-header">
+      <div class="bf-logo-block">
+        <div class="bf-logo-icon">
+          <img *ngIf="logo" [src]="logo" alt="Logo" />
+          <span *ngIf="!logo">🌊</span>
         </div>
-        
+
+        <div>
+          <div class="bf-logo-title">BorealForest</div>
+          <div class="bf-logo-sub">ADMIN OHB</div>
+        </div>
       </div>
-  
-   
-  
-      
+    </div>
+
+    <nav class="bf-sidebar-nav">
+      <a routerLink="/admin" class="bf-nav-item active"><span>🏠</span><span>Tableau de bord</span></a>
+      <a routerLink="/patient" class="bf-nav-item"><span>👥</span><span>Patients</span></a>
+      <a routerLink="/rendezvous" class="bf-nav-item"><span>📅</span><span>Rendez-vous</span></a>
+      <a routerLink="/facture" class="bf-nav-item"><span>🧾</span><span>Factures patients</span></a>
+      <a routerLink="/depense" class="bf-nav-item"><span>🏢</span><span>Dépenses centres</span></a>
+      <a routerLink="/recette" class="bf-nav-item"><span>💳</span><span>Recettes centres</span></a>
+      <a routerLink="/marketing" class="bf-nav-item"><span>📢</span><span>Marketing</span></a>
+      <a routerLink="/parametre" class="bf-nav-item"><span>⚙️</span><span>Paramètres</span></a>
+    </nav>
+
+    <div class="bf-sidebar-footer">
+      <div class="bf-admin-mini">
+        <div class="bf-admin-avatar">
+          <img *ngIf="photo" [src]="photo" alt="Admin" />
+          <span *ngIf="!photo">BF</span>
+        </div>
+
+        <div>
+          <div class="bf-admin-name">BorealForest</div>
+          <div class="bf-admin-role">Administrateur</div>
+        </div>
+      </div>
+
+      <a routerLink="/accueil" class="bf-logout">🚪 Déconnexion</a>
+    </div>
+  </aside>
+
+  <section class="bf-main">
+    <header class="bf-topbar">
+      <div>
+        <div class="bf-topbar-title">Tableau de bord</div>
+        <div class="bf-topbar-sub">Gestion BorealForest</div>
+      </div>
+
+      <div class="bf-topbar-right">
+        
+        <div class="bf-date-pill">{{ formatHeaderDate() }}</div>
+        <strong>BorealForest</strong>
+      </div>
+    </header>
+
+    <main class="bf-page-content">
+  <section class="bf-alert-banner" *ngIf="showAlertBanner">
+  <span class="alert-icon">⚠️</span>
+
+  <button routerLink="/recette" class="alert-chip success">
+    💰 {{ formatMoney(todayRevenue) }} DT recettes aujourd'hui
+  </button>
+
+  <button routerLink="/depense" class="alert-chip danger">
+    💸 {{ formatMoney(todayExpense) }} DT dépenses aujourd'hui
+  </button>
+
+  <button *ngIf="totalAppointments > 0" routerLink="/rendezvous" class="alert-chip">
+    📅 {{ totalAppointments }} RDV aujourd'hui
+  </button>
+
+  <button *ngIf="newPatientsCount > 0" routerLink="/patient" class="alert-chip info">
+    🔵 {{ newPatientsCount }} nouveau patient inscrit aujourd'hui
+  </button>
+
+  <button *ngIf="marketingAlertsCount > 0" routerLink="/marketing" class="alert-chip danger">
+    ⏰ {{ marketingAlertsCount }} rappels paiement marketing
+  </button>
+
+  <button type="button" class="alert-close" (click)="closeAlerts()">×</button>
+</section>
+
+      <section class="bf-filter-row">
+        <button [class.active]="selectedPeriod === 'today'" (click)="setPeriod('today')">Aujourd'hui</button>
+        <button [class.active]="selectedPeriod === 'month'" (click)="setPeriod('month')">Mois en cours</button>
+        <button [class.active]="selectedPeriod === 'year'" (click)="setPeriod('year')">Année en cours</button>
+        <button [class.active]="selectedPeriod === 'all'" (click)="setPeriod('all')">Tout</button>
+        <button [class.active]="selectedPeriod === 'custom'" (click)="toggleCustomPeriod()">📅 Personnalisé</button>
+
+        <ng-container *ngIf="showCustomDates">
+          <input class="bf-date-input" type="date" [(ngModel)]="customStart" />
+          <input class="bf-date-input" type="date" [(ngModel)]="customEnd" />
+          <button class="apply-btn" (click)="applyCustomPeriod()">Appliquer</button>
+        </ng-container>
+
+        <span class="filter-divider"></span>
+
+        <button [class.active]="selectedCenter === ''" (click)="setCenter('')">Tous les centres</button>
+        <button [class.active]="selectedCenter === 'Tunis'" (click)="setCenter('Tunis')">Tunis</button>
+        <button [class.active]="selectedCenter === 'Sousse'" (click)="setCenter('Sousse')">Sousse</button>
+        <button [class.active]="selectedCenter === 'Sfax'" (click)="setCenter('Sfax')">Sfax</button>
+
+        <span class="bf-filter-label">{{ filterLabel }}</span>
+      </section>
+
+      <section class="bf-kpi-grid">
+        <a routerLink="/patient" class="bf-kpi-card patients">
+          <div class="bf-kpi-icon">👥</div>
+          <div class="bf-kpi-label">TOTAL PATIENTS</div>
+          <div class="bf-trend up">Base</div>
+          <div class="bf-kpi-value">{{ totalPatients }}</div>
+          <div class="bf-kpi-sub">{{ selectedCenter || 'Tous les centres' }}</div>
+          <div class="bf-kpi-link">→ Voir les patients</div>
+        </a>
+
+        <a routerLink="/rendezvous" class="bf-kpi-card rdv">
+          <div class="bf-kpi-icon">📅</div>
+          <div class="bf-kpi-label">RENDEZ-VOUS</div>
+          <div class="bf-trend up">Events</div>
+          <div class="bf-kpi-value">{{ totalAppointments }}</div>
+          <div class="bf-kpi-sub">
+            {{ doneCount }} terminés · {{ cancelledCount }} annulés · {{ pendingCount }} en attente
+          </div>
+          <div class="bf-kpi-link">→ Voir le calendrier</div>
+        </a>
+
+        <a routerLink="/recette" class="bf-kpi-card recettes">
+          <div class="bf-kpi-icon">💰</div>
+          <div class="bf-kpi-label">RECETTES TOTALES</div>
+          <div class="bf-trend up">Réel</div>
+          <div class="bf-kpi-value">{{ formatMoney(totalRecettes) }}</div>
+          <div class="bf-kpi-sub">DT · selon filtre</div>
+          <div class="bf-kpi-link">→ Voir les recettes</div>
+        </a>
+
+        <a routerLink="/depense" class="bf-kpi-card depenses">
+          <div class="bf-kpi-icon">💸</div>
+          <div class="bf-kpi-label">DÉPENSES TOTALES</div>
+          <div class="bf-trend down">Réel</div>
+          <div class="bf-kpi-value">{{ formatMoney(totalDepenses) }}</div>
+          <div class="bf-kpi-sub">DT · selon filtre</div>
+          <div class="bf-kpi-link">→ Voir les dépenses</div>
+        </a>
+
+        <div class="bf-kpi-card benefice">
+          <div class="bf-kpi-icon">📈</div>
+          <div class="bf-kpi-label">BÉNÉFICE NET</div>
+          <div class="bf-trend up">Calculé</div>
+          <div class="bf-kpi-value">{{ formatMoney(netProfit) }}</div>
+          <div class="bf-kpi-sub">DT · Recettes − Dépenses</div>
+          <div class="bf-kpi-link">→ Détails financiers</div>
+        </div>
+
+        <a routerLink="/rendezvous" class="bf-kpi-card seances">
+          <div class="bf-kpi-icon">🫁</div>
+          <div class="bf-kpi-label">SÉANCES PRÉVUES</div>
+          <div class="bf-trend neutral">Patients</div>
+          <div class="bf-kpi-value">{{ totalSessions }}</div>
+          <div class="bf-kpi-sub">Depuis les fiches patients</div>
+          <div class="bf-kpi-link">→ Voir les rendez-vous</div>
+        </a>
+      </section>
+
+      <section class="bf-main-grid">
+        <div class="bf-card fill-card" routerLink="/recette" style="cursor:pointer;">
+          <div class="bf-card-head">
+            <h3>Revenus par centre — {{ selectedMonthName }} {{ selectedYear }}</h3>
+
+            <select [(ngModel)]="selectedMonthIndex" (click)="$event.stopPropagation()">
+              <option *ngFor="let month of months; let i = index" [ngValue]="i">
+                {{ month }}
+              </option>
+            </select>
+          </div>
+
+          <div class="fill-row tunis">
+            <div class="fill-head">
+              <span>🟣 Centre Tunis</span>
+              <b>{{ formatMoney(centerMonthlyRevenue('Tunis')) }} DT</b>
+            </div>
+            <div class="fill-bg">
+              <i [style.width.%]="centerRevenuePercent('Tunis')"></i>
+            </div>
+          </div>
+
+          <div class="fill-row sousse">
+            <div class="fill-head">
+              <span>🔵 Centre Sousse</span>
+              <b>{{ formatMoney(centerMonthlyRevenue('Sousse')) }} DT</b>
+            </div>
+            <div class="fill-bg">
+              <i [style.width.%]="centerRevenuePercent('Sousse')"></i>
+            </div>
+          </div>
+
+          <div class="fill-row sfax">
+            <div class="fill-head">
+              <span>🟡 Centre Sfax</span>
+              <b>{{ formatMoney(centerMonthlyRevenue('Sfax')) }} DT</b>
+            </div>
+            <div class="fill-bg">
+              <i [style.width.%]="centerRevenuePercent('Sfax')"></i>
+            </div>
+          </div>
+
+          <p class="muted">Les revenus sont calculés depuis la table recette.</p>
+        </div>
+
+        <div class="bf-card agenda-card" routerLink="/rendezvous" style="cursor:pointer;">
+          <h3>
+            Agenda du {{ todayAgendaLabel }}
+            <span>{{ filteredAgenda.length }} RDV</span>
+          </h3>
+
+          <div class="rdv-item" *ngFor="let rdv of filteredAgenda">
+            <b>{{ rdv.time }}</b>
+
+            <i
+              [class.dot-green]="rdv.status === 'Confirmé'"
+              [class.dot-orange]="rdv.status === 'En attente'"
+              [class.dot-blue]="rdv.status === 'Terminé'"
+              [class.dot-red]="rdv.status === 'Annulé'">
+            </i>
+
+            <div>
+              <strong>{{ rdv.patient }}</strong>
+              <small>{{ rdv.center }} · {{ rdv.detail }}</small>
+            </div>
+
+            <em
+              [class.st-confirmed]="rdv.status === 'Confirmé'"
+              [class.st-pending]="rdv.status === 'En attente'"
+              [class.st-done]="rdv.status === 'Terminé'"
+              [class.st-cancelled]="rdv.status === 'Annulé'">
+              {{ rdv.status }}
+            </em>
+          </div>
+
+          <p class="muted" *ngIf="filteredAgenda.length === 0">Aucun rendez-vous aujourd'hui.</p>
+        </div>
+      </section>
+
+      <section class="bf-chart-row">
+        <div class="bf-card bf-wide">
+          <div class="bf-card-head">
+            <h3>Revenus vs Dépenses — {{ selectedYear }}</h3>
+
+            <select [(ngModel)]="selectedYear">
+              <option [ngValue]="2026">2026</option>
+              <option [ngValue]="2025">2025</option>
+              <option [ngValue]="2024">2024</option>
+              <option [ngValue]="2023">2023</option>
+            </select>
+          </div>
+
+          <div class="chart-wrapper">
+            <div class="chart-y-axis">
+              <span>{{ formatMoney(maxMonthly()) }}</span>
+              <span>{{ formatMoney(maxMonthly() * 0.9) }}</span>
+              <span>{{ formatMoney(maxMonthly() * 0.8) }}</span>
+              <span>{{ formatMoney(maxMonthly() * 0.7) }}</span>
+              <span>{{ formatMoney(maxMonthly() * 0.6) }}</span>
+              <span>{{ formatMoney(maxMonthly() * 0.5) }}</span>
+              <span>{{ formatMoney(maxMonthly() * 0.4) }}</span>
+              <span>{{ formatMoney(maxMonthly() * 0.3) }}</span>
+              <span>{{ formatMoney(maxMonthly() * 0.2) }}</span>
+              <span>{{ formatMoney(maxMonthly() * 0.1) }}</span>
+              <span>0</span>
+            </div>
+
+            <div class="bf-bars">
+              <div class="bf-month" *ngFor="let month of months; let i = index">
+                <div class="bar-wrap">
+                  <div class="bar-box">
+                    <div
+                      class="bar revenue"
+                      [style.height.px]="revenueBarHeight(i)"
+                      [title]="month + ' ' + selectedYear + ' | Recettes: ' + formatMoney(monthlyRevenue(i)) + ' DT'">
+                    </div>
+                  </div>
+
+                  <div class="bar-box">
+                    <div
+                      class="bar expense"
+                      [style.height.px]="expenseBarHeight(i)"
+                      [title]="month + ' ' + selectedYear + ' | Dépenses: ' + formatMoney(monthlyExpense(i)) + ' DT'">
+                    </div>
+                  </div>
+                </div>
+
+                <span>{{ month }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bf-card status-card">
+          <h3>Rendez-vous par statut</h3>
+
+          <div class="status-donut">
+            <div class="status-center">
+              <strong>{{ totalAppointments }}</strong>
+              <span>Total</span>
+            </div>
+          </div>
+
+          <div class="status-list">
+            <span [title]="statusTooltip('pending')"><i class="orange"></i> En attente: {{ pendingCount }}</span>
+            <span [title]="statusTooltip('confirmed')"><i class="teal"></i> Confirmé: {{ confirmedCount }}</span>
+            <span [title]="statusTooltip('done')"><i class="green"></i> Terminé: {{ doneCount }}</span>
+            <span [title]="statusTooltip('cancelled')"><i class="red"></i> Annulé: {{ cancelledCount }}</span>
+          </div>
+        </div>
+      </section>
+<section class="bf-centers-grid">
+
+  <a routerLink="/recette"
+     class="bf-center-card"
+     *ngIf="selectedCenter === '' || selectedCenter === 'Tunis'">
+
+    <h3>🏥 Centre Tunis</h3>
+    <p><span>Patients</span><b>{{ centerPatientCount('Tunis') }}</b></p>
+    <p><span>RDV aujourd'hui</span><b>{{ centerRdvToday('Tunis') }}</b></p>
+    <p><span>Recettes</span><b class="money">{{ formatMoney(centerRevenue('Tunis')) }} DT</b></p>
+    <p><span>Dépenses</span><b class="warn-val">{{ formatMoney(centerExpense('Tunis')) }} DT</b></p>
+    <p><span>Bénéfice net</span><b class="money">{{ formatMoney(centerRevenue('Tunis') - centerExpense('Tunis')) }} DT</b></p>
+
+  </a>
+
+  <a routerLink="/recette"
+     class="bf-center-card"
+     *ngIf="selectedCenter === '' || selectedCenter === 'Sousse'">
+
+    <h3>🏥 Centre Sousse</h3>
+    <p><span>Patients</span><b>{{ centerPatientCount('Sousse') }}</b></p>
+    <p><span>RDV aujourd'hui</span><b>{{ centerRdvToday('Sousse') }}</b></p>
+    <p><span>Recettes</span><b class="money">{{ formatMoney(centerRevenue('Sousse')) }} DT</b></p>
+    <p><span>Dépenses</span><b class="warn-val">{{ formatMoney(centerExpense('Sousse')) }} DT</b></p>
+    <p><span>Bénéfice net</span><b class="money">{{ formatMoney(centerRevenue('Sousse') - centerExpense('Sousse')) }} DT</b></p>
+
+  </a>
+
+  <a routerLink="/recette"
+     class="bf-center-card"
+     *ngIf="selectedCenter === '' || selectedCenter === 'Sfax'">
+
+    <h3>🏥 Centre Sfax</h3>
+    <p><span>Patients</span><b>{{ centerPatientCount('Sfax') }}</b></p>
+    <p><span>RDV aujourd'hui</span><b>{{ centerRdvToday('Sfax') }}</b></p>
+    <p><span>Recettes</span><b class="money">{{ formatMoney(centerRevenue('Sfax')) }} DT</b></p>
+    <p><span>Dépenses</span><b class="warn-val">{{ formatMoney(centerExpense('Sfax')) }} DT</b></p>
+    <p><span>Bénéfice net</span><b class="money">{{ formatMoney(centerRevenue('Sfax') - centerExpense('Sfax')) }} DT</b></p>
+
+  </a>
+
+</section>
+
+      <section class="bf-card top-card" routerLink="/patient" style="cursor:pointer;">
+  <h3>
+    Top 5 patients actifs du {{ todayAgendaLabel }}
+  </h3>
+
+  <div class="patient-row" *ngFor="let patient of topPatients">
+    <span class="rank">{{ patient.rank }}</span>
+    <span class="avatar" [style.background]="patient.color">{{ patient.initials }}</span>
+    <strong>{{ patient.name }}</strong>
+    <span>{{ patient.center }} · {{ patient.sessions }} séances</span>
+  </div>
+
+  <p class="muted" *ngIf="topPatients.length === 0">
+    Aucun patient actif aujourd'hui.
+  </p>
+</section>
     </main>
   </section>
-  <!-- CONTENT -->
-
-
- 
-    
-          
-    
-  
-  <section class="home-section">
-      
-  
-    <div class="home-content">
-      <div class="overview-boxes">
-        <div class="box">
-          <div class="right-side ">
-            <div class="box-topic">Patients</div>
-            <div class="number" >{{p}}
-            </div>
-            <div class="indicator">
-              <i class='bx bx-up-arrow-alt' routerLink="/patient"></i>
-            </div>
-          </div>
-          <i class='bx bx-cart-alt cart'></i>
-        </div>
-        <div class="box">
-          <div class="right-side">
-            <div class="box-topic ">Recette <span class="wx">{{month}}</span>  </div>
-            <div class="number">{{totalRecette}} Dt</div>
-            <div class="indicator">
-              <i class='bx bx-up-arrow-alt' routerLink="/recette"></i>
-            </div>
-          </div>
-          <i class='bx bxs-cart-add cart two' ></i>
-        </div>
-        <div class="box">
-          <div class="right-side">
-            <div class="box-topic">Rendez-vous</div>
-            <div class="number">{{e}}</div>
-            <div class="indicator">
-              <i class='bx bx-up-arrow-alt' routerLink="/rendezvous"></i>
-            </div>
-          </div>
-          <i class='bx bx-cart cart three' ></i>
-        </div>
-        <div class="box">
-          <div class="right-side">
-            <div class="box-topic">Dépense <span class="wx">{{month}}</span>  </div>
-            <div class="number">{{totalDepence}} Dt</div>
-            <div class="indicator">
-              <i class='bx bx-down-arrow-alt down' routerLink="/depense"></i>
-            </div>
-          </div>
-          <i class='bx bxs-cart-download cart four' ></i>
-        </div>
-      </div>
-
-        
-<!-- ****************************************************************************************** -->
-<!-- In your component template file -->
-<table class="CVV">
-   <tr class="chartContainer" id="chart2" >
-    <td> <apx-chart 
-      [series]="chartSeries"
-      [chart]="chartDetails"
-      [labels]="chartLabels"
-      [title]="chartTitle" 
-      [dataLabels]="chartDataLabels"
-      [fill]="chartfill"
-      [states]="chartstates"
-      [plotOptions]="chartplotOptions"
-      [responsive]="chartresponsive"
-    ></apx-chart></td>
-    <td>
-      
-      <apx-chart 
-      [series]="chartSeriess"
-      [chart]="chartDetailss"
-      [labels]="chartLabelss"
-      [title]="chartTitles" 
-      [dataLabels]="chartDataLabelss"
-      [fill]="chartfills"
-      [states]="chartstatess"
-      [plotOptions]="chartplotOptionss"
-      [responsive]="chartresponsives"
-    ></apx-chart>
-    </td>
-     
-  </tr> 
-   <tr class="chartContainer1 " id="chart1">
-
-     <td> <apx-chart
-      [series]="series11"
-      [chart]="chart1"
-      [xaxis]="xaxis1"
-      [dataLabels]="dataLabels1"
-      [grid]="grid1"
-      [stroke]="stroke1"
-      [title]="title1"
-    ></apx-chart></td>
-     <td> <apx-chart
-      [series]="series22"
-      [chart]="chart2"
-      [xaxis]="xaxis2"
-      [dataLabels]="dataLabels2"
-      [grid]="grid2"
-      [stroke]="stroke2"
-      [title]="title2"
-    ></apx-chart></td>
-     
-
-    
-  </tr>
-  <tr class="chartContainer1 " id="chart1">
-    <td  > <apx-chart
-      [series]="series3"
-      [chart]="chart3"
-      [xaxis]="xaxis3"
-      [dataLabels]="dataLabels3"
-      [grid]="grid3"
-      [stroke]="stroke3"
-      [title]="title3"
-    ></apx-chart></td>
-    
-     <td> <apx-chart
-      [series]="series4"
-      [chart]="chart4"
-      [xaxis]="xaxis4"
-      [dataLabels]="dataLabels4"
-      [grid]="grid4"
-      [stroke]="stroke4"
-      [title]="title4"
-    ></apx-chart></td>
-
-  </tr>
-</table>
-<style>
-  .cvb{
-    width:30%;
-
-  }
-  
-</style>
-
-<div>
-  <div class="mmxx">
-    <div class="titr">
-      <h3>Gestion Recettes</h3>
-    </div>
-
-    <table>
-      <tr>
-        <td class="cvb">
-          <h5  class="recette-mois">Recette par mois</h5>
-          <form>
-            <input type="month" id="monthInput" name="month">
-            <input class="cvp" type="submit" value="Recherche">
-          </form>
-        </td>
-        <td class="cvb">
-          <h5  class="recette-annee">Recette par Année</h5>
-          <form>
-            <input type="number" id="year" name="year" min="2023" max="6060" value="2023">
-            <input class="cvp" type="submit" value="Recherche">
-          </form>
-        </td>
-      </tr>
-    </table>
-  </div>
 </div>
-
-</div>
-
-
-
-   
-   
-      
-   
-
-    
- 
-
-
-            
-
-<!-- ****************************************************************************************** -->
-
-
-<style>
- 
-  .cvb {
-    width: 30%;
-  }
-</style>
-
-<div>
-  <div class="axxxx">
-    <div class="titr">
-      <h3>Gestion des Dépenses</h3>
-    </div>
-    <table>
-      <tr>
-        <td class="cvb">
-          <form>
-            <h5  class="recette-mois">Recette par mois</h5>
-            <input type="month" id="" name="month">
-            <input class="cvp" type="submit" value="Recherche">
-          </form>
-        </td>
-        <td class="cvb">
-          <form>
-            <h5  class="recette-annee">Recette par Année</h5>
-            <input type="number" id="year" name="year" min="2023" max="6060" value="2023">
-            <input class="cvp" type="submit" value="Recherche">
-          </form>
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
-
-     
-  
- 
-   
-
-
-    
-
-
-      
-     
-     
       
 
   
