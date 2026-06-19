@@ -1,0 +1,389 @@
+<div class="bf-app-shell">
+  <aside class="bf-sidebar">
+    <div class="bf-sidebar-header">
+      <div class="bf-logo-block">
+        <div class="bf-logo-icon">
+          <img *ngIf="logo" [src]="logo" alt="Logo" />
+          <span *ngIf="!logo">🌊</span>
+        </div>
+
+        <div>
+          <div class="bf-logo-title">BorealForest</div>
+          <div class="bf-logo-sub">ADMIN OHB</div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="bf-sidebar-nav">
+      <a routerLink="/admin" class="bf-nav-item"><span>🏠</span><span>Tableau de bord</span></a>
+      <a routerLink="/patient" class="bf-nav-item"><span>👥</span><span>Patients</span></a>
+      <a routerLink="/rendezvous" class="bf-nav-item"><span>📅</span><span>Rendez-vous</span></a>
+      <a routerLink="/facture" class="bf-nav-item"><span>🧾</span><span>Factures patients</span></a>
+      <a routerLink="/depense" class="bf-nav-item"><span>🏢</span><span>Dépenses centres</span></a>
+      <a routerLink="/recette" class="bf-nav-item"><span>💳</span><span>Recettes centres</span></a>
+      <a routerLink="/marketing" class="bf-nav-item active"><span>📢</span><span>Marketing</span></a>
+      <a routerLink="/parametre" class="bf-nav-item"><span>⚙️</span><span>Paramètres</span></a>
+    </nav>
+
+    <div class="bf-sidebar-footer">
+      <div class="bf-admin-mini">
+        <div class="bf-admin-avatar">
+          <img *ngIf="photo" [src]="photo" alt="Admin" />
+          <span *ngIf="!photo">BF</span>
+        </div>
+
+        <div>
+          <div class="bf-admin-name">BorealForest</div>
+          <div class="bf-admin-role">Administrateur</div>
+        </div>
+      </div>
+
+      <a routerLink="/accueil" class="bf-logout">🚪 Déconnexion</a>
+    </div>
+  </aside>
+
+  <section class="bf-main">
+    <header class="bf-topbar">
+      
+      <div>
+        <div class="bf-topbar-title">Marketing</div>
+        <div class="bf-topbar-sub">Campaigns · ROI · Rappels</div>
+      </div>
+
+      <div class="bf-topbar-right">
+  <div class="bf-date-pill">{{ formatHeaderDate() }}</div>
+
+  <div class="bf-user-brand">
+    <strong>BorealForest</strong>
+  </div>
+</div>
+      
+    </header>
+
+    <main class="bf-page-content">
+      <section class="bf-kpi-grid">
+        <div class="bf-kpi-card pink">
+          <div class="bf-kpi-icon">💰</div>
+          <div class="bf-kpi-label">Cost</div>
+          <div class="bf-kpi-value">{{ formatMoney(totalBudget) }}</div>
+          <div class="bf-kpi-sub">DT ads cost</div>
+        </div>
+
+        <div class="bf-kpi-card violet">
+          <div class="bf-kpi-icon">💬</div>
+          <div class="bf-kpi-label">Messages</div>
+          <div class="bf-kpi-value">{{ totalMessagesAll }}</div>
+          <div class="bf-kpi-sub">WhatsApp + Messenger + Instagram</div>
+        </div>
+
+        <div class="bf-kpi-card orange">
+          <div class="bf-kpi-icon">🧑‍⚕️</div>
+          <div class="bf-kpi-label">Patients</div>
+          <div class="bf-kpi-value">{{ totalBooked }} / {{ totalPaid }}</div>
+          <div class="bf-kpi-sub">booked / paid</div>
+        </div>
+
+        <div class="bf-kpi-card green">
+          <div class="bf-kpi-icon">📈</div>
+          <div class="bf-kpi-label">Profit</div>
+          <div class="bf-kpi-value">{{ formatMoney(totalProfit) }}</div>
+          <div class="bf-kpi-sub">Revenue {{ formatMoney(totalRevenue) }} DT</div>
+        </div>
+      </section>
+
+      <section class="bf-filter-row">
+  <button [class.active]="selectedPeriod === 'month'" (click)="setPeriod('month')">
+    Mois actuel
+  </button>
+
+  <button [class.active]="selectedPeriod === 'year'" (click)="setPeriod('year')">
+    Année actuelle
+  </button>
+
+  <button [class.active]="selectedPeriod === 'custom'" (click)="setPeriod('custom')">
+    Personnalisé
+  </button>
+
+  <ng-container *ngIf="selectedPeriod === 'custom'">
+    <input class="bf-date-input" type="date" [(ngModel)]="customStart" />
+    <input class="bf-date-input" type="date" [(ngModel)]="customEnd" />
+  </ng-container>
+</section>
+      <section class="bf-tabs">
+        <button
+          type="button"
+          [class.active]="activeTab === 'overview'"
+          (click)="setTab('overview')">
+          📊 Campaigns
+        </button>
+
+        <button
+          type="button"
+          [class.active]="activeTab === 'roi'"
+          (click)="setTab('roi')">
+          💰 ROI
+        </button>
+
+        <button
+          type="button"
+          [class.active]="activeTab === 'renewals'"
+          (click)="setTab('renewals')">
+          ⏰ Rappels
+        </button>
+      </section>
+
+      <section *ngIf="activeTab === 'overview'">
+        <div class="bf-two-cols">
+          <div class="bf-card">
+            <h3>{{ isEditMode ? 'Modifier campagne' : 'Ajouter campagne' }}</h3>
+
+            <form [formGroup]="marketingForm" (ngSubmit)="saveCampaign()" class="marketing-form bf-form-grid">
+              <label>
+                Nom campagne
+                <input formControlName="name" placeholder="Meta Ads Juin 2026" />
+              </label>
+
+              <label>
+                Plateforme
+                <select formControlName="platform">
+                  <option value="Facebook">Facebook</option>
+                  <option value="Instagram">Instagram</option>
+                  <option value="Facebook + Instagram">Facebook + Instagram</option>
+                  <option value="WhatsApp">WhatsApp</option>
+                </select>
+              </label>
+
+              <label>
+                Centre
+                <select formControlName="centre">
+                  <option value="Tous">Tous</option>
+                  <option value="Tunis">Tunis</option>
+                  <option value="Sfax">Sfax</option>
+                  <option value="Sousse">Sousse</option>
+                </select>
+              </label>
+
+              <label>
+                Cost / Budget (DT)
+                <input type="number" formControlName="budget" />
+              </label>
+
+              <label>
+                Date début
+                <input type="date" formControlName="start_date" />
+              </label>
+
+              <label>
+                Date fin
+                <input type="date" formControlName="end_date" />
+              </label>
+
+              <label>
+                WhatsApp messages
+                <input type="number" formControlName="messages_whatsapp" />
+              </label>
+
+              <label>
+                Messenger messages
+                <input type="number" formControlName="messages_messenger" />
+              </label>
+
+              <label>
+                Instagram messages
+                <input type="number" formControlName="messages_instagram" />
+              </label>
+
+              <label>
+                Patients booked
+                <input type="number" formControlName="patients_booked" />
+              </label>
+
+              <label>
+Paiement reçu (DT)
+                <input type="number" formControlName="patients_paid" />
+              </label>
+
+             
+
+              <label class="full">
+                Notes
+                <input formControlName="notes" placeholder="Promo Tunis/Sfax/Sousse..." />
+              </label>
+
+              <div class="form-actions full">
+                <button class="bf-btn bf-btn-primary" type="submit">
+                  {{ isEditMode ? 'Modifier' : 'Ajouter' }}
+                </button>
+
+                <button class="bf-btn" type="button" (click)="cancelEdit()">
+                  Annuler
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="bf-card">
+            <div class="bf-card-head">
+              <h3>Toutes les campagnes</h3>
+              <span class="bf-badge badge-teal">{{ campaigns.length }}</span>
+            </div>
+
+            <div class="camp-list">
+              <div class="camp-row" *ngFor="let c of filteredCampaigns">
+                <div class="camp-logo">📢</div>
+
+                <div class="camp-info">
+                  <strong>{{ c.name }}</strong>
+                  <small>{{ c.platform }} · {{ c.centre }} · {{ c.start_date }} → {{ c.end_date }}</small>
+                </div>
+
+                <div class="camp-metric">
+                  <b>{{ formatMoney(c.budget) }}</b>
+                  <span>cost</span>
+                </div>
+
+                <div class="camp-metric">
+                  <b>{{ totalMessages(c) }}</b>
+                  <span>msg</span>
+                </div>
+
+                <span class="bf-badge badge-teal">{{ c.patients_booked || 0 }} booked</span>
+
+                <button type="button" class="icon-btn" (click)="editCampaign(c)">✏️</button>
+                <button type="button" class="icon-btn" (click)="deleteCampaign(c)">🗑️</button>
+              </div>
+
+              <div class="empty-state" *ngIf="campaigns.length === 0">
+                Aucune campagne enregistrée.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section *ngIf="activeTab === 'roi'">
+        <div class="bf-card">
+          <h3>💰 ROI par campagne</h3>
+
+          <div class="table-wrap">
+            <table class="roi-table">
+              <thead>
+                <tr>
+                  <th>Campaign</th>
+                  <th>Cost</th>
+                  <th>Messages</th>
+                  <th>Booked</th>
+                  <th>Paid</th>
+                  
+                  <th>Profit</th>
+                  <th>Cost/message</th>
+                  <th>Cost/booked</th>
+                  <th>ROI</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let c of campaigns">
+                  <td>
+                    <b>{{ c.name }}</b><br />
+                    <small>{{ c.platform }} · {{ c.centre }}</small>
+                  </td>
+
+                  <td>{{ formatMoney(c.budget) }} DT</td>
+                  <td>{{ totalMessages(c) }}</td>
+                  <td>{{ c.patients_booked || 0 }}</td>
+                  <td>{{ c.patients_paid || 0 }}</td>
+               
+
+                  <td [class.money]="profit(c) >= 0" [class.danger]="profit(c) < 0">
+                    {{ formatMoney(profit(c)) }} DT
+                  </td>
+
+                  <td>{{ costPerMessage(c) ? formatMoney(costPerMessage(c)) + ' DT' : '—' }}</td>
+                  <td>{{ costPerBooked(c) ? formatMoney(costPerBooked(c)) + ' DT' : '—' }}</td>
+
+                  <td [class.money]="roiPercent(c) >= 0" [class.danger]="roiPercent(c) < 0">
+                    {{ formatPercent(roiPercent(c)) }}%
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="roi-summary">
+            <div>
+              <span>ROI Global</span>
+              <strong>{{ formatPercent(globalRoi) }}%</strong>
+            </div>
+
+            <div>
+              <span>Coût / patient</span>
+              <strong>{{ formatMoney(costPerPatient) }} DT</strong>
+            </div>
+
+            <div>
+              <span>Conversion msg → patient</span>
+              <strong>{{ formatPercent(conversionRate) }}%</strong>
+            </div>
+
+            <div>
+              <span>Revenue / patient</span>
+              <strong>{{ formatMoney(revenuePerPatient) }} DT</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section *ngIf="activeTab === 'renewals'">
+        <div class="bf-card">
+          <h3>⏰ Rappels paiements</h3>
+
+          <div class="table-wrap">
+            <table class="roi-table">
+              <thead>
+                <tr>
+                  <th>Service</th>
+                  <th>Montant</th>
+                  <th>Type</th>
+                  <th>Prochain paiement</th>
+                  <th>Rappel</th>
+                
+                  <th>Statut</th>
+                    <th>Action</th>
+
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let r of reminders">
+                  <td><b>{{ r.service_name }}</b></td>
+                  <td>{{ formatMoney(r.amount) }} {{ r.currency }}</td>
+                  <td>{{ r.renewal_type }}</td>
+                  <td>{{ r.next_payment }}</td>
+                  <td>{{ r.reminder_days }} jours avant</td>
+                  <td>
+                    <span
+                      class="bf-badge"
+                      [class.badge-active]="isReminderSoon(r)"
+                      [class.badge-done]="!isReminderSoon(r)">
+                      {{ isReminderSoon(r) ? 'Bientôt' : daysUntil(r.next_payment) + ' jours' }}
+                    </span>
+                  </td>
+                  <td>
+  <button class="bf-btn bf-btn-primary" (click)="markReminderPaid(r)">
+    Payé
+  </button>
+</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="empty-state" *ngIf="reminders.length === 0">
+            Aucun rappel enregistré.
+          </div>
+        </div>
+      </section>
+    </main>
+  </section>
+</div>
