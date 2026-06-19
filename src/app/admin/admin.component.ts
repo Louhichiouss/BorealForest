@@ -1,1133 +1,553 @@
-import { ChangeDetectorRef, Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
-import { HttpClient } from '@angular/common/http';
 import { ServiceService } from '../model/service.service';
-import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { Patient, matriel, recette } from '../model/user';
-import {ApexGrid,  ApexXAxis,   ApexAxisChartSeries,  ApexChart, ApexDataLabels, ApexFill, ApexNonAxisChartSeries, ApexPlotOptions, ApexResponsive, ApexStates, ApexStroke, ApexTheme, ApexTitleSubtitle } from 'ng-apexcharts';
-import { ChartOptions } from 'chart.js';
 
+type PeriodFilter = 'today' | 'month' | 'year' | 'all' | 'custom';
+type CenterFilter = '' | 'Tunis' | 'Sousse' | 'Sfax';
+type RdvStatus = 'Confirmé' | 'En attente' | 'Terminé' | 'Annulé';
+
+interface TopPatient {
+  rank: number;
+  initials: string;
+  name: string;
+  center: string;
+  sessions: number;
+  amount: number;
+  color: string;
+}
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-
-
 export class AdminComponent implements OnInit {
-  chart2: any;
-  xaxis2:any;
-  dataLabels2: any;
-  grid2: any;
-  stroke2:any;
-  title2: any;
-  series22: any;
-  series11: any;
-  chart1: any;
-  xaxis1:any;
-  dataLabels1: any;
-  grid1: any;
-  stroke1:any;
-  title1: any;
-/**********************************************************DEpence souse et tunis */
-chart3: any;
-  xaxis3:any;
-  dataLabels3: any;
-  grid3: any;
-  stroke3:any;
-  title3: any;
-  series3: any;
+  patients: any[] = [];
+  recettes: any[] = [];
+  depenses: any[] = [];
+  events: any[] = [];
+  factures: any[] = [];
+  alerts: any[] = [];
 
-  series4: any;
-  chart4: any;
-  xaxis4:any;
-  dataLabels4: any;
-  grid4: any;
-  stroke4:any;
-  title4: any;
-  depenses:any;
-/******************************************************************************** */
-// the reccette  month value
-totalRecette:any;
-totalDepence:any;
-  z:any
-  // @ViewChild("chart") chart: AdminComponent;
-  // public chartOptions: Partial<ChartOptions>;
+  logo = '';
+  photo = '';
 
+  am = 0;
+  alertsCount = 0;
 
- Sb:number=0;
-  Pf:number=0;
-  Mi:number=0;
-  Avc:number=0;
-  Pd:number=0;
-  Ca:number=0;
-  Rcp:number=0;
-  Be:number=0;
-  Au:number=0;
-  Dp:number=0;
-  Aut:number=0;
-  /************************************************ */
-  Sbs:number=0;
-  Pfs:number=0;
-  Mis:number=0;
-  Avcs:number=0;
-  Pds:number=0;
-  Cas:number=0;
-  Rcps:number=0;
-  Bes:number=0;
-  Aus:number=0;
-  Dps:number=0;
-  Auts:number=0;
+  unpaidFacturesCount = 0;
+  pendingTodayRdvCount = 0;
+  newPatientsCount = 0;
+marketingAlertsCount = 0;
+  selectedPeriod: PeriodFilter = 'today';
+  selectedCenter: CenterFilter = '';
+  selectedYear = new Date().getFullYear();
+  selectedMonthIndex = new Date().getMonth();
 
-  /*********************************************** */
-  [x: string]: any;
-  voir
-  tous
-  voir1
-  tous1
-  voir2
-  tous2
-getForm:any
-patient11:any=[]
-Matriel1:any=[] 
-  patients :Patient[]=[];
-  patient:any=[]
-  Matriels: matriel[] = [];
-  Matriel:any=[]
-  month:any
+  customStart = '';
+  customEnd = '';
+  showCustomDates = false;
+  showAlertBanner = true;
 
+  months = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'];
 
-
-p:any
-a:any
-recettess :recette []=[];
-recettes :recette []=[];
-s:any
-tr:any =[]
-rect:any
-events!:any [];
-e:any
-sum:any
-summ:any
-trr:any
-am:any
-dayofweek:any=[]
- numericTable = [];
   constructor(
     private appcomponent: AppComponent,
-    private http: HttpClient,
-    private service: ServiceService,
-    private formbuilder: FormBuilder,
-    private cdr: ChangeDetectorRef,
-    private url: ActivatedRoute
-  ){
-       
-    // Get the current month
-const currentDate = new Date();
-const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
+    private service: ServiceService
+  ) {}
 
-// Log the current month to the console
-console.log(currentMonth);
-
- this.getForm=this.formbuilder.group({
-    
-      P_tel:['',Validators.required],
-      Nom:['',Validators.required],
-          
-    jour:['',Validators.required],
- })
- this.voir=false
-    this.tous= true
-    this.voir1=false
-    this.tous1= true
-    this.voir2=false
-    this.tous2= true
-    this.service.getdepense().subscribe(
-      (result:any)=>{
-        this.depenses=result.data
-
-        this.dayofweek = [];
-        const currentDate = new Date();
-        const currentWeekStart = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - currentDate.getDay());
-        const currentWeekEnd = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - currentDate.getDay() + 6);
-        for (let i = 0; i < this.depenses.length; i++) {
-          const date = new Date(this.depenses[i].date);
-          if (date >= currentWeekStart && date <= currentWeekEnd) {
-            const day = date.toLocaleDateString('fr', { weekday: 'long' });
-            this.dayofweek.push(day);
-            // console.log(`${this.recettes[i].date} est un ${day}`);
-            // console.log(this.recettes[i].beneficie)
-          }
-        }
-
-        const dataArr1 = [0, 0, 0, 0, 0, 0, 0]; // depence tunis
-        const dataArr2 = [0, 0, 0, 0, 0, 0, 0];  //depence sousse
-        for (let i = 0; i < this.depenses.length; i++) {
-          const date = new Date(this.depenses[i].date);
-          const depence = parseFloat(this.depenses[i].depense);
-          console.log(this.depenses[i].depense)
-          if (date >= currentWeekStart && date <= currentWeekEnd) {
-            if(this.depenses[i].region== "Tunis")
-            {    const dayIndex = date.getDay();
-            dataArr1[dayIndex] += depence;}
-
-
-            else if(this.depenses[i].region== "Sousse")
-            {    const dayIndex = date.getDay();
-            dataArr2[dayIndex] += depence;
-            // console.log(dataArr2[dayIndex])
-          }
-
-        
-          // console.log(dataArr1)
-            
-          }
-        }
- 
-         /***************************************************** depece tunis */
-       this.series3 = [
-        {
-          name: 'Depence',
-          data: dataArr1
-        }
-      ];
-  
-      this.chart3 = {
-        height: 350,
-        width: 500,
-        type: 'line',
-        zoom: {
-          enabled: false
-        },
-        dropShadow: {
-          enabled: true,
-          color: '#113',
-          top: -1,
-          left: 1,
-          blur: 6,
-          opacity: 0.8
-        }
-      };
-  
-      this.xaxis3= {
-        categories: [
-          'dimanche',
-          'lundi',
-          'mardi',
-          'mercredi',
-          'jeudi',
-          'vendredi',
-          'samedi',
-         
-        ]
-      };
-  
-      this.dataLabels3= {
-        enabled: true
-      };
-  
-      this.grid3 = {
-        row: {
-          colors: ['black', 'transparent'],
-          opacity: 0.5
-        }
-      };
-  
-      this.stroke3 = {
-        curve: 'straight'
-      };
-    // ... your existing code ...
-
-// ... your existing code ...
-// ... your existing code ...
-
-// ... your existing code ...
-
-const currentDat = new Date();
-
-// Calculate the start and end dates of the current month
-const currentMonthStart = new Date(currentDat.getFullYear(), currentDat.getMonth(), 1);
-const currentMonthEnd = new Date(currentDat.getFullYear(), currentDat.getMonth() + 1, 0);
-
-// Calculate the week number within the current month
-function getWeekInMonth(date: Date): number {
-  const currentDate = new Date(date);
-  const daysInMonth = currentMonthEnd.getDate();
-  const daysIntoMonth = currentDate.getDate();
-  return Math.ceil((daysIntoMonth + currentMonthStart.getDay() - 1) / 7);
-}
-
-const weekNumberInMonth = getWeekInMonth(currentDat);
-
-// Get the month and year of the current month
-const month = currentMonthStart.toLocaleDateString('fr', { month: 'long' });
-const year = currentMonthStart.getFullYear();
-
-// Update your title3 property
-this.title3 = {
-  text: `Dépense de la semaine ${weekNumberInMonth} dans ${month} à Tunis ${year}`,
-  align: 'centre'
-};
-
-// ... rest of your existing code ...
-
-
-
-
-
-       /*********************************************************** */
-
-
-       /*********************depence sousse****************************** */
-
-       this.series4 = [
-        {
-          name: 'Depence',
-          data: dataArr2
-        }
-      ];
-  
-      this.chart4 = {
-        height: 350,
-        width: 500,
-        type: 'line',
-        zoom: {
-          enabled: false
-        },
-        dropShadow: {
-          enabled: true,
-          color: '#113',
-          top: -1,
-          left: 1,
-          blur: 6,
-          opacity: 0.8
-        }
-      };
-  
-      this.xaxis4 = {
-        categories: [
-          'dimanche',
-          'lundi',
-          'mardi',
-          'mercredi',
-          'jeudi',
-          'vendredi',
-          'samedi',
-         
-        ]
-      };
-  
-      this.dataLabels4= {
-        enabled: true
-      };
-  
-      this.grid4 = {
-        row: {
-          colors: ['black', 'transparent'],
-          opacity: 0.5
-        }
-      };
-  
-      this.stroke4 = {
-        curve: 'straight'
-      };
-  
-      this.title4 = {
-        text: `Dépense de  semaine ${weekNumberInMonth} dans ${month} à Sousse ${year}`,
-        align: 'centre'
-      };
-
-
-       /**************************************************** */
-   
-  
-      }),
-    this.service.getrecette().subscribe(
-      (result: any) => {
-        this.recettes = result.data;
-        // console.log(this.recettes);
-        this.dayofweek = [];
-        const currentDate = new Date();
-        const currentWeekStart = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - currentDate.getDay());
-        const currentWeekEnd = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - currentDate.getDay() + 6);
-        for (let i = 0; i < this.recettes.length; i++) {
-          const date = new Date(this.recettes[i].date);
-          if (date >= currentWeekStart && date <= currentWeekEnd) {
-            const day = date.toLocaleDateString('fr', { weekday: 'long' });
-            this.dayofweek.push(day);
-            // console.log(`${this.recettes[i].date} est un ${day}`);
-            // console.log(this.recettes[i].beneficie)
-          }
-        }
-        // console.log(this.dayofweek);
-    
-        // Initialize an empty array with 0 values for each day of the week
-        const dataArr = [0, 0, 0, 0, 0, 0, 0];  //recette tunis
-         const dataArrS = [0, 0, 0, 0, 0, 0, 0]; // recette sousse
-       
-    
-        // Loop through the recipes and add the benefice to the appropriate day of the week
-        for (let i = 0; i < this.recettes.length; i++) {
-          const date = new Date(this.recettes[i].date);
-          const benefice = this.recettes[i].recette;
-          // console.log(benefice)
-          if (date >= currentWeekStart && date <= currentWeekEnd) {
-            if(this.recettes[i].region== "Tunis")
-            {    const dayIndex = date.getDay();
-            dataArr[dayIndex] += benefice;}
-
-
-            else if(this.recettes[i].region== "Sousse")
-            {    
-              
-            const dayIndex = date.getDay();
-            dataArrS[dayIndex] += benefice;
-          
-          }
-
-
-           
-           
-          }
-        }
-    
-        // Set the chart data to the array we just built
-        this.series11 = [
-          {
-            name: 'Recette',
-            data: dataArr
-            
-          }
-        ];
-    
-        this.chart1 = {
-          height: 350,
-          width: 500,
-          type: 'line',
-          zoom: {
-            enabled: false
-          },
-          dropShadow: {
-            enabled: true,
-            color: '#113',
-            top: -1,
-            left: 1,
-            blur: 6,
-            opacity: 0.8
-          }
-        };
-    
-        this.xaxis1 = {
-          categories: [
-            'dimanche',
-            'lundi',
-            'mardi',
-            'mercredi',
-            'jeudi',
-            'vendredi',
-            'samedi',
-           
-          ]
-        };
-    
-        this.dataLabels1= {
-          enabled: true
-        };
-    
-        this.grid1 = {
-          row: {
-            colors: ['black', 'transparent'],
-            opacity: 0.5
-          }
-        };
-    
-        this.stroke1 = {
-          curve: 'straight'
-        };
- // Calculate the start and end dates of the current month
-const currentMonthStart = new Date(currentWeekStart.getFullYear(), currentWeekStart.getMonth(), 1);
-const currentMonthEnd = new Date(currentWeekStart.getFullYear(), currentWeekStart.getMonth() + 1, 0);
-
-// Calculate the week number within the current month
-function getWeekInMonth(date: Date): number {
-  const currentDate = new Date(date);
-  const daysInMonth = currentMonthEnd.getDate();
-  const daysIntoMonth = currentDate.getDate();
-  return Math.ceil((daysIntoMonth + currentMonthStart.getDay() - 1) / 7);
-}
-
-const weekNumberInMonth = getWeekInMonth(currentWeekStart);
-
-// Get the month and year of the current month
-const month = currentMonthStart.toLocaleDateString('fr', { month: 'long' });
-const year = currentMonthStart.getFullYear();
-
-// Update your title1 property
-this.title1 = {
-  text: `Recette de la semaine ${weekNumberInMonth} dans ${month} à Tunis ${year}`,
-  align: 'centre'
-};
-
-
-       //******************************************************* */
-
-      
-       this.series22 = [
-        {
-          name: 'Recette',
-          data: dataArrS
-        }
-      ];
-  
-      this.chart2 = {
-        height: 350,
-        width: 500,
-        
-        type: 'line',
-        zoom: {
-          enabled: false
-        },
-        dropShadow: {
-          enabled: true,
-          color: '#113',
-          top: -1,
-          left: 1,
-          blur: 6,
-          opacity: 0.8
-        }
-      };
-  
-      this.xaxis2 = {
-        categories: [
-          'dimanche',
-          'lundi',
-          'mardi',
-          'mercredi',
-          'jeudi',
-          'vendredi',
-          'samedi',
-         
-        ]
-      };
-  
-      this.dataLabels2= {
-        enabled: true
-      };
-  
-      this.grid2 = {
-        row: {
-          colors: ['black', 'transparent'],
-          opacity: 0.5
-        }
-      };
-  
-      this.stroke2 = {
-        curve: 'straight'
-      };
-  
-      this.title2 = {
-        text: `Recette de semaine ${weekNumberInMonth} dans  ${month} à Sousse ${year}`,
-        align: 'centre'
-      };
-
-        
-  //**************************************************** */
-
-      }
-    );
-    
-  }
- 
   ngOnInit(): void {
-    
- //pour calculer la depence du moins
- 
- this.service.getdepense().subscribe(
-  (result:any)=>{
-    this.depenses=result.data
-    const currentDate = new Date();
-    const currentMonth = currentDate.getMonth();
-   this.totalDepence = 0;
-
-    for (let i = 0; i < this.depenses.length; i++) {
-      const recetteDate = new Date(this.depenses[i].date);
-      const recetteMonth = recetteDate.getMonth();
-
-      if (recetteMonth === currentMonth) {
-        const recetteAmount = this.depenses[i].depense;
-       this.totalDepence += recetteAmount;
-      }
-    }
-    console.log(this.totalDepence)
-
-  
-  
-  
-  
-  
-  
-  })
- // pour calculer recette du cette moins 
-
-
- this.service.getrecette().subscribe(
-  (result: any) => {
-    this.recettes = result.data;
-    const currentDate = new Date();
-    const currentMonth = currentDate.getMonth();
-   this.totalRecette = 0;
-
-    for (let i = 0; i < this.recettes.length; i++) {
-      const recetteDate = new Date(this.recettes[i].date);
-      const recetteMonth = recetteDate.getMonth();
-
-      if (recetteMonth === currentMonth) {
-        const recetteAmount = this.recettes[i].recette;
-       this.totalRecette += recetteAmount;
-      }
-    }
-
-    // console.log('Total Recette:', this.totalRecette);
-  });
-
- /*************************************************** */
-
-  
-    this.appcomponent.hideHeaderAndFooter=true;
-
-      this.service.getdate().subscribe(
-        (result:any)=>{
-          this.events=result.data
-          // console.log(result.data)
-          this.e=this.events.length
-
-        }
-      )
-
-
-      const currentDate = new Date();
-    const currentMonthName = currentDate.toLocaleString('fr-FR', { month: 'long' });
-    // console.log(currentMonthName);
-    
-    this.month = currentMonthName;
-    // this.service.getEvents(this.calendar.control.visibleStart(), this.calendar.control.visibleEnd()).subscribe(result => {
-    //   this.events = result;
-    //   console.log("Events retrieved from backend:  oussema bkrowno");
-  
-
-    // });
-
-
-
-    this.service.getpatient().subscribe(
-      (result:any)=>{
-        this.patients=result.data
-        this.patient=this.patients 
-this.p=this.patients.length
-// console.log(this.patient)
-
-for (let i = 0; i < this.patient.length; i++) {
-if ((this.patient[i].P_c=='Autisme'&& this.patient[i].P_region=='Tunis') ) {
- 
- this.Au=this.Au+1
- 
-} if((this.patient[i].P_c=='pour le bien être'&& this.patient[i].P_region=='Tunis') ) {
-   this.Be=this.Be+1
-   
-   
-
-}if((this.patient[i].P_c=='Retablissement'&& this.patient[i].P_region=='Tunis') ) {
-
-  this.Rcp=this.Rcp+1
-  
-
-
-}if((this.patient[i].P_c=='Cancer'&& this.patient[i].P_region=='Tunis') ) {
-
-  this.Ca=this.Ca+1
-
-
-}if((this.patient[i].P_c=='plaies diabétique'&& this.patient[i].P_region=='Tunis') ) {
-
-
-  this.Pd=this.Pd+1
-
-}
-if((this.patient[i].P_c=='AVC'&& this.patient[i].P_region=='Tunis') ) {
-
-
-  this.Avc=this.Avc+1
-
-}
-if((this.patient[i].P_c=='Migraine'&& this.patient[i].P_region=='Tunis') ) {
-
-
-  this.Mi=this.Mi+1
-
-}
-if((this.patient[i].P_c=='Surdite brusque'&& this.patient[i].P_region=='Tunis') ) {
-
-
-  this.Sb=this.Sb+1
-
-}
-if((this.patient[i].P_c=='Paralysie faciale'&& this.patient[i].P_region=='Tunis') ) {
-
-
-  this.Pf=this.Pf+1
-
-}
-if((this.patient[i].P_c=='Dépression'&& this.patient[i].P_region=='Tunis') ) {
-
-
-  this.Dp=this.Dp+1
-
-}
-if((this.patient[i].P_c=='Autre'&& this.patient[i].P_region=='Tunis') ) {
-
-
-  this.Aut=this.Aut+1
-
-}
-/***** */
-if ((this.patient[i].P_c=='Autisme'&& this.patient[i].P_region=='Sousse') ) {
- 
-  this.Aus=this.Aus+1
-  
- } if((this.patient[i].P_c=='pour le bien être'&& this.patient[i].P_region=='Sousse') ) {
-    this.Bes=this.Bes+1
-    
-    
- 
- }if((this.patient[i].P_c=='Retablissement'&& this.patient[i].P_region=='Sousse') ) {
- 
-   this.Rcps=this.Rcps+1
-   
- 
- 
- }if((this.patient[i].P_c=='Cancer'&& this.patient[i].P_region=='Sousse') ) {
- 
-   this.Cas=this.Cas+1
- 
- 
- }if((this.patient[i].P_c=='plaies diabétique'&& this.patient[i].P_region=='Sousse') ) {
- 
- 
-   this.Pds=this.Pds+1
- 
- }
- if((this.patient[i].P_c=='AVC'&& this.patient[i].P_region=='Sousse') ) {
- 
- 
-   this.Avcs=this.Avcs+1
- 
- }
- if((this.patient[i].P_c=='Migraine'&& this.patient[i].P_region=='Sousse') ) {
- 
- 
-   this.Mis=this.Mis+1
- 
- }
- if((this.patient[i].P_c=='Surdite brusque'&& this.patient[i].P_region=='Sousse') ) {
- 
- 
-   this.Sbs=this.Sbs+1
- 
- }
- if((this.patient[i].P_c=='Paralysie faciale'&& this.patient[i].P_region=='Sousse') ) {
- 
- 
-   this.Pfs=this.Pfs+1
- 
- }
- if((this.patient[i].P_c=='Dépression'&& this.patient[i].P_region=='Sousse') ) {
- 
- 
-   this.Dps=this.Dps+1
- 
- }
- if((this.patient[i].P_c=='Autre'&& this.patient[i].P_region=='Sousse') ) {
- 
- 
-   this.Auts=this.Auts+1
- 
- }
-
-
-
-
-
-
-
-
-
-
-
-}
-
-this.chartSeriess = [this.Pfs, this.Sbs, this.Mis, this.Avcs, this.Pds, this.Cas, this.Rcps, this.Bes, this.Aus, this.Dps, this.Auts];
-this.chartSeries = [this.Pf, this.Sb, this.Mi, this.Avc, this.Pd, this.Ca, this.Rcp, this.Be, this.Au, this.Dp,this.Aut];
-this.series11 = [1,2,3,4,6,9,8];
-this.series22 = [1,2,3,4,6,9,8];
-
-      }
-
-    )
-   
-    this.service.getmatriel().subscribe(
-      (result:any)=>{
-        // console.log(result); // check if the data is received properly
-        this.Matriels=result.data
-        this.trr = [];
-        for (let i = 0; i < this.Matriels.length; i++) {
-          this.trr.push(this.Matriels[i].Quantite.toString());
-        // this.sum=this.sum+this.tr
-        }
-        // console.log(this.trr);
-        // console.log(this.trr.length);
-        this.summ = 0;
-        for (let i = 0; i < this.trr.length; i++) {
-          this.summ = this.summ + parseInt(this.trr[i], 10);
-        }
-        // console.log(this.summ);
-        
-      }
-    )
-  
-    
-
-    this.service.getrecette().subscribe(
-      (result:any)=>{
-        // console.log(result); // check if the data is received properly
-        this.recettes=result.data
-        this.tr = [];
-        for (let i = 0; i < this.recettes.length; i++) {
-          // this.tr.push(this.recettes[i].beneficie.toString());
-        // this.sum=this.sum+this.tr
-        }
-        // console.log(this.tr);
-        // console.log(this.tr.length);
-        this.sum = 0;
-        for (let i = 0; i < this.tr.length; i++) {
-          this.sum = this.sum + parseInt(this.tr[i], 10);
-        }
-        
-
-
-
-      }
-    )
-    
-    
-    this.service.getpinterface().subscribe((result: any) => {
-      this.patients = result.data;
-      // console.log(this.patients);
-    
-
-    this.am=this.patients.length
-    // console.log(this.am)
-
-  });
-
-
-  }
-  status = false;
-  addToggle()
-  {
-    this.status = !this.status;       
+    this.appcomponent.hideHeaderAndFooter = true;
+    this.loadAdminInfo();
+    this.loadAll();
   }
 
-
-
-
-
-  title = 'apex-ng-14';
-  chartSeries: ApexNonAxisChartSeries = [];
-  chartDetails: ApexChart = {
-    width: 490,
-    zoom: {
-      enabled: false
-    },
-    type: "donut",
-    dropShadow: {
-      enabled: true,
-      color: "#113",
-      top:-1,
-      left: 2,
-      blur: 6,
-      opacity: 0.8
-    }
-  };
-  
-  chartfill: ApexFill = {
-    type: "pattern",
-    opacity: 9,
-    pattern: {
-      style: [
-        // "verticalLines",
-        "squares",
-        "squares",
-        "squares",
-        "squares",
-        "squares",
-        // "horizontalLines",
-        // "circles",
-        // "slantedLines"
-      ]
-    }
-  };
-  chartstroke:ApexStroke={
-    width: 0
-
-  };
-  chartplotOptions:ApexPlotOptions={
-
-    pie: {
-      donut: {
-        labels: {
-          show: true,
-          total: {
-            showAlways: true,
-            show: true
-          }
+  loadAll(): void {
+    this.service.getAdminDashboard().subscribe({
+      next: (res: any) => {
+        if (!res || Number(res.success) === 0) {
+          this.useEmptyData();
+          return;
         }
-      }
-    }
-  };
-  chartstates:ApexStates={
-    hover: {
-      filter: {
-        type: "none"
-      }
-    }
-  };
 
+        this.patients = res.patients || [];
+        this.recettes = (res.recettes || []).map((r: any) => this.normalizeRecette(r));
+        this.depenses = (res.depenses || []).map((d: any) => this.normalizeDepense(d));
+        this.events = res.events || [];
+        this.factures = res.factures || [];
+        this.alerts = res.alerts || [];
 
-  charttheme:ApexTheme={
-    palette: "palette2"
-  }
-  chartLabels = ["Paralysie faciale", "Surdite brusque", "Migraine", "AVC", "plaies diabetique", "Cancer", "Retablissement", "pour le bien être", "Autisme","Dépression","Autre"];
+        this.unpaidFacturesCount = Number(res.unpaid_factures_count || 0);
+        this.pendingTodayRdvCount = Number(res.pending_rdv_today_count || 0);
+        this.newPatientsCount = Number(res.new_patients_count || 0);
+        this.alertsCount = Number(res.alerts_count || this.alerts.length || 0);
+        this.marketingAlertsCount = Number(res.marketing_alerts_count || 0);
 
-  chartTitle: ApexTitleSubtitle = {
-    text: 'Etat Santé de patient "Tunis"',
-    align: 'center'
-  };
- chartresponsive: ApexResponsive[] = [
-  {
-    breakpoint: 480,
-    options: {
-      chart: {
-        width: 100
+this.am =
+  this.totalAppointments +
+  this.newPatientsCount +
+  this.marketingAlertsCount +
+  this.unpaidFacturesCount;
+        this.showAlertBanner = true;
       },
-      legend: {
-        position: "bottom"
+      error: (err: any) => {
+        console.error('DASHBOARD ERROR:', err);
+        this.useEmptyData();
       }
+    });
+  }
+
+  useEmptyData(): void {
+    this.patients = [];
+    this.recettes = [];
+    this.depenses = [];
+    this.events = [];
+    this.factures = [];
+    this.alerts = [];
+    this.am = 0;
+    this.showAlertBanner = true;
+  }
+
+  todayISO(): string {
+    const d = new Date();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${d.getFullYear()}-${m}-${day}`;
+  }
+
+  isToday(dateValue: any): boolean {
+    if (!dateValue) return false;
+    const d = new Date(dateValue);
+    if (isNaN(d.getTime())) return false;
+
+    const today = new Date();
+    return d.getFullYear() === today.getFullYear()
+      && d.getMonth() === today.getMonth()
+      && d.getDate() === today.getDate();
+  }
+
+  normalizeRecette(r: any): any {
+    const amount = this.toNumber(
+      r.recette ?? r.Recette ?? r.amount ?? r.montant ?? r.total ?? r.prix ?? 0
+    );
+
+    return {
+      ...r,
+      amount,
+      date: r.date || r.Date || r.created_at || '',
+      region: r.region || r.Region || r.centre || r.center || 'Tunis'
+    };
+  }
+
+  normalizeDepense(d: any): any {
+    return {
+      ...d,
+      amount: this.toNumber(d.depense ?? d.Depense ?? d.amount ?? d.montant ?? d.total ?? 0),
+      date: d.date || d.Date || d.created_at || '',
+      region: d.region || d.Region || d.centre || d.center || 'Tunis'
+    };
+  }
+
+  toNumber(value: any): number {
+    const n = Number(String(value ?? 0).replace(',', '.').replace(/[^\d.-]/g, ''));
+    return Number.isFinite(n) ? n : 0;
+  }
+
+  formatMoney(value: any): string {
+    const n = this.toNumber(value);
+    return Number.isInteger(n) ? String(n) : n.toFixed(3);
+  }
+
+  formatHeaderDate(): string {
+    return new Date().toLocaleDateString('fr-FR', {
+      weekday: 'short',
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    });
+  }
+
+  get todayAgendaLabel(): string {
+    return new Date().toLocaleDateString('fr-FR', {
+      weekday: 'long',
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    });
+  }
+
+  setPeriod(period: PeriodFilter): void {
+    this.selectedPeriod = period;
+    if (period !== 'custom') this.showCustomDates = false;
+  }
+
+  toggleCustomPeriod(): void {
+    this.selectedPeriod = 'custom';
+    this.showCustomDates = !this.showCustomDates;
+  }
+
+  applyCustomPeriod(): void {
+    this.selectedPeriod = 'custom';
+    this.showCustomDates = false;
+  }
+
+  setCenter(center: CenterFilter): void {
+    this.selectedCenter = center;
+  }
+
+  closeAlerts(): void {
+    this.showAlertBanner = false;
+  }
+
+  isSamePeriod(dateStr: string): boolean {
+    if (!dateStr || this.selectedPeriod === 'all') return true;
+
+    const d = new Date(dateStr);
+    const today = new Date();
+    if (Number.isNaN(d.getTime())) return true;
+
+    const day1 = d.toISOString().split('T')[0];
+    const day2 = today.toISOString().split('T')[0];
+
+    if (this.selectedPeriod === 'today') return day1 === day2;
+    if (this.selectedPeriod === 'month') return d.getFullYear() === today.getFullYear() && d.getMonth() === today.getMonth();
+    if (this.selectedPeriod === 'year') return d.getFullYear() === today.getFullYear();
+
+    if (this.selectedPeriod === 'custom') {
+      if (!this.customStart || !this.customEnd) return true;
+      const start = new Date(this.customStart);
+      const end = new Date(this.customEnd);
+      end.setHours(23, 59, 59, 999);
+      return d >= start && d <= end;
     }
+
+    return true;
   }
-];
 
-  
-  chartDataLabels: ApexDataLabels = {
-    enabled: true
-    
-  };
+  eventCenter(event: any): string {
+    const text = String(event?.text || '').trim();
 
+    if (text.includes(':')) return text.split(':')[0].trim();
+    if (text.includes('Tunis')) return 'Tunis';
+    if (text.includes('Sousse')) return 'Sousse';
+    if (text.includes('Sfax')) return 'Sfax';
 
-/*************************************************************** */
-
-title6 = 'apex-ng-14';
-chartSeriess: ApexNonAxisChartSeries = [];
-chartDetailss: ApexChart = {
-  width: 490,
-  zoom: {
-    enabled: false
-  },
-  type: "donut",
-  dropShadow: {
-    enabled: true,
-    color: "#113",
-    top:-1,
-    left: 2,
-    blur: 6,
-    opacity: 0.8
+    const phone = String(event?.patient_phone || '').trim();
+    const p = this.patients.find((x: any) => String(x.P_tel || '').trim() === phone);
+    return p?.P_region || '';
   }
-};
-chartstrokee:ApexStroke={
-  width: 0
 
-};
-chartfills: ApexFill = {
-  type: "pattern",
-  opacity: 9,
-  pattern: {
-    style: [
-      // "verticalLines",
-      "squares",
-      "squares",
-      "squares",
-      "squares",
-      "squares",
-      // "horizontalLines",
-      // "circles",
-      // "slantedLines"
-    ]
+  eventStatus(e: any): RdvStatus {
+    const color = String(e.barColor || '').toLowerCase();
+    if (color === '#6aa84f') return 'Terminé';
+    if (color === '#cc0000') return 'Annulé';
+    return 'En attente';
   }
-};
 
-chartplotOptionss:ApexPlotOptions={
+  patientNameFromEvent(e: any): string {
+    const text = String(e.text || '').trim();
+    const parts = text.split(':');
+    let name = parts[1]?.trim() || text;
 
-  pie: {
-    donut: {
-      labels: {
-        show: true,
-        total: {
-          showAlways: true,
-          show: true
-        }
+    if (['Tunis', 'Sousse', 'Sfax'].includes(name)) {
+      const phone = String(e.patient_phone || '').trim();
+      const p = this.patients.find((x: any) => String(x.P_tel || '').trim() === phone);
+      if (p) name = `${p.P_nom || ''} ${p.P_prenom || ''}`.trim();
+    }
+
+    return name || 'Patient';
+  }
+
+  patientSessionsByName(name: string): number {
+    const cleanName = String(name || '').toLowerCase().trim();
+
+    const found = this.patients.find((p: any) => {
+      const fullName1 = `${p.P_nom || ''} ${p.P_prenom || ''}`.toLowerCase().trim();
+      const fullName2 = `${p.P_prenom || ''} ${p.P_nom || ''}`.toLowerCase().trim();
+
+      return fullName1.includes(cleanName)
+        || fullName2.includes(cleanName)
+        || cleanName.includes(fullName1)
+        || cleanName.includes(fullName2);
+    });
+
+    return this.toNumber(found?.P_nbs || found?.seances_prevues || 0);
+  }
+
+  patientSessionsByEvent(e: any): number {
+    const phone = String(e.patient_phone || '').trim();
+    const byPhone = this.patients.find((p: any) => String(p.P_tel || '').trim() === phone);
+
+    if (byPhone) return this.toNumber(byPhone.P_nbs || 0);
+
+    return this.patientSessionsByName(this.patientNameFromEvent(e)) || this.toNumber(e.seances_prevues || 0);
+  }
+
+  rowCenter(row: any): string {
+    return row.region || row.Region || row.P_region || row.center || row.centre || this.eventCenter(row) || '';
+  }
+
+  centerMatch(row: any): boolean {
+    return !this.selectedCenter || this.rowCenter(row) === this.selectedCenter;
+  }
+
+  get filteredPatients(): any[] {
+    return this.patients.filter((p: any) => this.centerMatch(p));
+  }
+
+  get filteredRecettes(): any[] {
+    return this.recettes.filter((r: any) => this.centerMatch(r) && this.isSamePeriod(r.date));
+  }
+
+  get filteredDepenses(): any[] {
+    return this.depenses.filter((d: any) => this.centerMatch(d) && this.isSamePeriod(d.date));
+  }
+
+  get todayEvents(): any[] {
+    const today = this.todayISO();
+
+    return this.events
+      .filter((e: any) => {
+        const sameDay = String(e.start || '').startsWith(today);
+        const sameCenter = !this.selectedCenter || this.eventCenter(e) === this.selectedCenter;
+        return sameDay && sameCenter;
+      })
+      .sort((a: any, b: any) => new Date(a.start).getTime() - new Date(b.start).getTime());
+  }
+
+  get filteredAgenda(): any[] {
+    return this.todayEvents.map((e: any) => {
+      const date = new Date(e.start);
+      const patientName = this.patientNameFromEvent(e);
+      const faites = this.toNumber(e.seances_faites || 0);
+      const prevues = this.patientSessionsByEvent(e);
+
+      return {
+        time: date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }),
+        patient: patientName,
+        center: this.eventCenter(e),
+        detail: `${faites}/${prevues} séances`,
+        status: this.eventStatus(e)
+      };
+    });
+  }
+
+  get totalPatients(): number {
+    return this.filteredPatients.length;
+  }
+
+  get totalAppointments(): number {
+    return this.todayEvents.length;
+  }
+
+  get totalRecettes(): number {
+    return this.filteredRecettes.reduce((s, r) => s + this.toNumber(r.amount), 0);
+  }
+
+  get totalDepenses(): number {
+    return this.filteredDepenses.reduce((s, d) => s + this.toNumber(d.amount), 0);
+  }
+
+  get todayRevenue(): number {
+    return this.recettes
+      .filter((r: any) => this.centerMatch(r) && this.isToday(r.date))
+      .reduce((s: number, r: any) => s + this.toNumber(r.amount), 0);
+  }
+
+  get todayExpense(): number {
+    return this.depenses
+      .filter((d: any) => this.centerMatch(d) && this.isToday(d.date))
+      .reduce((s: number, d: any) => s + this.toNumber(d.amount), 0);
+  }
+
+  get netProfit(): number {
+    return this.totalRecettes - this.totalDepenses;
+  }
+
+  get totalSessions(): number {
+    return this.filteredPatients.reduce((s, p: any) => s + this.toNumber(p.P_nbs || 0), 0);
+  }
+
+  get confirmedCount(): number {
+    return 0;
+  }
+
+  get pendingCount(): number {
+    return this.todayEvents.filter((e: any) => this.eventStatus(e) === 'En attente').length;
+  }
+
+  get doneCount(): number {
+    return this.todayEvents.filter((e: any) => this.eventStatus(e) === 'Terminé').length;
+  }
+
+  get cancelledCount(): number {
+    return this.todayEvents.filter((e: any) => this.eventStatus(e) === 'Annulé').length;
+  }
+
+  statusTooltip(type: string): string {
+    if (type === 'pending') return `${this.pendingCount} rendez-vous en attente aujourd'hui`;
+    if (type === 'confirmed') return `${this.confirmedCount} rendez-vous confirmés aujourd'hui`;
+    if (type === 'done') return `${this.doneCount} rendez-vous terminés aujourd'hui`;
+    return `${this.cancelledCount} rendez-vous annulés aujourd'hui`;
+  }
+
+  centerPatientCount(center: string): number {
+    return this.patients.filter((p: any) => this.rowCenter(p) === center).length;
+  }
+
+  centerRdvToday(center: string): number {
+    const today = this.todayISO();
+    return this.events.filter((e: any) => this.eventCenter(e) === center && String(e.start || '').startsWith(today)).length;
+  }
+
+  centerRevenue(center: string): number {
+    return this.filteredRecettes.filter(r => this.rowCenter(r) === center).reduce((s, r) => s + this.toNumber(r.amount), 0);
+  }
+
+  centerExpense(center: string): number {
+    return this.filteredDepenses.filter(d => this.rowCenter(d) === center).reduce((s, d) => s + this.toNumber(d.amount), 0);
+  }
+
+  fillRate(center: string): number {
+    const rdv = this.centerRdvToday(center);
+    return Math.min(100, Math.round((rdv / 10) * 100));
+  }
+
+  get selectedMonthName(): string {
+    return this.months[this.selectedMonthIndex] || '';
+  }
+
+  centerMonthlyRevenue(center: string): number {
+    return this.recettes
+      .filter((r: any) => {
+        const d = new Date(r.date);
+        return this.rowCenter(r) === center
+          && !Number.isNaN(d.getTime())
+          && d.getFullYear() === Number(this.selectedYear)
+          && d.getMonth() === Number(this.selectedMonthIndex);
+      })
+      .reduce((s, r) => s + this.toNumber(r.amount), 0);
+  }
+
+  maxCenterMonthlyRevenue(): number {
+    return Math.max(this.centerMonthlyRevenue('Tunis'), this.centerMonthlyRevenue('Sousse'), this.centerMonthlyRevenue('Sfax'), 1);
+  }
+
+  centerRevenuePercent(center: string): number {
+    return Math.round((this.centerMonthlyRevenue(center) / this.maxCenterMonthlyRevenue()) * 100);
+  }
+
+  monthlyRevenue(monthIndex: number): number {
+    return this.recettes
+      .filter((r: any) => {
+        const d = new Date(r.date);
+        return (!this.selectedCenter || this.rowCenter(r) === this.selectedCenter)
+          && !Number.isNaN(d.getTime())
+          && d.getFullYear() === Number(this.selectedYear)
+          && d.getMonth() === monthIndex;
+      })
+      .reduce((s, r) => s + this.toNumber(r.amount), 0);
+  }
+
+  monthlyExpense(monthIndex: number): number {
+    return this.depenses
+      .filter((d: any) => {
+        const dt = new Date(d.date);
+        return (!this.selectedCenter || this.rowCenter(d) === this.selectedCenter)
+          && !Number.isNaN(dt.getTime())
+          && dt.getFullYear() === Number(this.selectedYear)
+          && dt.getMonth() === monthIndex;
+      })
+      .reduce((s, d) => s + this.toNumber(d.amount), 0);
+  }
+
+  maxMonthly(): number {
+    const values = this.months.flatMap((_, i) => [this.monthlyRevenue(i), this.monthlyExpense(i)]);
+    return Math.max(...values, 100);
+  }
+
+  revenueBarHeight(i: number): number {
+    const v = this.monthlyRevenue(i);
+    return v <= 0 ? 4 : Math.max(8, (v / this.maxMonthly()) * 190);
+  }
+
+  expenseBarHeight(i: number): number {
+    const v = this.monthlyExpense(i);
+    return v <= 0 ? 4 : Math.max(8, (v / this.maxMonthly()) * 190);
+  }
+
+  marketingBarWidth(value: number): string {
+    return `${Math.max(4, Math.min(100, value))}%`;
+  }
+
+  get topPatients(): TopPatient[] {
+    const colors = ['#1A8FA0', '#7C3AED', '#A16207', '#0284C7', '#DC2626'];
+    const todayNames = this.todayEvents
+      .map((e: any) => this.patientNameFromEvent(e))
+      .filter((name: string) => !!name && name !== 'Patient');
+
+    const uniqueNames = Array.from(new Set(todayNames));
+
+    return uniqueNames.slice(0, 5).map((name: string, i: number) => {
+      const p = this.patients.find((x: any) => {
+        const full1 = `${x.P_nom || ''} ${x.P_prenom || ''}`.toLowerCase().trim();
+        const full2 = `${x.P_prenom || ''} ${x.P_nom || ''}`.toLowerCase().trim();
+        const n = name.toLowerCase().trim();
+        return full1.includes(n) || full2.includes(n) || n.includes(full1) || n.includes(full2);
+      });
+
+      return {
+        rank: i + 1,
+        initials: this.initials(name),
+        name,
+        center: p?.P_region || '',
+        sessions: this.toNumber(p?.P_nbs || 0),
+        amount: 0,
+        color: colors[i] || '#1A8FA0'
+      };
+    });
+  }
+
+  initials(name: string): string {
+    return String(name || '')
+      .split(' ')
+      .filter(Boolean)
+      .slice(0, 2)
+      .map(w => w[0]?.toUpperCase())
+      .join('') || 'P';
+  }
+
+  get filterLabel(): string {
+    const map: Record<PeriodFilter, string> = {
+      today: "Aujourd'hui",
+      month: 'Mois en cours',
+      year: 'Année en cours',
+      all: 'Tout',
+      custom: 'Personnalisé'
+    };
+
+    const period = this.selectedPeriod === 'custom' && this.customStart && this.customEnd
+      ? `${this.customStart} → ${this.customEnd}`
+      : map[this.selectedPeriod];
+
+    return `${period} · ${this.selectedCenter || 'Tous les centres'}`;
+  }
+
+  loadAdminInfo(): void {
+    this.service.getSignladmin(1).subscribe({
+      next: (res: any) => {
+        let adminData = res?.data || res || {};
+        if (Array.isArray(adminData)) adminData = adminData[0] || {};
+
+        this.logo = adminData.logo || '';
+        this.photo = adminData.img || adminData.photo || '';
+      },
+      error: (err: any) => {
+        console.error('ADMIN INFO ERROR:', err);
+        this.logo = '';
+        this.photo = '';
       }
-    }
+    });
   }
-};
-chartstatess:ApexStates={
-  hover: {
-    filter: {
-      type: "none"
-    }
-  }
-};
-
-
-chartthemee:ApexTheme={
-  palette: "palette2"
 }
-chartLabelss = ["Paralysie faciale", "Surdite brusque", "Migraine", "AVC", "plaies diabetique", "Cancer", "Retablissement", "pour le bien être", "Autisme","Dépression","Autre"];
-
-chartTitles: ApexTitleSubtitle = {
-  text: 'Etat Santé de patient "Sousse"',
-  align: 'center'
-};
-chartresponsives: ApexResponsive[] = [
-{
-  breakpoint: 480,
-  options: {
-    chart: {
-      width: 100
-    },
-    legend: {
-      position: "bottom"
-    }
-  }
-}
-];
-
-
-chartDataLabelss: ApexDataLabels = {
-  enabled: true
-  
-};
-
-
-
-
-/************************************************************************ */
-
-  retour():void{
-
-    this.z=0 
-    for(var i = 0; i <this.patient.length; i++){
-      if((this.patient[i].P_tel==this.getForm.value.P_tel)){
-    
-      this.patient11=(this.patient[i])
-      this.voir=true
-      this.tous=false
-
-      // console.log(this.patient11+"ddfdffddf")
-      return;
-      }
-      else{
-        this.z=this.z+1
-        
-      }
-    }
-  
-    if(this.z>0){
-      alert("Le numéro téléphone n'existe pas ou incorrecte")
-      return;
-    }
-    
-
-  }
-  setMyval(){
-
-    this.voir=false
-    this.tous=true
-  }
-  retourn1():void{
-
-    this.z=0
-    for(var i = 0; i <this.Matriels.length; i++){
-      if((this.Matriels[i].Nom==this.getForm.value.Nom)){
-    
-      this.Matriel1=(this.Matriels[i])
-      this.voir1=true
-      this.tous1=false
-
-      // console.log(this.Matriel)
-      return;
-      }
-      else{
-        this.z=this.z+1
-        
-      }
-    }
-    if(this.z>0){
-      alert("Le nom n'existe pas ou incorrecte")
-      return;
-    }
-   
-    
-
-  }
-  setMyval1(){
-
-    this.voir1=false
-    this.tous1=true
-  }
-  retourn2():void{
-
-    this.z=0;
-    for(var i = 0; i <this.recettes.length; i++){
-      if((this.recettes[i].jour==this.getForm.value.jour)){
-    
-        this.recettess.push(this.recettes[i]);
-  
-      this.voir2=true
-      this.tous2=false
-  
-      // console.log(this.recettess)
-      return;
-      }
-      else{
-        this.z=this.z+1
-        
-      }
-    }
-    if(this.z>0){
-      alert("Le jour n'existe pas ou incorrecte")
-      return;
-    }
-   
-   
-    
-  
-  }
-  setMyval2(){
-  
-    this.voir2=false
-    this.tous2=true
-  }
- 
-  }
 
