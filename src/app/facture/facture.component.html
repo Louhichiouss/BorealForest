@@ -1,0 +1,298 @@
+<div class="bf-app-shell">
+  <aside class="bf-sidebar">
+    <div class="bf-sidebar-header">
+    <div class="bf-logo-block">
+        <div class="bf-logo-icon">
+          <img *ngIf="logo" [src]="logo" alt="Logo" />
+          <span *ngIf="!logo">🌊</span>
+        </div>
+
+        <div>
+          <div class="bf-logo-title">BorealForest</div>
+          <div class="bf-logo-sub">ADMIN OHB</div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="bf-sidebar-nav">
+      <a routerLink="/admin" class="bf-nav-item"><span>🏠</span><span>Tableau de bord</span></a>
+      <a routerLink="/patient" class="bf-nav-item"><span>👥</span><span>Patients</span></a>
+      <a routerLink="/rendezvous" class="bf-nav-item"><span>📅</span><span>Rendez-vous</span></a>
+      <a routerLink="/facture" class="bf-nav-item active"><span>🧾</span><span>Factures patients</span></a>
+      <a routerLink="/depense" class="bf-nav-item"><span>🏢</span><span>Dépenses centres</span></a>
+      <a routerLink="/recette" class="bf-nav-item"><span>💳</span><span>Recettes centres</span></a>
+      <a routerLink="/marketing" class="bf-nav-item"><span>📢</span><span>Marketing</span></a>
+      <a routerLink="/parametre" class="bf-nav-item"><span>⚙️</span><span>Paramètres</span></a>
+    </nav>
+
+    <div class="bf-sidebar-footer">
+      <div class="bf-admin-mini">
+<div class="bf-admin-avatar">
+  <img *ngIf="photo" [src]="photo" alt="Admin">
+  <span *ngIf="!photo">BF</span>
+</div>        <div>
+          <div class="bf-admin-name">BorealForest</div>
+          <div class="bf-admin-role">Administrateur</div>
+        </div>
+      </div>
+      <a routerLink="/accueil" class="bf-logout">🚪 Déconnexion</a>
+    </div>
+  </aside>
+
+  <section class="bf-main">
+    <header class="bf-topbar">
+      <div class="bf-topbar-title">Factures patients</div>
+      <div class="bf-topbar-right">
+        <div class="bf-date-pill">{{formatHeaderDate()}}</div>
+        <strong>BorealForest</strong>
+      </div>
+    </header>
+
+    <main class="bf-page-content">
+      <section class="bf-page-head">
+        <h1>Factures patients</h1>
+
+        <div class="bf-header-actions">
+          <div class="bf-search-box">
+            <span>🔍</span>
+            <input type="text" [(ngModel)]="searchText" placeholder="Rechercher..." />
+          </div>
+
+          <select [(ngModel)]="statusFilter" class="bf-select">
+            <option value="">Tous les statuts</option>
+            <option value="Paid">Payé</option>
+            <option value="Unpaid">Non rémunéré</option>
+            <option value="Partial">Partielle</option>
+          </select>
+
+          <button class="bf-btn bf-btn-primary" type="button" (click)="openAddModal()">+ Nouvelle facture</button>
+        </div>
+      </section>
+
+      <section class="bf-table-card">
+         <div class="bf-table-scroll">
+        <table class="bf-data-table">
+          <thead>
+            <tr>
+              <th>N° Facture</th>
+              <th>Patient</th>
+              <th>Centre</th>
+              <th>Date</th>
+              <th>Séances</th>
+              <th>HT</th>
+              <th>TVA 19%</th>
+              <th>TTC</th>
+              <th>Statut</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let invoice of filteredInvoices">
+              <td>{{invoice.invoiceNumber}}</td>
+              <td><strong>{{invoice.patientName}}</strong></td>
+              <td><span class="bf-badge" [ngClass]="getCenterBadgeClass(invoice.center)">{{invoice.center}}</span></td>
+              <td>{{invoice.date}}</td>
+              <td>{{invoice.sessions}}</td>
+              <td>{{formatMoney(totalHt(invoice))}} DT</td>
+              <td>{{formatMoney(totalTva(invoice))}} DT</td>
+              <td><strong>{{formatMoney(totalTtc(invoice))}} DT</strong></td>
+              <td><span class="status-badge" [ngClass]="getStatusClass(invoice.status)">{{invoice.status}}</span></td>
+              <td class="bf-actions">
+                <button type="button" title="Voir" (click)="openDetailsModal(invoice)">👁️</button>
+                <button type="button" title="Modifier" (click)="openEditModal(invoice)">✏️</button>
+                <button type="button" title="Supprimer" class="danger" (click)="deleteInvoice(invoice)">🗑️</button>
+                <button type="button" title="PDF" (click)="openDetailsModal(invoice)">📄</button>
+              </td>
+            </tr>
+
+            <tr *ngIf="filteredInvoices.length === 0">
+              <td colspan="10" class="empty-state">Aucune facture trouvée.</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+    </main>
+  </section>
+</div>
+
+<div class="bf-modal-backdrop" *ngIf="showFormModal">
+  <div class="bf-modal">
+    <div class="bf-modal-head">
+      <h2>{{isEditMode ? 'Modifier facture' : 'Nouvelle facture'}}</h2>
+      <button type="button" (click)="closeFormModal()">×</button>
+    </div>
+
+    <form [formGroup]="invoiceForm" (ngSubmit)="saveInvoice()" class="bf-form-grid">
+      <label>N° Facture
+        <input type="text" formControlName="invoiceNumber" readonly>
+      </label>
+
+      <label>Date
+        <input type="date" formControlName="date">
+      </label>
+
+      <label class="full patient-search-wrapper">
+        Patient
+        <input
+          type="text"
+          [(ngModel)]="patientSearch"
+          [ngModelOptions]="{standalone:true}"
+          placeholder="Tapez le nom du patient..."
+          (input)="searchPatients()"
+          autocomplete="off">
+
+        <div class="patient-results" *ngIf="patientResults.length > 0">
+          <div
+            class="patient-result-item"
+            *ngFor="let p of patientResults"
+            (click)="selectPatient(p)">
+            <strong>{{p.P_nom}} {{p.P_prenom}}</strong>
+            <small>— {{p.P_region}} | {{p.P_tel}}</small>
+          </div>
+        </div>
+
+        <input type="hidden" formControlName="patientId">
+        <input type="hidden" formControlName="patientName">
+      </label>
+
+      <label>Centre
+        <input type="text" formControlName="center" readonly>
+      </label>
+
+      <label>Séances
+        <input type="number" formControlName="sessions">
+      </label>
+
+      <label>Prix unitaire TTC (DT)
+        <input type="number" formControlName="unitPriceTtc">
+      </label>
+
+      <div class="total-box full">
+        <p><span>HT</span><strong>{{formatMoney(formTotalHt())}} DT</strong></p>
+        <p><span>TVA 19%</span><strong>{{formatMoney(formTotalTva())}} DT</strong></p>
+        <p class="total-line"><span>Total TTC</span><strong>{{formatMoney(formTotalTtc())}} DT</strong></p>
+      </div>
+
+      <label class="full">État du paiement
+        <select formControlName="status">
+          <option value="Paid">Paid</option>
+          <option value="Unpaid">Unpaid</option>
+          <option value="Partial">Partial</option>
+        </select>
+      </label>
+
+      <div class="bf-modal-actions full">
+        <button class="bf-btn" type="button" (click)="closeFormModal()">Annuler</button>
+        <button class="bf-btn bf-btn-primary" type="submit">Enregistrer la facture</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="bf-modal-backdrop" *ngIf="showDetailsModal">
+  <div class="invoice-preview-modal">
+    <div class="invoice-preview-head">
+      <h2>Aperçu de la facture</h2>
+      <button type="button" (click)="closeDetailsModal()">×</button>
+    </div>
+
+    <div class="invoice-paper" id="invoice-print-area" *ngIf="selectedInvoice">
+      <div class="invoice-header-model">
+        <div>
+          <h1>Facture</h1>
+          <b>N° {{selectedInvoice.invoiceNumber}}</b>
+        </div>
+
+        <div class="invoice-logo-round">
+          <img src="assets/img/logo2.jpg" alt="BorealForest Logo">
+        </div>
+      </div>
+
+      <div class="invoice-blue-line"></div>
+
+      <h3>BorealForest</h3>
+      <p><b>{{getCenterAddress(selectedInvoice.center)}}</b></p>
+      <p><b>Téléphone :</b> +216 56 811 602</p>
+      <p><b>E-mail :</b> oxyboreal2@gmail.com</p>
+
+      <div class="invoice-info-box">
+        <div class="invoice-grey-box">
+          <p><b>Date du Facture</b> {{selectedInvoice.date}}</p>
+          <p><b>Matricule fiscal</b> 1397708/N/P/M/000</p>
+          <p><b>Emis par</b> Louhichi Samer</p>
+          <p><b>Contact client</b> {{selectedInvoice.patientName}}</p>
+          <br>
+          <p><b>Date de début de la prestation</b> {{selectedInvoice.date}}</p>
+        </div>
+
+        <div>
+          <h4>Destinataire</h4>
+          <p><i>{{selectedInvoice.patientName}}</i></p>
+          <p>{{selectedInvoice.center}}</p>
+          <p>{{getPatientPhone(selectedInvoice.patientId)}}</p>
+        </div>
+      </div>
+
+      <div class="invoice-blue-line large"></div>
+
+      <table class="invoice-real-table">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Quantité</th>
+            <th>Unité</th>
+            <th>Prix unitaire HT</th>
+            <th>TVA</th>
+            <th>Total TVA</th>
+            <th>Total TTC</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Oxygénothérapie hyperbare</td>
+            <td>{{selectedInvoice.sessions}}</td>
+            <td>Séances</td>
+            <td>{{formatMoney(unitPriceHt(selectedInvoice))}}</td>
+            <td>19%</td>
+            <td>{{formatMoney(totalTva(selectedInvoice))}} DT</td>
+            <td>{{formatMoney(totalTtc(selectedInvoice))}} DT</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="invoice-totals-model">
+        <p><b>SOUS-TOTAL :</b> {{formatMoney(totalHt(selectedInvoice))}} DT</p>
+        <p><b>TVA (19%) :</b> {{formatMoney(totalTva(selectedInvoice))}} DT</p>
+        <p><b>TOTAL TTC :</b> {{formatMoney(totalTtc(selectedInvoice))}} DT</p>
+      </div>
+
+      <div class="signature">Signature du centre et cachet:</div>
+
+      <div class="invoice-footer-model">
+        <div>
+          <b>Siège social</b>
+          <p>M.F: 1397708/N/P/M/000</p>
+          <p>{{getCenterAddress(selectedInvoice.center)}}</p>
+        </div>
+
+        <div>
+          <b>Coordonnées</b>
+          <p>BorealForest</p>
+          <p>Téléphone : +216 56 811 602</p>
+          <p>E-mail : oxyboreal2@gmail.com</p>
+          <p>www.oxyboreal.com</p>
+        </div>
+      </div>
+
+      <div class="invoice-bottom-blue"></div>
+    </div>
+
+    <div class="invoice-actions">
+      <button class="bf-btn" type="button" (click)="closeDetailsModal()">Fermer</button>
+      <button class="bf-btn bf-btn-primary" type="button" (click)="printInvoice()">🖨 Imprimer / Télécharger PDF</button>
+    </div>
+  </div>
+</div>
