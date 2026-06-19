@@ -129,11 +129,9 @@ export class ServiceService {
           // console.log(this.user)
           return this.http.put(this.baseUrl+'update4.php',patient)
         }
-        getpinterface(){
-          // console.log(this.user)
-          return this.http.get<Med[]>(this.baseUrl+'view8.php');
-          
-        }
+ getpinterface() {
+  return this.http.get<any>(this.baseUrl + 'view.php');
+}
         getSignlpinterface(id:any){
           // console.log(this.user)
           return this.http.get<Med[]>(this.baseUrl+'view8.php?id='+id);
@@ -156,9 +154,9 @@ export class ServiceService {
           
         }
 
-        editadmin(formData: FormData){
-          return this.http.put(this.baseUrl+'update3.php', formData);
-        }
+       editadmin(data: any) {
+  return this.http.put(this.baseUrl + 'update3.php', data);
+}
         
               imageUpload( profileImage:File):Observable<any>{
                 var formData:any=new FormData();
@@ -209,43 +207,181 @@ Deletedepense(id:any){
                 return this.http.put(this.baseUrl+'e_accpetation.php',med)
               }
 
+
+searchPatient(q: string) {
+  return this.http.get(this.baseUrl + 'searchPatient.php?q=' + encodeURIComponent(q));
+}
+
+getFacturePatient() {
+  return this.http.get(this.baseUrl + 'viewFacturePatient.php');
+}
+
+addFacturePatient(data: any) {
+  return this.http.post(this.baseUrl + 'insertFacturePatient.php', data);
+}
+
+updateFacturePatient(data: any) {
+  return this.http.put(this.baseUrl + 'updateFacturePatient.php', data);
+}
+
+deleteFacturePatient(id: any) {
+  return this.http.delete(this.baseUrl + 'deleteFacturePatient.php?id=' + id);
+}
+
+uploadDepenseFile(file: File) {
+  const formData = new FormData();
+  formData.append('file', file);
+  return this.http.post(this.baseUrl + 'uploadDepenseFile.php', formData);
+}
        
-  getEvents(start: DayPilot.Date, end: DayPilot.Date): Observable<EventData[]> {
-    return this.http.post(this.url+"api/backend_events.php", {start: start, end: end}) as Observable<EventData[]>;
-    
-  }
-      
-        createEvent(params: CreateEventParams): Observable<BackendResult> {
-          return this.http.post(this.url+"api/backend_create.php", params) as Observable<BackendResult>;
-          
-        }
-      
-        deleteEvent(id: EventId): Observable<BackendResult> {
-          return this.http.post(this.url+"api/backend_delete.php", {id: id}) as Observable<BackendResult>;
-        }
-      
-        moveEvent(params: MoveEventParams): Observable<BackendResult> {
-          return this.http.post(this.url+"api/backend_move.php", params) as Observable<BackendResult>;
-        }}
-        export interface CreateEventParams {
-          id?: string | number;
-          start: string;
-          end: string;
-          text: string;
-          barColor:string;
-        }
-        
-        export interface MoveEventParams {
-          id: EventId;
-          newStart: DayPilot.Date;
-          newEnd: DayPilot.Date;
-        }
-        
-        export interface BackendResult {
-          id: EventId;
-          result: string;
-          message: string;
-        }
+ getEvents(start: DayPilot.Date, end: DayPilot.Date): Observable<EventData[]> {
+  return this.http.post(this.url + "api/backend_events.php", { start: start, end: end }) as Observable<EventData[]>;
+}
+
+createEvent(params: CreateEventParams): Observable<BackendResult> {
+  return this.http.post(this.url + "api/backend_create.php", params) as Observable<BackendResult>;
+}
+
+updateEvent(params: any): Observable<BackendResult> {
+  return this.http.post(this.url + "api/backend_update.php", params) as Observable<BackendResult>;
+}
+
+deleteEvent(id: EventId): Observable<BackendResult> {
+  return this.http.post(this.url + "api/backend_delete.php", { id: id }) as Observable<BackendResult>;
+}
+
+moveEvent(params: MoveEventParams): Observable<BackendResult> {
+  return this.http.post(this.url + "api/backend_move.php", params) as Observable<BackendResult>;
+}
+
+
+
+
+
+
+
+getMarketingCampaigns() {
+  return this.http.get(this.baseUrl + 'viewMarketingCampaigns.php');
+}
+
+addMarketingCampaign(data: any) {
+  return this.http.post(this.baseUrl + 'insertMarketingCampaign.php', data);
+}
+
+updateMarketingCampaign(data: any) {
+  return this.http.post(this.baseUrl + 'updateMarketingCampaign.php', data);
+}
+
+deleteMarketingCampaign(id: any) {
+  return this.http.delete(this.baseUrl + 'deleteMarketingCampaign.php?id=' + id);
+}
+
+getMarketingReminders() {
+  return this.http.get(this.baseUrl + 'viewMarketingReminders.php');
+}
+getMarketingSocial() {
+  return this.http.get(this.baseUrl + 'viewMarketingSocial.php');
+}
+getMarketingEvents() {
+  return this.http.get(this.baseUrl + 'viewMarketingEvents.php');
+}
+
+addMarketingEvent(data: any) {
+  return this.http.post(this.baseUrl + 'insertMarketingEvent.php', data);
+}
+
+updateMarketingEvent(data: any) {
+  return this.http.post(this.baseUrl + 'updateMarketingEvent.php', data);
+}
+
+deleteMarketingEvent(id: any) {
+  return this.http.delete(this.baseUrl + 'deleteMarketingEvent.php?id=' + id);
+}
+
+sendMarketingSms(data: any) {
+  return this.http.post(this.baseUrl + 'sendMarketingSms.php', data);
+}
+// service.service.ts
+// getFacebookStats() {
+//   return this.http.get(this.baseUrl + 'viewFacebookStats.php');
+// }
+// getFacebookAdsStats() {
+//   return this.http.get(this.baseUrl + 'viewFacebookAdsStats.php');
+// }
+// getInstagramStats() {
+//   return this.http.get<any>('https://server.oxyboreal.com/api/viewInstagramStats.php');
+// }
+
+// getInstagramHistory(period: string) {
+//   return this.http.get<any>(
+//     `https://server.oxyboreal.com/api/viewInstagramHistory.php?period=${period}`
+//   );
+// }
+
+
+
+logoUpload(file: File) {
+  const formData = new FormData();
+  formData.append('logo', file);
+
+  return this.http.post(
+    this.baseUrl + 'uploadLogo.php',
+    formData,
+    {
+      reportProgress: true,
+      observe: 'events'
+    }
+  );
+}
+deleteLogo() {
+  return this.http.post(this.baseUrl + 'deleteLogo.php', {});
+}
+
+adminPhotoUpload(file: File) {
+  const formData = new FormData();
+  formData.append('photo', file);
+
+  return this.http.post(this.baseUrl + 'uploadAdminPhoto.php', formData, {
+    reportProgress: true,
+    observe: 'events'
+  });
+}
+
+getAdminDashboard() {
+  return this.http.get<any>(this.url + 'adminDashboard.php');
+}
+
+
+
+payMarketingReminder(id: any) {
+  return this.http.post<any>(this.url + 'payMarketingReminder.php', { id });
+}
+
+
+
+
+
+
+}
+       export interface CreateEventParams {
+  id?: string | number;
+  start: string;
+  end: string;
+  text: string;
+  barColor: string;
+}
+
+export interface MoveEventParams {
+  id: EventId;
+  newStart: DayPilot.Date;
+  newEnd: DayPilot.Date;
+}
+
+export interface BackendResult {
+  id: EventId;
+  result: string;
+  message: string;
+}
       
       
       
