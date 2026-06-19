@@ -1,4 +1,5 @@
-import { Action } from "rxjs/internal/scheduler/Action"
+
+
 
 export class User {
 
@@ -22,6 +23,18 @@ export class User {
     msg: string
 
 
+}
+
+export interface FacturePatient {
+  id?: number;
+  patient_id: number;
+  patient_nom: string;
+  centre: string;
+  nb_seances: number;
+  prix_unitaire: number;
+  total: number;
+  statut: string;
+  date_facture: string;
 }
 
 export class Med {
@@ -241,27 +254,39 @@ export class admin {
         password: string
 
 }
-export  class depense {
-    constructor(
-        id: number,
-       depense: number,
-       description: string,
-       date: string,
-       jour: string,
-       region:string
-    ){
-        this.id = id
-        this.depense = depense
-        this. description = description
-        this.date = date
-        this.jour = jour
-        this.region  = region
-    }
-    id: number
-   depense: number
-   description :string
-    date: string
-    jour: string
-    region :string
+export class depense {
+  constructor(
+    id: number,
+    depense: number,
+    description: string,
+    date: string,
+    jour: string,
+    region: string,
+    fournisseur?: string,
+    numero_facture?: string,
+    fichier?: string,
+    type_depense?: string
+  ) {
+    this.id = id;
+    this.depense = depense;
+    this.description = description;
+    this.date = date;
+    this.jour = jour;
+    this.region = region;
+    this.fournisseur = fournisseur;
+    this.numero_facture = numero_facture;
+    this.fichier = fichier;
+    this.type_depense = type_depense;
+  }
 
+  id: number;
+  depense: number;
+  description: string;
+  date: string;
+  jour: string;
+  region: string;
+  fournisseur?: string;
+  numero_facture?: string;
+  fichier?: string;
+  type_depense?: string;
 }
