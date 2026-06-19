@@ -1,214 +1,174 @@
-
-
-<nav class="navbar    navbar-expand-md  back  "  >
-    <div class="container-fluid ">
-        <div class="offcanvas-body"> 
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              
-               
-    <div class="offcanvas offcanvas-end tx " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-
-        
-      <DIV class="hmlp">
-      
-<section id="sidebar" >
-    <a href="#" class="brand">
-      <i class='bx bxs-smile text'></i>
-      <span class="te" >Bienvenue admin</span>
-    </a>
-    <ul class="side-menu top">
-    
-      <li >
-        <a routerLink="/admin">
-          <i class='bx bxs-dashboard text' ></i>
-          <span class="tex">Tableau de bord</span>
-        </a>
-      </li>
-      <li >
-          <a routerLink="/patient" >
-            <i class='bx bxs-group text ' ></i>
-            <span class="tex" >Gestion Patient</span>
-          </a>
-        </li>
-      <li>
-        <a routerLink="/matriel">
-          <i class='bx bxs-shopping-bag-alt text' ></i>
-          <span class="tex" >Gestion de Matériels</span>
-        </a>
-      </li>
-     
-      <li >
-        <a routerLink="/rendezvous">
-          <i class='bx bxs-message-dots text' ></i>
-          <span class="tex" > Rendez-vous</span>
-        </a>
-      </li>
-      <li>
-          <a routerLink="/recette">
-            <i class='bx bxs-doughnut-chart text' ></i>
-            <span class="tex"> Recette </span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/depense">
-            <i class='bx bx-line-chart text'></i>
-            <span class="tex"> Dépense </span>
-          </a>
-        </li>
-    </ul>
-    <ul class="side-menu">
-      <ul class="side-menu" >
-        <li class="active vv">
-          <div class="dropdown">
-
-          <a  >
-            <i class='bx bxs-cog text ' ></i>
-              <a class="nav-link dropdown-toggle  vv" routerLink="/Parametre" id="navbarDropdown"
-                  role="button  " data-bs-toggle="dropdown" aria-expanded="false"data-toggle="dropdown" aria-haspopup="true">
-                  <i class=""></i>Paramétre
-              </a>
-              <ul class="dropdown-menu vv" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" routerLink="/profil" >Profil</a></li>
-                <li><a class="dropdown-item" routerLink="/connecte">Déconnexion</a></li>
-            </ul>
-        </a>
+<div class="bf-app-shell">
+  <aside class="bf-sidebar">
+    <div class="bf-sidebar-header">
+      <div class="bf-logo-block">
+        <div class="bf-logo-icon">
+          <img *ngIf="previewLogo" [src]="previewLogo" alt="Logo" />
+          <span *ngIf="!previewLogo">🌊</span>
+        </div>
+        <div>
+          <div class="bf-logo-title">BorealForest</div>
+          <div class="bf-logo-sub">ADMIN OHB</div>
+        </div>
       </div>
-
-        </li>
-        <li>
-          <a routerLink="/accueil" class="logout">
-            <i class='bx bxs-log-out-circle text' ></i>
-            <span class="tex">Se déconnecter</span>
-          </a>
-        </li>
-      </ul>
-    </ul>
-  </section>
-</DIV>
-  <div class="offcanvas-header back mm" >
-    <a class="navbar-brand " > </a>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  </div>
-  </div>
-  </div>
-</nav>
-  <!-- SIDEBAR -->
-  
-  
-  
-  <!-- CONTENT -->
-  <section id="content">
-    <!-- NAVBAR -->
-    <nav>
-      <form action="#">
-       
-      </form>
-      <div class="notification-box">
-
-        <input type="" id="" hidden>
-  <label for="" ></label>
-  <a routerLink="/notification"class="notification">
-   <i class='bx bxs-bell' ></i>
-   <span class="num">{{am}}</span>
-  </a>
-   </div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-  </button>
-      <div class="" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
-                    role="button" data-bs-toggle="dropdown" aria-expanded="false" data-toggle="dropdown" aria-haspopup="true">
-                    <i class="fas fa-user me-2"></i>Admin
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" routerLink="/connecte">Déconnexion</a></li>
-                </ul>
-            </li>
-        </ul>
     </div>
+
+    <nav class="bf-sidebar-nav">
+      <a routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="bf-nav-item">
+        <span>🏠</span><span>Tableau de bord</span>
+      </a>
+      <a routerLink="/patient" routerLinkActive="active" class="bf-nav-item">
+        <span>👥</span><span>Patients</span>
+      </a>
+      <a routerLink="/rendezvous" routerLinkActive="active" class="bf-nav-item">
+        <span>📅</span><span>Rendez-vous</span>
+      </a>
+      <a routerLink="/facture" routerLinkActive="active" class="bf-nav-item">
+        <span>🧾</span><span>Factures patients</span>
+      </a>
+      <a routerLink="/depense" routerLinkActive="active" class="bf-nav-item">
+        <span>🏢</span><span>Dépenses centres</span>
+      </a>
+      <a routerLink="/recette" routerLinkActive="active" class="bf-nav-item">
+        <span>💳</span><span>Recettes centres</span>
+      </a>
+      <a routerLink="/marketing" routerLinkActive="active" class="bf-nav-item">
+        <span>📢</span><span>Marketing</span>
+      </a>
+      <a routerLink="/parametre" routerLinkActive="active" class="bf-nav-item">
+        <span>⚙️</span><span>Paramètres</span>
+      </a>
     </nav>
-   
-    <main>
-      <div class="head-title">
-        <div class="left">
-          <ul class="breadcrumb">
-            <li>
-              <a href="#">Tableau de bord</a>
-            </li>
-            <li><i class='bx bx-chevron-right' ></i></li>
-            <li>
-              <a class="active" >Paramètres</a>
-            </li>
-          </ul>
+
+    <div class="bf-sidebar-footer">
+      <div class="bf-admin-mini">
+        <div class="bf-admin-avatar">
+          <img *ngIf="previewPhoto" [src]="previewPhoto" alt="Admin" />
+          <span *ngIf="!previewPhoto">BF</span>
         </div>
-        
+        <div>
+          <div class="bf-admin-name">BorealForest</div>
+          <div class="bf-admin-role">Administrateur</div>
+        </div>
       </div>
-  
-   
-  
-      
-    </main>
-  </section>
-  <!-- CONTENT -->
-<div>
-  <h4 class="te">Modifier le Profile Admin</h4>
+      <a routerLink="/accueil" class="bf-logout">🚪 Déconnexion</a>
+    </div>
+  </aside>
 
-</div>
-  <form [formGroup]="addForm" enctype="multipart/form-data" >
-    <input type="hidden" name="id" formControlName="id">
-  
-    <div class="container rounded bg-white mt-2 mb-2">
-      
-      <div class="row">
-        <div class="col-md-3 border-right">
+  <section class="bf-main">
+    <header class="bf-topbar">
+      <div>
+        <div class="bf-topbar-title">Paramètres</div>
+        <div class="bf-topbar-sub">Gestion du profil administrateur</div>
+      </div>
 
-          
+      <div class="bf-topbar-right">
+        <div class="bf-date-pill">{{ currentDate }}</div>
+        <strong>BorealForest</strong>
+      </div>
+    </header>
+
+    <main class="bf-page-content">
+      <section class="bf-page-head">
+        <h1>Paramètres administrateur</h1>
+      </section>
+
+      <section class="settings-grid">
+        <div class="settings-card">
+          <h3>Informations du profil</h3>
+
+          <form [formGroup]="addForm" class="profile-form">
+            <input type="hidden" formControlName="id" />
+
+            <div class="photo-box">
+              <div class="avatar-preview">
+                <img *ngIf="previewPhoto" [src]="previewPhoto" alt="Admin photo" />
+                <span *ngIf="!previewPhoto">BF</span>
+              </div>
+
+              <label class="upload-btn">
+                📷 Changer la photo
+                <input type="file" hidden accept="image/*" (change)="uploadPhoto($event)" />
+              </label>
+            </div>
+
+            <label>
+              Nom complet
+              <input type="text" formControlName="nom" placeholder="BorealForest" />
+            </label>
+
+            <label>
+              Téléphone
+              <input type="text" formControlName="tel" placeholder="+216 56 811 602" />
+            </label>
+
+            <label>
+              E-mail
+              <input type="email" formControlName="email" placeholder="oxyboreal2@gmail.com" />
+            </label>
+
+            <button class="bf-btn bf-btn-primary full-btn" type="button" (click)="saveProfile()">
+              Enregistrer le profil
+            </button>
+          </form>
         </div>
-        <div class="col-md-5 border-right">
-          <div class="p-3 py-5">
-            <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <div class="settings-card">
+          <h3>Changer le mot de passe</h3>
+
+          <form [formGroup]="passwordForm" class="password-form">
+            <label>
+              Mot de passe actuel
+              <div class="password-input">
+                <input [type]="showCurrentPassword ? 'text' : 'password'" formControlName="currentPassword" />
+                <button type="button" (click)="showCurrentPassword = !showCurrentPassword">👁️</button>
+              </div>
+            </label>
+
+            <label>
+              Nouveau mot de passe
+              <div class="password-input">
+                <input [type]="showNewPassword ? 'text' : 'password'" formControlName="newPassword" />
+                <button type="button" (click)="showNewPassword = !showNewPassword">👁️</button>
+              </div>
+            </label>
+
+            <label>
+              Confirmer le nouveau mot de passe
+              <div class="password-input">
+                <input [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" />
+                <button type="button" (click)="showConfirmPassword = !showConfirmPassword">👁️</button>
+              </div>
+            </label>
+
+            <button class="bf-btn bf-btn-primary full-btn" type="button" (click)="updatePassword()">
+              Mettre à jour le mot de passe
+            </button>
+          </form>
+        </div>
+
+        <div class="settings-card">
+          <h3>Identité visuelle</h3>
+
+          <div class="logo-section">
+            <label>Logo BorealForest</label>
+
+            <div class="logo-preview">
+              <img *ngIf="previewLogo" [src]="previewLogo" alt="Logo" />
+              <span *ngIf="!previewLogo">Aucun logo</span>
             </div>
-            <div class="row mt-2">
-              <div class="col-md-6">
-                <label class="labels">Nom</label>
-                <input type="text" class="form-control" placeholder="" value="" formControlName="nom" id="nom" name="nom">
-              </div>
-              <div class="col-md-6">
-                <label class="labels">Prénom</label>
-                <input type="text" class="form-control" value="" placeholder="" formControlName="prenom" id="prenom" name="prenom">
-              </div>
-              <!-- ------------------ -->
-              <div class="col-md-6">
-                <label class="labels">Photo de profil</label>
-                <input type="file"  (change)="uploadFile($event)">              </div>
-              <!-- ----------------------------- -->
-            </div>
-            <div class="row mt-3">
-              <div class="col-md-12">
-                <label class="labels">Numero téléphone</label>
-                <input type="text" class="form-control" placeholder="" value="" formControlName="tel" id="tel" name="tel">
-              </div>
-              <div class="col-md-12">
-                <label class="labels">Nom d'utilisateur</label>
-                <input type="text" class="form-control" placeholder="" value="" formControlName="email" id="email" name="email">
-              </div>
-              <div class="col-md-12">
-                <label class="labels">Mot de passe</label>
-                <input type="text" class="form-control" placeholder="" value="" formControlName="password" id="password" name="password">
-              </div>
-            </div>
+
+            <label class="bf-btn upload-logo">
+              🖼️ Télécharger le logo
+              <input type="file" hidden accept="image/*" (change)="uploadLogo($event)" />
+            </label>
+
+            <button class="bf-btn white-btn" type="button" (click)="removeLogo()">
+              Supprimer le logo
+            </button>
           </div>
         </div>
-        <div class="mt-1 text-center saa">
-          <button class="btn btn-primary profile-button" type="button" (click)="edit()">Edit profile</button>
-        </div>
-      </div>
-    </div>
-  </form>
+      </section>
+    </main>
+  </section>
+</div>
