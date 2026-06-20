@@ -549,5 +549,17 @@ this.am =
       }
     });
   }
+
+mobileMenuOpen = false;
+
+toggleMobileMenu(): void {
+  this.mobileMenuOpen = !this.mobileMenuOpen;
+}
+
+closeMobileMenu(): void {
+  this.mobileMenuOpen = false;
+}
+
+  
 }
 
