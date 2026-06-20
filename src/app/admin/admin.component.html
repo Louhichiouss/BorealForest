@@ -1,5 +1,9 @@
 <div class="bf-app-shell">
-  <aside class="bf-sidebar">
+  <button class="mobile-menu-btn" type="button" (click)="toggleMobileMenu()">☰</button>
+
+  <div class="mobile-overlay" *ngIf="mobileMenuOpen" (click)="closeMobileMenu()"></div>
+
+  <aside class="bf-sidebar" [class.mobile-open]="mobileMenuOpen">
     <div class="bf-sidebar-header">
       <div class="bf-logo-block">
         <div class="bf-logo-icon">
@@ -15,14 +19,37 @@
     </div>
 
     <nav class="bf-sidebar-nav">
-      <a routerLink="/admin" class="bf-nav-item active"><span>🏠</span><span>Tableau de bord</span></a>
-      <a routerLink="/patient" class="bf-nav-item"><span>👥</span><span>Patients</span></a>
-      <a routerLink="/rendezvous" class="bf-nav-item"><span>📅</span><span>Rendez-vous</span></a>
-      <a routerLink="/facture" class="bf-nav-item"><span>🧾</span><span>Factures patients</span></a>
-      <a routerLink="/depense" class="bf-nav-item"><span>🏢</span><span>Dépenses centres</span></a>
-      <a routerLink="/recette" class="bf-nav-item"><span>💳</span><span>Recettes centres</span></a>
-      <a routerLink="/marketing" class="bf-nav-item"><span>📢</span><span>Marketing</span></a>
-      <a routerLink="/parametre" class="bf-nav-item"><span>⚙️</span><span>Paramètres</span></a>
+      <a routerLink="/admin" class="bf-nav-item active" (click)="closeMobileMenu()">
+        <span>🏠</span><span>Tableau de bord</span>
+      </a>
+
+      <a routerLink="/patient" class="bf-nav-item" (click)="closeMobileMenu()">
+        <span>👥</span><span>Patients</span>
+      </a>
+
+      <a routerLink="/rendezvous" class="bf-nav-item" (click)="closeMobileMenu()">
+        <span>📅</span><span>Rendez-vous</span>
+      </a>
+
+      <a routerLink="/facture" class="bf-nav-item" (click)="closeMobileMenu()">
+        <span>🧾</span><span>Factures patients</span>
+      </a>
+
+      <a routerLink="/depense" class="bf-nav-item" (click)="closeMobileMenu()">
+        <span>🏢</span><span>Dépenses centres</span>
+      </a>
+
+      <a routerLink="/recette" class="bf-nav-item" (click)="closeMobileMenu()">
+        <span>💳</span><span>Recettes centres</span>
+      </a>
+
+      <a routerLink="/marketing" class="bf-nav-item" (click)="closeMobileMenu()">
+        <span>📢</span><span>Marketing</span>
+      </a>
+
+      <a routerLink="/parametre" class="bf-nav-item" (click)="closeMobileMenu()">
+        <span>⚙️</span><span>Paramètres</span>
+      </a>
     </nav>
 
     <div class="bf-sidebar-footer">
@@ -38,7 +65,7 @@
         </div>
       </div>
 
-      <a routerLink="/accueil" class="bf-logout">🚪 Déconnexion</a>
+      <a routerLink="/accueil" class="bf-logout" (click)="closeMobileMenu()">🚪 Déconnexion</a>
     </div>
   </aside>
 
@@ -50,38 +77,37 @@
       </div>
 
       <div class="bf-topbar-right">
-        
         <div class="bf-date-pill">{{ formatHeaderDate() }}</div>
         <strong>BorealForest</strong>
       </div>
     </header>
 
     <main class="bf-page-content">
-  <section class="bf-alert-banner" *ngIf="showAlertBanner">
-  <span class="alert-icon">⚠️</span>
+      <section class="bf-alert-banner" *ngIf="showAlertBanner">
+        <span class="alert-icon">⚠️</span>
 
-  <button routerLink="/recette" class="alert-chip success">
-    💰 {{ formatMoney(todayRevenue) }} DT recettes aujourd'hui
-  </button>
+        <button routerLink="/recette" class="alert-chip success">
+          💰 {{ formatMoney(todayRevenue) }} DT recettes aujourd'hui
+        </button>
 
-  <button routerLink="/depense" class="alert-chip danger">
-    💸 {{ formatMoney(todayExpense) }} DT dépenses aujourd'hui
-  </button>
+        <button routerLink="/depense" class="alert-chip danger">
+          💸 {{ formatMoney(todayExpense) }} DT dépenses aujourd'hui
+        </button>
 
-  <button *ngIf="totalAppointments > 0" routerLink="/rendezvous" class="alert-chip">
-    📅 {{ totalAppointments }} RDV aujourd'hui
-  </button>
+        <button *ngIf="totalAppointments > 0" routerLink="/rendezvous" class="alert-chip">
+          📅 {{ totalAppointments }} RDV aujourd'hui
+        </button>
 
-  <button *ngIf="newPatientsCount > 0" routerLink="/patient" class="alert-chip info">
-    🔵 {{ newPatientsCount }} nouveau patient inscrit aujourd'hui
-  </button>
+        <button *ngIf="newPatientsCount > 0" routerLink="/patient" class="alert-chip info">
+          🔵 {{ newPatientsCount }} nouveau patient inscrit aujourd'hui
+        </button>
 
-  <button *ngIf="marketingAlertsCount > 0" routerLink="/marketing" class="alert-chip danger">
-    ⏰ {{ marketingAlertsCount }} rappels paiement marketing
-  </button>
+        <button *ngIf="marketingAlertsCount > 0" routerLink="/marketing" class="alert-chip danger">
+          ⏰ {{ marketingAlertsCount }} rappels paiement marketing
+        </button>
 
-  <button type="button" class="alert-close" (click)="closeAlerts()">×</button>
-</section>
+        <button type="button" class="alert-close" (click)="closeAlerts()">×</button>
+      </section>
 
       <section class="bf-filter-row">
         <button [class.active]="selectedPeriod === 'today'" (click)="setPeriod('today')">Aujourd'hui</button>
@@ -315,72 +341,53 @@
           </div>
         </div>
       </section>
-<section class="bf-centers-grid">
 
-  <a routerLink="/recette"
-     class="bf-center-card"
-     *ngIf="selectedCenter === '' || selectedCenter === 'Tunis'">
+      <section class="bf-centers-grid">
+        <a routerLink="/recette" class="bf-center-card" *ngIf="selectedCenter === '' || selectedCenter === 'Tunis'">
+          <h3>🏥 Centre Tunis</h3>
+          <p><span>Patients</span><b>{{ centerPatientCount('Tunis') }}</b></p>
+          <p><span>RDV aujourd'hui</span><b>{{ centerRdvToday('Tunis') }}</b></p>
+          <p><span>Recettes</span><b class="money">{{ formatMoney(centerRevenue('Tunis')) }} DT</b></p>
+          <p><span>Dépenses</span><b class="warn-val">{{ formatMoney(centerExpense('Tunis')) }} DT</b></p>
+          <p><span>Bénéfice net</span><b class="money">{{ formatMoney(centerRevenue('Tunis') - centerExpense('Tunis')) }} DT</b></p>
+        </a>
 
-    <h3>🏥 Centre Tunis</h3>
-    <p><span>Patients</span><b>{{ centerPatientCount('Tunis') }}</b></p>
-    <p><span>RDV aujourd'hui</span><b>{{ centerRdvToday('Tunis') }}</b></p>
-    <p><span>Recettes</span><b class="money">{{ formatMoney(centerRevenue('Tunis')) }} DT</b></p>
-    <p><span>Dépenses</span><b class="warn-val">{{ formatMoney(centerExpense('Tunis')) }} DT</b></p>
-    <p><span>Bénéfice net</span><b class="money">{{ formatMoney(centerRevenue('Tunis') - centerExpense('Tunis')) }} DT</b></p>
+        <a routerLink="/recette" class="bf-center-card" *ngIf="selectedCenter === '' || selectedCenter === 'Sousse'">
+          <h3>🏥 Centre Sousse</h3>
+          <p><span>Patients</span><b>{{ centerPatientCount('Sousse') }}</b></p>
+          <p><span>RDV aujourd'hui</span><b>{{ centerRdvToday('Sousse') }}</b></p>
+          <p><span>Recettes</span><b class="money">{{ formatMoney(centerRevenue('Sousse')) }} DT</b></p>
+          <p><span>Dépenses</span><b class="warn-val">{{ formatMoney(centerExpense('Sousse')) }} DT</b></p>
+          <p><span>Bénéfice net</span><b class="money">{{ formatMoney(centerRevenue('Sousse') - centerExpense('Sousse')) }} DT</b></p>
+        </a>
 
-  </a>
-
-  <a routerLink="/recette"
-     class="bf-center-card"
-     *ngIf="selectedCenter === '' || selectedCenter === 'Sousse'">
-
-    <h3>🏥 Centre Sousse</h3>
-    <p><span>Patients</span><b>{{ centerPatientCount('Sousse') }}</b></p>
-    <p><span>RDV aujourd'hui</span><b>{{ centerRdvToday('Sousse') }}</b></p>
-    <p><span>Recettes</span><b class="money">{{ formatMoney(centerRevenue('Sousse')) }} DT</b></p>
-    <p><span>Dépenses</span><b class="warn-val">{{ formatMoney(centerExpense('Sousse')) }} DT</b></p>
-    <p><span>Bénéfice net</span><b class="money">{{ formatMoney(centerRevenue('Sousse') - centerExpense('Sousse')) }} DT</b></p>
-
-  </a>
-
-  <a routerLink="/recette"
-     class="bf-center-card"
-     *ngIf="selectedCenter === '' || selectedCenter === 'Sfax'">
-
-    <h3>🏥 Centre Sfax</h3>
-    <p><span>Patients</span><b>{{ centerPatientCount('Sfax') }}</b></p>
-    <p><span>RDV aujourd'hui</span><b>{{ centerRdvToday('Sfax') }}</b></p>
-    <p><span>Recettes</span><b class="money">{{ formatMoney(centerRevenue('Sfax')) }} DT</b></p>
-    <p><span>Dépenses</span><b class="warn-val">{{ formatMoney(centerExpense('Sfax')) }} DT</b></p>
-    <p><span>Bénéfice net</span><b class="money">{{ formatMoney(centerRevenue('Sfax') - centerExpense('Sfax')) }} DT</b></p>
-
-  </a>
-
-</section>
+        <a routerLink="/recette" class="bf-center-card" *ngIf="selectedCenter === '' || selectedCenter === 'Sfax'">
+          <h3>🏥 Centre Sfax</h3>
+          <p><span>Patients</span><b>{{ centerPatientCount('Sfax') }}</b></p>
+          <p><span>RDV aujourd'hui</span><b>{{ centerRdvToday('Sfax') }}</b></p>
+          <p><span>Recettes</span><b class="money">{{ formatMoney(centerRevenue('Sfax')) }} DT</b></p>
+          <p><span>Dépenses</span><b class="warn-val">{{ formatMoney(centerExpense('Sfax')) }} DT</b></p>
+          <p><span>Bénéfice net</span><b class="money">{{ formatMoney(centerRevenue('Sfax') - centerExpense('Sfax')) }} DT</b></p>
+        </a>
+      </section>
 
       <section class="bf-card top-card" routerLink="/patient" style="cursor:pointer;">
-  <h3>
-    Top 5 patients actifs du {{ todayAgendaLabel }}
-  </h3>
+        <h3>Top 5 patients actifs du {{ todayAgendaLabel }}</h3>
 
-  <div class="patient-row" *ngFor="let patient of topPatients">
-    <span class="rank">{{ patient.rank }}</span>
-    <span class="avatar" [style.background]="patient.color">{{ patient.initials }}</span>
-    <strong>{{ patient.name }}</strong>
-    <span>{{ patient.center }} · {{ patient.sessions }} séances</span>
-  </div>
+        <div class="patient-row" *ngFor="let patient of topPatients">
+          <span class="rank">{{ patient.rank }}</span>
+          <span class="avatar" [style.background]="patient.color">{{ patient.initials }}</span>
+          <strong>{{ patient.name }}</strong>
+          <span>{{ patient.center }} · {{ patient.sessions }} séances</span>
+        </div>
 
-  <p class="muted" *ngIf="topPatients.length === 0">
-    Aucun patient actif aujourd'hui.
-  </p>
-</section>
+        <p class="muted" *ngIf="topPatients.length === 0">
+          Aucun patient actif aujourd'hui.
+        </p>
+      </section>
     </main>
   </section>
 </div>
-      
-
-  
- 
  
 
  
@@ -388,6 +395,5 @@
 
 
 
-<!-- ------------****************************------------------------------------ -->
 
 
