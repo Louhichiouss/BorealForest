@@ -466,3 +466,174 @@ textarea { min-height: 110px; resize: vertical; line-height: 1.5; }
   font-size:14px;
   white-space:nowrap;
 }
+/* =============== MOBILE MARKETING FIX =============== */
+.mobile-menu-btn,
+.mobile-overlay{
+  display:none;
+}
+
+@media(max-width:760px){
+
+  :host{
+    --sidebar-w:0px !important;
+  }
+
+  .mobile-menu-btn{
+    display:flex !important;
+    position:fixed;
+    top:12px;
+    left:12px;
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:10px;
+    background:#0A2342;
+    color:#fff;
+    font-size:24px;
+    z-index:5000;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 6px 18px rgba(0,0,0,.25);
+  }
+
+  .mobile-overlay{
+    display:block;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    z-index:2500;
+  }
+
+  .bf-sidebar{
+    position:fixed !important;
+    top:0;
+    left:-260px;
+    width:260px !important;
+    height:100vh !important;
+    z-index:3000;
+    display:flex !important;
+    flex-direction:column !important;
+    transition:.3s ease;
+  }
+
+  .bf-sidebar.mobile-open{
+    left:0;
+  }
+
+  .bf-sidebar-nav{
+    flex-direction:column !important;
+    overflow:hidden !important;
+  }
+
+  .bf-sidebar-footer{
+    display:block !important;
+  }
+
+  .bf-main{
+    margin-left:0 !important;
+    width:100% !important;
+  }
+
+  .bf-topbar{
+    padding-left:65px !important;
+    padding-right:12px !important;
+  }
+
+  .bf-topbar-right strong,
+  .bf-user-brand{
+    display:none !important;
+  }
+
+  .bf-page-content{
+    padding:14px !important;
+  }
+
+  .bf-kpi-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  .bf-tabs{
+    grid-template-columns:1fr !important;
+  }
+
+  .bf-two-cols,
+  .charts-grid,
+  .social-full-grid,
+  .sms-layout,
+  .cal-layout{
+    grid-template-columns:1fr !important;
+  }
+
+  .bf-form-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  .camp-row{
+    grid-template-columns:38px 1fr !important;
+    gap:10px !important;
+  }
+
+  .camp-metric,
+  .camp-row .bf-badge,
+  .camp-row .icon-btn{
+    grid-column:auto !important;
+  }
+
+  .table-wrap{
+    overflow-x:auto !important;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .roi-table{
+    min-width:850px !important;
+  }
+
+  .roi-summary{
+    grid-template-columns:1fr !important;
+  }
+}
+@media(max-width:760px){
+
+  :host{
+    --sidebar-w:0px !important;
+  }
+
+  .mobile-menu-btn,
+  .mobile-overlay{
+    display:none !important;
+  }
+
+  .bf-sidebar{
+    position:relative !important;
+    width:100% !important;
+    height:auto !important;
+    min-height:auto !important;
+    transform:none !important;
+    left:0 !important;
+    top:0 !important;
+  }
+
+  .bf-sidebar-nav{
+    flex-direction:row !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    white-space:nowrap !important;
+  }
+
+  .bf-nav-item{
+    min-width:max-content !important;
+  }
+
+  .bf-sidebar-footer{
+    display:none !important;
+  }
+
+  .bf-main{
+    margin-left:0 !important;
+    width:100% !important;
+  }
+
+  .bf-topbar{
+    padding:12px !important;
+  }
+}
