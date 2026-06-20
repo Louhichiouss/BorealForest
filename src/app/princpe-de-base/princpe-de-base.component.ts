@@ -1,3 +1,4 @@
+
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 
 type VesselTab = 'normal' | 'blocked' | 'hbot' | 'new';
