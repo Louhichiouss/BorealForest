@@ -1,39 +1,316 @@
+<section class="hero hero-image">
+  <div class="hero-overlay"></div>
 
-<div >
-    <img src="../assets/img/25.png" class="d-block w-100 AA "  alt="...">
+  <div class="hero-content">
+    <div class="hero-tag">
+      BorealForest — Séances
+    </div>
+
+    <h1 class="hero-title">
+      Gestion de la <br>
+      <em>douleur</em>
+    </h1>
+
+    <p class="hero-sub">
+      L’oxygénothérapie hyperbare peut accompagner la réduction de l’inconfort
+      grâce à un meilleur apport en oxygène et un effet anti-inflammatoire.
+    </p>
+
+    <div class="hero-actions">
+      <a class="hero-btn primary" href="tel:+21656811602">Prendre rendez-vous</a>
+      <a class="hero-btn ghost" href="#intro">Découvrir</a>
+    </div>
+
+    <div class="hero-stats">
+      <div>
+        <strong>80</strong>
+        <span>MIN / SÉANCE</span>
+      </div>
+      <div>
+        <strong>1.3 ATA</strong>
+        <span>PRESSION</span>
+      </div>
+      <div>
+        <strong>3</strong>
+        <span>CENTRES</span>
+      </div>
+      <div>
+        <strong>100%</strong>
+        <span>CONFORT</span>
+      </div>
+    </div>
   </div>
 
-
-
-<div class="ra">
-    <h1 class="ge">La Gestion de la douleur    </h1>
-        <h2 class="ga">Pour une meilleure qualité de vie
-
-        </h2>
-
-
-    <p class="text"><span>Lorsque vous devez composer avec des douleurs persistantes ou chroniques, il est important de consulter votre professionnel de la santé. Parallèlement à cette démarche, sachez que l’apport supplémentaire en oxygène dans le plasma, dans les nouveaux petits vaisseaux sanguins ainsi que dans les tissus a un effet anti-inflammatoire. Cela permet donc de contribuer à une réduction de l’inconfort et de l’endolorissement. Par contre il faut prévoir un certain nombre de plongées avant d’observer ces effets. </span></p>
-    <p class="text">Il existe de nombreux documents à ce sujet qu’il nous fera plaisir de partager avec vous. Si vous devez vivre avec des douleurs persistantes n’hésitez pas à prendre de l’information auprès de notre équipe compétente. Cela vous permettra ensuite d’entamer une réflexion éclairée et d’en discuter avec vos professionnels de la santé.</p>
+ <div class="hero-wave">
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path
+      d="M0,40 C220,95 380,15 720,55 C1040,95 1220,20 1440,48 L1440,120 L0,120 Z">
+    </path>
+  </svg>
 </div>
-<div class="a">
-<img src="../assets/img/processus6.png" class="a" alt="" height="100%" width="100%">
+</section>
 
-</div>
+<main class="page-wrap">
 
+  <!-- INTRO -->
+  <section class="intro-2col">
+    <div class="slide-l reveal-first">
+      <div class="intro-label">La gestion de la douleur</div>
+      <h2 class="intro-h2">Pour une meilleure qualité de vie</h2>
+      <div class="intro-accent">Un accompagnement naturel du confort quotidien</div>
 
-    
+      <div class="intro-body">
+        <p>
+          Lorsque vous devez composer avec des douleurs persistantes ou chroniques,
+          il est important de consulter votre professionnel de la santé.
+        </p>
 
+        <p>
+          En parallèle, l’apport supplémentaire en oxygène dans le plasma,
+          les tissus et les petits vaisseaux sanguins peut contribuer à réduire
+          l’inflammation, l’inconfort et l’endolorissement.
+        </p>
 
-    
-
-
-
-
-
-    
-    <div >
-        <h1 class="xa">Planification de votre parcours HBOT</h1>
-        <p class="xi">Étape 1 - Appelez-nous ou envoyez-nous un SMS au (+216) 56 811 602 </p>
-        <p  class="xi">Étape 2 - Venez pour votre première séance et évaluation</p>     
+        <p>
+          Un certain nombre de séances peut être nécessaire avant d’observer
+          les effets. Notre équipe peut vous informer afin d’en discuter ensuite
+          avec vos professionnels de santé.
+        </p>
       </div>
+    </div>
 
+    <div class="slide-r reveal-first">
+      <div class="pain-scale-card">
+        <div class="ps-title">Échelle de douleur — accompagnement HBOT</div>
+
+        <div class="ps-bar">
+          <div class="ps-dot"></div>
+        </div>
+
+        <div class="ps-labels">
+          <span>Sévère</span>
+          <span>Modérée</span>
+          <span>Légère</span>
+          <span>Soulagée</span>
+        </div>
+
+        <div class="benefit-list">
+          <div class="bl-item"><span class="bl-dot green"></span>Réduction de l’inflammation</div>
+          <div class="bl-item"><span class="bl-dot blue"></span>Meilleure circulation sanguine</div>
+          <div class="bl-item"><span class="bl-dot purple"></span>Oxygénation des tissus</div>
+          <div class="bl-item"><span class="bl-dot orange"></span>Récupération musculaire</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISUAL -->
+  <section class="vis-section fade-up">
+    <h3 class="vis-title-sm">Visualisation — effet de l’HBOT sur la douleur</h3>
+    <p class="vis-sub-sm">
+      Comment l’oxygène sous pression peut accompagner les tissus en souffrance.
+    </p>
+
+    <div class="vis-tabs">
+      <button class="vt" [class.on]="activeTab === 'normal'" (click)="setTab('normal')">
+        1. Circulation normale
+      </button>
+      <button class="vt" [class.on]="activeTab === 'obstruct'" (click)="setTab('obstruct')">
+        2. Circulation obstruée
+      </button>
+      <button class="vt" [class.on]="activeTab === 'hbot'" (click)="setTab('hbot')">
+        3. Effets HBOT
+      </button>
+      <button class="vt" [class.on]="activeTab === 'new'" (click)="setTab('new')">
+        4. Nouveaux vaisseaux
+      </button>
+    </div>
+
+    <div class="vis-view" [class.on]="activeTab === 'normal'">
+      <svg class="vis-svg" viewBox="0 0 580 190">
+        <rect width="580" height="190" fill="white"/>
+        <rect x="10" y="0" width="560" height="52" fill="#ffdde0" opacity=".5"/>
+        <rect x="10" y="52" width="560" height="86" rx="43" fill="#c0384a"/>
+        <rect x="18" y="70" width="544" height="50" rx="25" fill="#fce8b0"/>
+        <rect x="10" y="138" width="560" height="52" fill="#ffdde0" opacity=".5"/>
+
+        <circle class="o2-float" cx="80" cy="24" r="8" fill="#7ec8ee"/>
+        <text x="75" y="29" font-size="8" fill="#fff">O₂</text>
+
+        <circle class="o2-float-2" cx="250" cy="22" r="8" fill="#7ec8ee"/>
+        <text x="245" y="27" font-size="8" fill="#fff">O₂</text>
+
+        <circle class="o2-float-3" cx="420" cy="160" r="8" fill="#7ec8ee"/>
+        <text x="415" y="165" font-size="8" fill="#fff">O₂</text>
+
+        <ellipse class="rbc-flow" cx="120" cy="95" rx="16" ry="10" fill="#c0384a"/>
+        <ellipse class="rbc-flow-2" cx="280" cy="95" rx="16" ry="10" fill="#c0384a"/>
+        <ellipse class="rbc-flow-3" cx="440" cy="95" rx="16" ry="10" fill="#c0384a"/>
+
+        <text x="18" y="183" font-size="10" fill="#4a6080">
+          Circulation normale — oxygène distribué dans les tissus
+        </text>
+      </svg>
+    </div>
+
+    <div class="vis-view" [class.on]="activeTab === 'obstruct'">
+      <svg class="vis-svg" viewBox="0 0 580 190">
+        <rect width="580" height="190" fill="white"/>
+        <rect x="10" y="0" width="560" height="52" fill="#ffcccc" opacity=".6"/>
+        <rect x="10" y="52" width="560" height="86" rx="43" fill="#c0384a"/>
+        <rect x="18" y="70" width="544" height="50" rx="25" fill="#fce8b0"/>
+        <rect x="10" y="138" width="560" height="52" fill="#ffcccc" opacity=".6"/>
+
+        <ellipse cx="290" cy="95" rx="42" ry="25" fill="#8b1a2a"/>
+        <text x="263" y="100" font-size="9" fill="#fff">OBSTRUCTION</text>
+
+        <ellipse class="inflam-pulse" cx="185" cy="28" rx="45" ry="16" fill="#e84a6a"/>
+        <ellipse class="inflam-pulse" cx="380" cy="160" rx="45" ry="16" fill="#e84a6a"/>
+
+        <text x="18" y="183" font-size="10" fill="#e84a6a">
+          Tissus en souffrance — inflammation et inconfort
+        </text>
+      </svg>
+    </div>
+
+    <div class="vis-view" [class.on]="activeTab === 'hbot'">
+      <svg class="vis-svg" viewBox="0 0 580 190">
+        <rect width="580" height="190" fill="white"/>
+        <rect x="10" y="0" width="560" height="52" fill="#d8eefa" opacity=".8"/>
+        <rect x="10" y="52" width="560" height="86" rx="43" fill="#c0384a"/>
+        <rect x="18" y="70" width="544" height="50" rx="25" fill="#fce8b0"/>
+        <rect x="10" y="138" width="560" height="52" fill="#d8eefa" opacity=".8"/>
+
+        <ellipse cx="290" cy="95" rx="35" ry="22" fill="#8b1a2a" opacity=".5"/>
+
+        <circle class="o2-float" cx="70" cy="22" r="9" fill="#2d7dd2"/>
+        <text x="65" y="27" font-size="8" fill="#fff">O₂</text>
+
+        <circle class="o2-float-2" cx="180" cy="18" r="9" fill="#2d7dd2"/>
+        <text x="175" y="23" font-size="8" fill="#fff">O₂</text>
+
+        <circle class="o2-float-3" cx="340" cy="162" r="9" fill="#2d7dd2"/>
+        <text x="335" y="167" font-size="8" fill="#fff">O₂</text>
+
+        <circle class="o2-float" cx="500" cy="24" r="9" fill="#2d7dd2"/>
+        <text x="495" y="29" font-size="8" fill="#fff">O₂</text>
+
+        <text x="18" y="183" font-size="10" fill="#2d7dd2">
+          O₂ dissous dans le plasma — diffusion plus profonde
+        </text>
+      </svg>
+    </div>
+
+    <div class="vis-view" [class.on]="activeTab === 'new'">
+      <svg class="vis-svg" viewBox="0 0 580 190">
+        <rect width="580" height="190" fill="white"/>
+        <rect x="10" y="52" width="560" height="86" rx="43" fill="#c0384a"/>
+        <rect x="18" y="70" width="544" height="50" rx="25" fill="#fce8b0"/>
+
+        <path class="vessel-pulse" d="M210 52 Q270 20 340 18 Q400 16 450 52"
+              fill="none" stroke="#2ab060" stroke-width="10" stroke-linecap="round"/>
+
+        <path class="vessel-pulse" d="M210 138 Q270 165 340 170 Q400 168 450 138"
+              fill="none" stroke="#2ab060" stroke-width="10" stroke-linecap="round"/>
+
+        <circle class="pain-reduce" cx="180" cy="95" r="14" fill="#3ecf8e"/>
+        <circle class="pain-reduce" cx="410" cy="95" r="14" fill="#3ecf8e"/>
+
+        <text x="18" y="183" font-size="10" fill="#2ab060">
+          Nouveaux vaisseaux — meilleure oxygénation durable
+        </text>
+      </svg>
+    </div>
+
+    <div class="vis-info">
+      <div class="vi-c">
+        <strong>Anti-inflammatoire</strong>
+        L’O₂ peut aider à réduire l’inflammation.
+      </div>
+      <div class="vi-c">
+        <strong>Circulation</strong>
+        Les tissus reçoivent plus d’oxygène.
+      </div>
+      <div class="vi-c">
+        <strong>Récupération</strong>
+        Meilleur confort après plusieurs séances.
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPES -->
+  <section class="sec-hdr fade-up">
+    <div class="sec-tag"><i class="ti ti-list-check"></i> Indications</div>
+    <h2 class="sec-title">Types de douleurs concernées</h2>
+    <p class="sec-desc">
+      L’HBOT peut être proposée comme accompagnement, selon l’avis médical.
+    </p>
+  </section>
+
+  <section class="types-grid">
+    <div class="type-card slide-l">
+      <div class="type-icon"><i class="ti ti-bone"></i></div>
+      <div>
+        <h3 class="type-title">Douleurs articulaires</h3>
+        <p class="type-desc">Aide au confort articulaire et à la mobilité.</p>
+      </div>
+    </div>
+
+    <div class="type-card slide-r">
+      <div class="type-icon orange-icon"><i class="ti ti-activity"></i></div>
+      <div>
+        <h3 class="type-title">Douleurs musculaires</h3>
+        <p class="type-desc">Accompagnement de la récupération et des tensions.</p>
+      </div>
+    </div>
+
+    <div class="type-card slide-l">
+      <div class="type-icon purple-icon"><i class="ti ti-brain"></i></div>
+      <div>
+        <h3 class="type-title">Migraines</h3>
+        <p class="type-desc">Soutien possible selon l’évaluation médicale.</p>
+      </div>
+    </div>
+
+    <div class="type-card slide-r">
+      <div class="type-icon green-icon"><i class="ti ti-bandage"></i></div>
+      <div>
+        <h3 class="type-title">Post-opératoire</h3>
+        <p class="type-desc">Aide au confort pendant la phase de récupération.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-block fade-up">
+    <div class="cta-ice ci1"></div>
+    <div class="cta-ice ci2"></div>
+    <div class="cta-ice ci3"></div>
+
+    <div class="cta-badge">
+      <i class="ti ti-snowflake"></i>
+      Oxygénothérapie hyperbare
+    </div>
+
+    <h2 class="cta-h2">
+      Planification de votre <em>parcours HBOT</em>
+    </h2>
+
+    <p class="cta-p">
+      Appelez-nous ou envoyez-nous un SMS pour commencer votre évaluation personnalisée.
+    </p>
+
+    <div class="cta-chips">
+      <div class="cta-chip"><i class="ti ti-phone"></i> (+216) 56 811 602</div>
+      <div class="cta-chip"><i class="ti ti-mail"></i> oxyboreal2@gmail.com</div>
+      <div class="cta-chip"><i class="ti ti-map-pin"></i> Tunis · Sousse · Sfax</div>
+    </div>
+
+    <a class="cta-btn" href="tel:+21656811602">
+      <i class="ti ti-calendar-plus"></i>
+      Prendre rendez-vous
+      <i class="ti ti-arrow-right"></i>
+    </a>
+  </section>
+
+</main>
