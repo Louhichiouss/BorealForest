@@ -1,43 +1,41 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 
-type CognitiveView = 'fog' | 'hbot' | 'synapse';
+type VesselTab = 'normal' | 'blocked' | 'hbot' | 'new';
 
 @Component({
-  selector: 'app-les-capacite-cognitives',
-  templateUrl: './les-capacite-cognitives.component.html',
-  styleUrls: ['./les-capacite-cognitives.component.css']
+  selector: 'app-princpe-de-base',
+  templateUrl: './princpe-de-base.component.html',
+  styleUrls: ['./princpe-de-base.component.css']
 })
-export class LesCapaciteCognitivesComponent implements AfterViewInit, OnDestroy {
-  activeView: CognitiveView = 'fog';
+export class PrincpeDeBaseComponent implements AfterViewInit, OnDestroy {
+  activeTab: VesselTab = 'normal';
   private observer?: IntersectionObserver;
 
-  constructor(private elementRef: ElementRef<HTMLElement>) {}
+  switchTab(tab: VesselTab): void {
+    this.activeTab = tab;
+  }
 
   ngAfterViewInit(): void {
-    const elements = this.elementRef.nativeElement.querySelectorAll('.fade-in, .slide-left, .slide-right');
-
-    if (!('IntersectionObserver' in window)) {
-      elements.forEach((el) => el.classList.add('vis'));
-      return;
-    }
+    const elements = document.querySelectorAll('.reveal');
 
     this.observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('vis');
-            this.observer?.unobserve(entry.target);
+            entry.target.classList.add('visible');
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.12 }
     );
 
-    elements.forEach((el) => this.observer?.observe(el));
-  }
+    elements.forEach(el => this.observer?.observe(el));
 
-  switchView(view: CognitiveView): void {
-    this.activeView = view;
+    setTimeout(() => {
+      document.querySelectorAll('.reveal-first').forEach(el => {
+        el.classList.add('visible');
+      });
+    }, 100);
   }
 
   ngOnDestroy(): void {
