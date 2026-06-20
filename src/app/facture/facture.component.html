@@ -1,7 +1,12 @@
+
 <div class="bf-app-shell">
-  <aside class="bf-sidebar">
+  <button class="mobile-menu-btn" type="button" (click)="toggleMobileMenu()">☰</button>
+
+  <div class="mobile-overlay" *ngIf="mobileMenuOpen" (click)="closeMobileMenu()"></div>
+
+  <aside class="bf-sidebar" [class.mobile-open]="mobileMenuOpen">
     <div class="bf-sidebar-header">
-    <div class="bf-logo-block">
+      <div class="bf-logo-block">
         <div class="bf-logo-icon">
           <img *ngIf="logo" [src]="logo" alt="Logo" />
           <span *ngIf="!logo">🌊</span>
@@ -15,22 +20,23 @@
     </div>
 
     <nav class="bf-sidebar-nav">
-      <a routerLink="/admin" class="bf-nav-item"><span>🏠</span><span>Tableau de bord</span></a>
-      <a routerLink="/patient" class="bf-nav-item"><span>👥</span><span>Patients</span></a>
-      <a routerLink="/rendezvous" class="bf-nav-item"><span>📅</span><span>Rendez-vous</span></a>
-      <a routerLink="/facture" class="bf-nav-item active"><span>🧾</span><span>Factures patients</span></a>
-      <a routerLink="/depense" class="bf-nav-item"><span>🏢</span><span>Dépenses centres</span></a>
-      <a routerLink="/recette" class="bf-nav-item"><span>💳</span><span>Recettes centres</span></a>
-      <a routerLink="/marketing" class="bf-nav-item"><span>📢</span><span>Marketing</span></a>
-      <a routerLink="/parametre" class="bf-nav-item"><span>⚙️</span><span>Paramètres</span></a>
+      <a routerLink="/admin" class="bf-nav-item" (click)="closeMobileMenu()"><span>🏠</span><span>Tableau de bord</span></a>
+      <a routerLink="/patient" class="bf-nav-item" (click)="closeMobileMenu()"><span>👥</span><span>Patients</span></a>
+      <a routerLink="/rendezvous" class="bf-nav-item" (click)="closeMobileMenu()"><span>📅</span><span>Rendez-vous</span></a>
+      <a routerLink="/facture" class="bf-nav-item active" (click)="closeMobileMenu()"><span>🧾</span><span>Factures patients</span></a>
+      <a routerLink="/depense" class="bf-nav-item" (click)="closeMobileMenu()"><span>🏢</span><span>Dépenses centres</span></a>
+      <a routerLink="/recette" class="bf-nav-item" (click)="closeMobileMenu()"><span>💳</span><span>Recettes centres</span></a>
+      <a routerLink="/marketing" class="bf-nav-item" (click)="closeMobileMenu()"><span>📢</span><span>Marketing</span></a>
+      <a routerLink="/parametre" class="bf-nav-item" (click)="closeMobileMenu()"><span>⚙️</span><span>Paramètres</span></a>
     </nav>
 
     <div class="bf-sidebar-footer">
       <div class="bf-admin-mini">
-<div class="bf-admin-avatar">
-  <img *ngIf="photo" [src]="photo" alt="Admin">
-  <span *ngIf="!photo">BF</span>
-</div>        <div>
+        <div class="bf-admin-avatar">
+          <img *ngIf="photo" [src]="photo" alt="Admin">
+          <span *ngIf="!photo">BF</span>
+        </div>
+        <div>
           <div class="bf-admin-name">BorealForest</div>
           <div class="bf-admin-role">Administrateur</div>
         </div>
@@ -70,47 +76,47 @@
       </section>
 
       <section class="bf-table-card">
-         <div class="bf-table-scroll">
-        <table class="bf-data-table">
-          <thead>
-            <tr>
-              <th>N° Facture</th>
-              <th>Patient</th>
-              <th>Centre</th>
-              <th>Date</th>
-              <th>Séances</th>
-              <th>HT</th>
-              <th>TVA 19%</th>
-              <th>TTC</th>
-              <th>Statut</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
+        <div class="bf-table-scroll">
+          <table class="bf-data-table">
+            <thead>
+              <tr>
+                <th>N° Facture</th>
+                <th>Patient</th>
+                <th>Centre</th>
+                <th>Date</th>
+                <th>Séances</th>
+                <th>HT</th>
+                <th>TVA 19%</th>
+                <th>TTC</th>
+                <th>Statut</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            <tr *ngFor="let invoice of filteredInvoices">
-              <td>{{invoice.invoiceNumber}}</td>
-              <td><strong>{{invoice.patientName}}</strong></td>
-              <td><span class="bf-badge" [ngClass]="getCenterBadgeClass(invoice.center)">{{invoice.center}}</span></td>
-              <td>{{invoice.date}}</td>
-              <td>{{invoice.sessions}}</td>
-              <td>{{formatMoney(totalHt(invoice))}} DT</td>
-              <td>{{formatMoney(totalTva(invoice))}} DT</td>
-              <td><strong>{{formatMoney(totalTtc(invoice))}} DT</strong></td>
-              <td><span class="status-badge" [ngClass]="getStatusClass(invoice.status)">{{invoice.status}}</span></td>
-              <td class="bf-actions">
-                <button type="button" title="Voir" (click)="openDetailsModal(invoice)">👁️</button>
-                <button type="button" title="Modifier" (click)="openEditModal(invoice)">✏️</button>
-                <button type="button" title="Supprimer" class="danger" (click)="deleteInvoice(invoice)">🗑️</button>
-                <button type="button" title="PDF" (click)="openDetailsModal(invoice)">📄</button>
-              </td>
-            </tr>
+            <tbody>
+              <tr *ngFor="let invoice of filteredInvoices">
+                <td>{{invoice.invoiceNumber}}</td>
+                <td><strong>{{invoice.patientName}}</strong></td>
+                <td><span class="bf-badge" [ngClass]="getCenterBadgeClass(invoice.center)">{{invoice.center}}</span></td>
+                <td>{{invoice.date}}</td>
+                <td>{{invoice.sessions}}</td>
+                <td>{{formatMoney(totalHt(invoice))}} DT</td>
+                <td>{{formatMoney(totalTva(invoice))}} DT</td>
+                <td><strong>{{formatMoney(totalTtc(invoice))}} DT</strong></td>
+                <td><span class="status-badge" [ngClass]="getStatusClass(invoice.status)">{{invoice.status}}</span></td>
+                <td class="bf-actions">
+                  <button type="button" title="Voir" (click)="openDetailsModal(invoice)">👁️</button>
+                  <button type="button" title="Modifier" (click)="openEditModal(invoice)">✏️</button>
+                  <button type="button" title="Supprimer" class="danger" (click)="deleteInvoice(invoice)">🗑️</button>
+                  <button type="button" title="PDF" (click)="openDetailsModal(invoice)">📄</button>
+                </td>
+              </tr>
 
-            <tr *ngIf="filteredInvoices.length === 0">
-              <td colspan="10" class="empty-state">Aucune facture trouvée.</td>
-            </tr>
-          </tbody>
-        </table>
+              <tr *ngIf="filteredInvoices.length === 0">
+                <td colspan="10" class="empty-state">Aucune facture trouvée.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
     </main>
@@ -135,19 +141,10 @@
 
       <label class="full patient-search-wrapper">
         Patient
-        <input
-          type="text"
-          [(ngModel)]="patientSearch"
-          [ngModelOptions]="{standalone:true}"
-          placeholder="Tapez le nom du patient..."
-          (input)="searchPatients()"
-          autocomplete="off">
+        <input type="text" [(ngModel)]="patientSearch" [ngModelOptions]="{standalone:true}" placeholder="Tapez le nom du patient..." (input)="searchPatients()" autocomplete="off">
 
         <div class="patient-results" *ngIf="patientResults.length > 0">
-          <div
-            class="patient-result-item"
-            *ngFor="let p of patientResults"
-            (click)="selectPatient(p)">
+          <div class="patient-result-item" *ngFor="let p of patientResults" (click)="selectPatient(p)">
             <strong>{{p.P_nom}} {{p.P_prenom}}</strong>
             <small>— {{p.P_region}} | {{p.P_tel}}</small>
           </div>
