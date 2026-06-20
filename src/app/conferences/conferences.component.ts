@@ -1,15 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-conferences',
   templateUrl: './conferences.component.html',
   styleUrls: ['./conferences.component.css']
 })
-export class ConferencesComponent implements OnInit {
+export class ConferencesComponent implements OnInit, AfterViewInit, OnDestroy {
+  private observer?: IntersectionObserver;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  ngAfterViewInit(): void {
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.sr').forEach((el) => {
+      this.observer?.observe(el);
+    });
   }
 
+  ngOnDestroy(): void {
+    this.observer?.disconnect();
+  }
 }
