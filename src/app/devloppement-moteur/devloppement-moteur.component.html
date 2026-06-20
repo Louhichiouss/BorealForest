@@ -1,50 +1,318 @@
+<section class="dm-page">
 
-<div >
-    <img src="../assets/img/ggg.png" class="d-block w-100 AA "  alt="...">
+ <section class="hero">
+
+  <div class="hero-content">
+
+    <div class="hero-tag">
+      BOREALFOREST — SÉANCES
+    </div>
+
+    <h1>
+      Développement<br>
+      <em>moteur</em> & neurologique
+    </h1>
+
+    <p>
+      L’oxygénothérapie hyperbare accompagne le développement
+      neuromoteur chez l’enfant et l’adulte.
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn-primary">Prendre rendez-vous</button>
+      <button class="btn-secondary">Découvrir</button>
+    </div>
+
+    <div class="hero-stats">
+
+      <div class="hero-stat">
+        <strong>80</strong>
+        <span>MIN / SÉANCE</span>
+      </div>
+
+      <div class="hero-stat">
+        <strong>1.3 ATA</strong>
+        <span>PRESSION</span>
+      </div>
+
+      <div class="hero-stat">
+        <strong>3</strong>
+        <span>CENTRES</span>
+      </div>
+
+      <div class="hero-stat">
+        <strong>100%</strong>
+        <span>CONFORT</span>
+      </div>
+
+    </div>
+
   </div>
 
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path fill="#fff"
+      d="M0,64L80,74.7C160,85,320,107,480,106.7C640,107,800,85,960,80C1120,75,1280,85,1360,90.7L1440,96L1440,120L0,120Z"></path>
+    </svg>
+  </div>
 
+</section>
 
-<div class="ra">
-    <h1 class="ge">Dévloppement moteur</h1>
-        <h2 class="ga">Une amélioration de la qualité de vie</h2>
+  <main class="page-wrap">
 
+    <section class="intro reveal">
+      <div>
+        <span class="mini-title">Développement moteur</span>
+        <h2>Une amélioration de la qualité de vie</h2>
 
-    <p class="text"><span>La majorité de nos clients sont des enfants ou des adultes, qui, pour diverses raisons, éprouvent des difficultés au niveau de leur tonus musculaire. Que ce soit des raideurs ou à l’inverse un manque de tonus ou de la spasticité, les séances en caisson pressurisé permettent d’améliorer leur qualité de vie et de favoriser le travail des physiothérapeutes, ergothérapeutes ou autres spécialistes du mouvement. </span></p>
-    <p class="text">Il faut cependant préciser que généralement, les gains sur le plan moteur sont plus temporaires. Après quelques semaines voir des mois, il se peut que la personne perde tranquillement les acquis. C’est souvent pour cette raison que les familles se dirigent vers l’achat puisque le caisson permet de maintenir les améliorations et de travailler efficacement en réadaptation afin de cheminer davantage ou de maximiser le développement moteur de l’enfant et de l’adulte.</p>
-</div>
-<div class="a">
-    <img src="../assets/img/dev.jpg" class="a" alt="" >
-</div>
+        <p>
+          La majorité de nos clients sont des enfants ou des adultes qui éprouvent
+          des difficultés au niveau du tonus musculaire : raideurs, manque de tonus
+          ou spasticité.
+        </p>
 
+        <p>
+          Les séances en caisson pressurisé peuvent favoriser le travail des
+          physiothérapeutes, ergothérapeutes et spécialistes du mouvement.
+        </p>
 
-    <div>
-    <p class="tex">Les résultats varient beaucoup d’une personne à l’autre mais voici quelques exemples de ce que nous avons connu comme réussites. Il est à noter que nous croyons sincèrement qu’il faut aussi mettre de l’avant le travail des spécialistes du mouvement dans ces réussites. Ces personnes permettent au client de prendre l’amélioration physique et de la transformer en réussite motrice!</p>
-    <p class="te">●  Capacité à détendre le pied crispé, ce qui favorise le développement de la marche.</p>
-    <p class="te">●  Meilleure motricité fine et globale.</p>
-    <p class="te">●  Amélioration au niveau du contrôle du tronc et des membres .   </p>
-    <p class="te">● Apparition de la marche à quatre pattes.
-    </p>
-    <p class="te"> ● Meilleure gestion de la salivation.
-    </p>
-    <p class="te">● Meilleur contrôle de la tête.
-    </p>
-    <p class="te">●Force dans les jambes et les bras.
-    </p>
-
-</div>
-
-
-
-
-
-
-
-
-    
-    <div >
-        <h1 class="xa">Planification de votre parcours HBOT</h1>
-        <p class="xi">Étape 1 - Appelez-nous ou envoyez-nous un SMS au (+216) 56 811 602 </p>
-        <p  class="xi">Étape 2 - Venez pour votre première séance et évaluation</p>     
+        <p>
+          Les résultats varient d’une personne à l’autre. Les gains peuvent être
+          temporaires, d’où l’importance d’un suivi régulier et adapté.
+        </p>
       </div>
-  
+
+      <div class="benefit-cards">
+        <div class="bcard">
+          <span>🧠</span>
+          <div>
+            <strong>Neuroplasticité</strong>
+            <p>Stimulation des connexions neuronales.</p>
+          </div>
+        </div>
+
+        <div class="bcard">
+          <span>🏃</span>
+          <div>
+            <strong>Motricité</strong>
+            <p>Coordination, équilibre et tonus musculaire.</p>
+          </div>
+        </div>
+
+        <div class="bcard">
+          <span>💬</span>
+          <div>
+            <strong>Communication</strong>
+            <p>Accompagnement global du développement.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+<section class="visual-section reveal">
+  <h2>Visualisation — L'effet de l'HBOT sur le cerveau</h2>
+  <p>Sélectionnez une vue pour comprendre les mécanismes</p>
+
+  <div class="vis-tabs">
+    <button [class.on]="activeVis === 'brain'" (click)="switchVis('brain')">🧠 Cerveau sans HBOT</button>
+    <button [class.on]="activeVis === 'hbot'" (click)="switchVis('hbot')">⚡ Avec HBOT</button>
+    <button [class.on]="activeVis === 'neural'" (click)="switchVis('neural')">🔗 Connexions neuronales</button>
+  </div>
+
+  <div class="vis-view" *ngIf="activeVis === 'brain'">
+    <svg class="vis-svg" viewBox="0 0 520 200">
+      <ellipse cx="260" cy="100" rx="160" ry="85" fill="#ffe0e8" stroke="#e8a0b0"/>
+      <ellipse cx="200" cy="90" rx="70" ry="60" fill="#ffccd8" stroke="#e8a0b0"/>
+      <ellipse cx="320" cy="90" rx="70" ry="60" fill="#ffccd8" stroke="#e8a0b0"/>
+      <ellipse cx="200" cy="95" rx="45" ry="38" fill="#c08090" opacity="0.5"/>
+      <text x="176" y="100" font-size="9" fill="#fff" font-weight="600">Hypoxie</text>
+      <ellipse cx="310" cy="85" rx="30" ry="25" fill="#c08090" opacity="0.3"/>
+      <circle cx="150" cy="60" r="5" fill="#7ec8ee" opacity="0.4"/>
+      <text x="147" y="64" font-size="6" fill="#fff">O₂</text>
+      <circle cx="360" cy="70" r="5" fill="#7ec8ee" opacity="0.4"/>
+      <text x="357" y="74" font-size="6" fill="#fff">O₂</text>
+      <text x="150" y="175" font-size="11" fill="#e84a6a">⚠ Zones cérébrales en manque d'oxygène</text>
+    </svg>
+  </div>
+
+  <div class="vis-view" *ngIf="activeVis === 'hbot'">
+    <svg class="vis-svg" viewBox="0 0 520 200">
+      <ellipse cx="260" cy="100" rx="160" ry="85" fill="#d8eefa" stroke="#90c8e8" stroke-width="1.5"/>
+      <ellipse cx="200" cy="90" rx="70" ry="60" fill="#c0e0f5" stroke="#90c8e8"/>
+      <ellipse cx="320" cy="90" rx="70" ry="60" fill="#c0e0f5" stroke="#90c8e8"/>
+      <ellipse cx="200" cy="95" rx="45" ry="38" fill="#7ec8ee" opacity="0.35"/>
+      <ellipse cx="310" cy="85" rx="30" ry="25" fill="#7ec8ee" opacity="0.28"/>
+
+      <circle class="float-up" cx="140" cy="55" r="7" fill="#2d7dd2"/>
+      <text x="137" y="59" font-size="6" fill="#fff">O₂</text>
+      <circle class="float-up-2" cx="200" cy="65" r="7" fill="#2d7dd2"/>
+      <text x="197" y="69" font-size="6" fill="#fff">O₂</text>
+      <circle class="float-up" cx="270" cy="50" r="7" fill="#2d7dd2"/>
+      <text x="267" y="54" font-size="6" fill="#fff">O₂</text>
+      <circle class="float-up-2" cx="340" cy="60" r="7" fill="#2d7dd2"/>
+      <text x="337" y="64" font-size="6" fill="#fff">O₂</text>
+      <circle class="float-up" cx="380" cy="100" r="7" fill="#2d7dd2"/>
+      <text x="377" y="104" font-size="6" fill="#fff">O₂</text>
+
+      <ellipse class="neural-pulse" cx="260" cy="100" rx="155" ry="80" fill="none" stroke="#7ecfee" stroke-width="2"/>
+      <text x="150" y="175" font-size="11" fill="#2d7dd2">✦ Cerveau pleinement oxygéné — neuroplasticité activée</text>
+    </svg>
+  </div>
+
+  <div class="vis-view" *ngIf="activeVis === 'neural'">
+    <svg class="vis-svg" viewBox="0 0 520 200">
+      <line x1="100" y1="100" x2="200" y2="60" class="signal-flow"/>
+      <line x1="100" y1="100" x2="200" y2="140" class="signal-flow-2"/>
+      <line x1="200" y1="60" x2="310" y2="80" class="signal-flow"/>
+      <line x1="200" y1="140" x2="310" y2="120" class="signal-flow-2"/>
+      <line x1="310" y1="80" x2="420" y2="100" class="signal-flow"/>
+      <line x1="310" y1="120" x2="420" y2="100" class="signal-flow-2"/>
+
+      <circle cx="100" cy="100" r="12" fill="#1a4aaa"/>
+      <circle cx="200" cy="60" r="10" fill="#2d7dd2"/>
+      <circle cx="200" cy="140" r="10" fill="#2d7dd2"/>
+      <circle cx="310" cy="80" r="10" fill="#1a8844"/>
+      <circle cx="310" cy="120" r="10" fill="#1a8844"/>
+      <circle cx="420" cy="100" r="12" fill="#7744cc"/>
+
+      <circle class="neural-pulse" cx="100" cy="100" r="4" fill="#7ecfee"/>
+      <circle class="neural-pulse-2" cx="260" cy="100" r="4" fill="#7ecfee"/>
+      <circle class="neural-pulse-3" cx="420" cy="100" r="4" fill="#d0a0ff"/>
+
+      <text x="70" y="125" font-size="9" fill="#1a4aaa">Entrée</text>
+      <text x="390" y="125" font-size="9" fill="#7744cc">Sortie</text>
+      <text x="155" y="175" font-size="11" fill="#2d7dd2">⚡ Signaux neuronaux — connexions renforcées par l'HBOT</text>
+    </svg>
+  </div>
+
+  <div class="vis-info">
+    <div><strong>🧠 Neuroplasticité</strong><p>Le cerveau crée de nouvelles connexions sous O₂ élevé</p></div>
+    <div><strong>⚡ Signaux renforcés</strong><p>Les impulsions motrices deviennent plus rapides et précises</p></div>
+    <div><strong>🌱 Régénération</strong><p>Les cellules cérébrales endommagées se régénèrent progressivement</p></div>
+  </div>
+</section>
+
+
+
+    <section class="timeline-section reveal">
+  <div class="section-head">
+    <span>Progression</span>
+    <h2>Étapes du développement moteur</h2>
+    <p>Comment l'HBOT agit selon les stades de développement</p>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot blue">1</div>
+      <div class="tl-body">
+        <span>Stade initial — 0 à 40 séances</span>
+        <h3>Oxygénation et réveil cellulaire</h3>
+        <p>Les premières séances permettent de saturer les tissus cérébraux en oxygène. Des zones en état d'hypoxie chronique commencent à recevoir un apport suffisant.</p>
+        <div class="tags">
+          <small>Saturation O₂</small>
+          <small>Réveil neuronal</small>
+          <small>Anti-inflammatoire</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot purple">2</div>
+      <div class="tl-body">
+        <span>Phase intermédiaire — 40 à 80 séances</span>
+        <h3>Renforcement des connexions neuronales</h3>
+        <p>La neuroplasticité s’active progressivement. De nouvelles connexions se forment, améliorant la coordination, l’équilibre et la communication.</p>
+        <div class="tags">
+          <small>Neuroplasticité</small>
+          <small>Coordination</small>
+          <small>Langage</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot green">3</div>
+      <div class="tl-body">
+        <span>Phase avancée — 80+ séances</span>
+        <h3>Consolidation et progrès durables</h3>
+        <p>Les améliorations se consolident. Les patients peuvent constater des progrès en motricité fine, autonomie, apprentissage et interactions sociales.</p>
+        <div class="tags">
+          <small>Motricité fine</small>
+          <small>Autonomie</small>
+          <small>Apprentissage</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="conditions-section reveal">
+  <div class="section-head">
+    <span>Indications</span>
+    <h2>Conditions traitées par l'HBOT</h2>
+    <p>Troubles du développement moteur et neurologique bénéficiant de l’oxygénothérapie</p>
+  </div>
+
+  <div class="conditions-grid">
+    <div class="condition-card">
+      <b>01</b><div class="icon blue"></div>
+      <h3>Paralysie cérébrale</h3>
+      <p>L’HBOT améliore l’oxygénation des zones cérébrales affectées, réduisant la spasticité et améliorant le contrôle moteur.</p>
+    </div>
+
+    <div class="condition-card">
+      <b>02</b><div class="icon green"></div>
+      <h3>Troubles du spectre autistique</h3>
+      <p>Amélioration des interactions sociales, communication et comportements répétitifs grâce à l’oxygénation cérébrale ciblée.</p>
+    </div>
+
+    <div class="condition-card">
+      <b>03</b><div class="icon purple"></div>
+      <h3>Retard de développement</h3>
+      <p>Stimulation globale du développement psychomoteur en réactivant les zones cérébrales sous-actives.</p>
+    </div>
+
+    <div class="condition-card">
+      <b>04</b><div class="icon orange"></div>
+      <h3>Lésions cérébrales</h3>
+      <p>Récupération accélérée post-AVC ou traumatisme crânien grâce à la régénération cellulaire induite par l’O₂.</p>
+    </div>
+
+    <div class="condition-card">
+      <b>05</b><div class="icon blue"></div>
+      <h3>Troubles du langage</h3>
+      <p>Amélioration des zones de Broca et Wernicke par une meilleure oxygénation.</p>
+    </div>
+
+    <div class="condition-card">
+      <b>06</b><div class="icon green"></div>
+      <h3>Troubles attentionnels (TDAH)</h3>
+      <p>Régulation du flux sanguin cérébral aidant à améliorer la concentration et les capacités d’apprentissage.</p>
+    </div>
+  </div>
+</section>
+
+ <section class="cta reveal">
+
+  <div class="cta-overlay"></div>
+
+  <div class="cta-content">
+    <span>Votre parcours HBOT</span>
+
+    <h2>Planification de votre parcours</h2>
+
+    <p>
+      Contactez-nous pour choisir votre centre et planifier votre première séance.
+    </p>
+
+    <div class="cta-info">
+      <div>📞 +216 56 811 602</div>
+      <div>📍 Tunis · Sousse · Sfax</div>
+      <div>⏱️ Séance 80 minutes</div>
+    </div>
+
+  </div>
+
+</section>
+
+  </main>
+</section>
