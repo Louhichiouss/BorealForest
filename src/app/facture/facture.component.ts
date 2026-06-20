@@ -363,5 +363,13 @@ loadAdmin(): void {
     error: (err) => console.log(err)
   });
 }
+mobileMenuOpen = false;
 
+toggleMobileMenu(): void {
+  this.mobileMenuOpen = !this.mobileMenuOpen;
+}
+
+closeMobileMenu(): void {
+  this.mobileMenuOpen = false;
+}
 }
