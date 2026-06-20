@@ -1,100 +1,121 @@
- 
-   
-   
-   
-   
- <nav class="navbar    navbar-expand-md  back  "  >
-  <div class="container-fluid ">
-    <a class="navbar-brand " routerLink="/accueil" > <img src="../assets/img/logo.png" class="mg" ></a>
-    <div class="offcanvas-body"> 
-      
-    </div>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" style="margin-right: 10%; margin-top:10% ;">
-      <span class="navbar-toggler-icon"></span>
+<nav id="mainHeader" class="bf-site-header">
+  <div class="bf-header-container">
+   <a routerLink="/accueil" class="bf-brand" data-bs-dismiss="offcanvas">
+
+  <img
+    src="../assets/img/logo2.jpg"
+    alt="BorealForest"
+    class="bf-brand-logo">
+
+  <span class="bf-brand-text">
+    <strong>BorealForest</strong>
+    <small>Oxygénothérapie Hyperbare</small>
+  </span>
+
+</a>
+
+    <button
+      class="bf-menu-btn"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasNavbar"
+      aria-controls="offcanvasNavbar"
+      aria-label="Ouvrir le menu">
+      ☰
     </button>
-    
-    <div class="offcanvas offcanvas-end tx " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-      <div class="offcanvas-header back">
-        <a class="navbar-brand " routerLink="/accueil" > <img src="../assets/img/logo.png" class="mg" ></a>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div> 
-      <div class="offcanvas-body back">
-        <ul class="navbar-nav  justify-content-end flex-grow-1 pe-3 ">
-          <li class="nav-item ">
-            <a class="nav-link active "  aria-current="page" data-bs-dismiss="offcanvas" routerLink="/accueil"  >Accueil</a>
-          </li>
-      
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle "  role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Qui somme-nous
-            </a>
-            <ul class="dropdown-menu back ">
-              <li><a class="dropdown-item" routerLink="/BorealForest" data-bs-dismiss="offcanvas">BorealForest®</a></li>
-              <li><a class="dropdown-item" routerLink="/lexpeience" data-bs-dismiss="offcanvas">L'éxperience</a></li>
-              <li><a class="dropdown-item" routerLink="/conferences" data-bs-dismiss="offcanvas">Conférences</a></li>
-             
-              
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"routerLink="/seance">séances</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Conditions communes
 
-            </a>
-            <ul class="dropdown-menu back">
-              <li><a class="dropdown-item" routerLink="/principe-de-base" data-bs-dismiss="offcanvas">Principe de base</a></li>
-              <li><a class="dropdown-item" routerLink="/devloppement-moteur" data-bs-dismiss="offcanvas">Dévloppement moteur</a></li>
-              <li><a class="dropdown-item" routerLink="/les-capacite-congnitives" data-bs-dismiss="offcanvas">Les capacite congnitives</a></li>
-              <li><a class="dropdown-item" routerLink="/devloppement-de-parole" data-bs-dismiss="offcanvas">Dévloppement de parole</a></li>
-              <li><a class="dropdown-item" routerLink="/la-gestion-de-la-douleur" data-bs-dismiss="offcanvas">La gestion de la douleur</a></li>
-              <li><a class="dropdown-item" routerLink="/sommeil-energie" data-bs-dismiss="offcanvas">Sommeil/énergie</a></li>
-              <li><a class="dropdown-item" routerLink="/concussion" data-bs-dismiss="offcanvas">concussion</a></li>
-              <li><a class="dropdown-item" routerLink="/Recuperation_chirurgicale" data-bs-dismiss="offcanvas">Récupération chirurgicale</a></li>
-              <li><a class="dropdown-item" routerLink="/surdite_brusque" data-bs-dismiss="offcanvas">surdité brusque</a></li>
-              <li><a class="dropdown-item" routerLink="/douleur_chronique" data-bs-dismiss="offcanvas">La douleur chronique</a></li>
-              <li><a class="dropdown-item" routerLink="/fertilité" data-bs-dismiss="offcanvas">La fertilité</a></li>
-              <li><a class="dropdown-item" routerLink="/migraines" data-bs-dismiss="offcanvas">Migraines</a></li>
-              <li><a class="dropdown-item" routerLink="/covid_19" data-bs-dismiss="offcanvas">covid 19</a></li>
-              <li><a class="dropdown-item" routerLink="/autistes" data-bs-dismiss="offcanvas"> les enfants autistes</a></li>
-              <li><a class="dropdown-item"  routerLink="/beauty" data-bs-dismiss="offcanvas"> la beauté et l'anti-age</a></li>
-              <li><a class="dropdown-item"  routerLink="/cerveau " data-bs-dismiss="offcanvas"> les soins du cerveau</a></li>
-              <li><a class="dropdown-item" routerLink="/sportive" data-bs-dismiss="offcanvas">  la récupération sportive</a></li>
-              <li><a class="dropdown-item" routerLink="/diabete" data-bs-dismiss="offcanvas">  le diabète</a></li>
+    <div class="bf-desktop-menu">
+      <a routerLink="/accueil" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Accueil</a>
 
-
-
-
-
-
-
-
-
-
-             
-              
-            </ul>
-            
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/espace-de-vente" data-bs-dismiss="offcanvas">Espace de ventes</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/blog" data-bs-dismiss="offcanvas">Blog</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/contact-nous" data-bs-dismiss="offcanvas">Contactez nous</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/connecte" data-bs-dismiss="offcanvas">rendez-vous</a>
-          </li>
-        </ul>
-       
+      <div class="bf-dropdown">
+        <button type="button">Qui sommes-nous ▾</button>
+        <div class="bf-dropdown-menu">
+          <a routerLink="/BorealForest">BorealForest®</a>
+          <a routerLink="/lexpeience">L'expérience</a>
+          <a routerLink="/conferences">Conférences</a>
+        </div>
       </div>
+
+      <a routerLink="/seance" routerLinkActive="active">Séances</a>
+
+      <div class="bf-dropdown">
+        <button type="button">Conditions communes ▾</button>
+        <div class="bf-dropdown-menu mega">
+          <a routerLink="/principe-de-base">Principe de base</a>
+          <a routerLink="/devloppement-moteur">Développement moteur</a>
+          <a routerLink="/les-capacite-congnitives">Capacités cognitives</a>
+          <a routerLink="/devloppement-de-parole">Développement de parole</a>
+          <a routerLink="/la-gestion-de-la-douleur">Gestion de la douleur</a>
+          <a routerLink="/sommeil-energie">Sommeil / énergie</a>
+          <a routerLink="/concussion">Concussion</a>
+          <a routerLink="/Recuperation_chirurgicale">Récupération chirurgicale</a>
+          <a routerLink="/surdite_brusque">Surdité brusque</a>
+          <a routerLink="/douleur_chronique">Douleur chronique</a>
+          <a routerLink="/fertilité">Fertilité</a>
+          <a routerLink="/migraines">Migraines</a>
+          <a routerLink="/covid_19">Covid 19</a>
+          <a routerLink="/autistes">Enfants autistes</a>
+          <a routerLink="/beauty">Beauté et anti-âge</a>
+          <a routerLink="/cerveau">Soins du cerveau</a>
+          <a routerLink="/sportive">Récupération sportive</a>
+          <a routerLink="/diabete">Diabète</a>
+        </div>
+      </div>
+
+      <a routerLink="/espace-de-vente">Espace de ventes</a>
+      <a routerLink="/blog">Blog</a>
     </div>
-  </div>
+
+<a routerLink="/contact-nous" class="bf-header-cta">Contactez-nous</a>  </div>
 </nav>
+
+<div class="offcanvas offcanvas-end bf-offcanvas" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+  <div class="offcanvas-header">
+    <a routerLink="/accueil" class="bf-brand" data-bs-dismiss="offcanvas">
+      <span class="bf-brand-icon">🌲</span>
+      <span class="bf-brand-text">
+        <strong>BorealForest</strong>
+        <small>Oxygénothérapie Hyperbare</small>
+      </span>
+    </a>
+
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+
+  <div class="offcanvas-body">
+    <a routerLink="/accueil" data-bs-dismiss="offcanvas">Accueil</a>
+
+    <p>Qui sommes-nous</p>
+    <a routerLink="/BorealForest" data-bs-dismiss="offcanvas">BorealForest®</a>
+    <a routerLink="/lexpeience" data-bs-dismiss="offcanvas">L'expérience</a>
+    <a routerLink="/conferences" data-bs-dismiss="offcanvas">Conférences</a>
+
+    <a routerLink="/seance" data-bs-dismiss="offcanvas">Séances</a>
+
+    <p>Conditions communes</p>
+    <a routerLink="/principe-de-base" data-bs-dismiss="offcanvas">Principe de base</a>
+    <a routerLink="/devloppement-moteur" data-bs-dismiss="offcanvas">Développement moteur</a>
+    <a routerLink="/les-capacite-congnitives" data-bs-dismiss="offcanvas">Capacités cognitives</a>
+    <a routerLink="/devloppement-de-parole" data-bs-dismiss="offcanvas">Développement de parole</a>
+    <a routerLink="/la-gestion-de-la-douleur" data-bs-dismiss="offcanvas">Gestion de la douleur</a>
+    <a routerLink="/sommeil-energie" data-bs-dismiss="offcanvas">Sommeil / énergie</a>
+    <a routerLink="/concussion" data-bs-dismiss="offcanvas">Concussion</a>
+    <a routerLink="/Recuperation_chirurgicale" data-bs-dismiss="offcanvas">Récupération chirurgicale</a>
+    <a routerLink="/surdite_brusque" data-bs-dismiss="offcanvas">Surdité brusque</a>
+    <a routerLink="/douleur_chronique" data-bs-dismiss="offcanvas">Douleur chronique</a>
+    <a routerLink="/fertilité" data-bs-dismiss="offcanvas">Fertilité</a>
+    <a routerLink="/migraines" data-bs-dismiss="offcanvas">Migraines</a>
+    <a routerLink="/covid_19" data-bs-dismiss="offcanvas">Covid 19</a>
+    <a routerLink="/autistes" data-bs-dismiss="offcanvas">Enfants autistes</a>
+    <a routerLink="/beauty" data-bs-dismiss="offcanvas">Beauté et anti-âge</a>
+    <a routerLink="/cerveau" data-bs-dismiss="offcanvas">Soins du cerveau</a>
+    <a routerLink="/sportive" data-bs-dismiss="offcanvas">Récupération sportive</a>
+    <a routerLink="/diabete" data-bs-dismiss="offcanvas">Diabète</a>
+
+    <a routerLink="/espace-de-vente" data-bs-dismiss="offcanvas">Espace de ventes</a>
+    <a routerLink="/blog" data-bs-dismiss="offcanvas">Blog</a>
+    <a routerLink="/contact-nous" data-bs-dismiss="offcanvas">Contactez-nous</a>
+  </div>
+</div>
+
 
