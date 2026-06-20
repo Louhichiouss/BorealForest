@@ -410,5 +410,13 @@ markReminderPaid(r: any): void {
     error: () => alert('Erreur serveur paiement.')
   });
 }
+mobileMenuOpen = false;
 
+toggleMobileMenu(): void {
+  this.mobileMenuOpen = !this.mobileMenuOpen;
+}
+
+closeMobileMenu(): void {
+  this.mobileMenuOpen = false;
+}
 }
