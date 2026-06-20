@@ -1,34 +1,262 @@
 
+<!-- HERO -->
+<section class="pb-hero">
+  <img class="pb-hero-img" src="../assets/img/23.png" alt="BorealForest">
 
+  <div class="pb-hero-overlay"></div>
 
-<div >
-    <img src="../assets/img/23.png" class="d-block w-100 AA "  alt="...">
+  <div class="pb-hero-content">
+    <div class="pb-chip">
+      <span></span>
+      Principe de base
+    </div>
+
+    <div class="pb-eye">La thérapie</div>
+
+    <h1>
+      <span>Les principes</span>
+      <strong>de base</strong>
+    </h1>
+
+    <h2>Comment l’oxygène hyperbare agit sur le corps</h2>
+
+    <p>
+      Grâce à la pression, l’oxygène se dissout plus profondément dans le plasma sanguin
+      et atteint les zones qui manquent d’oxygène.
+    </p>
+
+    <div class="pb-actions">
+      <a routerLink="/contact-nous" class="pb-btn primary">Contactez-nous</a>
+      <a href="#content" class="pb-btn ghost">Découvrir</a>
+    </div>
   </div>
 
+  <div class="pb-wave">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+      <path d="M0,50 C240,100 480,0 720,50 C960,100 1200,15 1440,50 L1440,100 L0,100 Z" fill="#ffffff"></path>
+    </svg>
+  </div>
+</section>
 
+<main class="page-main">
 
-<div class="ra">
-    <h1 class="ge"> La principe de base</h1>
-    <h2 class="ga">Une  amélioration de la qualité de vie</h2>
+  <section class="intro-block reveal reveal-first">
+    <div>
+      <div class="intro-label">Principe de base</div>
 
-    <p class="text"><span>Le corps renferme des milliers de millards de cellules qui ont toutes besoin d’oxygène. Par le processus de respiration, l’oxygène passe des poumons aux cellules rouges qui ont pour fonction d’en faire le transport dans le sang.  En effet, 95% d’entre elles transportent de l’oxygène. Le sang est en grande majorité composé de globules rouges, mais également de globules blancs, de plaquettes et du plasma.  
-        Le plasma est un liquide aqueux dans lequel sont dissouts les nutriments, électrolytes, hormones, protéines, graisses, sucres, déchets métaboliques et d’autres substances. Les autres cellules sanguines (rouges, blanches et plaquettes) flottent dans le plasma lorsqu’ils circulent dans le corps. Avec la chambre hyperbare, on vient saturer les globules rouges, et le surplus d’oxygène est directement dissout dans le plasma sanguin, donc plus profondément dans le sang. De plus, la pression fait en sorte que les molécules d’oxygènes deviennent plus petites. Cela permet ainsi l’oxygénation de parties du corps qui étaient en état d’hypoxie (en manque d’oxygène).</span></p>
+      <h2 class="intro-title">Une amélioration de la qualité de vie</h2>
+
+      <p class="intro-sub">
+        Comment l’oxygène hyperbare agit sur vos cellules
+      </p>
+
+      <p class="intro-text">
+        Le corps contient des milliers de milliards de cellules qui ont toutes besoin
+        d’oxygène. Avec la chambre hyperbare, l’oxygène est mieux disponible dans le sang :
+        les globules rouges sont saturés et le surplus d’oxygène peut être dissous dans le
+        plasma sanguin.
+      </p>
+
+      <p class="intro-text">
+        Grâce à la pression, l’oxygène peut atteindre plus profondément certaines zones du
+        corps, notamment les tissus en manque d’oxygène.
+      </p>
     </div>
 
-    <div class="a">
-        <h1 class="tex">Voici donc en image ce qui se produit lorsque vous faites une séries de plongées dans les caissons pressurisés:</h1>
-<div class="pa">
-        <img src="../assets/img/processus1.png" class="ss"  alt="" width="100%" height="100%">
-        <img src="../assets/img/processus2.png" alt=""width="100%" height="100%">
-        <img src="../assets/img/processus3.png" class="ss" alt=""width="100%" height="100%">
-        <img src="../assets/img/processus4.png" alt=""width="100%" height="100%">
-
-    </div>
-    </div>
-
-    
-    <div >
-        <h1 class="xa">Planification de votre parcours HBOT</h1>
-        <p class="xi">Étape 1 - Appelez-nous ou envoyez-nous un SMS au (+216) 56 811 602 </p>
-        <p  class="xi">Étape 2 - Venez pour votre première séance et évaluation</p>     
+    <div class="intro-stats">
+      <div class="stat-card">
+        <div class="stat-num">O₂</div>
+        <div class="stat-label">Meilleure disponibilité de l’oxygène</div>
       </div>
+
+      <div class="stat-card">
+        <div class="stat-num">1.3</div>
+        <div class="stat-label">ATA dans nos chambres souples</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-num">80</div>
+        <div class="stat-label">minutes par séance</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-num">5–10</div>
+        <div class="stat-label">séances selon l’objectif</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="vessel-demo reveal reveal-first">
+    <h2 class="vessel-title">Visualisation — ce qui se passe dans votre sang</h2>
+
+    <div class="vessel-tabs">
+      <button class="vtab" [class.active]="activeTab === 'normal'" (click)="switchTab('normal')">
+        1. Circulation normale
+      </button>
+
+      <button class="vtab" [class.active]="activeTab === 'blocked'" (click)="switchTab('blocked')">
+        2. Zone en manque d’O₂
+      </button>
+
+      <button class="vtab" [class.active]="activeTab === 'hbot'" (click)="switchTab('hbot')">
+        3. Effet hyperbare
+      </button>
+
+      <button class="vtab" [class.active]="activeTab === 'new'" (click)="switchTab('new')">
+        4. Meilleure oxygénation
+      </button>
+    </div>
+
+    <div class="vessel-view" *ngIf="activeTab === 'normal'">
+      <div class="vessel-illustration normal">
+        <div class="tissue top"></div>
+        <div class="blood-vessel">
+          <span class="rbc r1"></span>
+          <span class="rbc r2"></span>
+          <span class="rbc r3"></span>
+        </div>
+        <span class="o2 o1">O₂</span>
+        <span class="o2 o2">O₂</span>
+        <span class="o2 o3">O₂</span>
+      </div>
+
+      <div class="vessel-info">
+        <div class="vinfo-card"><strong>Globules rouges</strong><span>Transportent l’oxygène.</span></div>
+        <div class="vinfo-card"><strong>Plasma</strong><span>Transporte nutriments et éléments essentiels.</span></div>
+        <div class="vinfo-card"><strong>Oxygène</strong><span>Se diffuse vers les tissus.</span></div>
+      </div>
+    </div>
+
+    <div class="vessel-view" *ngIf="activeTab === 'blocked'">
+      <div class="vessel-illustration blocked">
+        <div class="blood-vessel">
+          <span class="blockage">Bloc</span>
+          <span class="rbc r1"></span>
+          <span class="rbc r2"></span>
+        </div>
+        <span class="warning">Zone en manque d’oxygène</span>
+      </div>
+
+      <div class="vessel-info">
+        <div class="vinfo-card"><strong>Hypoxie</strong><span>Certains tissus reçoivent moins d’oxygène.</span></div>
+        <div class="vinfo-card"><strong>Obstacle</strong><span>La circulation peut être diminuée.</span></div>
+        <div class="vinfo-card"><strong>Besoin</strong><span>Le corps a besoin d’un meilleur apport en O₂.</span></div>
+      </div>
+    </div>
+
+    <div class="vessel-view" *ngIf="activeTab === 'hbot'">
+      <div class="vessel-illustration hbot">
+        <div class="blood-vessel">
+          <span class="rbc r1"></span>
+          <span class="rbc r2"></span>
+          <span class="mini-o2 m1"></span>
+          <span class="mini-o2 m2"></span>
+          <span class="mini-o2 m3"></span>
+        </div>
+        <span class="o2 o1">O₂</span>
+        <span class="o2 o2">O₂</span>
+        <span class="o2 o3">O₂</span>
+        <span class="o2 o4">O₂</span>
+      </div>
+
+      <div class="vessel-info">
+        <div class="vinfo-card"><strong>Pression</strong><span>Aide l’oxygène à mieux se dissoudre.</span></div>
+        <div class="vinfo-card"><strong>Plasma</strong><span>Transport d’O₂ plus profond.</span></div>
+        <div class="vinfo-card"><strong>Diffusion</strong><span>Meilleure oxygénation des zones ciblées.</span></div>
+      </div>
+    </div>
+
+    <div class="vessel-view" *ngIf="activeTab === 'new'">
+      <div class="vessel-illustration new-vessels">
+        <div class="blood-vessel"></div>
+        <div class="branch b1"></div>
+        <div class="branch b2"></div>
+        <span class="o2 o1">O₂</span>
+        <span class="o2 o2">O₂</span>
+      </div>
+
+      <div class="vessel-info">
+        <div class="vinfo-card"><strong>Récupération</strong><span>Soutien du processus naturel du corps.</span></div>
+        <div class="vinfo-card"><strong>Oxygénation</strong><span>Apport supplémentaire aux tissus.</span></div>
+        <div class="vinfo-card"><strong>Bien-être</strong><span>Peut aider la récupération générale.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-header reveal">
+    <div class="section-tag">Mécanismes</div>
+    <h2 class="section-title">Les 4 étapes dans votre sang</h2>
+    <p class="section-desc">Ce qui se produit pendant les séances en caisson pressurisé.</p>
+  </section>
+
+  <section class="circ-grid">
+    <article class="circ-card reveal">
+      <div class="circ-num c1">1</div>
+      <div>
+        <h3>Circulation sanguine normale</h3>
+        <p>L’oxygène est transporté principalement par les globules rouges.</p>
+      </div>
+    </article>
+
+    <article class="circ-card reveal">
+      <div class="circ-num c2">2</div>
+      <div>
+        <h3>Zone en manque d’oxygène</h3>
+        <p>Certains tissus peuvent recevoir moins d’oxygène selon l’état du corps.</p>
+      </div>
+    </article>
+
+    <article class="circ-card reveal">
+      <div class="circ-num c3">3</div>
+      <div>
+        <h3>Effet de la pression</h3>
+        <p>La pression aide à augmenter la quantité d’oxygène disponible.</p>
+      </div>
+    </article>
+
+    <article class="circ-card reveal">
+      <div class="circ-num c4">4</div>
+      <div>
+        <h3>Meilleure oxygénation</h3>
+        <p>L’oxygène peut se diffuser plus profondément dans les tissus.</p>
+      </div>
+    </article>
+  </section>
+
+<section class="planif-block reveal">
+    <div class="planif-content">
+    <div class="planif-tag">Votre parcours HBOT</div>
+
+    <h2>Planification de votre parcours</h2>
+
+    <p>
+      Contactez-nous pour choisir votre centre et planifier votre première séance.
+    </p>
+
+    <div class="planif-steps">
+      <div class="pstep">
+        <span>1</span>
+        <div>
+          <strong>Contact</strong>
+          <p>Appelez ou envoyez un SMS au +216 56 811 602.</p>
+        </div>
+      </div>
+
+      <div class="pstep">
+        <span>2</span>
+        <div>
+          <strong>Rendez-vous</strong>
+          <p>Choisissez Tunis, Sousse ou Sfax selon votre disponibilité.</p>
+        </div>
+      </div>
+    </div>
+
+    <a href="tel:+21656811602" class="planif-btn">
+      📞 Prendre rendez-vous
+    </a>
+  </div>
+
+  
+</section>
+
+</main>
