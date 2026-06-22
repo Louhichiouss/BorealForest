@@ -36,7 +36,7 @@ section{padding:90px 5%}
 }
 .bf-about-hero{
   position:relative;
-  min-height:100vh;
+  min-height:65vh;
   overflow:hidden;
 }
 
@@ -90,7 +90,7 @@ section{padding:90px 5%}
 .bf-about-hero-content{
   position:relative;
   z-index:3;
-  max-width:700px;
+  max-width:600px;
 }
 
 .bf-hero-chip{
