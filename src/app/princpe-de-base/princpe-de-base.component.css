@@ -55,6 +55,7 @@ a {
   position:relative;
   z-index:3;
   max-width:760px;
+  margin-left:50px;
 }
 
 .pb-chip{
@@ -89,9 +90,9 @@ a {
 
 .pb-hero h1{
   margin:0;
-  font-size:clamp(54px,7vw,90px);
-  line-height:.95;
-  font-weight:900;
+  font-size:clamp(42px,6vw,72px);
+  line-height:1.02;
+  font-weight:800;
 }
 
 .pb-hero h1 span{
@@ -108,10 +109,10 @@ a {
 }
 
 .pb-hero h2{
-  margin:22px 0;
-  color:rgba(255,255,255,.78);
-  font-size:clamp(30px,4vw,50px);
-  font-weight:400;
+  margin:18px 0;
+  color:rgba(255,255,255,.82);
+  font-size:clamp(18px,2.4vw,30px);
+  max-width:700px;
 }
 
 .pb-hero p{
@@ -139,7 +140,8 @@ a {
 }
 
 .pb-btn.primary{
-  background:linear-gradient(135deg,#1A3A8F,#00B8A9);
+  background:#2344A5;
+  box-shadow:0 12px 30px rgba(35,68,165,.30);
 }
 
 .pb-btn.ghost{
