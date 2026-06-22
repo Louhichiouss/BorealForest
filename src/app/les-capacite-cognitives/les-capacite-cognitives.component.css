@@ -108,7 +108,6 @@
   gap:18px;
   margin-top:35px;
 }
-
 .btn-primary,
 .btn-outline{
   min-width:220px;
@@ -121,21 +120,30 @@
   border-radius:18px;
   font-size:16px;
   font-weight:800;
+  text-decoration:none;
   transition:.3s;
 }
 
+/* Bouton bleu */
 .btn-primary{
   background:#2344A5;
-  color:#fff;
+  color:#ffffff !important;
   border:none;
   box-shadow:0 12px 30px rgba(35,68,165,.30);
 }
 
+/* Bouton transparent */
 .btn-outline{
   background:rgba(255,255,255,.08);
   border:1px solid rgba(255,255,255,.20);
-  color:#fff;
+  color:#ffffff !important;
   backdrop-filter:blur(12px);
+}
+
+/* Si ce sont des <a> */
+.btn-primary a,
+.btn-outline a{
+  color:#ffffff !important;
 }
 
 .btn-primary:hover,
