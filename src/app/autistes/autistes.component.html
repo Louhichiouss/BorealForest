@@ -1,85 +1,475 @@
+<section class="aut-page">
 
+  <!-- HERO -->
+  <section class="aut-hero">
+    <div class="aut-hero-bg"></div>
+    <div class="aut-hero-overlay"></div>
 
+    <div class="aut-hero-content reveal">
+      <div class="hero-chip">
+        <span></span>
+        BOREALFOREST — AUTISME
+      </div>
 
-<div >
-    <img src="../assets/img/aut1.png" class="d-block w-100 AA"  alt="..." width="80%" height="80%">
+      <p class="hero-eye">OXYGÉNOTHÉRAPIE HYPERBARE</p>
+
+      <h1>
+        Autisme &<br>
+        <em>accompagnement HBOT</em>
+      </h1>
+
+      <p class="hero-text">
+        Une approche douce et personnalisée pour accompagner le bien-être,
+        l’oxygénation et la récupération globale.
+      </p>
+
+      <div class="hero-actions">
+        <a routerLink="/contact-nous" class="hero-btn primary">Contactez-nous</a>
+        <a href="#content" class="hero-btn ghost">Découvrir</a>
+      </div>
+    </div>
+
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d="M0,40 C220,90 420,20 700,35 C930,48 1080,80 1440,45 L1440,120 L0,120 Z" fill="#f6f9fd"></path>
+      </svg>
+    </div>
+  </section>
+
+  <main id="content" class="page-wrap">
+
+    <!-- INTRO -->
+   <!-- INTRO -->
+<section class="intro-grid intro-card-style reveal">
+  <div>
+    <span class="section-label">Autisme et OHB</span>
+
+    <h2>Une thérapie alternative fondée sur des preuves</h2>
+
+    <p class="accent">
+      L'OHB aide à atténuer les effets des troubles du spectre autistique
+    </p>
+
+    <p>
+      Le nombre de familles touchées par l'autisme étant toujours en augmentation,
+      beaucoup recherchent des traitements alternatifs.
+    </p>
+
+    <p>
+      Des études montrent, et les observations des parents corroborent, que l'OHB
+      peut aider à atténuer les effets des troubles du spectre autistique chez les
+      enfants dans un cadre sûr et toléré.
+    </p>
+
+    <p>
+      L'OHB peut accompagner les enfants en <strong>diminuant l'inflammation</strong>
+      et en <strong>améliorant les fonctions cognitives</strong>.
+    </p>
   </div>
-  <div class="ra">
-    <h1 class="ge">Autisme</h1>
 
-    <p class="text"><span>Le nombre de familles touchées par l'autisme étant toujours en augmentation, beaucoup recherchent des traitements alternatifs, car les médicaments traditionnels se sont avérés coûteux et inefficaces. Des études montrent, et les observations des parents corroborent, que l'OHB peut aider à atténuer les effets des troubles du spectre autistique chez les enfants dans un cadre sûr et toléré. L'OHB a aidé des milliers de patients autistes en diminuant l'inflammation et en améliorant les fonctions cognitives.</span></p>
+  <div class="aut-result-card">
+    <div class="aut-result-top">
+      <div class="puzzle-icon">🧩</div>
+      <h3>Thérapie hyperbare<br>pour enfants autistes</h3>
+      <div class="family-icon">👨‍👩‍👦</div>
     </div>
+
+    <div class="aut-result-body">
+      <h4>Résultats observés chez nos patients</h4>
+
+      <div class="result-grid">
+        <div>
+          <span>🧠</span>
+          <p>Neuroinflammation réduite</p>
+        </div>
+
+        <div>
+          <span>💬</span>
+          <p>Langage amélioré</p>
+        </div>
+
+        <div>
+          <span>😴</span>
+          <p>Sommeil amélioré</p>
+        </div>
+
+        <div>
+          <span>👀</span>
+          <p>Contact visuel stimulé</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- VISUAL -->
+    <section class="visual-box reveal">
+      <div class="section-head small">
+        <span>Visualisation</span>
+        <h2>Comment l’OHB agit sur le cerveau autiste</h2>
+        <p>3 mécanismes cérébraux clés bénéficiant aux enfants autistes.</p>
+      </div>
+
+      <div class="visual-tabs">
+        <button
+          type="button"
+          class="visual-tab"
+          [class.active]="activeVisual === 'neuro'"
+          (click)="setVisual('neuro')">
+          🧠 Neuroinflammation
+        </button>
+
+        <button
+          type="button"
+          class="visual-tab"
+          [class.active]="activeVisual === 'cells'"
+          (click)="setVisual('cells')">
+          🌱 Cellules souches
+        </button>
+
+        <button
+          type="button"
+          class="visual-tab"
+          [class.active]="activeVisual === 'synapse'"
+          (click)="setVisual('synapse')">
+          ⚡ Connexions neuronales
+        </button>
+      </div>
+
+      <div class="svg-wrap" *ngIf="activeVisual === 'neuro'">
+        <svg class="vis-svg" viewBox="0 0 560 230">
+          <rect width="560" height="230" fill="#fff"/>
+
+          <ellipse cx="260" cy="105" rx="130" ry="80" fill="#d8f2ee" stroke="#87d8d0" stroke-width="3"/>
+          <ellipse cx="225" cy="105" rx="70" ry="62" fill="#b9d8ee" opacity=".8"/>
+          <ellipse cx="305" cy="105" rx="70" ry="62" fill="#b9d8ee" opacity=".8"/>
+
+          <circle class="pulse-red" cx="220" cy="95" r="10" fill="#e84a6a" opacity=".45"/>
+          <circle class="pulse-red delay1" cx="300" cy="110" r="18" fill="#e84a6a" opacity=".55"/>
+
+          <circle class="o2-float" cx="130" cy="35" r="8" fill="#2d7dd2"/>
+          <text x="126" y="40" font-size="7" fill="#fff">O₂</text>
+
+          <circle class="o2-float-2" cx="260" cy="20" r="8" fill="#2d7dd2"/>
+          <text x="256" y="25" font-size="7" fill="#fff">O₂</text>
+
+          <circle class="o2-float-3" cx="390" cy="35" r="8" fill="#2d7dd2"/>
+          <text x="386" y="40" font-size="7" fill="#fff">O₂</text>
+
+          <rect x="390" y="65" width="155" height="24" rx="8" fill="#e8f8f0" stroke="#64d69a"/>
+          <text x="407" y="81" font-size="9" fill="#137a42">✅ Neuroinflammation −</text>
+
+          <rect x="390" y="100" width="155" height="24" rx="8" fill="#eef6ff" stroke="#80b8ff"/>
+          <text x="407" y="116" font-size="9" fill="#1a4aaa">✅ Hypoxie céréb. −</text>
+
+          <rect x="390" y="135" width="155" height="24" rx="8" fill="#fff8ea" stroke="#f5c46b"/>
+          <text x="407" y="151" font-size="9" fill="#b26b00">✅ Crises réduites</text>
+
+          <text x="110" y="205" font-size="10" fill="#1a4aaa" font-weight="700">
+            ✦ L’OHB réduit la neuroinflammation et apporte O₂ aux tissus hypoxiques du cerveau.
+          </text>
+        </svg>
+      </div>
+
+      <div class="svg-wrap" *ngIf="activeVisual === 'cells'">
+        <svg class="vis-svg" viewBox="0 0 560 230">
+          <rect width="560" height="230" fill="#fff"/>
+
+          <ellipse cx="280" cy="105" rx="120" ry="75" fill="#eefcf4" stroke="#7bd89c" stroke-width="3"/>
+
+          <circle class="cell-pulse" cx="230" cy="95" r="18" fill="#34c759" opacity=".55"/>
+          <circle class="cell-pulse delay1" cx="285" cy="120" r="16" fill="#34c759" opacity=".45"/>
+          <circle class="cell-pulse delay2" cx="330" cy="88" r="14" fill="#34c759" opacity=".4"/>
+
+          <path class="cell-path" d="M120 170 C180 130 215 130 245 100 C280 70 320 70 380 45"
+                fill="none" stroke="#34c759" stroke-width="4" stroke-dasharray="140" stroke-linecap="round"/>
+
+          <circle class="o2-float" cx="130" cy="40" r="8" fill="#2d7dd2"/>
+          <text x="126" y="45" font-size="7" fill="#fff">O₂</text>
+
+          <circle class="o2-float-2" cx="420" cy="55" r="8" fill="#2d7dd2"/>
+          <text x="416" y="60" font-size="7" fill="#fff">O₂</text>
+
+          <text x="365" y="100" font-size="11" fill="#137a42" font-weight="700">
+            🌱 Mobilisation cellulaire
+          </text>
+          <text x="365" y="122" font-size="10" fill="#52677f">
+            Moelle osseuse → tissus
+          </text>
+
+          <text x="120" y="205" font-size="10" fill="#137a42" font-weight="700">
+            Les cellules souches peuvent accompagner la réparation et la récupération.
+          </text>
+        </svg>
+      </div>
+
+      <div class="svg-wrap" *ngIf="activeVisual === 'synapse'">
+        <svg class="vis-svg" viewBox="0 0 560 230">
+          <rect width="560" height="230" fill="#fff"/>
+
+          <circle cx="190" cy="110" r="18" fill="#7bdcff"/>
+          <circle cx="280" cy="70" r="18" fill="#7bdcff"/>
+          <circle cx="360" cy="120" r="18" fill="#7bdcff"/>
+          <circle cx="280" cy="155" r="18" fill="#7bdcff"/>
+
+          <path class="syn-line" d="M205 102 L265 78" stroke="#1a4aaa" stroke-width="4" stroke-linecap="round"/>
+          <path class="syn-line delay1" d="M295 80 L345 112" stroke="#1a4aaa" stroke-width="4" stroke-linecap="round"/>
+          <path class="syn-line delay2" d="M345 128 L295 150" stroke="#1a4aaa" stroke-width="4" stroke-linecap="round"/>
+          <path class="syn-line delay3" d="M265 150 L205 118" stroke="#1a4aaa" stroke-width="4" stroke-linecap="round"/>
+
+          <circle class="spark" cx="235" cy="90" r="5" fill="#f5a623"/>
+          <circle class="spark delay1" cx="322" cy="98" r="5" fill="#f5a623"/>
+          <circle class="spark delay2" cx="320" cy="140" r="5" fill="#f5a623"/>
+
+          <text x="390" y="95" font-size="11" fill="#1a4aaa" font-weight="700">
+            ⚡ Connexions renforcées
+          </text>
+          <text x="390" y="120" font-size="10" fill="#52677f">
+            Communication neuronale
+          </text>
+
+          <text x="105" y="205" font-size="10" fill="#1a4aaa" font-weight="700">
+            L’OHB peut soutenir l’énergie cérébrale et les connexions neuronales.
+          </text>
+        </svg>
+      </div>
+
+      <div class="visual-info">
+        <div>
+          <strong>🧠 Neuroinflammation</strong>
+          <p>L’OHB apporte O₂ aux zones hypoxiques.</p>
+        </div>
+
+        <div>
+          <strong>🌱 Cellules souches</strong>
+          <p>Mobilise les cellules souches vers le cerveau.</p>
+        </div>
+
+        <div>
+          <strong>⚡ Synapses</strong>
+          <p>Renforce les connexions neuronales.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFITS BIG LIST -->
+    <section class="section-head reveal">
+      <span>Bénéfices recherchés</span>
+      <h2>Les avantages de l’OHB pour l’autisme</h2>
+      <p>4 domaines d’amélioration observés chez les enfants accompagnés par OHB.</p>
+    </section>
+<section class="benefit-list reveal">
+
+  <div class="benefit-row">
+    <img src="assets/img/ll.png" class="benefit-img" alt="">
     <div>
-        <h1 class="g">Les avantages de l'OHB pour l'autisme comprennent</h1>
-        <h2 class="ga">Amélioration de la guérison et de la réparation du cerveau.</h2>
-        <p class="te">. Augmente l'apport d'oxygène aux tissus hypoxiques.</p>
-        <p class="te">. Réduit la neuroinflammation.</p>
-        <p class="te">. Stimule la prolifération et la mobilisation des cellules souches.</p>
-        <p class="te">. Réduit la fréquence des crises.</p>
-        <h2 class="ga">Fonction physique améliorée</h2>
-        <p class="te">. Favorise le langage réceptif et expressif.</p>
-        <p class="te">. Améliore le mouvement et la motricité globale et fine.</p>
-        <p class="te">. Stimule le contact visuel.</p>
-        <h2 class="ga">Fonction mentale avancée</h2>
-        <p class="te">. Améliore la conscience sensorielle et cognitive.</p>
-        <p class="te">. Augmente la capacité d'attention et la vigilance.</p>
-        <h2 class="ga">Fonction comportementale améliorée</h2>
-        <p class="te">. Améliore le rythme du sommeil.</p>
-        <p class="te">. Améliore les compétences sociales et les interactions.</p>
-        <p class="te">. Réduit l'agressivité.</p>
+      <h3>Amélioration de la guérison et de la réparation du cerveau</h3>
+      <div class="benefit-points">
+        <p>Augmente l’apport d’oxygène aux tissus hypoxiques</p>
+        <p>Réduit la neuroinflammation</p>
+        <p>Stimule la prolifération et mobilisation des cellules souches</p>
+        <p>Réduit la fréquence des crises</p>
+      </div>
+    </div>
+  </div>
 
+  <div class="benefit-row">
+    <img src="assets/img/8.png" class="benefit-img" alt="">
+    <div>
+      <h3>Fonction physique améliorée</h3>
+      <div class="benefit-points">
+        <p>Favorise le langage réceptif et expressif</p>
+        <p>Améliore le mouvement et la motricité globale et fine</p>
+        <p>Stimule le contact visuel</p>
+        <p>Meilleure coordination et équilibre</p>
+      </div>
+    </div>
+  </div>
 
+  <div class="benefit-row">
+    <img src="assets/img/2.png" class="benefit-img" alt="">
+    <div>
+      <h3>Fonction mentale avancée</h3>
+      <div class="benefit-points">
+        <p>Améliore la conscience sensorielle et cognitive</p>
+        <p>Augmente la capacité d’attention et la vigilance</p>
+        <p>Meilleure compréhension des consignes</p>
+        <p>Réduction du brouillard mental</p>
+      </div>
+    </div>
+  </div>
 
+  <div class="benefit-row">
+    <img src="assets/img/4.png" class="benefit-img" alt="">
+    <div>
+      <h3>Fonction comportementale améliorée</h3>
+      <div class="benefit-points">
+        <p>Améliore le rythme du sommeil</p>
+        <p>Améliore les compétences sociales et les interactions</p>
+        <p>Réduit l’agressivité et les comportements répétitifs</p>
+        <p>Meilleure expression des émotions et besoins</p>
+      </div>
+    </div>
+  </div>
 
+</section>
 
+    <!-- HYPOPERFUSION -->
+    <section class="science-grid reveal">
+  <div>
+    <span class="section-label red-label">Hypoperfusion cérébrale</span>
 
+    <h2>Améliorer l'hypoperfusion cérébrale dans l'autisme</h2>
+
+    <p class="accent red-text">
+      Réduction du flux sanguin → comportements autistiques
+    </p>
+
+    <p>
+      Plusieurs études ont montré qu'une réduction du flux sanguin vers les
+      régions temporales et d'autres zones du cerveau est en corrélation avec
+      de nombreux résultats cliniques associés à l'autisme :
+      comportements répétitifs, autostimulants et stéréotypés, ainsi que des
+      troubles de la communication, de la perception sensorielle et de
+      l'interaction sociale.
+    </p>
+
+    <p>
+      Lorsque le taux métabolique et la fonctionnalité du tissu cérébral local
+      augmentent, le débit sanguin cérébral augmente. Cependant, chez les
+      enfants autistes, cette réponse peut être inversée — l'OHB compense
+      cette diminution.
+    </p>
+  </div>
+
+  <div class="science-card">
+    <h3>Présentation scientifique OHB & autisme</h3>
+
+    <div class="sci-step">
+      <span>1</span>
+      <p>
+        <strong>Hypoperfusion cérébrale</strong> —
+        L'OHB compense la diminution du débit sanguin en augmentant la teneur
+        en O₂ du plasma.
+      </p>
     </div>
 
+    <div class="sci-step">
+      <span>2</span>
+      <p>
+        <strong>Stress oxydatif</strong> —
+        Des études animales ont démontré que l'OHB a de puissants effets
+        anti-inflammatoires avec une réduction du stress oxydatif.
+      </p>
+    </div>
 
-    <div class="row featurette">
-        <div class="col-md-6">
-          <h2 class="gx">Présentation de l'oxygénothérapie hyperbare chez les enfants autistes:</h2>
-          <p class="go" >L'oxygénothérapie hyperbare (OHB) a été utilisée avec succès dans plusieurs syndromes d'hypoperfusion cérébrale, notamment la paralysie cérébrale, le syndrome d'alcoolisme fœtal, les traumatismes crâniens fermés et les accidents vasculaires cérébraux.
+    <div class="sci-step">
+      <span>3</span>
+      <p>
+        <strong>Cellules souches</strong> —
+        L'OHB mobilise les cellules souches de la moelle osseuse humaine,
+        favorisant la guérison des maladies neurodégénératives.
+      </p>
+    </div>
 
-            L'OHB peut compenser la diminution du débit sanguin en augmentant la teneur en oxygène du plasma et des tissus corporels et, dans certains cas, peut même corriger les niveaux d'oxygène dans les tissus ischémiques. De plus, des études animales ont démontré que l'OHB a de puissants effets anti-inflammatoires ainsi qu'une réduction du stress oxydatif. En outre, de nouvelles recherches suggèrent que l'OHB mobilise les cellules souches de la moelle osseuse humaine, ce qui peut favoriser la guérison des maladies neurodégénératives. Sur la base de ces résultats, il est prédit que l'OHB atténuera les symptômes chez les personnes autistes. Une série de cas rétrospectifs est proposée pour étayer cette théorie.</p>
-          
+    <div class="sci-step">
+      <span>4</span>
+      <p>
+        <strong>Prédiction clinique</strong> —
+        Sur la base de ces résultats, il est prédit que l'OHB atténuera les
+        symptômes chez les personnes autistes.
+      </p>
+    </div>
+  </div>
+</section>
 
+    <!-- PRESENTATION -->
+    <section class="science-grid reveal">
+  <div>
+    <span class="section-label">Présentation</span>
 
+    <h2>L'OHB chez les enfants autistes</h2>
 
+    <p>
+      L'oxygénothérapie hyperbare (OHB) a été utilisée avec succès dans
+      plusieurs syndromes d'hypoperfusion cérébrale, notamment la paralysie
+      cérébrale, le syndrome d'alcoolisme fœtal, les traumatismes crâniens
+      fermés et les accidents vasculaires cérébraux.
+    </p>
+
+    <p>
+      L'OHB peut compenser la diminution du débit sanguin en augmentant la
+      teneur en oxygène du plasma et des tissus corporels et, dans certains cas,
+      peut même corriger les niveaux d'oxygène dans les tissus ischémiques.
+    </p>
+
+    <p>
+      De nouvelles recherches suggèrent que l'OHB mobilise les cellules
+      souches de la moelle osseuse humaine, ce qui peut favoriser la guérison
+      des maladies neurodégénératives — atténuant les symptômes chez les
+      personnes autistes.
+    </p>
+  </div>
+
+  <div class="child-card">
+    <div class="child-card-top">
+      <div class="child-icon">👦</div>
+
+      <h3>
+        Chambre hyperbare<br>
+        pour enfants autistes
+      </h3>
+    </div>
+
+    <div class="child-list">
+      <p>Cadre sûr, doux et toléré par les enfants</p>
+      <p>Parent/accompagnateur peut rester à côté</p>
+      <p>Protocoles adaptés à chaque enfant</p>
+      <p>Séances progressives selon tolérance</p>
+      <p>Résultats observés après 20-40 séances</p>
+      <p>Suivi personnalisé continu</p>
+    </div>
+  </div>
+</section>
+
+    <!-- VIDEO -->
+    <section class="video-section reveal">
+      <div class="section-head small">
+        <span>Vidéo</span>
+        <h2>Présentation de l’oxygénothérapie hyperbare</h2>
+        <p>Une vidéo explicative pour découvrir le parcours HBOT.</p>
+      </div>
+
+      <div class="video-frame">
+        <video controls>
+          <source src="assets/video/1.mp4" type="video/mp4">
+          Votre navigateur ne supporte pas la lecture vidéo.
+        </video>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-frame reveal">
+      <div class="cta-overlay"></div>
+
+      <div class="cta-content">
+        <div class="cta-badge">OXYGÉNOTHÉRAPIE HYPERBARE</div>
+
+        <h2>Planification de votre <em>parcours HBOT</em></h2>
+
+        <p>
+          Appelez-nous ou envoyez-nous un SMS pour commencer votre évaluation personnalisée.
+        </p>
+
+        <div class="cta-infos">
+          <span>(+216) 56 811 602</span>
+          <span>oxyboreal2@gmail.com</span>
+          <span>Tunis · Sousse · Sfax</span>
         </div>
-        <div class="col-md-5">
-            <img src="../assets/img/re.jpg " class="a" alt=""  width="120%" height="90%">
-        </div>
 
+        <a class="cta-btn" href="tel:+21656811602">Prendre rendez-vous</a>
+      </div>
+    </section>
 
-        <div class="row featurette">
-            <div class="col-md-6">
-              <h2 class="gx">Améliorer l'hypoperfusion cérébrale dans l'autisme:</h2>
-              <p class="go" >Plusieurs études ont montré qu'une réduction du flux sanguin vers les régions temporales et d'autres zones du cerveau est en corrélation avec de nombreux résultats cliniques associés à l'autisme, tels que des comportements répétitifs, autostimulants et stéréotypés, ainsi que des troubles de la communication, de la perception sensorielle et de l'interaction sociale. . De plus, une corrélation entre la diminution du QI et l'hypoperfusion des lobes temporaux et frontaux a été décrite chez les autistes.
-
-                La cause de cette diminution du débit sanguin est inconnue, mais cela pourrait être le résultat de changements dans la résistance des artères cérébrales. Lorsque le taux métabolique et la fonctionnalité du tissu cérébral local augmentent, le débit sanguin cérébral augmente. Cependant, chez les enfants autistes, cette réponse peut être inversée.</p>
-              
-    
-    
-    
-            </div>
-            <div class="col-md-5">
-                <img src="../assets/img/IMM.jpg " class="a" alt=""  width="124%" height="100%">
-            </div>
-
-            <h1 class="ge">Présentation de l'oxygénothérapie hyperbare</h1>
-
-
-          <div class="xx" >
-    
-  <video controls src="../assets/video/1.mp4" class="d-block w-100"   ></video> 
-  
- <div >
-  <h1 class="xa">Planification de votre parcours HBOT</h1>
-  <p  class="xi">Étape 1 - Appelez-nous ou envoyez-nous un SMS au (+216) 56 811 602 pour planifier votre première session.</p>
-
-  <p class="xi"> Étape 2 - Commencez votre parcours de guérison hyperbare.</p>
-</div>
-
- </div>
-
+  </main>
+</section>
