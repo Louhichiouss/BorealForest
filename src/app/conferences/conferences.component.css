@@ -198,22 +198,24 @@ section{
 }
 
 .hero-btn.primary{
-  background:linear-gradient(135deg,var(--teal),#1A3A8F);
-  color:white;
-  box-shadow:0 10px 30px rgba(0,194,168,.35);
+  background:#2344A5;
+  color:#fff;
+  box-shadow:0 12px 30px rgba(35,68,165,.30);
 }
 
 .hero-btn.ghost{
-  color:white;
-  border:1px solid rgba(255,255,255,.18);
-  background:rgba(255,255,255,.07);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.20);
+  background:rgba(255,255,255,.08);
   backdrop-filter:blur(12px);
 }
 
 .hero-btn:hover{
   transform:translateY(-3px);
 }
-
+.hero-btn.primary{
+  background:linear-gradient(135deg,var(--teal),#1A3A8F);
+}
 .hero-wave{
   position:absolute;
   bottom:-2px;
