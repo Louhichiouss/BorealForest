@@ -720,3 +720,11 @@
   .tl-body{padding:20px 16px}
   .cta{padding:38px 18px}
 }
+@media(max-width:900px){
+
+  .hero-content{
+    margin-left:0;
+    padding-left:0;
+  }
+
+}
