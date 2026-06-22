@@ -19,9 +19,10 @@ a {
   position:relative;
   overflow:hidden;
   display:flex;
-  align-items:center;
-  padding:1px 5% 110px;
+  align-items:flex-start;
+  padding:90px 5% 110px; /* زدت top باش يهبط */
   background:#050F2E;
+  padding:120px 5% 110px;
 }
 
 .pb-hero-img{
