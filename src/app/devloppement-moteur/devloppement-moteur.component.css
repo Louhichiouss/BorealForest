@@ -29,6 +29,9 @@
 .hero-content{
   transform: scale(.85);
   transform-origin: left center;
+
+  margin-left:90px;
+  max-width:850px;
 }
 
 .hero h1{
