@@ -902,3 +902,22 @@
   max-width:850px;
   margin:0 auto 40px;
 }
+.how-icon{
+  width:76px;
+  height:76px;
+  min-width:76px;
+  border-radius:50%;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
+  border:3px solid currentColor;
+}
+
+.how-icon img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
