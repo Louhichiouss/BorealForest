@@ -75,7 +75,7 @@ const routes: Routes = [
     {path:"principe-de-base",component:PrincpeDeBaseComponent},
     {path:"diabete",component:DiabeteComponent},
     {path:"autistes",component:AutistesComponent},
-    {path:"cerveau ",component:CerveauComponent},
+    {path:"cerveau",component:CerveauComponent},
     {path:"esthétique",component:EsthestiqueComponent},
     {path:"sportive",component:SportiveComponent},
     {path:"connecte",component:ConnecteComponent},
