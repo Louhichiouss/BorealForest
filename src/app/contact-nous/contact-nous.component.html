@@ -1,35 +1,213 @@
+<!-- HERO -->
+<section class="contact-hero">
+  <img class="hero-img" src="assets/img/ohb2.png" alt="BorealForest OHB">
 
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
 
+  <div class="hero-content">
+    <div class="hero-chip">
+      <span class="chip-dot"></span>
+      BorealForest — Contact
+    </div>
 
+    <span class="hero-eye">Support & renseignements</span>
 
-<div >
-  <img src="../assets/img/1222.png" class="d-block w-100 AA"  alt="..." width="80%" height="80%">
-</div>
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <h2 class="text-center mb-4b a">Contactez-nous </h2>
-    
-      <form [formGroup]="addForm" >
-        <label for="nom" ></label>
-    <input type="text" class="form-control " id="nom" name="nom" formControlName="nom" placeholder="Nom et Prénom">
-  <label for="email" ></label>
-  <input type="email" class="form-control " id="email" name="email" formControlName="email" placeholder="Adresse Email" >
-    <label for="tel" ></label>
-    <input type="text" class="form-control " id="tel" name="tel" formControlName="tel" placeholder="Numéro télephone">
-    
-    <label for="msg" ></label>
-    <textarea class="form-control " id="msg" rows="3" name="msg" formControlName="msg" placeholder="Message"></textarea>
-     
-       
-       
-      
-    <button type="button" class="btn btn-primary bgb btn-lgb" (click)=" ajout()">Envoyer</button>
-    <button type="reset" class="btn btn-primary bgb">Réinitialiser</button>
-    <div class="error-message" *ngIf="errorMessage1">{{ errorMessage1 }}</div>
+    <h1>
+      <span class="h1-white">Contactez-</span>
+      <span class="h1-grad">nous</span>
+    </h1>
 
+    <p>
+      Notre équipe est disponible pour répondre à toutes vos questions,
+      vous orienter vers le centre le plus proche et vous accompagner
+      dans votre parcours d’oxygénothérapie hyperbare.
+    </p>
 
-      </form>
+    <div class="hero-actions">
+      <a routerLink="/accueil" class="hero-btn primary">Accueil</a>
+
+      <a
+        class="hero-btn ghost"
+        href="https://www.google.com/maps/place/BorealForest+%E2%80%93+Oxyg%C3%A9noth%C3%A9rapie+Hyperbare+Tunisie/@36.8251402,10.1797841,17z/data=!3m1!4b1!4m6!3m5!1s0x12fd359c6b6f088d:0x2f446df565c08423!8m2!3d36.8251359!4d10.182359!16s%2Fg%2F11zhywzzws?entry=ttu"
+        target="_blank"
+        rel="noopener">
+        Google Maps
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+      <path d="M0,50 C240,100 480,0 720,50 C960,100 1200,15 1440,50 L1440,100 L0,100 Z" fill="#ffffff"></path>
+    </svg>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="formulaire">
+  <div class="container">
+
+    <div class="section-head sr">
+      <span class="eyebrow">Écrivez-nous</span>
+      <h2>Contactez-nous</h2>
+      <p>
+        Remplissez le formulaire ou contactez-nous directement par téléphone.
+        Réponse rapide selon votre demande.
+      </p>
+    </div>
+
+    <div class="contact-grid sr">
+
+      <div class="form-card">
+        <div class="form-card-header">
+          <h3>Envoyez-nous un message</h3>
+          <p>Notre équipe vous répond dans les plus brefs délais.</p>
+        </div>
+
+       <form class="form-body" [formGroup]="addForm" (ngSubmit)="ajout()">
+
+  <div class="form-group">
+    <label class="form-label" for="nom">Nom et prénom</label>
+    <div class="form-input-wrap">
+      <span class="form-icon">👤</span>
+      <input
+        id="nom"
+        type="text"
+        class="form-input"
+        formControlName="nom"
+        placeholder="Nom et prénom">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label" for="email">Adresse email</label>
+      <div class="form-input-wrap">
+        <span class="form-icon">✉️</span>
+        <input
+          id="email"
+          type="email"
+          class="form-input"
+          formControlName="email"
+          placeholder="exemple@email.com">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="tel">Téléphone</label>
+      <div class="form-input-wrap">
+        <span class="form-icon">📱</span>
+        <input
+          id="tel"
+          type="text"
+          class="form-input"
+          formControlName="tel"
+          placeholder="+216 XX XXX XXX">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="msg">Message</label>
+    <div class="form-input-wrap">
+      <span class="form-icon-top">💬</span>
+      <textarea
+        id="msg"
+        class="form-input textarea"
+        rows="5"
+        formControlName="msg"
+        placeholder="Décrivez votre demande..."></textarea>
+    </div>
+  </div>
+
+  <div class="success-message" *ngIf="errorMessage1">
+    {{ errorMessage1 }}
+  </div>
+
+  <div class="form-actions">
+    <button type="reset" class="btn-reset" (click)="resetMessage()">
+      Réinitialiser
+    </button>
+
+    <button type="submit" class="btn-send">
+      📨 Envoyer le message
+    </button>
+  </div>
+
+</form>
+      </div>
+
+      <div class="info-col">
+
+        <div class="info-card">
+          <div class="ic-header">
+            <div class="ic-icon teal">📞</div>
+            <h4>Contact direct</h4>
+          </div>
+
+          <a href="tel:+21656811602" class="contact-link">
+            <span>📞</span>
+            <strong>+216 56 811 602</strong>
+          </a>
+
+          <a href="mailto:oxyboreal2@gmail.com" class="contact-link">
+            <span>✉️</span>
+            <strong>oxyboreal2@gmail.com</strong>
+          </a>
+
+          <p class="small-note">Lun–Sam : 8h00 – 20h00</p>
+
+          <div class="soc-row">
+            <a href="https://www.instagram.com/borealforest.hyperbare/" target="_blank" class="soc">📸</a>
+            <a href="https://www.facebook.com/profile.php?id=100083364727916" target="_blank" class="soc">👍</a>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="ic-header">
+            <div class="ic-icon blue">📍</div>
+            <h4>Nos centres</h4>
+          </div>
+
+          <div class="loc-item">
+            <span class="loc-pin">📍</span>
+            <div>
+              <strong>Tunis</strong>
+              <span>31 rue Alain Savary, en face club de tennis, au-dessus Banque Zitouna</span>
+            </div>
+          </div>
+
+          <div class="loc-item">
+            <span class="loc-pin">📍</span>
+            <div>
+              <strong>Sousse</strong>
+              <span>En face Clinique Le Yoser</span>
+            </div>
+          </div>
+
+          <div class="loc-item">
+            <span class="loc-pin">📍</span>
+            <div>
+              <strong>Sfax</strong>
+              <span>Rue Ahmed Aloulou, Immeuble Ibn Sina</span>
+            </div>
+          </div>
+        </div>
+
+        <a
+          class="map-card"
+          href="https://www.google.com/maps/place/BorealForest+%E2%80%93+Oxyg%C3%A9noth%C3%A9rapie+Hyperbare+Tunisie/@36.8251402,10.1797841,17z/data=!3m1!4b1!4m6!3m5!1s0x12fd359c6b6f088d:0x2f446df565c08423!8m2!3d36.8251359!4d10.182359!16s%2Fg%2F11zhywzzws?entry=ttu"
+          target="_blank"
+          rel="noopener">
+          <div class="map-icon">🗺️</div>
+          <div>
+            <strong>Voir BorealForest sur Google Maps</strong>
+            <span>Ouvrir l’itinéraire vers le centre.</span>
+          </div>
+        </a>
 
       </div>
     </div>
+  </div>
+</section>
