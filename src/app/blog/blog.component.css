@@ -364,3 +364,36 @@ a{
     font-size:18px;
   }
 }
+
+.blog-hero-icon{
+  width:120px;
+  height:120px;
+  object-fit:contain;
+  display:block;
+  margin:0 auto 24px;
+  filter:
+    drop-shadow(0 15px 35px rgba(0,194,168,.35));
+  animation:floatHero 4s ease-in-out infinite;
+}
+
+@keyframes floatHero{
+  0%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-10px);
+  }
+  100%{
+    transform:translateY(0);
+  }
+}
+
+@media(max-width:768px){
+
+  .blog-hero-icon{
+    width:80px;
+    height:80px;
+    margin-bottom:18px;
+  }
+
+}
