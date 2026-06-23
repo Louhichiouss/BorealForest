@@ -1,86 +1,146 @@
-<footer class="footer-wrap">
+<footer class="bf-footer">
+<div class="footer-wave">
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path
+      fill="#030c1e"
+      d="M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,80C1120,85,1280,75,1360,69.3L1440,64L1440,120L0,120Z">
+    </path>
+  </svg>
+</div>
 
-  <div class="footer-main">
+  <div class="footer-inner">
+    <div class="footer-grid">
 
-    <div class="footer-brand">
-      <div class="brand-row">
-        <img src="../assets/img/logo2.jpg" alt="BorealForest" class="footer-logo">
-        <span class="brand-name">BorealForest</span>
+      <div class="footer-col col-brand">
+        <div class="footer-logo">
+          <img src="../assets/img/logo2.jpg" alt="BorealForest" class="footer-logo-img">
+
+          <div class="footer-logo-text">
+            <strong>BorealForest</strong>
+            <span>Oxygénothérapie Hyperbare</span>
+          </div>
+        </div>
+
+        <p class="footer-desc">
+          Centre d'oxygénothérapie hyperbare fondé en Tunisie.
+          Soins personnalisés, protocoles standardisés.
+        </p>
+
+        <div class="footer-social-title">Nous suivre</div>
+
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/profile.php?id=100083364727916" target="_blank" class="fsoc fsoc-fb">f</a>
+          <a href="https://www.instagram.com/borealforest.hyperbare/" target="_blank" class="fsoc fsoc-ig">📸</a>
+        </div>
       </div>
 
-      <p class="brand-tagline">
-        Centre d'oxygénothérapie hyperbare en Tunisie.
-        Soins personnalisés, protocoles standardisés.
-      </p>
+      <div class="footer-col">
+        <h5 class="footer-col-title">Navigation</h5>
 
-      <div class="divider-line"></div>
+        <ul class="footer-links-list">
+          <li><a routerLink="/accueil">Accueil</a></li>
+          <li><a routerLink="/seance">Séances</a></li>
+          <li><a routerLink="/espace-de-vente">Espace de ventes</a></li>
+          <li><a routerLink="/blog">Blog</a></li>
+          <li><a routerLink="/contact-nous">Contactez-nous</a></li>
+        </ul>
 
-      <div class="social-title">Nous suivre</div>
-
-      <div class="social-row">
-        <a href="https://www.instagram.com/borealforest.hyperbare/" target="_blank" class="soc-btn soc-ig">📷</a>
-        <a href="https://www.facebook.com/profile.php?id=100083364727916" target="_blank" class="soc-btn soc-fb">f</a>
+        <details class="footer-drop">
+          <summary>Qui sommes-nous</summary>
+          <ul class="footer-links-list drop-list">
+            <li><a routerLink="/BorealForest">BorealForest®</a></li>
+            <li><a routerLink="/lexpeience">L'expérience</a></li>
+            <li><a routerLink="/conferences">Conférences</a></li>
+          </ul>
+        </details>
       </div>
+
+      <div class="footer-col">
+        <h5 class="footer-col-title">Conditions communes</h5>
+
+        <details class="footer-drop" open>
+          <summary>Voir les conditions</summary>
+
+          <ul class="footer-links-list drop-list conditions-list">
+            <li><a routerLink="/principe-de-base">Principe de base</a></li>
+            <li><a routerLink="/devloppement-moteur">Développement moteur</a></li>
+            <li><a routerLink="/les-capacite-congnitives">Capacités cognitives</a></li>
+            <li><a routerLink="/devloppement-de-parole">Développement de parole</a></li>
+            <li><a routerLink="/la-gestion-de-la-douleur">Gestion de la douleur</a></li>
+            <li><a routerLink="/sommeil-energie">Sommeil / énergie</a></li>
+            <li><a routerLink="/concussion">Concussion</a></li>
+            <li><a routerLink="/Recuperation_chirurgicale">Récupération chirurgicale</a></li>
+            <li><a routerLink="/surdite_brusque">Surdité brusque</a></li>
+            <li><a routerLink="/douleur_chronique">Douleur chronique</a></li>
+            <li><a routerLink="/fertilité">Fertilité</a></li>
+            <li><a routerLink="/migraines">Migraines</a></li>
+            <li><a routerLink="/covid_19">Covid 19</a></li>
+            <li><a routerLink="/autistes">Enfants autistes</a></li>
+            <li><a routerLink="/beauty">Beauté et anti-âge</a></li>
+            <li><a routerLink="/cerveau">Soins du cerveau</a></li>
+            <li><a routerLink="/sportive">Récupération sportive</a></li>
+            <li><a routerLink="/diabete">Diabète</a></li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="footer-col">
+        <h5 class="footer-col-title">Nos centres</h5>
+
+        <div class="footer-centres">
+          <div class="footer-centre">
+            <span>📍</span>
+            <div>
+              <strong>Tunis</strong>
+              <small>31 rue Alain Savary, au-dessus Banque Zitouna</small>
+            </div>
+          </div>
+
+          <div class="footer-centre">
+            <span>📍</span>
+            <div>
+              <strong>Sousse</strong>
+              <small>En face Clinique Le Yoser</small>
+            </div>
+          </div>
+
+          <div class="footer-centre">
+            <span>📍</span>
+            <div>
+              <strong>Sfax</strong>
+              <small>Rue Ahmed Aloulou, Immeuble Ibn Sina</small>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="footer-col-title contact-title">Contact</h5>
+
+        <div class="footer-contacts">
+          <a href="tel:+21656811602">📞 56 811 602</a>
+          <a href="mailto:oxyboreal2@gmail.com">✉️ oxyboreal2@gmail.com</a>
+          <a href="https://oxyboreal.com" target="_blank">🌐 oxyboreal.com</a>
+        </div>
+<a routerLink="/contact-nous" class="footer-cta-btn">
+  Contactez-nous
+</a>
+      </div>
+
     </div>
 
-    <div>
-      <p class="col-title">Navigation</p>
-      <ul class="nav-list">
-        <li><a routerLink="/accueil">› Accueil</a></li>
-        <li><a routerLink="/BorealForest">› BorealForest®</a></li>
-        <li><a routerLink="/lexpeience">› L'expérience</a></li>
-        <li><a routerLink="/conferences">› Conférences</a></li>
-        <li><a routerLink="/seance">› Séances</a></li>
-        <li><a routerLink="/blog">› Blog</a></li>
-        <li><a routerLink="/contact-nous">› Contactez-nous</a></li>
-        <li><a routerLink="/connecte">› Rendez-vous</a></li>
-      </ul>
-    </div>
+    <div class="footer-divider"></div>
 
-    <div>
-      <p class="col-title">Nos centres</p>
+    <div class="footer-bottom">
+      <p>© 2023 BorealForest® — oxyboreal.com — Tous droits réservés</p>
 
-      <div class="centre-card">
-        <div class="centre-city">📍 Tunis</div>
-        <div class="centre-addr">31 rue Alain Savary, au-dessus de Banque Zitouna</div>
+      <div class="footer-badge">
+        <span></span>
+        Tunisie
       </div>
 
-      <div class="centre-card">
-        <div class="centre-city">📍 Sousse</div>
-        <div class="centre-addr">En face clinique le Yoser</div>
-      </div>
-
-      <div class="centre-card">
-        <div class="centre-city">📍 Sfax</div>
-        <div class="centre-addr">Rue Ahmed Aloulou, Immeuble Ibn Sina</div>
+      <div class="footer-legal">
+        <a routerLink="/mentions-legales">Mentions légales</a>
+        <a routerLink="/confidentialite">Confidentialité</a>
       </div>
     </div>
-
-    <div>
-      <p class="col-title">Contact</p>
-
-      <a href="tel:+21656811602" class="contact-item">📞 56 811 602</a>
-      <a href="mailto:oxyboreal2@gmail.com" class="contact-item">✉️ oxyboreal2@gmail.com</a>
-      <a href="https://www.oxyboreal.com" target="_blank" class="contact-item">🌐 oxyboreal.com</a>
-
-      <button class="contact-cta" routerLink="/contact-nous">
-        Contactez-nous
-      </button>
-    </div>
-
   </div>
-
-  <div class="footer-decoration"></div>
-
-  <div class="footer-bottom">
-    <span>© 2023 BorealForest® — Tous droits réservés</span>
-
-    <span class="certified">🛡️ Certifié · Tunisie</span>
-
-    <div>
-      <a href="#">Mentions légales</a>
-      <a href="#">Confidentialité</a>
-    </div>
-  </div>
-
 </footer>
