@@ -1,399 +1,211 @@
-:host{
-  --navy:#050F2E;
-  --blue:#123F9C;
-  --teal:#123F9C;
-  --teal2:#123F9C;
-  --violet:#7C3AED;
-  --white:#ffffff;
-  --slate:#F8FAFC;
-  --soft:#EEF5FF;
-  --border:#E2E8F0;
-  --text:#0F172A;
-  --muted:#64748B;
-  display:block;
-  background:#F8FAFC;
-  color:var(--text);
-  font-family:'Inter','Segoe UI',system-ui,sans-serif;
-  overflow-x:hidden;
-}
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <img class="blog-hero-img" src="../assets/img/ohb4.png" alt="BorealForest">
+  <div class="blog-hero-overlay"></div>
+  <div class="blog-hero-grid"></div>
 
-*,
-*::before,
-*::after{
-  box-sizing:border-box;
-}
+  <div class="blog-hero-content">
+    <div class="blog-chip">
+      <span class="chip-dot"></span>
+      BorealForest — Blog
+    </div>
 
-a{
-  text-decoration:none;
-}
+    <span class="blog-eye">Conditions & oxygénothérapie hyperbare</span>
 
-.container{
-  width:min(1400px,92vw);
-  margin:0 auto;
-}
+    <h1>
+      <span class="h1-white">Nos articles</span>
+      <span class="h1-grad">santé hyperbare</span>
+    </h1>
 
-/* HERO */
+    <p>
+      Découvrez les applications de l’oxygénothérapie hyperbare selon les besoins :
+      récupération, douleurs, énergie, cognition, bien-être et plus encore.
+    </p>
+  </div>
 
-.blog-hero{
-  min-height:58vh;
-  position:relative;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  padding:120px 5% 90px;
-  background:var(--navy);
-}
+  <div class="blog-wave">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,50 C240,100 480,0 720,50 C960,100 1200,15 1440,50 L1440,100 L0,100 Z" fill="#f8fafc"></path>
+    </svg>
+  </div>
+</section>
 
-.blog-hero-img{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  filter:brightness(.32) saturate(1.25);
-  animation:kenBurns 22s ease-in-out infinite alternate;
-  z-index:0;
-}
+<!-- BLOG CARDS -->
+<section class="blog-section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Explorer</span>
+      <h2>Conditions communes</h2>
+      <p>
+        Choisissez un sujet pour découvrir plus d’informations sur l’oxygénothérapie hyperbare.
+      </p>
+    </div>
 
-@keyframes kenBurns{
-  from{transform:scale(1)}
-  to{transform:scale(1.08) translate(-1%,-1%)}
-}
+    <div class="blog-grid">
 
-.blog-hero-overlay{
-  position:absolute;
-  inset:0;
-  z-index:1;
-  background:
-    radial-gradient(ellipse 60% 50% at 0% 100%,rgba(0,194,168,.16) 0%,transparent 55%),
-    radial-gradient(ellipse 60% 50% at 100% 0%,rgba(124,58,237,.14) 0%,transparent 55%),
-    linear-gradient(170deg,rgba(5,15,46,.78) 0%,rgba(18,63,156,.45) 60%,rgba(5,15,46,.82) 100%);
-}
+      <article class="blog-card">
+        <img src="assets/img/s.png" alt="Commotion cérébrale">
+        <div class="blog-card-body">
+          <span class="blog-tag">Neurologie</span>
+          <h3>Oxygénothérapie hyperbare et commotion cérébrale</h3>
+          <button routerLink="/concussion" type="button">Voir l’article</button>
+        </div>
+      </article>
 
-.blog-hero-grid{
-  position:absolute;
-  inset:0;
-  z-index:2;
-  opacity:.04;
-  background-image:
-    linear-gradient(rgba(255,255,255,1) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,1) 1px,transparent 1px);
-  background-size:60px 60px;
-}
+      <article class="blog-card">
+        <img src="assets/img/i.jpeg" alt="Post Covid-19">
+        <div class="blog-card-body">
+          <span class="blog-tag">Récupération</span>
+          <h3>Oxygénothérapie hyperbare et Post-covid19</h3>
+          <button routerLink="/covid_19" type="button">Voir l’article</button>
+        </div>
+      </article>
 
-.blog-hero-content{
-  position:relative;
-  z-index:3;
-  max-width:760px;
-}
+      <article class="blog-card">
+        <img src="assets/img/so.jpg" alt="Diabète">
+        <div class="blog-card-body">
+          <span class="blog-tag">Métabolisme</span>
+          <h3>Oxygénothérapie hyperbare et le diabète</h3>
+          <button routerLink="/diabete" type="button">Voir l’article</button>
+        </div>
+      </article>
 
-.blog-chip{
-  display:inline-flex;
-  align-items:center;
-  gap:9px;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.14);
-  backdrop-filter:blur(14px);
-  color:rgba(255,255,255,.9);
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:2.5px;
-  text-transform:uppercase;
-  padding:8px 22px 8px 14px;
-  border-radius:100px;
-  margin-bottom:28px;
-}
+      <article class="blog-card">
+        <img src="assets/img/Sudden.jpg" alt="Surdité brusque">
+        <div class="blog-card-body">
+          <span class="blog-tag">ORL</span>
+          <h3>Oxygénothérapie hyperbare et la surdité brusque</h3>
+          <button routerLink="/surdite_brusque" type="button">Voir l’article</button>
+        </div>
+      </article>
 
-.chip-dot{
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:var(--teal);
-  box-shadow:0 0 12px var(--teal);
-}
+      <article class="blog-card">
+        <img src="assets/img/fe.jpg" alt="Fertilité">
+        <div class="blog-card-body">
+          <span class="blog-tag">Bien-être</span>
+          <h3>Oxygénothérapie hyperbare et la fertilité</h3>
+          <button routerLink="/fertilité" type="button">Voir l’article</button>
+        </div>
+      </article>
 
-.blog-eye{
-  display:block;
-  margin-bottom:12px;
-  color:rgba(255,255,255,.52);
-  letter-spacing:4px;
-  text-transform:uppercase;
-  font-size:12px;
-}
+      <article class="blog-card">
+        <img src="assets/img/66.jpg" alt="Récupération chirurgicale">
+        <div class="blog-card-body">
+          <span class="blog-tag">Chirurgie</span>
+          <h3>Oxygénothérapie hyperbare et récupération chirurgicale</h3>
+          <button routerLink="/Recuperation_chirurgicale" type="button">Voir l’article</button>
+        </div>
+      </article>
 
-.blog-hero h1{
-  font-family:Georgia,'Times New Roman',serif;
-  font-size:clamp(40px,7vw,76px);
-  line-height:1.02;
-  margin:0 0 20px;
-}
+      <article class="blog-card">
+        <img src="assets/img/Co.jpg" alt="Chirurgie esthétique">
+        <div class="blog-card-body">
+          <span class="blog-tag">Esthétique</span>
+          <h3>Oxygénothérapie hyperbare et chirurgie esthétique</h3>
+          <button routerLink="/esthétique" type="button">Voir l’article</button>
+        </div>
+      </article>
 
-.h1-white{
-  display:block;
-  color:#fff;
-}
+      <article class="blog-card">
+        <img src="assets/img/21.png" alt="Migraines">
+        <div class="blog-card-body">
+          <span class="blog-tag">Neurologie</span>
+          <h3>Oxygénothérapie hyperbare et les migraines</h3>
+          <button routerLink="/migraines" type="button">Voir l’article</button>
+        </div>
+      </article>
 
-.h1-grad{
-  display:block;
-  font-style:italic;
-  background:linear-gradient(120deg,#123F9C,var(--teal),#A78BFA,#5FF5E6);
-  background-size:250%;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  animation:gradFlow 6s linear infinite;
-}
+      <article class="blog-card">
+        <img src="assets/img/ki.jpeg" alt="Enfants autistes">
+        <div class="blog-card-body">
+          <span class="blog-tag">Enfants</span>
+          <h3>Oxygénothérapie hyperbare et les enfants autistes</h3>
+          <button routerLink="/autistes" type="button">Voir l’article</button>
+        </div>
+      </article>
 
-@keyframes gradFlow{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
+      <article class="blog-card">
+        <img src="assets/img/nicole.jpeg" alt="Beauté et anti-âge">
+        <div class="blog-card-body">
+          <span class="blog-tag">Esthétique</span>
+          <h3>Oxygénothérapie hyperbare et la beauté et l’anti-âge</h3>
+          <button routerLink="/beauty" type="button">Voir l’article</button>
+        </div>
+      </article>
 
-.blog-hero p{
-  max-width:620px;
-  margin:0;
-  color:rgba(255,255,255,.72);
-  line-height:1.85;
-  font-size:16px;
-}
+      <article class="blog-card">
+        <img src="assets/img/Sc.png" alt="Soins du cerveau">
+        <div class="blog-card-body">
+          <span class="blog-tag">Cerveau</span>
+          <h3>Oxygénothérapie hyperbare et les soins du cerveau</h3>
+          <button routerLink="/cerveau" type="button">Voir l’article</button>
+        </div>
+      </article>
 
-.blog-wave{
-  position:absolute;
-  bottom:-2px;
-  left:0;
-  right:0;
-  z-index:4;
-}
+      <article class="blog-card">
+        <img src="assets/img/scc.png" alt="Récupération sportive">
+        <div class="blog-card-body">
+          <span class="blog-tag">Sport</span>
+          <h3>Oxygénothérapie hyperbare et la récupération sportive</h3>
+          <button routerLink="/sportive" type="button">Voir l’article</button>
+        </div>
+      </article>
 
-.blog-wave svg{
-  display:block;
-  width:100%;
-}
+      <article class="blog-card">
+        <img src="assets/img/nn.png" alt="Douleur chronique">
+        <div class="blog-card-body">
+          <span class="blog-tag">Douleur</span>
+          <h3>Oxygénothérapie hyperbare et la douleur chronique</h3>
+          <button routerLink="/douleur_chronique" type="button">Voir l’article</button>
+        </div>
+      </article>
 
-/* BLOG SECTION */
+      <article class="blog-card">
+        <img src="assets/img/29.png" alt="Capacités cognitives">
+        <div class="blog-card-body">
+          <span class="blog-tag">Cognition</span>
+          <h3>Oxygénothérapie hyperbare et les capacités cognitives</h3>
+          <button routerLink="/les-capacite-congnitives" type="button">Voir l’article</button>
+        </div>
+      </article>
 
-.blog-section{
-  padding:80px 0 90px;
-  background:linear-gradient(180deg,#F8FAFC 0%,#EEF5FF 100%);
-}
+      <article class="blog-card">
+        <img src="assets/img/30.png" alt="Développement de parole">
+        <div class="blog-card-body">
+          <span class="blog-tag">Langage</span>
+          <h3>Oxygénothérapie hyperbare et le développement de parole</h3>
+          <button routerLink="/devloppement-de-parole" type="button">Voir l’article</button>
+        </div>
+      </article>
 
-.section-head{
-  max-width:780px;
-  margin:0 auto 42px;
-  text-align:center;
-}
+      <article class="blog-card">
+        <img src="assets/img/31.png" alt="Gestion de la douleur">
+        <div class="blog-card-body">
+          <span class="blog-tag">Douleur</span>
+          <h3>Oxygénothérapie hyperbare et la gestion de la douleur</h3>
+          <button routerLink="/la-gestion-de-la-douleur" type="button">Voir l’article</button>
+        </div>
+      </article>
 
-.eyebrow{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  color:var(--teal);
-  text-transform:uppercase;
-  letter-spacing:2.5px;
-  font-size:11px;
-  font-weight:900;
-  margin-bottom:12px;
-}
+      <article class="blog-card">
+        <img src="assets/img/32.png" alt="Sommeil et énergie">
+        <div class="blog-card-body">
+          <span class="blog-tag">Énergie</span>
+          <h3>Oxygénothérapie hyperbare et sommeil et énergie</h3>
+          <button routerLink="/sommeil-energie" type="button">Voir l’article</button>
+        </div>
+      </article>
 
-.eyebrow::before,
-.eyebrow::after{
-  content:'';
-  width:24px;
-  height:2px;
-  background:var(--teal);
-  border-radius:99px;
-}
+      <article class="blog-card">
+        <img src="assets/img/333.png" alt="Développement moteur">
+        <div class="blog-card-body">
+          <span class="blog-tag">Moteur</span>
+          <h3>Oxygénothérapie hyperbare et le développement moteur</h3>
+          <button routerLink="/devloppement-moteur" type="button">Voir l’article</button>
+        </div>
+      </article>
 
-.section-head h2{
-  font-family:Georgia,'Times New Roman',serif;
-  color:var(--navy);
-  font-size:clamp(32px,4vw,52px);
-  margin:0 0 12px;
-}
+    </div>
+  </div>
+</section>
 
-.section-head p{
-  margin:0;
-  color:var(--muted);
-  font-size:16px;
-  line-height:1.8;
-}
-
-/* GRID */
-
-.blog-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:26px;
-}
-
-.blog-card{
-  position:relative;
-  background:#fff;
-  border:1px solid rgba(226,232,240,.9);
-  border-radius:24px;
-  overflow:hidden;
-  min-height:100%;
-  box-shadow:0 14px 38px rgba(15,23,42,.08);
-  transition:all .35s ease;
-}
-
-.blog-card::before{
-  content:'';
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  height:4px;
-  background:linear-gradient(90deg,var(--teal),var(--violet));
-  transform:scaleX(0);
-  transform-origin:left;
-  transition:.35s;
-  z-index:2;
-}
-
-.blog-card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 28px 65px rgba(0,194,168,.18);
-  border-color:rgba(0,194,168,.28);
-}
-
-.blog-card:hover::before{
-  transform:scaleX(1);
-}
-
-.blog-card img{
-  width:100%;
-  height:235px;
-  object-fit:cover;
-  display:block;
-  transition:transform .55s ease;
-}
-
-.blog-card:hover img{
-  transform:scale(1.08);
-}
-
-.blog-card-body{
-  padding:24px;
-}
-
-.blog-tag{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:5px 11px;
-  border-radius:999px;
-  background:rgba(0,194,168,.10);
-  color:#123F9C;
-  border:1px solid rgba(0,194,168,.18);
-  font-size:11px;
-  font-weight:900;
-  text-transform:uppercase;
-  letter-spacing:.6px;
-  margin-bottom:12px;
-}
-
-.blog-card h3{
-  color:var(--navy);
-  font-size:20px;
-  line-height:1.4;
-  font-weight:800;
-  min-height:84px;
-  margin:0 0 18px;
-}
-
-.blog-card button{
-  width:100%;
-  border:0;
-  border-radius:14px;
-  padding:14px 18px;
-  cursor:pointer;
-  color:white;
-  background:linear-gradient(135deg,var(--teal),var(--teal2));
-  font-weight:900;
-  font-size:14px;
-  box-shadow:0 10px 26px rgba(0,194,168,.24);
-  transition:.3s;
-}
-
-.blog-card button:hover{
-  transform:translateY(-2px);
-  box-shadow:0 16px 38px rgba(0,194,168,.36);
-  background:linear-gradient(135deg,#00D6BA,#00A991);
-}
-
-/* OLD CLASS SUPPORT */
-
-.ge{
-  color:var(--navy);
-  font-size:20px;
-  line-height:1.4;
-  font-weight:800;
-  font-family:'Inter','Segoe UI',system-ui,sans-serif;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:1100px){
-  .blog-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-}
-
-@media(max-width:700px){
-  .blog-hero{
-    min-height:auto;
-    padding:105px 5% 80px;
-  }
-
-  .blog-section{
-    padding:56px 0 70px;
-  }
-
-  .blog-grid{
-    grid-template-columns:1fr;
-  }
-
-  .blog-card img{
-    height:220px;
-  }
-
-  .blog-card h3{
-    min-height:auto;
-    font-size:18px;
-  }
-}
-
-.blog-hero-icon{
-  width:120px;
-  height:120px;
-  object-fit:contain;
-  display:block;
-  margin:0 auto 24px;
-  filter:
-    drop-shadow(0 15px 35px rgba(0,194,168,.35));
-  animation:floatHero 4s ease-in-out infinite;
-}
-
-@keyframes floatHero{
-  0%{
-    transform:translateY(0);
-  }
-  50%{
-    transform:translateY(-10px);
-  }
-  100%{
-    transform:translateY(0);
-  }
-}
-
-@media(max-width:768px){
-
-  .blog-hero-icon{
-    width:80px;
-    height:80px;
-    margin-bottom:18px;
-  }
-
-}
