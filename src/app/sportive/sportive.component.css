@@ -1,279 +1,706 @@
-.AA{
-    padding-left: 10%;
-    display: block;
-    margin: 0 auto;
-    padding-right: 10%;
-    padding-top: 5%;
+:host{
+  display:block;
+  font-family:'Inter','Segoe UI',sans-serif;
+  color:#0f172a;
+  background:#fff;
 }
 
-.ge{
-    color: #233F8D ;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    padding-top: 4%;
-    font-size: 40px;
-    padding-left: 10%;
-
-
+*{
+  box-sizing:border-box;
 }
 
-.text{
-    font-size: 19px;
-    font-family: "Georgia";
-    padding-left: 10%;
-    padding-right: 10%;
+.container{
+  width:min(1180px,92%);
+  margin:auto;
+}
+
+/* HERO */
+.sport-hero{
+  min-height:68vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  padding:120px 6% 130px;
+  overflow:hidden;
+  background:#050f2e;
+}
+
+.hero-img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  filter:brightness(.34) saturate(1.15);
+  transform:scale(1.03);
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 15% 80%,rgba(0,194,168,.24),transparent 36%),
+    radial-gradient(circle at 90% 15%,rgba(124,58,237,.20),transparent 34%),
+    linear-gradient(120deg,rgba(5,15,46,.86),rgba(5,15,46,.45));
+}
+
+.hero-content{
+  position:relative;
+  z-index:3;
+  max-width:760px;
+}
+
+.hero-chip{
+  display:inline-block;
+  padding:9px 18px;
+  border-radius:999px;
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.18);
+  color:#dffdf8;
+  font-size:12px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  font-weight:800;
+  margin-bottom:22px;
+}
+
+.hero-content h1{
+  color:#fff;
+  font-size:clamp(42px,7vw,78px);
+  line-height:1;
+  margin:0 0 20px;
+  font-family:Georgia,serif;
+}
+
+.hero-content h1 em{
+  color:#00c2a8;
+  font-style:italic;
+}
+
+.hero-content p{
+  color:rgba(255,255,255,.76);
+  font-size:17px;
+  line-height:1.9;
+  max-width:650px;
+}
+
+.hero-wave{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-2px;
+  z-index:5;
+  line-height:0;
+}
+
+.hero-wave svg{
+  display:block;
+  width:100%;
+  height:100px;
+}
+
+/* BASE SECTIONS */
+.sport-section,
+.potential-section{
+  padding:95px 0;
+  background:#fff;
+}
+
+.grey{
+  background:#f6f9fd;
+}
+
+.section-head-left{
+  margin-bottom:48px;
+}
+
+.section-head-left span{
+  color:#00c2a8;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+}
+
+.section-head-left h2{
+  font-family:Georgia,serif;
+  font-size:clamp(36px,4.3vw,58px);
+  line-height:1.1;
+  color:#021b57;
+  margin:12px 0 0;
+  max-width:1100px;
+}
+
+.two-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:72px;
+  align-items:center;
+}
+
+.sport-text p{
+  color:#5f7392;
+  font-size:17px;
+  line-height:2;
+  margin:0 0 24px;
+}
+
+.sport-text p:first-child{
+  border-left:2px solid #dff6f3;
+  padding-left:18px;
+}
+
+.img-card{
+  position:relative;
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 25px 60px rgba(5,15,46,.12);
+}
+
+.img-card img{
+  width:100%;
+  height:380px;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+}
+
+.img-badge{
+  position:absolute;
+  left:18px;
+  bottom:18px;
+  padding:12px 18px;
+  border-radius:10px;
+  background:#172346;
+  color:#fff;
+  font-size:13px;
+  font-weight:900;
+}
+
+/* INJURIES */
+.injuries-dark{
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(rgba(5,15,46,.30),rgba(5,15,46,.30)),
+    url('/assets/img/ohb3.png');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  padding:95px 0;
+  color:#fff;
+}
+
+.injuries-dark h2{
+  text-align:center;
+  font-family:Georgia,serif;
+  font-size:clamp(32px,4vw,48px);
+  line-height:1.2;
+  margin:0 0 22px;
+  color:#fff;
+}
+
+.injuries-dark h2 em{
+  color:#00c2a8;
+}
+
+.injuries-sub{
+  max-width:780px;
+  margin:0 auto 52px;
+  text-align:center;
+  color:#fff;
+  line-height:1.9;
+  font-size:16px;
+}
+
+.injuries-cards{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+  max-width:980px;
+  margin:auto;
+}
+
+.injury-card{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:22px;
+  border-radius:16px;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.22);
+  backdrop-filter:blur(7px);
+  transition:.25s ease;
+}
+
+.injury-card:hover{
+  transform:translateY(-4px);
+  background:rgba(255,255,255,.16);
+}
+
+.injury-card span{
+  width:44px;
+  height:44px;
+  min-width:44px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#00c2a8,#7c3aed);
+  font-size:20px;
+}
+
+.injury-card h4{
+  margin:0 0 4px;
+  color:white;
+  font-size:16px;
+  font-weight:900;
+}
+
+.injury-card p{
+  margin:0;
+  color:rgba(255,255,255,.78);
+  font-size:13px;
+}
+
+/* BENEFITS */
+.benefits{
+  padding:95px 0;
+  background:white;
+}
+
+.benefits-head{
+  text-align:center;
+  max-width:780px;
+  margin:0 auto 58px;
+}
+
+.benefits-head span{
+  color:#00a994;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+}
+
+.benefits-head h2{
+  font-family:Georgia,serif;
+  font-size:clamp(34px,4vw,50px);
+  color:#021b57;
+  margin:14px 0;
+}
+
+.benefits-head p{
+  color:#64748b;
+  font-size:17px;
+  line-height:1.8;
+}
+
+.benefit-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+
+.benefit-card{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  border-radius:18px;
+  padding:30px;
+  min-height:260px;
+  box-shadow:0 12px 30px rgba(5,15,46,.05);
+  position:relative;
+  overflow:hidden;
+}
+
+.benefit-card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:55%;
+  height:4px;
+  background:linear-gradient(90deg,#00c2a8,#7c3aed);
+}
+
+.benefit-icon{
+  width:52px;
+  height:52px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  margin-bottom:20px;
+  color:white;
+}
+
+.benefit-icon.teal{background:#00c2a8}
+.benefit-icon.blue{background:#0284c7}
+.benefit-icon.violet{background:#7c3aed}
+
+.benefit-card h3{
+  font-family:Georgia,serif;
+  color:#050f2e;
+  font-size:22px;
+  margin:0 0 14px;
+}
+
+.benefit-card p{
+  color:#64748b;
+  font-size:15px;
+  line-height:1.8;
+  margin:0;
+}
+
+/* POTENTIAL */
+.pot-badge{
+  position:absolute;
+  top:18px;
+  right:18px;
+  padding:11px 18px;
+  border-radius:10px;
+  background:#00c2a8;
+  color:#fff;
+  font-size:13px;
+  font-weight:900;
+}
+
+/* CTA */
+.cta-block{
+  width:min(1120px,92%);
+  margin:70px auto;
+  padding:80px 30px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  border-radius:30px;
+  background:
+    linear-gradient(rgba(28,45,95,.55),rgba(28,45,95,.55)),
+    url('/assets/img/derou.jpg');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  box-shadow:0 30px 80px rgba(0,0,0,.12);
+}
+
+.cta-block::before{
+  display:none;
+}
+.cta-badge,
+.cta-h2,
+.cta-p,
+.cta-chips,
+.cta-btn{
+  position:relative;
+  z-index:2;
+}
+
+.cta-badge{
+  display:inline-block;
+  padding:10px 24px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.25);
+  color:#8ee7ff;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  margin-bottom:20px;
+}
+
+.cta-h2{
+  font-family:Georgia,serif;
+  font-size:clamp(36px,5vw,58px);
+  line-height:1.1;
+  color:white;
+  margin:0 0 18px;
+}
+
+.cta-h2 em{
+  color:#61d8ff;
+  font-style:italic;
+}
+
+.cta-p{
+  max-width:700px;
+  margin:0 auto 35px;
+  color:rgba(255,255,255,.92);
+  font-size:17px;
+  line-height:1.8;
+}
+
+.cta-chips{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:35px;
+}
+
+.cta-chip{
+  padding:14px 24px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.18);
+  color:white;
+  font-weight:700;
+  font-size:15px;
+  backdrop-filter:blur(10px);
+}
+
+.cta-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:280px;
+  padding:18px 38px;
+  border-radius:999px;
+  background:white;
+  color:#1848c5;
+  font-weight:900;
+  font-size:18px;
+  text-decoration:none;
+  box-shadow:0 15px 40px rgba(255,255,255,.20);
+  transition:.25s;
+}
+
+.cta-btn:hover{
+  transform:translateY(-3px);
+}
+
+/* ANIMATION */
+.reveal{
+  opacity:0;
+  transform:translateY(34px);
+  transition:opacity .75s ease,transform .75s ease;
+}
+
+.reveal.in{
+  opacity:1;
+  transform:none;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .two-grid,
+  .injuries-cards,
+  .benefit-grid{
+    grid-template-columns:1fr;
+  }
+
+  .sport-hero{
+    min-height:58vh;
+    padding:90px 6% 100px;
+  }
+
+  .img-card img{
+    height:340px;
+  }
+
+  .cta-block{
+    padding:58px 18px;
+  }
+}
+
+@media(max-width:520px){
+  .section-head-left h2,
+  .benefits-head h2{
+    font-size:32px;
+  }
+
+  .sport-text p{
+    font-size:15px;
+  }
+
+  .hero-wave svg{
+    height:70px;
+  }
+
+  .cta-chip,
+  .cta-btn{
+    width:100%;
+  }
+}
+
+.reveal,
+.fade-left,
+.fade-right,
+.zoom-in{
+  opacity:0;
+  transition:all .85s cubic-bezier(.2,.8,.2,1);
+}
+
+.reveal{
+  transform:translateY(42px);
+}
+
+.fade-left{
+  transform:translateX(-55px);
+}
+
+.fade-right{
+  transform:translateX(55px);
+}
+
+.zoom-in{
+  transform:scale(.92);
+}
+
+.reveal.show,
+.fade-left.show,
+.fade-right.show,
+.zoom-in.show{
+  opacity:1;
+  transform:none;
+}
+
+/* Scroll Reveal */
+
+.sr{
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity .8s ease, transform .8s ease;
+}
+
+.sr.in{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.sr-d1{transition-delay:.12s}
+.sr-d2{transition-delay:.24s}
+.sr-d3{transition-delay:.36s}
+
+.sr-d1{
+  transition-delay:.12s;
+}
+
+.sr-d2{
+  transition-delay:.24s;
+}
+
+.sr-d3{
+  transition-delay:.36s;
+}
+
+.injury-card{
+  cursor:pointer;
+  transition:
+    transform .28s ease,
+    background .28s ease,
+    border-color .28s ease,
+    box-shadow .28s ease;
+}
+
+.injury-card:hover{
+  transform:translateY(-7px) scale(1.02);
+  background:rgba(0,194,168,.18);
+  border-color:#00c2a8;
+  box-shadow:
+    0 0 0 1px rgba(0,194,168,.35),
+    0 16px 38px rgba(0,194,168,.22);
+}
+
+.injury-card:hover span{
+  transform:scale(1.12) rotate(6deg);
+  box-shadow:0 10px 28px rgba(0,194,168,.35);
+}
+
+.injury-card span{
+  transition:.28s ease;
+}
+
+.benefit-card{
+  position:relative;
+  overflow:hidden;
+}
+
+.benefit-card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+
+  width:0;
+  height:4px;
+
+  background:linear-gradient(
+    90deg,
+    #00c2a8,
+    #7c3aed
+  );
+
+  transition:width .35s ease;
+}
+
+.benefit-card:hover::before{
+  width:100%;
+}
+
+.benefit-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 45px rgba(5,15,46,.12);
+}
+
+.benefit-card{
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease;
+}
+.injury-card{
+  transition:.3s ease;
+  cursor:pointer;
+}
+
+.injury-card:hover,
+.injury-card:active{
+  transform:translateY(-7px) scale(1.02);
+  background:rgba(0,194,168,.18);
+  border-color:#00c2a8;
+  box-shadow:
+    0 0 0 1px rgba(0,194,168,.35),
+    0 16px 38px rgba(0,194,168,.22);
+}
+
+@media (max-width:768px){
+
+  .benefit-card,
+  .injury-card,
+  .img-card{
+    transform:translateZ(0);
+    will-change:transform;
+  }
 
 }
-.tex{
-    font-size: 19px;
-    font-family: "Georgia";
-    padding-left: 10%;
-    padding-right: 10%;
-
+.injury-card,
+.benefit-card{
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
-.go{
 
-    font-size: 18px;
-    font-family: "Georgia";
- 
-
-
-
-
-
+/* phone touch effect */
+.injury-card:active{
+  transform:translateY(-7px) scale(1.02);
+  background:rgba(0,194,168,.18);
+  border-color:#00c2a8;
+  box-shadow:
+    0 0 0 1px rgba(0,194,168,.35),
+    0 16px 38px rgba(0,194,168,.22);
 }
-.gx{
 
-    color: #233F8D ;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    padding-top: 25%;
-    font-size: 35px;
-    padding-left: 21%;
-
-
+.injury-card:active span{
+  transform:scale(1.12) rotate(6deg);
+  box-shadow:0 10px 28px rgba(0,194,168,.35);
 }
-.g{
-    font-size: 18px;
-    font-family: "Georgia";
-    padding-left: 20%;
+
+.benefit-card:active{
+  transform:translateY(-8px);
+  box-shadow:0 20px 45px rgba(5,15,46,.12);
 }
-.a{
-    padding-right: 25%;
-    padding-top: 3%;
-    padding-left: 30%;
+
+.benefit-card:active::before{
+  width:100%;
 }
-.f{
-    color: #233F8D ;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    padding-top: 4%;
-    font-size: 35px;
-    padding-left: 15%;
-}
-.f1{
-    font-size: 18px;
-    font-family: "Georgia";
-    padding-top: 4%;
-    
-    padding-left: 15%;
-}
-.l{
-    font-size: 18px;
-    font-family: "Georgia";    padding-left: 21%;
-
-}
-.aa{
-
-    padding-top: 10%;
-    padding-left: 35%;
-}
-.x{
-    color: #233F8D ;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 40px;
-    padding-left: 10%;
-}
-.r{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 20px;
-    padding-left: 30%;
-    /* padding-top: 10%; */
-
-
-}
-.y{
-    color: #233F8D ;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 30px;
-    padding-left: 30%;
-    padding-top: 15%;
-
-
-}
-.xx{
-    padding-left: 11%;
-    /* position: abolute; */
-    padding-top: 5%;
-
-}
-.xa{
-    color: #233F8D ;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 30px;
-    padding-top: 6%;
-    text-align: center;
-
-}
-.xi{
-    font-family: "Georgia";
-    font-size: 18px;
-    text-align: center;
-
-
-
-
-
-}
-.aa{
-    padding-top: 30%;
-    width: 120%;
-}
-.spo{
-    height: 100%;
-    padding-top: 3%;
-}
-@media only screen and (max-width:500px) {
-    .g{
-        font-size: 150%;
-    }
-    .gw{
-        font-size: 150%;
-    }
-    .spo{
-       
-        padding-top: 0%;
-    }
-    .ge{
-     font-size:100% ;
-     padding-left: 3%;
-
-     }
-    
-     .te {
-      font-size: 100%;
-      padding-right: 10%;
-
-     
-     
-     
-       }  
-       .text {
-        font-size: 100%;
-        padding-left: 10%;
-
-  
-       
-       
-       
-         } 
-         .tex {
-            font-size: 100%;
-            padding-left: 3%;
-    
-      
-           
-           
-           
-             } 
-         .ra{
-            font-size:100% ;
-            padding-left: 8%;
-
-         }
-       .gx{
-        font-size:150% ;
-        padding-left: 10%;
-        }
-        .go{
-            font-size:100% ;
-            padding-left: 10%;
-            padding-right: 10%;
-
-            }
-            .aa{
-               padding-left: 6%;
-                width: 100%;
-              padding-top: 0%;
-              }
-              .xx{
-               margin-left: 5%;
-                 width: 100%;
-             
-               }
-              .y{
-                font-size:150% ;
-                padding-left: 10%;
-                padding-right: 10%;
-
-
-                }      
-                .x{
-                    font-size:150% ;
-                    padding-left: 10%;
-                    padding-right: 10%;
-    
-    
-                    }
-                .f{
-                    font-size:100% ;
-                    padding-left: 10%;
-    
-    
-                    } 
-                    .g{
-                        font-size:100% ;
-                        padding-left: 10%;
-                        padding-right: 10%;
-        
-        
-                        } 
-                        .l{
-                            font-size:100% ;
-                            padding-left: 10%;
-                            padding-right: 10%;
-            
-            
-                            } 
-                .r{
-                    font-size:120% ;
-                    padding-left: 10%;
-                    padding-right: 10%;
-
-    
-                    } 
-                    .mm{
-                        font-size:150% ;
-                        padding-left: 10%;
-                        padding-right: 10%;
-
-        
-                        } 
-                        .m{
-                            font-size:100% ;
-                            padding-left: 10%;
-                            padding-right: 10%;
-            
-                            }
-                            .xi{
-                                padding-right: 8%;
-                                padding-left: 8%;
-
-                            }
-                            .xa{
-                                font-size: 150%;
-                            }
-                            .xx{
-                                width: 100%;
-                                padding-left: 6%;
-                                padding-right: 6%;
-                            }
-
-    }  
