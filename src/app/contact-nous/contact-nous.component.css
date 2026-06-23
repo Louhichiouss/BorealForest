@@ -74,12 +74,11 @@ section{
     rgba(5,15,46,.25) 100%
   );
 }
-
-.hero-content{
-  position:relative;
-  z-index:5;
-  max-width:700px;
+.contact-hero{
+  padding-bottom:60px;
 }
+
+
 
 .contact-hero h1{
   font-family:Georgia,'Times New Roman',serif;
@@ -169,8 +168,29 @@ section{
   opacity:.05;
 }
 
+.hero-wave{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-1px;
+  z-index:2;
+}
+
+.hero-overlay{
+  z-index:1;
+}
 .hero-wave svg{
-  height:90px;
+  width:100%;
+  height:110px;
+  display:block;
+}
+.hero-content{
+  position:relative;
+  z-index:10;
+  max-width:700px;
+}
+.contact-hero{
+  padding-bottom:120px;
 }
 /* SECTION */
 
