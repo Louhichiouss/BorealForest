@@ -71,14 +71,7 @@ a{
 }
 
 .blog-hero-grid{
-  position:absolute;
-  inset:0;
-  z-index:2;
-  opacity:.04;
-  background-image:
-    linear-gradient(rgba(255,255,255,1) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,1) 1px,transparent 1px);
-  background-size:60px 60px;
+  display:none;
 }
 
 .blog-hero-content{
