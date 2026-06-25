@@ -309,10 +309,7 @@ photo = '';
 
 printInvoice(): void {
   const content = document.getElementById('invoice-print-area');
-  if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-    this.downloadPdf();
-    return;
-  }
+ 
   if (!content) {
     alert('Facture introuvable');
     return;
