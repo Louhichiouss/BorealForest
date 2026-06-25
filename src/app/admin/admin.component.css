@@ -478,3 +478,122 @@ a{text-decoration:none}
     grid-template-columns:1fr !important;
   }
 }
+
+.year-controls{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.year-controls input{
+  width:90px;
+  height:38px;
+  border:1px solid #d6dde8;
+  border-radius:8px;
+  text-align:center;
+  font-weight:600;
+}
+
+.year-controls select{
+  width:90px;
+  height:38px;
+}
+
+.year-input{
+  width:90px;
+  height:38px;
+  border:1px solid #d6dde8;
+  border-radius:8px;
+  text-align:center;
+  font-weight:700;
+}
+
+.chart-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+    gap:16px;
+}
+
+.chart-head h3{
+    margin:0;
+    font-size:22px;
+    font-weight:700;
+    color:#0f2f57;
+}
+
+.year-input{
+    width:90px;
+    height:42px;
+    border:1px solid #d9e3ef;
+    border-radius:10px;
+    text-align:center;
+    font-size:18px;
+    font-weight:700;
+    background:#fff;
+    color:#0f2f57;
+    outline:none;
+    transition:.2s;
+}
+
+.year-input:focus{
+    border-color:#1e88e5;
+    box-shadow:0 0 0 3px rgba(30,136,229,.15);
+}
+
+@media(max-width:760px){
+
+  .bf-chart-row{
+    grid-template-columns:1fr !important;
+  }
+
+  .chart-wrapper{
+    display:flex !important;
+    align-items:flex-end !important;
+    gap:8px !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+  }
+
+  .chart-y-axis{
+    float:none !important;
+    width:42px !important;
+    height:220px !important;
+    font-size:9px !important;
+    flex-shrink:0 !important;
+  }
+
+  .bf-bars{
+    min-width:430px !important;
+    height:240px !important;
+    padding:0 10px !important;
+  }
+
+  .status-card{
+    text-align:left !important;
+  }
+
+  .status-card .bf-card-head{
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    gap:6px !important;
+  }
+
+  .status-donut{
+    width:150px !important;
+    height:150px !important;
+    margin:18px auto 12px !important;
+    display:grid !important;
+  }
+
+  .status-center{
+    width:70px !important;
+    height:70px !important;
+  }
+
+  .status-list{
+    grid-template-columns:1fr 1fr !important;
+    font-size:12px !important;
+  }
+}
