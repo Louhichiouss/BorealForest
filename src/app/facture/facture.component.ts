@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ServiceService } from '../model/service.service';
-import html2pdf from 'html2pdf.js';
+
 type InvoiceStatus = 'Paid' | 'Unpaid' | 'Partial';
 
 interface PatientInvoice {
@@ -549,37 +549,7 @@ toggleMobileMenu(): void {
 closeMobileMenu(): void {
   this.mobileMenuOpen = false;
 }
-downloadPdf(): void {
 
-  const element = document.getElementById('invoice-print-area');
-
-  if (!element) {
-    return;
-  }
-
- const opt = {
-  margin: 5,
-  filename: 'Facture.pdf',
-  image: {
-    type: 'jpeg' as const,
-    quality: 1
-  },
-  html2canvas: {
-    scale: 2,
-    useCORS: true
-  },
-  jsPDF: {
-    unit: 'mm',
-    format: 'a4',
-    orientation: 'portrait'
-  }
-};
-
-  html2pdf()
-    
-    .from(element)
-    .save();
-}
 
 
 
