@@ -1,4 +1,3 @@
-
 <div class="bf-app-shell">
   <button class="mobile-menu-btn" type="button" (click)="toggleMobileMenu()">☰</button>
 
@@ -174,8 +173,8 @@
 
       <label class="full">État du paiement
         <select formControlName="status">
-          <option value="Paid">Paid</option>
-          <option value="Unpaid">Unpaid</option>
+          <option value="Paid">Payé</option>
+          <option value="Unpaid">Impayé</option>
           <option value="Partial">Partial</option>
         </select>
       </label>
@@ -218,7 +217,7 @@
         <div class="invoice-grey-box">
           <p><b>Date du Facture</b> {{selectedInvoice.date}}</p>
           <p><b>Matricule fiscal</b> 1397708/N/P/M/000</p>
-          <p><b>Emis par</b> Louhichi Samer</p>
+          <p><b>Emis par</b> Louhichi Ali </p>
           <p><b>Contact client</b> {{selectedInvoice.patientName}}</p>
           <br>
           <p><b>Date de début de la prestation</b> {{selectedInvoice.date}}</p>
@@ -269,20 +268,19 @@
       <div class="signature">Signature du centre et cachet:</div>
 
       <div class="invoice-footer-model">
-        <div>
-          <b>Siège social</b>
-          <p>M.F: 1397708/N/P/M/000</p>
-          <p>{{getCenterAddress(selectedInvoice.center)}}</p>
-        </div>
+  <div>
+    <p><strong>Siège social</strong></p>
+    <p><strong>M.F:</strong> 1397708/N/P/M/000</p>
+    <p>{{getCenterAddress(selectedInvoice.center)}}</p>
+  </div>
 
-        <div>
-          <b>Coordonnées</b>
-          <p>BorealForest</p>
-          <p>Téléphone : +216 56 811 602</p>
-          <p>E-mail : oxyboreal2@gmail.com</p>
-          <p>www.oxyboreal.com</p>
-        </div>
-      </div>
+  <div>
+    <p><strong>Coordonnées</strong></p>
+    <p><strong>Téléphone :</strong> +216 56 811 602</p>
+    <p><strong>E-mail :</strong> oxyboreal2@gmail.com</p>
+    <p><strong>www.oxyboreal.com</strong></p>
+  </div>
+</div>
 
       <div class="invoice-bottom-blue"></div>
     </div>
