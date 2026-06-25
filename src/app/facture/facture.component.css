@@ -509,3 +509,52 @@ a{text-decoration:none}
     padding:12px !important;
   }
 }
+
+.modal-actions{
+    display:flex;
+    gap:10px;
+}
+
+.btn-cancel,
+.btn-print{
+    flex:1;
+    height:46px;
+    border-radius:10px;
+    font-weight:700;
+}
+
+@media(max-width:768px){
+
+    .modal-actions{
+        position:sticky;
+        bottom:0;
+        background:#fff;
+        padding-top:10px;
+        border-top:1px solid #e5e7eb;
+    }
+
+    .btn-print{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:6px;
+        font-size:14px;
+    }
+
+    .btn-print span{
+        display:none;      /* يخلي غير أيقونة فالتيليفون */
+    }
+
+    .btn-print i{
+        font-size:18px;
+    }
+
+    .btn-print{
+        width:54px;
+        flex:none;
+    }
+
+    .btn-cancel{
+        flex:1;
+    }
+}
