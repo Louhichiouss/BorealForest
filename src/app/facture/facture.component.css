@@ -1,4 +1,3 @@
-
 :host {
   --navy:#0A2342; --teal:#1A8FA0; --ice:#E8F4F8; --grey-bg:#F0F4F7;
   --grey-border:#D4E2EA; --muted:#6B8299; --danger:#DC2626; --sidebar-w:260px;
@@ -238,180 +237,275 @@ a{text-decoration:none}
   color:rgba(255,255,255,.65);
   margin-top:3px;
 }
-
+.company-name{
+  font-weight:700 !important;
+  font-size:10px !important;
+}
 /* ================= MOBILE ================= */
 /* ================= PHONE RESPONSIVE ================= */
-.mobile-menu-btn,
-.mobile-overlay{
-  display:none;
-}
+/* ================= PHONE ================= */
 
-@media (max-width: 768px){
+/* ================= PHONE FINAL ================= */
 
-  .mobile-menu-btn{
-    display:flex;
-    position:fixed;
-    top:12px;
-    left:12px;
-    z-index:4000;
-    width:42px;
-    height:42px;
-    border:none;
-    border-radius:10px;
-    background:#0A2342;
-    color:white;
-    font-size:23px;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    box-shadow:0 6px 18px rgba(0,0,0,.25);
-  }
+@media (max-width:768px){
 
-  .mobile-overlay{
-    display:block;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.45);
-    z-index:2500;
-  }
-
-  .bf-sidebar{
-    width:260px;
-    transform:translateX(-100%);
-    transition:.3s ease;
-    z-index:3000;
-  }
-
-  .bf-sidebar.mobile-open{
-    transform:translateX(0);
-  }
-
-  .bf-main{
-    margin-left:0 !important;
-    width:100% !important;
-    min-width:0 !important;
-  }
-
-  .bf-topbar{
-    padding-left:62px;
-    padding-right:12px;
-  }
-
-  .bf-topbar-title{
-    font-size:14px;
-  }
-
-  .bf-topbar-right strong{
-    display:none;
-  }
-
-  .bf-date-pill{
-    font-size:10px;
-    padding:4px 8px;
-  }
-
-  .bf-page-content{
-    padding:14px;
-  }
-
-  .bf-page-head{
-    display:flex;
-    flex-direction:column;
-    align-items:stretch;
-    gap:12px;
-  }
-
-  .bf-page-head h1{
-    font-size:21px;
-  }
-
-  .bf-header-actions{
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    align-items:stretch;
-    gap:10px;
-  }
-
-  .bf-search-box,
-  .bf-select,
-  .bf-btn-primary{
-    width:100%;
-    min-width:0;
-  }
-
-  .bf-table-card{
-    width:100%;
-    overflow:hidden;
-  }
-
-  .bf-table-scroll{
-    width:100%;
-    max-height:520px;
-    overflow-x:auto !important;
-    overflow-y:auto !important;
-    -webkit-overflow-scrolling:touch;
-  }
-
-  .bf-data-table{
-    min-width:1050px;
-  }
-
-  .bf-form-grid{
-    grid-template-columns:1fr;
-  }
-
-  .bf-modal{
-    width:95vw;
-  }
-
-  .invoice-preview-modal{
-    width:95vw;
-  }
-
-  .invoice-paper{
-    overflow-x:auto;
-  }
-}
-
-/* FACTURE MOBILE MENU HORIZONTAL LIKE PATIENT */
-@media(max-width:768px){
-
-  .mobile-menu-btn,
-  .mobile-overlay{
-    display:none !important;
+  .bf-app-shell{
+    display:block !important;
+    min-height:100vh !important;
+    overflow-x:hidden !important;
   }
 
   .bf-sidebar{
     position:relative !important;
+    inset:auto !important;
     width:100% !important;
     height:auto !important;
     min-height:auto !important;
-    inset:auto !important;
     transform:none !important;
-  }
-
-  .bf-sidebar-nav{
-    flex-direction:row !important;
-    overflow-x:auto !important;
-    overflow-y:hidden !important;
-    white-space:nowrap !important;
-  }
-
-  .bf-nav-item{
-    min-width:max-content !important;
   }
 
   .bf-sidebar-footer{
     display:none !important;
   }
 
+  .bf-sidebar-nav{
+    display:flex !important;
+    flex-direction:row !important;
+    gap:8px !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    white-space:nowrap !important;
+    padding:10px !important;
+  }
+
+  .bf-nav-item{
+    min-width:max-content !important;
+    padding:10px 12px !important;
+    font-size:12px !important;
+  }
+
   .bf-main{
     margin-left:0 !important;
     width:100% !important;
   }
 
   .bf-topbar{
+    height:auto !important;
+    padding:10px 12px !important;
+  }
+
+  .bf-page-content{
+    padding:12px !important;
+  }
+
+  .bf-page-head{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    gap:12px !important;
+  }
+
+  .bf-header-actions{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:10px !important;
+  }
+
+  .bf-search-box,
+  .bf-select,
+  .bf-btn-primary{
+    width:100% !important;
+    min-width:0 !important;
+  }
+
+  .bf-table-card{
+    width:100% !important;
+    overflow:hidden !important;
+  }
+
+  .bf-table-scroll{
+    width:100% !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    max-height:none !important;
+    -webkit-overflow-scrolling:touch !important;
+  }
+
+  .bf-data-table{
+    display:table !important;
+    width:1050px !important;
+    min-width:1050px !important;
+  }
+
+  .bf-data-table thead{
+    display:table-header-group !important;
+  }
+
+  .bf-data-table tbody{
+    display:table-row-group !important;
+  }
+
+  .bf-data-table tr{
+    display:table-row !important;
+  }
+
+  .bf-data-table th,
+  .bf-data-table td{
+    display:table-cell !important;
+    white-space:nowrap !important;
+    font-size:12px !important;
+    padding:10px !important;
+  }
+
+  .bf-modal{
+    width:96vw !important;
+    max-height:90vh !important;
+  }
+
+  .bf-form-grid{
+    grid-template-columns:1fr !important;
+  }
+}
+.bf-form-grid{
+  grid-template-columns:1fr !important;
+}
+/* ================= MOBILE MODALS ================= */
+
+@media (max-width:768px){
+
+  .invoice-preview-modal{
+      width:100vw !important;
+      height:100vh !important;
+      max-width:none !important;
+      max-height:none !important;
+      border-radius:0 !important;
+      margin:0 !important;
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+  }
+
+  .invoice-preview-head{
+      flex-shrink:0;
+      padding:14px 16px;
+  }
+
+  .invoice-paper{
+      flex:1;
+      overflow:auto;
+      zoom:1 !important;
+      transform:none !important;
+      padding:18px !important;
+  }
+
+  .invoice-actions{
+      flex-shrink:0;
+      display:flex;
+      gap:10px;
+      padding:14px 16px;
+      border-top:1px solid #ddd;
+      background:#fff;
+  }
+
+  .invoice-actions .bf-btn{
+      flex:1;
+      height:46px;
+      font-size:14px;
+  }
+
+
+
+  /* ================= PREVIEW ================= */
+
+  .invoice-preview-modal{
+    width:80vw !important;
+    max-width:98vw !important;
+    max-height:94vh !important;
+    border-radius:16px !important;
+  }
+
+  .invoice-paper{
+    zoom:.58 !important;
+    transform-origin:top left;
+  }
+
+}
+
+/* ================= MOBILE MODALS FIX ================= */
+
+@media (max-width:768px){
+
+  .bf-modal-backdrop{
+    padding:10px !important;
+    align-items:flex-start !important;
+    justify-items:center !important;
+    overflow-y:auto !important;
+  }
+
+  /* Ajout / Modifier */
+  .bf-modal{
+    width:94vw !important;
+    max-width:420px !important;
+    max-height:92vh !important;
+    margin:18px auto !important;
+    border-radius:14px !important;
+    overflow-y:auto !important;
+  }
+
+  .bf-form-grid{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:12px !important;
+    padding:16px !important;
+  }
+
+  .bf-form-grid label,
+  .bf-form-grid .full{
+    width:100% !important;
+    grid-column:1 / -1 !important;
+  }
+
+  .bf-form-grid input,
+  .bf-form-grid select{
+    width:100% !important;
+    height:42px !important;
+  }
+
+  .bf-modal-actions{
+    display:flex !important;
+    gap:10px !important;
+    padding:14px 16px !important;
+    position:sticky !important;
+    bottom:0 !important;
+    background:white !important;
+  }
+
+  .bf-modal-actions .bf-btn{
+    flex:1 !important;
+    font-size:12px !important;
+  }
+
+  /* View facture */
+  .invoice-preview-modal{
+    width:94vw !important;
+    max-width:420px !important;
+    max-height:92vh !important;
+    margin:18px auto !important;
+    border-radius:14px !important;
+    overflow-y:auto !important;
+  }
+
+  .invoice-paper{
+    width:190mm !important;
+    zoom:.52 !important;
+    transform:none !important;
+    transform-origin:top left !important;
+  }
+
+  .invoice-actions{
+    position:sticky !important;
+    bottom:0 !important;
+    background:white !important;
     padding:12px !important;
   }
 }
