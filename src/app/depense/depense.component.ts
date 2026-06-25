@@ -1,247 +1,224 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
-import { ServiceService } from '../model/service.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ServiceService } from '../model/service.service';
+import html2pdf from 'html2pdf.js';
+type InvoiceStatus = 'Paid' | 'Unpaid' | 'Partial';
 
-type PeriodFilter = 'today' | 'month' | 'year' | 'all' | 'custom';
+interface PatientInvoice {
+  id: number;
+  invoiceNumber: string;
+  patientId: number;
+  patientName: string;
+  center: string;
+  date: string;
+  sessions: number;
+  unitPriceTtc: number;
+  total: number;
+  
+  status: InvoiceStatus;
+}
 
 @Component({
-  selector: 'app-depense',
-  templateUrl: './depense.component.html',
-  styleUrls: ['./depense.component.css']
+  selector: 'app-facture',
+  templateUrl: './facture.component.html',
+  styleUrls: ['./facture.component.css']
 })
-export class DepenseComponent implements OnInit {
-  depenses: any[] = [];
-  filteredDepenses: any[] = [];
-
-  logo = '';
-photo = '';
-
-  am = 0;
+export class FactureComponent implements OnInit {
   searchText = '';
-  centerFilter = '';
-  typeFilter = '';
-
-  selectedPeriod: PeriodFilter = 'month';
-  showCustomDates = false;
-  customStart = '';
-  customEnd = '';
-
+  statusFilter = '';
+logo = '';
+photo = '';
   showFormModal = false;
   showDetailsModal = false;
   isEditMode = false;
-  selectedDepense: any = null;
 
-  selectedDepenseFile: File | null = null;
+  selectedInvoice: PatientInvoice | null = null;
 
-  depenseForm = this.fb.group({
+  invoices: PatientInvoice[] = [];
+
+  patientSearch = '';
+  patientResults: any[] = [];
+  selectedPatient: any = null;
+
+  invoiceForm = this.fb.group({
     id: [null],
-    depense: ['', Validators.required],
-    description: ['', Validators.required],
+    invoiceNumber: ['', Validators.required],
     date: ['', Validators.required],
-    jour: ['', Validators.required],
-    region: ['', Validators.required],
-    type: ['Autre'],
-    statut: ['Payé'],
-    scan: [''],
-    fournisseur: [''],
-    numero_facture: ['']
+    patientId: [null, Validators.required],
+    patientName: ['', Validators.required],
+    center: ['', Validators.required],
+    sessions: ['', Validators.required],
+    unitPriceTtc: ['', Validators.required],
+    status: ['Paid', Validators.required]
   });
 
   constructor(
     private appcomponent: AppComponent,
-    private service: ServiceService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private service: ServiceService
   ) {}
 
   ngOnInit(): void {
-     this.appcomponent.hideHeaderAndFooter = true;
+   this.appcomponent.hideHeaderAndFooter = true;
 
   this.loadAdmin();
 
-  this.loadDepenses();
-  this.loadNotifications();
-
-  this.selectedPeriod = 'month';
+  this.loadInvoices();
   }
 
-  loadNotifications(): void {
-    this.service.getpinterface().subscribe((result: any) => {
-      const rows = result?.data || result || [];
-      this.am = rows.length || 0;
+  loadInvoices(): void {
+    this.service.getFacturePatient().subscribe((res: any) => {
+      const rows = res?.data || [];
+
+      this.invoices = rows.map((f: any) => ({
+        id: Number(f.id),
+        invoiceNumber: `Facture${String(f.date_facture || '').slice(0, 4)}-${String(f.id).padStart(4, '0')}`,
+        patientId: Number(f.patient_id),
+        patientName: f.patient_nom || '—',
+        center: f.centre || 'Tunis',
+        date: f.date_facture || '',
+        sessions: Number(f.nb_seances || 0),
+        unitPriceTtc: Number(f.prix_unitaire || 0),
+        total: Number(f.total || 0),
+        status: f.statut || 'Paid'
+      }));
     });
   }
 
-  loadDepenses(): void {
-    this.service.getdepense().subscribe((result: any) => {
-      const rows = result?.data || result || [];
-      this.depenses = rows.map((d: any) => this.normalizeDepense(d));
-      this.applyFilters();
-    });
-  }
-centers = ['Tunis', 'Sousse', 'Sfax'];
+  searchPatients(): void {
+    const q = this.patientSearch.trim();
 
-expenseTypes = [
-  { name: 'STEG', color: '#7C3AED' },
-  { name: 'SONEDE', color: '#0284C7' },
-  { name: 'Marketing', color: '#16A34A' },
-  { name: 'Car fuel / Transport', color: '#D97706' },
-  { name: 'Autre', color: '#DC2626' }
-];
-
-donutGradient(): string {
-  const total = this.totalDepenses || 1;
-  let start = 0;
-
-  const parts = this.expenseTypes.map(t => {
-    const value = this.totalByType(t.name);
-    const percent = (value / total) * 100;
-    const end = start + percent;
-    const segment = `${t.color} ${start}% ${end}%`;
-    start = end;
-    return segment;
-  });
-
-  return `conic-gradient(${parts.join(', ')})`;
-}
-  normalizeDepense(d: any): any {
-    const amount = this.toNumber(d.depense ?? d.amount ?? 0);
-    const description = d.description || '—';
-
-    return {
-      ...d,
-      id: d.id,
-      num: d.numero_facture || `EXP-${d.date ? String(d.date).slice(0, 4) : new Date().getFullYear()}-${String(d.id || '').padStart(3, '0')}`,
-      amount,
-      depense: amount,
-      description,
-      fournisseur: d.fournisseur || description,
-      date: d.date || '',
-      jour: d.jour || '',
-      region: d.region || 'Tunis',
-      type: d.type_depense || this.guessType(description),
-      statut: d.statut || 'Payé',
-      scan: d.fichier || '—'
-    };
-  }
-
-  onDepenseFileSelected(event: any): void {
-    const file = event.target.files[0];
-    if (file) this.selectedDepenseFile = file;
-  }
-
-  saveDepense(): void {
-    if (this.depenseForm.invalid) {
-      alert('Veuillez remplir tous les champs obligatoires.');
+    if (q.length < 2) {
+      this.patientResults = [];
       return;
     }
 
-    const saveData = (filePath: string | null = null) => {
-      const payload: any = {
-        id: this.depenseForm.value.id,
-        depense: this.depenseForm.value.depense,
-        description: this.depenseForm.value.description,
-        date: this.depenseForm.value.date,
-        jour: this.depenseForm.value.jour,
-        region: this.depenseForm.value.region,
-        fournisseur: this.depenseForm.value.fournisseur,
-        numero_facture: this.depenseForm.value.numero_facture,
-        type_depense: this.depenseForm.value.type,
-        statut: this.depenseForm.value.statut,
-        fichier: filePath || this.depenseForm.value.scan
-      };
+    this.service.searchPatient(q).subscribe((res: any) => {
+      this.patientResults = res?.data || [];
+    });
+  }
 
-      const request = this.isEditMode
-        ? this.service.editdepense(payload)
-        : this.service.ajouterdepense(payload);
+  selectPatient(patient: any): void {
+    this.selectedPatient = patient;
+    this.patientSearch = `${patient.P_nom} ${patient.P_prenom}`;
+    this.patientResults = [];
 
-      request.subscribe({
-        next: () => {
-          alert(this.isEditMode ? 'Dépense modifiée avec succès.' : 'Dépense ajoutée avec succès.');
-          this.selectedDepenseFile = null;
-          this.closeFormModal();
-          this.loadDepenses();
-        },
-        error: () => alert('Erreur sauvegarde dépense.')
-      });
-    };
+    this.invoiceForm.patchValue({
+      patientId: patient.P_id,
+      patientName: `${patient.P_nom} ${patient.P_prenom}`,
+      center: patient.P_region
+    });
+  }
 
-    if (this.selectedDepenseFile) {
-      this.service.uploadDepenseFile(this.selectedDepenseFile).subscribe((res: any) => {
-        if (res.success) saveData(res.path);
-        else alert(res.message || 'Upload failed');
-      });
-    } else {
-      saveData();
-    }
+  get filteredInvoices(): PatientInvoice[] {
+    const q = this.searchText.toLowerCase().trim();
+
+    return this.invoices.filter(inv => {
+      const okSearch =
+        !q ||
+        inv.invoiceNumber.toLowerCase().includes(q) ||
+        inv.patientName.toLowerCase().includes(q) ||
+        inv.center.toLowerCase().includes(q) ||
+        inv.date.includes(q);
+
+      const okStatus = !this.statusFilter || inv.status === this.statusFilter;
+
+      return okSearch && okStatus;
+    });
   }
 
   openAddModal(): void {
     this.isEditMode = false;
-    this.selectedDepense = null;
-    this.selectedDepenseFile = null;
+    this.selectedInvoice = null;
+    this.selectedPatient = null;
+    this.patientSearch = '';
+    this.patientResults = [];
 
-    const today = new Date().toISOString().split('T')[0];
-
-    this.depenseForm.reset({
+    this.invoiceForm.reset({
       id: null,
-      depense: '',
-      description: '',
-      date: today,
-      jour: this.getFrenchDay(today),
-      region: 'Tunis',
-      type: 'Autre',
-      statut: 'Payé',
-      scan: '',
-      fournisseur: '',
-      numero_facture: ''
+      invoiceNumber: this.nextInvoiceNumber(),
+      date: new Date().toISOString().split('T')[0],
+      patientId: null,
+      patientName: '',
+      center: '',
+      sessions: '',
+      unitPriceTtc: 115 as any,
+      status: 'Paid'
     });
 
     this.showFormModal = true;
   }
 
-  openEditModal(depense: any): void {
+  openEditModal(invoice: PatientInvoice): void {
     this.isEditMode = true;
-    this.selectedDepense = depense;
-    this.selectedDepenseFile = null;
+    this.selectedInvoice = invoice;
+    this.patientSearch = invoice.patientName;
+    this.patientResults = [];
 
-    this.depenseForm.patchValue({
-      id: depense.id,
-      depense: depense.amount,
-      description: depense.description,
-      date: depense.date,
-      jour: depense.jour,
-      region: depense.region,
-      type: depense.type,
-      statut: depense.statut,
-      scan: depense.scan,
-      fournisseur: depense.fournisseur,
-      numero_facture: depense.num
+    this.invoiceForm.patchValue({
+      id: invoice.id as any,
+      invoiceNumber: invoice.invoiceNumber,
+      date: invoice.date,
+      patientId: invoice.patientId as any,
+      patientName: invoice.patientName,
+      center: invoice.center,
+      sessions: invoice.sessions as any,
+      unitPriceTtc: invoice.unitPriceTtc as any,
+      status: invoice.status
     });
 
     this.showFormModal = true;
   }
 
-  deleteDepense(depense: any): void {
-    if (!confirm('Voulez-vous vraiment supprimer cette dépense ?')) return;
+  saveInvoice(): void {
+    if (this.invoiceForm.invalid) {
+      alert('Veuillez choisir un patient et remplir tous les champs.');
+      return;
+    }
 
-    this.service.Deletedepense(depense.id).subscribe({
+    const v: any = this.invoiceForm.value;
+    const total = Number(v.sessions || 0) * Number(v.unitPriceTtc || 0);
+
+    const payload: any = {
+      id: v.id,
+      patient_id: Number(v.patientId),
+      patient_nom: v.patientName,
+      centre: v.center,
+      nb_seances: Number(v.sessions),
+      prix_unitaire: Number(v.unitPriceTtc),
+      total: total,
+      statut: v.status,
+      date_facture: v.date
+    };
+
+    const request = this.isEditMode
+      ? this.service.updateFacturePatient(payload)
+      : this.service.addFacturePatient(payload);
+
+    request.subscribe({
       next: () => {
-        this.depenses = this.depenses.filter((d: any) => d.id !== depense.id);
-        this.applyFilters();
+        alert(this.isEditMode ? 'Facture modifiée avec succès.' : 'Facture ajoutée avec succès.');
+        this.closeFormModal();
+        this.loadInvoices();
       },
-      error: () => alert('Suppression échouée.')
+      error: () => alert('Erreur sauvegarde facture.')
     });
   }
 
-  downloadScan(dep: any): void {
-    if (!dep.scan || dep.scan === '—') return;
-    const filename = String(dep.scan).split('/').pop();
-    window.open('https://server.oxyboreal.com/api/downloadDepenseFile.php?file=' + filename, '_blank');
+  deleteInvoice(invoice: PatientInvoice): void {
+    if (!confirm('Voulez-vous vraiment supprimer cette facture ?')) return;
+
+    this.service.deleteFacturePatient(invoice.id).subscribe({
+      next: () => {
+        this.invoices = this.invoices.filter(i => i.id !== invoice.id);
+      },
+      error: () => alert('Erreur suppression facture.')
+    });
   }
 
-  openDetailsModal(depense: any): void {
-    this.selectedDepense = depense;
+  openDetailsModal(invoice: PatientInvoice): void {
+    this.selectedInvoice = invoice;
     this.showDetailsModal = true;
   }
 
@@ -253,81 +230,64 @@ donutGradient(): string {
     this.showDetailsModal = false;
   }
 
-  onDateChange(): void {
-    const date = this.depenseForm.value.date;
-    if (date) this.depenseForm.patchValue({ jour: this.getFrenchDay(date) });
+  nextInvoiceNumber(): string {
+    const year = new Date().getFullYear();
+    return `Facture${year}-${String(this.invoices.length + 1).padStart(4, '0')}`;
   }
 
-  applyFilters(): void {
-    const q = (this.searchText || '').toLowerCase().trim();
-
-    this.filteredDepenses = this.depenses.filter((d: any) => {
-      const matchSearch =
-        !q ||
-        String(d.num || '').toLowerCase().includes(q) ||
-        String(d.amount || '').toLowerCase().includes(q) ||
-        String(d.region || '').toLowerCase().includes(q) ||
-        String(d.description || '').toLowerCase().includes(q) ||
-        String(d.type || '').toLowerCase().includes(q) ||
-        String(d.date || '').toLowerCase().includes(q);
-
-      return matchSearch &&
-        (!this.centerFilter || d.region === this.centerFilter) &&
-        (!this.typeFilter || d.type === this.typeFilter) &&
-        this.isInPeriod(d.date);
-    });
+  htFromTtc(ttc: number): number {
+    return Number(ttc || 0) / 1.19;
   }
 
-  setPeriod(period: PeriodFilter): void {
-    this.selectedPeriod = period;
-    if (period !== 'custom') this.showCustomDates = false;
-    this.applyFilters();
+  tvaFromTtc(ttc: number): number {
+    return Number(ttc || 0) - this.htFromTtc(ttc);
   }
 
-  toggleCustomFilter(): void {
-    this.selectedPeriod = 'custom';
-    this.showCustomDates = !this.showCustomDates;
-    this.applyFilters();
+  totalTtc(invoice: PatientInvoice): number {
+    return Number(invoice.sessions || 0) * Number(invoice.unitPriceTtc || 0);
   }
 
-  applyCustomFilter(): void {
-    this.selectedPeriod = 'custom';
-    this.showCustomDates = false;
-    this.applyFilters();
+  totalHt(invoice: PatientInvoice): number {
+    return this.htFromTtc(this.totalTtc(invoice));
   }
 
-  isInPeriod(dateStr: string): boolean {
-    if (!dateStr || this.selectedPeriod === 'all') return true;
-    const d = new Date(dateStr);
-    const today = new Date();
-    if (Number.isNaN(d.getTime())) return true;
-
-    if (this.selectedPeriod === 'today') return d.toISOString().split('T')[0] === today.toISOString().split('T')[0];
-    if (this.selectedPeriod === 'month') return d.getFullYear() === today.getFullYear() && d.getMonth() === today.getMonth();
-    if (this.selectedPeriod === 'year') return d.getFullYear() === today.getFullYear();
-    if (this.selectedPeriod === 'custom') {
-      if (!this.customStart || !this.customEnd) return true;
-      return d >= new Date(this.customStart) && d <= new Date(this.customEnd);
-    }
-    return true;
+  totalTva(invoice: PatientInvoice): number {
+    return this.tvaFromTtc(this.totalTtc(invoice));
   }
 
-  guessType(text: string): string {
-    const t = String(text || '').toLowerCase();
-    if (t.includes('steg')) return 'STEG';
-    if (t.includes('sonede')) return 'SONEDE';
-    if (t.includes('marketing') || t.includes('pub') || t.includes('ads')) return 'Marketing';
-    if (t.includes('fuel') || t.includes('transport') || t.includes('essence')) return 'Car fuel / Transport';
-    return 'Autre';
+  unitPriceHt(invoice: PatientInvoice): number {
+    return this.htFromTtc(invoice.unitPriceTtc);
   }
 
-  toNumber(value: any): number {
-    const n = Number(String(value ?? 0).replace(',', '.').replace(/[^\d.-]/g, ''));
-    return Number.isFinite(n) ? n : 0;
+  formTotalTtc(): number {
+    return Number(this.invoiceForm.value.sessions || 0) * Number(this.invoiceForm.value.unitPriceTtc || 0);
+  }
+
+  formTotalHt(): number {
+    return this.htFromTtc(this.formTotalTtc());
+  }
+
+  formTotalTva(): number {
+    return this.tvaFromTtc(this.formTotalTtc());
   }
 
   formatMoney(value: any): string {
-    return this.toNumber(value).toFixed(3);
+    return Number(value || 0).toFixed(2);
+  }
+
+  getPatientName(patientId: number): string {
+    const inv = this.invoices.find(i => i.patientId === Number(patientId));
+    return inv?.patientName || this.invoiceForm.value.patientName || '—';
+  }
+
+  getPatientPhone(patientId: number): string {
+    return this.selectedPatient?.P_tel || '+216 56 811 602';
+  }
+
+  getCenterAddress(center: string): string {
+    if (center === 'Sfax') return 'Rue Ahmed Aloulou, Immeuble Ibn Sina, Tunisie';
+    if (center === 'Sousse') return 'En face Clinique Le Yoser, Sousse';
+    return '31 Alain Savary, en face club de tennis, au-dessus Banque Zitouna, Tunis';
   }
 
   formatHeaderDate(): string {
@@ -339,117 +299,232 @@ donutGradient(): string {
     });
   }
 
-  getFrenchDay(dateValue: string): string {
-    const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
-    const d = new Date(dateValue);
-    return Number.isNaN(d.getTime()) ? '' : days[d.getDay()];
+  getCenterBadgeClass(center: string): string {
+    return 'badge-' + String(center || 'tunis').toLowerCase();
   }
 
-  totalByCenter(center: string): number {
-    return this.filteredDepenses.filter((d: any) => d.region === center).reduce((sum, d) => sum + this.toNumber(d.amount), 0);
+  getStatusClass(status: string): string {
+    return 'status-' + String(status || '').toLowerCase();
   }
 
-  get totalDepenses(): number {
-    return this.filteredDepenses.reduce((sum, d) => sum + this.toNumber(d.amount), 0);
+printInvoice(): void {
+  const content = document.getElementById('invoice-print-area');
+  if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    this.downloadPdf();
+    return;
+  }
+  if (!content) {
+    alert('Facture introuvable');
+    return;
   }
 
-  totalByType(type: string): number {
-    return this.filteredDepenses.filter((d: any) => d.type === type).reduce((sum, d) => sum + this.toNumber(d.amount), 0);
-  }
+  const oldFrame = document.getElementById('invoice-print-frame');
+  if (oldFrame) oldFrame.remove();
 
-centerBarHeight(center: string): number {
-  const value = this.totalByCenter(center);
+  const iframe = document.createElement('iframe');
+  iframe.id = 'invoice-print-frame';
+  iframe.style.position = 'fixed';
+  iframe.style.right = '0';
+  iframe.style.bottom = '0';
+  iframe.style.width = '0';
+  iframe.style.height = '0';
+  iframe.style.border = '0';
 
-  const max = Math.max(
-    this.totalByCenter('Tunis'),
-    this.totalByCenter('Sousse'),
-    this.totalByCenter('Sfax'),
-    1
+  document.body.appendChild(iframe);
+
+  const doc = iframe.contentWindow?.document;
+  if (!doc) return;
+
+  let html = content.outerHTML;
+
+  html = html.replace(
+    /src="assets\/img\/logo2\.jpg"/g,
+    `src="${window.location.origin}/assets/img/logo2.jpg"`
   );
 
-  return value <= 0 ? 4 : Math.max(10, (value / max) * 220);
-}
-  getCenterClass(region: string): string {
-    return 'badge-' + String(region || 'tunis').toLowerCase();
-  }
+  doc.open();
+  doc.write(`
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Facture</title>
 
-  getTypeClass(type: string): string {
-    return 'type-' + String(type || 'autre').toLowerCase().replaceAll(' ', '-').replaceAll('/', '-');
-  }
+<style>
+${this.getInvoicePrintCss()}
+</style>
+</head>
 
-  getStatusClass(statut: string): string {
-  const s = String(statut || 'Payé').toLowerCase();
+<body>
+${html}
+</body>
+</html>
+`);
+  doc.close();
 
-  if (s === 'impayé' || s === 'impaye' || s === 'unpaid') {
-    return 'status-unpaid';
-  }
-
-  if (s === 'partial' || s === 'partiel' || s === 'partiellement payé') {
-    return 'status-partial';
-  }
-
-  return 'status-paid';
-}
-
-totalByCenterAndStatus(center: string, statut: string): number {
-  return this.filteredDepenses
-    .filter((d: any) =>
-      d.region === center &&
-      String(d.statut || '').trim() === statut
-    )
-    .reduce((sum, d) => sum + this.toNumber(d.amount), 0);
-}
-chartTooltip = {
-  visible: false,
-  x: 0,
-  y: 0,
-  month: '',
-  center: '',
-  amount: 0,
-  color: ''
-};
-
-showChartTooltip(event: MouseEvent, month: string, center: string, amount: number, color: string): void {
-  this.chartTooltip = {
-    visible: true,
-    x: event.clientX + 12,
-    y: event.clientY - 55,
-    month,
-    center,
-    amount,
-    color
-  };
+  setTimeout(() => {
+    iframe.contentWindow?.focus();
+    iframe.contentWindow?.print();
+  }, 800);
 }
 
-hideChartTooltip(): void {
-  this.chartTooltip.visible = false;
+getInvoicePrintCss(): string {
+  return `
+*{
+  box-sizing:border-box !important;
 }
 
-monthlyExpense(center: string, monthIndex: number): number {
-  return this.filteredDepenses
-    .filter((d: any) => {
-      const date = new Date(d.date);
-      return d.region === center && date.getMonth() === monthIndex;
-    })
-    .reduce((sum: number, d: any) => sum + this.toNumber(d.amount), 0);
+@page{
+  size:A4 portrait;
+  margin:6mm;
 }
-months = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'];
 
-monthlyExpenseHeight(center: string, monthIndex: number): number {
-
-  const value = this.monthlyExpense(center, monthIndex);
-
-  const max = Math.max(
-    ...this.months.flatMap((m, i) => [
-      this.monthlyExpense('Tunis', i),
-      this.monthlyExpense('Sousse', i),
-      this.monthlyExpense('Sfax', i)
-    ]),
-    1
-  );
-
-  return value <= 0 ? 4 : Math.max(8, (value / max) * 220);
+html,body{
+  margin:0 !important;
+  padding:0 !important;
+  background:#fff !important;
+  font-family:'Segoe UI', Arial, sans-serif !important;
+  color:#111 !important;
+  -webkit-print-color-adjust:exact !important;
+  print-color-adjust:exact !important;
 }
+
+.invoice-paper{
+  width:190mm !important;
+  min-height:270mm !important;
+  padding:10mm 14mm !important;
+  margin:0 auto !important;
+  background:#fff !important;
+  font-size:10px !important;
+}
+
+.invoice-header-model{
+  display:flex !important;
+  justify-content:space-between !important;
+  align-items:flex-start !important;
+}
+
+.invoice-header-model h1{
+  font-size:26px !important;
+  color:#0A2A66 !important;
+  margin:0 !important;
+  font-weight:400 !important;
+}
+
+.invoice-logo-round{
+  width:95px !important;
+  height:70px !important;
+  max-width:95px !important;
+  max-height:70px !important;
+  flex:0 0 95px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+  background:transparent !important;
+  border-radius:0 !important;
+}
+
+.invoice-logo-round img{
+  width:95px !important;
+  height:70px !important;
+  max-width:95px !important;
+  max-height:70px !important;
+  object-fit:contain !important;
+  display:block !important;
+}
+
+.invoice-blue-line{
+  height:2px !important;
+  background:#2f6fd6 !important;
+  margin:10px 0 18px !important;
+}
+
+.invoice-paper h3{
+  font-size:26px !important;
+  margin:0 0 12px !important;
+  font-weight:400 !important;
+}
+
+.invoice-paper p{
+  margin:4px 0 !important;
+}
+
+.invoice-info-box{
+  display:grid !important;
+  grid-template-columns:1.25fr 1fr !important;
+  gap:55px !important;
+  margin-top:28px !important;
+  margin-bottom:32px !important;
+}
+
+.invoice-grey-box{
+  background:#f1f1f1 !important;
+  padding:12px !important;
+}
+
+.invoice-info-box h4{
+  font-size:22px !important;
+  margin:0 0 10px !important;
+  font-family: "Segoe UI", Arial, sans-serif !important;
+  font-weight:700 !important;
+  color:#111 !important;
+}
+
+.invoice-blue-line.large{
+  margin-top:32px !important;
+}
+
+.invoice-real-table{
+  width:100% !important;
+  border-collapse:collapse !important;
+  table-layout:auto !important;   /* بدل fixed */
+  margin-top:10px !important;
+  font-size:10px !important;
+}
+
+.invoice-real-table th,
+.invoice-real-table td{
+  border:1px solid #111 !important;
+  padding:7px 6px !important;
+  text-align:left !important;
+  vertical-align:middle !important;
+
+  word-break:normal !important;
+  overflow-wrap:normal !important;
+  white-space:normal !important;
+}
+
+.invoice-totals-model{
+  margin-top:18px !important;
+  margin-left:10px !important;
+  line-height:1.6 !important;
+}
+.invoice-real-table th:first-child,
+.invoice-real-table td:first-child{
+  width:34% !important;
+  white-space:nowrap !important;
+}
+.signature{
+  text-align:center !important;
+  font-weight:800 !important;
+  margin:32px 0 !important;
+}
+
+.invoice-footer-model{
+  border-top:2px solid #2f6fd6 !important;
+  padding-top:14px !important;
+  display:flex !important;
+  justify-content:space-between !important;
+  font-size:9px !important;
+}
+
+.invoice-bottom-blue{
+  display:none !important;
+}
+`;
+}
+
 loadAdmin(): void {
   this.service.getSignladmin(1).subscribe({
     next: (res: any) => {
@@ -465,4 +540,47 @@ loadAdmin(): void {
     error: (err) => console.log(err)
   });
 }
+mobileMenuOpen = false;
+
+toggleMobileMenu(): void {
+  this.mobileMenuOpen = !this.mobileMenuOpen;
+}
+
+closeMobileMenu(): void {
+  this.mobileMenuOpen = false;
+}
+downloadPdf(): void {
+
+  const element = document.getElementById('invoice-print-area');
+
+  if (!element) {
+    return;
+  }
+
+  const opt = {
+    margin: 5,
+    filename: 'Facture.pdf',
+    image: {
+      type: 'jpeg',
+      quality: 1
+    },
+    html2canvas: {
+      scale: 2,
+      useCORS: true
+    },
+    jsPDF: {
+      unit: 'mm',
+      format: 'a4',
+      orientation: 'portrait'
+    }
+  };
+
+  html2pdf()
+    .set(opt)
+    .from(element)
+    .save();
+}
+
+
+
 }
