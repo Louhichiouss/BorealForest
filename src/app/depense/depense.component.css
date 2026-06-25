@@ -1298,3 +1298,155 @@ a {
 .bf-admin-avatar img{
   border-radius:50%;
 }
+
+
+/* ================= MOBILE - DEPENSES ================= */
+
+@media (max-width:768px){
+
+  .bf-page-content{
+    padding:12px !important;
+  }
+
+  /* Cards */
+  .centers-grid,
+  .charts-grid{
+    grid-template-columns:1fr !important;
+    gap:12px !important;
+  }
+
+  .center-card{
+    padding:14px !important;
+  }
+
+  .center-card h3{
+    font-size:20px !important;
+  }
+
+  /* Header */
+  .bf-page-head{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .bf-header-actions{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    gap:10px;
+  }
+
+  .bf-search-box,
+  .bf-select,
+  .bf-btn-primary{
+    width:100% !important;
+  }
+
+  /* TABLE */
+  .bf-table-card{
+    overflow:hidden;
+    border-radius:12px;
+  }
+
+  .bf-table-scroll{
+    overflow-x:auto !important;
+    overflow-y:auto !important;
+    max-height:420px !important;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .bf-data-table{
+    width:1200px !important;
+    min-width:1200px !important;
+    display:table !important;
+  }
+
+  .bf-data-table thead{
+    display:table-header-group !important;
+  }
+
+  .bf-data-table tbody{
+    display:table-row-group !important;
+  }
+
+  .bf-data-table tr{
+    display:table-row !important;
+  }
+
+  .bf-data-table th,
+  .bf-data-table td{
+    display:table-cell !important;
+    white-space:nowrap !important;
+    font-size:12px !important;
+    padding:10px !important;
+  }
+
+  /* Charts */
+  .mini-bar-chart{
+    overflow-x:auto;
+    padding:18px;
+  }
+
+  .expense-chart{
+    overflow-x:auto;
+  }
+
+  .expense-bars{
+    min-width:650px;
+  }
+
+  .donut-fake{
+    margin:auto;
+  }
+
+}
+
+@media (max-width:768px){
+
+  .bf-card{
+    padding:14px !important;
+    overflow:hidden !important;
+  }
+
+  .mini-bar-chart{
+    height:260px !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    padding:20px 10px 0 !important;
+    gap:18px !important;
+  }
+
+  .mini-bar-item{
+    min-width:42px !important;
+    height:220px !important;
+    font-size:10px !important;
+  }
+
+  .mini-bar{
+    width:26px !important;
+  }
+
+  .donut-fake{
+    width:150px !important;
+    height:150px !important;
+    margin:10px auto !important;
+  }
+
+  .donut-center{
+    width:70px !important;
+    height:70px !important;
+  }
+
+  .donut-legend{
+    margin-left:0 !important;
+    font-size:12px !important;
+    gap:8px !important;
+  }
+
+  .donut-legend span{
+    display:flex !important;
+    align-items:center !important;
+    gap:6px !important;
+  }
+}
