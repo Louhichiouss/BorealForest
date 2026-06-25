@@ -41,9 +41,13 @@ export class AdminComponent implements OnInit {
 marketingAlertsCount = 0;
   selectedPeriod: PeriodFilter = 'today';
   selectedCenter: CenterFilter = '';
-  selectedYear = new Date().getFullYear();
-  selectedMonthIndex = new Date().getMonth();
+ currentYear = new Date().getFullYear();
 
+selectedYear = this.currentYear;
+
+years: number[] = [];
+  selectedMonthIndex = new Date().getMonth();
+selectedWeekDate = this.todayISO();
   customStart = '';
   customEnd = '';
   showCustomDates = false;
@@ -60,6 +64,11 @@ marketingAlertsCount = 0;
     this.appcomponent.hideHeaderAndFooter = true;
     this.loadAdminInfo();
     this.loadAll();
+for (let year = this.currentYear; year >= 2022; year--) {
+  this.years.push(year);
+}
+
+    
   }
 
   loadAll(): void {
@@ -560,6 +569,20 @@ closeMobileMenu(): void {
   this.mobileMenuOpen = false;
 }
 
-  
+
+
+onYearChange(): void {
+  this.selectedYear = Number(this.selectedYear);
+
+  if (isNaN(this.selectedYear) || this.selectedYear < 2022) {
+    this.selectedYear = this.currentYear;
+  }
+
+  if (!this.years.includes(this.selectedYear)) {
+    this.years.unshift(this.selectedYear);
+    this.years.sort((a, b) => b - a);
+  }
 }
 
+
+}
