@@ -271,17 +271,19 @@
 
       <section class="bf-chart-row">
         <div class="bf-card bf-wide">
-          <div class="bf-card-head">
-            <h3>Revenus vs Dépenses — {{ selectedYear }}</h3>
+  <div class="bf-card-head chart-head">
 
-            <select [(ngModel)]="selectedYear">
-              <option [ngValue]="2026">2026</option>
-              <option [ngValue]="2025">2025</option>
-              <option [ngValue]="2024">2024</option>
-              <option [ngValue]="2023">2023</option>
-            </select>
-          </div>
+  <h3>Revenus vs Dépenses — {{ selectedYear }}</h3>
 
+  <input
+      class="year-input"
+      type="number"
+      min="2020"
+      max="2100"
+      [(ngModel)]="selectedYear"
+      (change)="onYearChange()">
+
+</div>
           <div class="chart-wrapper">
             <div class="chart-y-axis">
               <span>{{ formatMoney(maxMonthly()) }}</span>
@@ -388,12 +390,6 @@
     </main>
   </section>
 </div>
- 
-
- 
-
-
-
 
 
 
