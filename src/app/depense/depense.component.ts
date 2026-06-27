@@ -84,8 +84,17 @@ centers = ['Tunis', 'Sousse', 'Sfax'];
 expenseTypes = [
   { name: 'STEG', color: '#7C3AED' },
   { name: 'SONEDE', color: '#0284C7' },
+  { name: 'Loyer', color: '#2563EB' },
+  { name: 'Internet', color: '#06B6D4' },
+  { name: 'CNSS', color: '#0EA5E9' },
+  { name: 'CNAM', color: '#14B8A6' },
+  { name: 'Salaires', color: '#22C55E' },
   { name: 'Marketing', color: '#16A34A' },
-  { name: 'Car fuel / Transport', color: '#D97706' },
+  { name: 'Carburant / Transport', color: '#D97706' },
+  { name: 'Maintenance', color: '#F59E0B' },
+  { name: 'Produits de nettoyage', color: '#EC4899' },
+  { name: 'Fournitures de bureau', color: '#8B5CF6' },
+  { name: 'Alimentation', color: '#84CC16' },
   { name: 'Autre', color: '#DC2626' }
 ];
 
