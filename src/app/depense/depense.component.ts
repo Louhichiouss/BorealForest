@@ -3,6 +3,8 @@ import { AppComponent } from '../app.component';
 import { ServiceService } from '../model/service.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Chart, registerables } from 'chart.js';
+import { Router } from '@angular/router';
+import { OnDestroy } from '@angular/core';
 type PeriodFilter = 'today' | 'month' | 'year' | 'all' | 'custom';
 Chart.register(...registerables);
 @Component({
@@ -10,8 +12,8 @@ Chart.register(...registerables);
   templateUrl: './depense.component.html',
   styleUrls: ['./depense.component.css']
 })
-export class DepenseComponent implements OnInit {
-  depenses: any[] = [];
+export class DepenseComponent implements OnInit, OnDestroy {
+    depenses: any[] = [];
   filteredDepenses: any[] = [];
 typeChart: any;
   logo = '';
@@ -48,12 +50,12 @@ photo = '';
     numero_facture: ['']
   });
 
-  constructor(
-    private appcomponent: AppComponent,
-    private service: ServiceService,
-    private fb: FormBuilder
-  ) {}
-
+constructor(
+  private appcomponent: AppComponent,
+  private service: ServiceService,
+  private fb: FormBuilder,
+  private router: Router
+) {}
   ngOnInit(): void {
   this.appcomponent.hideHeaderAndFooter = true;
 
@@ -529,5 +531,21 @@ renderTypeChart(): void {
       }
     }
   });
-}}
+}
+
+ngOnDestroy(): void {
+
+  if (this.typeChart) {
+    this.typeChart.destroy();
+    this.typeChart = null;
+  }
+
+  this.chartTooltip.visible = false;
+
+  this.showFormModal = false;
+  this.showDetailsModal = false;
+
+  this.appcomponent.hideHeaderAndFooter = false;
+}
+}
 
