@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { ServiceService } from '../model/service.service';
 import { FormBuilder, Validators } from '@angular/forms';
-
+import { Chart, registerables } from 'chart.js';
 type PeriodFilter = 'today' | 'month' | 'year' | 'all' | 'custom';
-
+Chart.register(...registerables);
 @Component({
   selector: 'app-depense',
   templateUrl: './depense.component.html',
@@ -13,7 +13,7 @@ type PeriodFilter = 'today' | 'month' | 'year' | 'all' | 'custom';
 export class DepenseComponent implements OnInit {
   depenses: any[] = [];
   filteredDepenses: any[] = [];
-
+typeChart: any;
   logo = '';
 photo = '';
 
@@ -55,15 +55,14 @@ photo = '';
   ) {}
 
   ngOnInit(): void {
-     this.appcomponent.hideHeaderAndFooter = true;
+  this.appcomponent.hideHeaderAndFooter = true;
 
   this.loadAdmin();
-
-  this.loadDepenses();
   this.loadNotifications();
+  this.loadDepenses();
 
   this.selectedPeriod = 'month';
-  }
+}
 
   loadNotifications(): void {
     this.service.getpinterface().subscribe((result: any) => {
@@ -72,13 +71,19 @@ photo = '';
     });
   }
 
-  loadDepenses(): void {
-    this.service.getdepense().subscribe((result: any) => {
-      const rows = result?.data || result || [];
-      this.depenses = rows.map((d: any) => this.normalizeDepense(d));
-      this.applyFilters();
-    });
-  }
+loadDepenses(): void {
+  this.service.getdepense().subscribe((result: any) => {
+    const rows = result?.data || result || [];
+
+    this.depenses = rows.map((d: any) => this.normalizeDepense(d));
+
+    this.applyFilters();
+
+    setTimeout(() => {
+      this.renderTypeChart();
+    }, 100);
+  });
+}
 centers = ['Tunis', 'Sousse', 'Sfax'];
 
 expenseTypes = [
@@ -285,6 +290,11 @@ donutGradient(): string {
         (!this.typeFilter || d.type === this.typeFilter) &&
         this.isInPeriod(d.date);
     });
+
+ setTimeout(() => {
+      this.renderTypeChart();
+  },50);
+
   }
 
   setPeriod(period: PeriodFilter): void {
@@ -474,4 +484,50 @@ loadAdmin(): void {
     error: (err) => console.log(err)
   });
 }
-}
+
+
+renderTypeChart(): void {
+  const canvas: any = document.getElementById('expenseTypeChart');
+  if (!canvas) return;
+
+  const labels = this.expenseTypes.map(t => t.name);
+  const data = this.expenseTypes.map(t => this.totalByType(t.name));
+  const colors = this.expenseTypes.map(t => t.color);
+
+  if (this.typeChart) {
+    this.typeChart.destroy();
+  }
+
+  this.typeChart = new Chart(canvas, {
+    type: 'doughnut',
+    data: {
+      labels,
+      datasets: [{
+        data,
+        backgroundColor: colors,
+        borderWidth: 3,
+        borderColor: '#ffffff',
+        hoverOffset: 10
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: '58%',
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            label: (context: any) => {
+              const value = context.raw || 0;
+              return `${context.label}: ${this.formatMoney(value)} DT`;
+            }
+          }
+        }
+      }
+    }
+  });
+}}
+
