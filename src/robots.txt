@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin
+Disallow: /patient
+Disallow: /medecin
+Disallow: /depense
+Disallow: /facture
+Disallow: /marketing
+Disallow: /recette
+Disallow: /rendezvous
+Disallow: /parametre
+Disallow: /profil
+Disallow: /notification
+Disallow: /connecte
+Disallow: /pinterface
+Disallow: /ajoutepatient
+Disallow: /matriel
+
+Sitemap: https://www.oxyboreal.com/sitemap.xml
