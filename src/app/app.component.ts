@@ -185,15 +185,15 @@ updateSeo(url: string): void {
   this.setCanonical(seo.canonical);
 }
 
-  setCanonical(url: string) {
-    let link: HTMLLinkElement | null = document.querySelector("link[rel='canonical']");
+ setCanonical(url: string): void {
+  document
+    .querySelectorAll("link[rel='canonical']")
+    .forEach(link => link.remove());
 
-    if (!link) {
-      link = document.createElement('link');
-      link.setAttribute('rel', 'canonical');
-      document.head.appendChild(link);
-    }
+  const link = document.createElement('link');
+  link.setAttribute('rel', 'canonical');
+  link.setAttribute('href', url);
 
-    link.setAttribute('href', url);
-  }
+  document.head.appendChild(link);
+}
 }
