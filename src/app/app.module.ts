@@ -64,6 +64,7 @@ import { DayPilotModule } from '@daypilot/daypilot-lite-angular';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
+
 registerLocaleData(localeFr);
 
 @NgModule({
