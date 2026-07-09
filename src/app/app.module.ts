@@ -22,7 +22,6 @@ import { EspaceDeVenteComponent } from './espace-de-vente/espace-de-vente.compon
 import { ContactNousComponent } from './contact-nous/contact-nous.component';
 import { SommeilEnergieComponent } from './sommeil-energie/sommeil-energie.component';
 import { SeancesComponent } from './seances/seances.component';
-
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BlogComponent } from './blog/blog.component';
@@ -42,28 +41,7 @@ import { CerveauComponent } from './cerveau/cerveau.component';
 import { SportiveComponent } from './sportive/sportive.component';
 import { ConnecteComponent } from './connecte/connecte.component';
 
-import { AdminComponent } from './admin/admin.component';
-import { MedecinComponent } from './medecin/medecin.component';
-import { PatientComponent } from './patient/patient.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
-import { AjoutepatientComponent } from './ajoutepatient/ajoutepatient.component';
-import { MatrielComponent } from './matriel/matriel.component';
-import { RendezvousComponent } from './rendezvous/rendezvous.component';
-import { RecetteComponent } from './recette/recette.component';
-import { ParametreComponent } from './parametre/parametre.component';
-import { PinterfaceComponent } from './pinterface/pinterface.component';
-import { ProfilComponent } from './profil/profil.component';
-import { NotificationComponent } from './notification/notification.component';
-import { DepenseComponent } from './depense/depense.component';
-import { MarketingComponent } from './marketing/marketing.component';
-import { FactureComponent } from './facture/facture.component';
-
-import { DayPilotModule } from '@daypilot/daypilot-lite-angular';
-import { NgApexchartsModule } from 'ng-apexcharts';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-
 
 registerLocaleData(localeFr);
 
@@ -99,35 +77,16 @@ registerLocaleData(localeFr);
     BeautyComponent,
     CerveauComponent,
     SportiveComponent,
-    ConnecteComponent,
-    AdminComponent,
-    MedecinComponent,
-    PatientComponent,
-    SidebarComponent,
-    DashboardComponent,
-    SidenavComponent,
-    AjoutepatientComponent,
-    MatrielComponent,
-    RendezvousComponent,
-    RecetteComponent,
-    ParametreComponent,
-    PinterfaceComponent,
-    ProfilComponent,
-    NotificationComponent,
-    DepenseComponent,
-    MarketingComponent,
-    FactureComponent
+    ConnecteComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     CommonModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    DayPilotModule,
-    NgApexchartsModule,
     BsDatepickerModule.forRoot()
   ],
   providers: [

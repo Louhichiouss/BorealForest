@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/boreal-forest",
+            "outputPath": "dist/BorealForest/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -99,6 +99,87 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/BorealForest/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media"
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "BorealForest:build:development",
+              "serverTarget": "BorealForest:server:development"
+            },
+            "production": {
+              "browserTarget": "BorealForest:build:production",
+              "serverTarget": "BorealForest:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "guessRoutes": false,
+            "routes": [
+  "/",
+  "/accueil",
+  "/seance",
+  "/contact-nous",
+  "/blog",
+  "/BorealForest",
+  "/lexpeience",
+  "/conferences",
+  "/principe-de-base",
+  "/devloppement-moteur",
+  "/les-capacite-congnitives",
+  "/devloppement-de-parole",
+  "/la-gestion-de-la-douleur",
+  "/espace-de-vente",
+  "/sommeil-energie",
+  "/concussion",
+  "/Recuperation_chirurgicale",
+  "/surdite_brusque",
+  "/douleur_chronique",
+  "/fertilité",
+  "/migraines",
+  "/covid_19",
+  "/diabete",
+  "/esthétique",
+  "/autistes",
+  "/beauty",
+  "/cerveau",
+  "/sportive"
+]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "BorealForest:build:production",
+              "serverTarget": "BorealForest:server:production"
+            },
+            "development": {
+              "browserTarget": "BorealForest:build:development",
+              "serverTarget": "BorealForest:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
