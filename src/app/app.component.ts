@@ -161,23 +161,29 @@ export class AppComponent implements OnInit {
     private meta: Meta
   ) {}
 
-  ngOnInit(): void {
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: any) => {
-        const url = event.urlAfterRedirects.split('?')[0];
-        const seo = this.seoData[url] || this.seoData['/'];
+ngOnInit(): void {
+  this.updateSeo(this.router.url.split('?')[0]);
 
-        this.titleService.setTitle(seo.title);
+  this.router.events
+    .pipe(filter(event => event instanceof NavigationEnd))
+    .subscribe((event: any) => {
+      const url = event.urlAfterRedirects.split('?')[0];
+      this.updateSeo(url);
+    });
+}
 
-        this.meta.updateTag({
-          name: 'description',
-          content: seo.description
-        });
+updateSeo(url: string): void {
+  const seo = this.seoData[url] || this.seoData['/'];
 
-        this.setCanonical(seo.canonical);
-      });
-  }
+  this.titleService.setTitle(seo.title);
+
+  this.meta.updateTag({
+    name: 'description',
+    content: seo.description
+  });
+
+  this.setCanonical(seo.canonical);
+}
 
   setCanonical(url: string) {
     let link: HTMLLinkElement | null = document.querySelector("link[rel='canonical']");
