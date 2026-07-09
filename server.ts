@@ -35,7 +35,11 @@ const win = domino.createWindow(template);
   dispatchEvent: () => false
 });
 (global as any).document = win.document;
-(global as any).navigator = win.navigator;
+Object.defineProperty(global, 'navigator', {
+  value: win.navigator,
+  configurable: true,
+  writable: true
+});
 (global as any).HTMLElement = win.HTMLElement;
 (global as any).Node = win.Node;
 (global as any).localStorage = {
