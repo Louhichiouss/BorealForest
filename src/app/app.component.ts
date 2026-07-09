@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   '/accueil': {
     title: "Centre d'Oxygénothérapie Hyperbare en Tunisie | BorealForest",
     description: "Découvrez BorealForest, centre d'oxygénothérapie hyperbare à Tunis, Sousse et Sfax.",
-    canonical: "https://www.oxyboreal.com/"
+     canonical: "https://www.oxyboreal.com/accueil"
   },
   '/seance': {
     title: "Séances d'Oxygénothérapie Hyperbare | BorealForest",
@@ -108,10 +108,10 @@ export class AppComponent implements OnInit {
     description: "L'oxygénothérapie hyperbare peut accompagner les personnes souffrant de douleur chronique.",
     canonical: "https://www.oxyboreal.com/douleur_chronique"
   },
-  '/fertilité': {
+  '/fertilite': {
     title: "Fertilité et Oxygénothérapie Hyperbare | BorealForest",
     description: "Découvrez des informations sur l'oxygénothérapie hyperbare et l'accompagnement de la fertilité.",
-    canonical: "https://www.oxyboreal.com/fertilité"
+    canonical: "https://www.oxyboreal.com/fertilite"
   },
   '/migraines': {
     title: "Migraines et Oxygénothérapie Hyperbare | BorealForest",
@@ -128,10 +128,10 @@ export class AppComponent implements OnInit {
     description: "Informations sur l'oxygénothérapie hyperbare et l'accompagnement des personnes diabétiques.",
     canonical: "https://www.oxyboreal.com/diabete"
   },
-  '/esthétique': {
+  '/esthetique': {
     title: "Esthétique et Oxygénothérapie Hyperbare | BorealForest",
     description: "Découvrez l'oxygénothérapie hyperbare pour la peau, l'esthétique et le bien-être.",
-    canonical: "https://www.oxyboreal.com/esthétique"
+    canonical: "https://www.oxyboreal.com/esthetique"
   },
   '/autistes': {
     title: "Autisme et Oxygénothérapie Hyperbare | BorealForest",
