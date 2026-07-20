@@ -6,14 +6,9 @@ import {
   OnInit,
   ViewChild
 } from '@angular/core';
+import { Router } from '@angular/router';
 
-import {
-  Router
-} from '@angular/router';
-
-import {
-  ServiceService
-} from '../model/service.service';
+import { ServiceService } from '../model/service.service';
 
 @Component({
   selector: 'app-accueil',
@@ -28,18 +23,18 @@ export class AccueilComponent
 
   private observer?: IntersectionObserver;
   private resizeTimeoutId?: number;
+  private heroStartTimeoutId?: number;
+  private loadListenerRegistered = false;
+  private heroVideoLoaded = false;
 
   private readonly desktopMediaQuery =
     window.matchMedia('(min-width: 769px)');
 
   private readonly reducedMotionMediaQuery =
-    window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    );
+    window.matchMedia('(prefers-reduced-motion: reduce)');
 
   private readonly scrollHandler = (): void => {
-    const nav =
-      document.getElementById('bfNav');
+    const nav = document.getElementById('bfNav');
 
     nav?.classList.toggle(
       'solid',
@@ -48,14 +43,21 @@ export class AccueilComponent
   };
 
   private readonly resizeHandler = (): void => {
-    window.clearTimeout(
-      this.resizeTimeoutId
-    );
+    window.clearTimeout(this.resizeTimeoutId);
 
-    this.resizeTimeoutId =
-      window.setTimeout(() => {
-        this.updateHeroVideoState();
-      }, 200);
+    this.resizeTimeoutId = window.setTimeout(() => {
+      this.updateHeroVideoState();
+    }, 200);
+  };
+
+  private readonly loadHandler = (): void => {
+    this.loadListenerRegistered = false;
+
+    window.clearTimeout(this.heroStartTimeoutId);
+
+    this.heroStartTimeoutId = window.setTimeout(() => {
+      this.updateHeroVideoState();
+    }, 1200);
   };
 
   constructor(
@@ -63,7 +65,11 @@ export class AccueilComponent
     private readonly router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Garde cette méthode si elle sera utilisée plus tard.
+    void this.service;
+    void this.router;
+  }
 
   ngAfterViewInit(): void {
     window.addEventListener(
@@ -94,91 +100,74 @@ export class AccueilComponent
       this.resizeHandler
     );
 
-    window.clearTimeout(
-      this.resizeTimeoutId
-    );
+    if (this.loadListenerRegistered) {
+      window.removeEventListener(
+        'load',
+        this.loadHandler
+      );
+    }
+
+    window.clearTimeout(this.resizeTimeoutId);
+    window.clearTimeout(this.heroStartTimeoutId);
 
     this.observer?.disconnect();
-
-    const video =
-      this.heroVideo?.nativeElement;
-
-    if (video) {
-      video.pause();
-      video.removeAttribute('src');
-
-      const source =
-        video.querySelector('source');
-
-      source?.removeAttribute('src');
-
-      video.load();
-    }
+    this.destroyHeroVideo();
   }
 
   private initializeScrollAnimations(): void {
+    const animatedElements =
+      document.querySelectorAll<HTMLElement>('.sr');
+
     if (
       !('IntersectionObserver' in window) ||
       this.reducedMotionMediaQuery.matches
     ) {
-      document
-        .querySelectorAll<HTMLElement>('.sr')
-        .forEach(element => {
-          element.classList.add('in');
-        });
+      animatedElements.forEach(element => {
+        element.classList.add('in');
+      });
 
       return;
     }
 
-    this.observer =
-      new IntersectionObserver(
-        entries => {
-          entries.forEach(entry => {
-            if (!entry.isIntersecting) {
-              return;
-            }
+    this.observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) {
+            return;
+          }
 
-            entry.target.classList.add('in');
-            this.observer?.unobserve(
-              entry.target
-            );
-          });
-        },
-        {
-          threshold: 0.12,
-          rootMargin: '0px 0px -40px 0px'
-        }
-      );
+          entry.target.classList.add('in');
+          this.observer?.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+      }
+    );
 
-    document
-      .querySelectorAll<HTMLElement>('.sr')
-      .forEach(element => {
-        this.observer?.observe(element);
-      });
+    animatedElements.forEach(element => {
+      this.observer?.observe(element);
+    });
   }
 
   private initializeHeroVideo(): void {
-    const startVideo = (): void => {
-      window.setTimeout(() => {
-        this.updateHeroVideoState();
-      }, 800);
-    };
-
     if (document.readyState === 'complete') {
-      startVideo();
+      this.loadHandler();
       return;
     }
 
+    this.loadListenerRegistered = true;
+
     window.addEventListener(
       'load',
-      startVideo,
+      this.loadHandler,
       { once: true }
     );
   }
 
   private updateHeroVideoState(): void {
-    const video =
-      this.heroVideo?.nativeElement;
+    const video = this.heroVideo?.nativeElement;
 
     if (!video) {
       return;
@@ -189,25 +178,100 @@ export class AccueilComponent
       !this.reducedMotionMediaQuery.matches;
 
     if (!shouldPlay) {
-      video.pause();
-      video.currentTime = 0;
+      this.unloadHeroVideo();
       return;
     }
 
+    this.loadAndPlayHeroVideo(video);
+  }
+
+  private loadAndPlayHeroVideo(
+    video: HTMLVideoElement
+  ): void {
     const source =
       video.querySelector<HTMLSourceElement>(
         'source[data-src]'
       );
 
-    if (source && !source.src) {
-      source.src =
-        source.dataset['src'] ?? '';
+    if (!this.heroVideoLoaded && source) {
+      const sourceUrl = source.dataset['src'];
+
+      if (!sourceUrl) {
+        return;
+      }
+
+      source.setAttribute('src', sourceUrl);
+      source.removeAttribute('data-src');
 
       video.load();
+      this.heroVideoLoaded = true;
     }
 
     void video.play().catch(() => {
       video.pause();
     });
+  }
+
+  private unloadHeroVideo(): void {
+    const video = this.heroVideo?.nativeElement;
+
+    if (!video) {
+      return;
+    }
+
+    video.pause();
+    video.currentTime = 0;
+
+    /*
+     * Si la vidéo n'a pas encore été chargée,
+     * on garde data-src pour permettre son chargement
+     * lors d'un passage vers Desktop.
+     */
+    if (!this.heroVideoLoaded) {
+      return;
+    }
+
+    const source =
+      video.querySelector<HTMLSourceElement>(
+        'source'
+      );
+
+    if (!source) {
+      return;
+    }
+
+    const currentSource =
+      source.getAttribute('src');
+
+    if (currentSource) {
+      source.dataset['src'] = currentSource;
+    }
+
+    source.removeAttribute('src');
+    video.removeAttribute('src');
+    video.load();
+
+    this.heroVideoLoaded = false;
+  }
+
+  private destroyHeroVideo(): void {
+    const video = this.heroVideo?.nativeElement;
+
+    if (!video) {
+      return;
+    }
+
+    video.pause();
+    video.removeAttribute('src');
+
+    const source =
+      video.querySelector<HTMLSourceElement>(
+        'source'
+      );
+
+    source?.removeAttribute('src');
+    video.load();
+
+    this.heroVideoLoaded = false;
   }
 }
