@@ -1142,4 +1142,29 @@ h2 {
     opacity: 1;
     transform: none;
   }
+
+html,
+body{
+    overflow-x:hidden;
+}
+
+*{
+    max-width:100%;
+}
+
+.hero,
+.hero-inner,
+.cover-wrap,
+.cover-inner{
+    width:100%;
+    max-width:100%;
+}
+
+img,
+video{
+    max-width:100%;
+    height:auto;
+}
+
+
 }
