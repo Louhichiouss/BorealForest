@@ -2,9 +2,13 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  Inject,
   OnDestroy,
+  PLATFORM_ID,
   ViewChild
 } from '@angular/core';
+
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-accueil',
@@ -23,13 +27,32 @@ export class AccueilComponent
   private loadListenerRegistered = false;
   private heroVideoLoaded = false;
 
-  private readonly desktopMediaQuery =
-    window.matchMedia('(min-width: 769px)');
+  private readonly isBrowser: boolean;
 
-  private readonly reducedMotionMediaQuery =
-    window.matchMedia('(prefers-reduced-motion: reduce)');
+  private desktopMediaQuery?: MediaQueryList;
+  private reducedMotionMediaQuery?: MediaQueryList;
+
+  constructor(
+    @Inject(PLATFORM_ID) platformId: object
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+
+    if (this.isBrowser) {
+      this.desktopMediaQuery =
+        window.matchMedia('(min-width: 769px)');
+
+      this.reducedMotionMediaQuery =
+        window.matchMedia(
+          '(prefers-reduced-motion: reduce)'
+        );
+    }
+  }
 
   private readonly scrollHandler = (): void => {
+    if (!this.isBrowser) {
+      return;
+    }
+
     const nav = document.getElementById('bfNav');
 
     nav?.classList.toggle(
@@ -39,6 +62,10 @@ export class AccueilComponent
   };
 
   private readonly resizeHandler = (): void => {
+    if (!this.isBrowser) {
+      return;
+    }
+
     window.clearTimeout(this.resizeTimeoutId);
 
     this.resizeTimeoutId = window.setTimeout(() => {
@@ -47,6 +74,10 @@ export class AccueilComponent
   };
 
   private readonly loadHandler = (): void => {
+    if (!this.isBrowser) {
+      return;
+    }
+
     this.loadListenerRegistered = false;
 
     window.clearTimeout(this.heroStartTimeoutId);
@@ -57,6 +88,10 @@ export class AccueilComponent
   };
 
   ngAfterViewInit(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     window.addEventListener(
       'scroll',
       this.scrollHandler,
@@ -75,6 +110,10 @@ export class AccueilComponent
   }
 
   ngOnDestroy(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     window.removeEventListener(
       'scroll',
       this.scrollHandler
@@ -100,12 +139,19 @@ export class AccueilComponent
   }
 
   private initializeScrollAnimations(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     const animatedElements =
       document.querySelectorAll<HTMLElement>('.sr');
 
+    const reducedMotion =
+      this.reducedMotionMediaQuery?.matches ?? false;
+
     if (
       !('IntersectionObserver' in window) ||
-      this.reducedMotionMediaQuery.matches
+      reducedMotion
     ) {
       animatedElements.forEach(element => {
         element.classList.add('in');
@@ -137,6 +183,10 @@ export class AccueilComponent
   }
 
   private initializeHeroVideo(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     if (document.readyState === 'complete') {
       this.loadHandler();
       return;
@@ -152,6 +202,10 @@ export class AccueilComponent
   }
 
   private updateHeroVideoState(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     const video = this.heroVideo?.nativeElement;
 
     if (!video) {
@@ -159,8 +213,8 @@ export class AccueilComponent
     }
 
     const shouldPlay =
-      this.desktopMediaQuery.matches &&
-      !this.reducedMotionMediaQuery.matches;
+      (this.desktopMediaQuery?.matches ?? false) &&
+      !(this.reducedMotionMediaQuery?.matches ?? false);
 
     if (!shouldPlay) {
       this.unloadHeroVideo();
@@ -173,6 +227,10 @@ export class AccueilComponent
   private loadAndPlayHeroVideo(
     video: HTMLVideoElement
   ): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     const source =
       video.querySelector<HTMLSourceElement>('source');
 
@@ -181,8 +239,7 @@ export class AccueilComponent
     }
 
     if (!this.heroVideoLoaded) {
-      const sourceUrl =
-        source.dataset['src'];
+      const sourceUrl = source.dataset['src'];
 
       if (!sourceUrl) {
         return;
@@ -194,7 +251,10 @@ export class AccueilComponent
       this.heroVideoLoaded = true;
     }
 
-    if (video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) {
+    if (
+      video.readyState >=
+      HTMLMediaElement.HAVE_FUTURE_DATA
+    ) {
       this.playVideo(video);
       return;
     }
@@ -211,28 +271,41 @@ export class AccueilComponent
   private playVideo(
     video: HTMLVideoElement
   ): void {
+    if (
+      !this.isBrowser ||
+      typeof video.play !== 'function'
+    ) {
+      return;
+    }
+
     void video.play().catch(() => {
       video.muted = true;
 
       void video.play().catch(() => {
-        // Le poster reste visible si l'autoplay est bloqué.
+        // Le poster reste visible si autoplay est bloqué.
       });
     });
   }
 
   private unloadHeroVideo(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     const video = this.heroVideo?.nativeElement;
 
     if (!video) {
       return;
     }
 
-    video.pause();
+    if (typeof video.pause === 'function') {
+      video.pause();
+    }
 
     try {
       video.currentTime = 0;
     } catch {
-      // La vidéo n'est peut-être pas encore chargée.
+      // La vidéo n'est pas encore chargée.
     }
 
     if (!this.heroVideoLoaded) {
@@ -242,30 +315,38 @@ export class AccueilComponent
     const source =
       video.querySelector<HTMLSourceElement>('source');
 
-    if (!source) {
-      return;
-    }
+    source?.removeAttribute('src');
 
-    source.removeAttribute('src');
-    video.load();
+    if (typeof video.load === 'function') {
+      video.load();
+    }
 
     this.heroVideoLoaded = false;
   }
 
   private destroyHeroVideo(): void {
+    if (!this.isBrowser) {
+      return;
+    }
+
     const video = this.heroVideo?.nativeElement;
 
     if (!video) {
       return;
     }
 
-    video.pause();
+    if (typeof video.pause === 'function') {
+      video.pause();
+    }
 
     const source =
       video.querySelector<HTMLSourceElement>('source');
 
     source?.removeAttribute('src');
-    video.load();
+
+    if (typeof video.load === 'function') {
+      video.load();
+    }
 
     this.heroVideoLoaded = false;
   }
