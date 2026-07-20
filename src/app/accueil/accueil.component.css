@@ -942,12 +942,15 @@ h2 {
   }
 
   .hero {
-    min-height: auto;
+    min-height:100svh;
     padding: 92px 0 34px;
     background:
       linear-gradient(rgba(7, 24, 74, 0.42), rgba(5, 15, 46, 0.58)),
       url("/assets/img/hero-bg.webp") center / cover no-repeat,
       var(--navy);
+      display:flex;
+    align-items:center;
+    justify-content:center;
   }
 
   .hero-video {
@@ -956,7 +959,9 @@ h2 {
 
   /* Hero */
 .hero-inner{
-    max-width:360px;
+    width:calc(100% - 32px);
+    max-width:430px;
+    padding:0;
     margin:auto;
 }
 
