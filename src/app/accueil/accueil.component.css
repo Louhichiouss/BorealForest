@@ -1686,3 +1686,26 @@ footer {
   margin-bottom:90px !important;
   padding-bottom:120px !important;
 }
+@media (max-width:768px){
+
+  .particles{
+    display:none;
+  }
+
+  .trees{
+    display:none;
+  }
+
+  .hero-title .grad{
+    animation:none;
+  }
+
+  .sr{
+    transition:none;
+  }
+}.hero-video{
+    filter:brightness(.35);
+}
+.cover-inner img{
+    height:420px;
+}

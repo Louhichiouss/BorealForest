@@ -207,27 +207,30 @@ section{
   animation:fadeUp 1s .1s ease both;
 }
 
-.chip-dot{
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:var(--teal);
-  box-shadow:0 0 10px var(--teal);
-  animation:blink 1.8s ease infinite;
+.chip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 10px var(--teal);
+  animation: blink 1.8s ease infinite;
 }
 
-@keyframes blink{
-  0%,100%{opacity:1}
-  50%{opacity:.2}
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.2;
+  }
 }
 
-.hero-content h1{
-  .hero-content h1{
-  font-size:clamp(48px,5.8vw,78px);
-  line-height:.98;
+.hero-content h1 {
+  font-size: clamp(48px, 5.8vw, 78px);
+  line-height: 0.98;
 }
-}
-
 .h1-white{
   color:#fff;
   display:block;

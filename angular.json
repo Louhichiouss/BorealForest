@@ -20,18 +20,21 @@
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
-  "assets": [
-  "src/favicon.ico",
-  "src/assets",
-  "src/robots.txt",
-  "src/sitemap.xml",
-  "src/site.webmanifest",
-  "src/favicon-16x16.png",
-  "src/favicon-32x32.png",
-  "src/apple-touch-icon.png",
-  "src/android-chrome-192x192.png",
-  "src/android-chrome-512x512.png"
-],
+            "allowedCommonJsDependencies": [
+              "apexcharts"
+            ],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/robots.txt",
+              "src/sitemap.xml",
+              "src/site.webmanifest",
+              "src/favicon-16x16.png",
+              "src/favicon-32x32.png",
+              "src/apple-touch-icon.png",
+              "src/android-chrome-192x192.png",
+              "src/android-chrome-512x512.png"
+            ],
             "styles": [
               "src/styles.css"
             ],
@@ -40,15 +43,15 @@
           "configurations": {
             "production": {
               "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "3mb",
-                  "maximumError": "3mb"
-                },
+               {
+  "type": "initial",
+  "maximumWarning": "1.5mb",
+  "maximumError": "2mb"
+},
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "20kb",
-                  "maximumError": "30kb"
+                  "maximumWarning": "25kb",
+                  "maximumError": "35kb"
                 }
               ],
               "outputHashing": "all"
@@ -139,35 +142,35 @@
           "options": {
             "guessRoutes": false,
             "routes": [
-  "/",
-  "/accueil",
-  "/seance",
-  "/contact-nous",
-  "/blog",
-  "/BorealForest",
-  "/lexpeience",
-  "/conferences",
-  "/principe-de-base",
-  "/devloppement-moteur",
-  "/les-capacite-congnitives",
-  "/devloppement-de-parole",
-  "/la-gestion-de-la-douleur",
-  "/espace-de-vente",
-  "/sommeil-energie",
-  "/concussion",
-  "/Recuperation_chirurgicale",
-  "/surdite_brusque",
-  "/douleur_chronique",
-  "/fertilite",
-  "/migraines",
-  "/covid_19",
-  "/diabete",
-  "/esthetique",
-  "/autistes",
-  "/beauty",
-  "/cerveau",
-  "/sportive"
-]
+              "/",
+              "/accueil",
+              "/seance",
+              "/contact-nous",
+              "/blog",
+              "/BorealForest",
+              "/lexpeience",
+              "/conferences",
+              "/principe-de-base",
+              "/devloppement-moteur",
+              "/les-capacite-congnitives",
+              "/devloppement-de-parole",
+              "/la-gestion-de-la-douleur",
+              "/espace-de-vente",
+              "/sommeil-energie",
+              "/concussion",
+              "/Recuperation_chirurgicale",
+              "/surdite_brusque",
+              "/douleur_chronique",
+              "/fertilite",
+              "/migraines",
+              "/covid_19",
+              "/diabete",
+              "/esthetique",
+              "/autistes",
+              "/beauty",
+              "/cerveau",
+              "/sportive"
+            ]
           },
           "configurations": {
             "production": {

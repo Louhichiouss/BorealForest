@@ -13,16 +13,21 @@
 </nav>
 
 <section class="hero">
-  <video
-    class="hero-video"
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="auto"
-    poster="assets/img/hero-bg.jpg">
-    <source src="assets/video/home.mp4" type="video/mp4">
-  </video>
+<video
+  #heroVideo
+  class="hero-video"
+  muted
+  loop
+  playsinline
+  preload="none"
+  poster="assets/img/hero-bg.webp"
+  aria-hidden="true"
+>
+  <source
+    src="assets/video/home.mp4"
+    type="video/mp4"
+  >
+</video>
 
 
   <div class="hero-inner">
