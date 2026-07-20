@@ -3,12 +3,8 @@ import {
   Component,
   ElementRef,
   OnDestroy,
-  OnInit,
   ViewChild
 } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { ServiceService } from '../model/service.service';
 
 @Component({
   selector: 'app-accueil',
@@ -16,7 +12,7 @@ import { ServiceService } from '../model/service.service';
   styleUrls: ['./accueil.component.css']
 })
 export class AccueilComponent
-  implements OnInit, AfterViewInit, OnDestroy {
+  implements AfterViewInit, OnDestroy {
 
   @ViewChild('heroVideo')
   private heroVideo?: ElementRef<HTMLVideoElement>;
@@ -57,19 +53,8 @@ export class AccueilComponent
 
     this.heroStartTimeoutId = window.setTimeout(() => {
       this.updateHeroVideoState();
-    }, 1200);
+    }, 500);
   };
-
-  constructor(
-    private readonly service: ServiceService,
-    private readonly router: Router
-  ) {}
-
-  ngOnInit(): void {
-    // Garde cette méthode si elle sera utilisée plus tard.
-    void this.service;
-    void this.router;
-  }
 
   ngAfterViewInit(): void {
     window.addEventListener(
@@ -189,26 +174,49 @@ export class AccueilComponent
     video: HTMLVideoElement
   ): void {
     const source =
-      video.querySelector<HTMLSourceElement>(
-        'source[data-src]'
-      );
+      video.querySelector<HTMLSourceElement>('source');
 
-    if (!this.heroVideoLoaded && source) {
-      const sourceUrl = source.dataset['src'];
+    if (!source) {
+      return;
+    }
+
+    if (!this.heroVideoLoaded) {
+      const sourceUrl =
+        source.dataset['src'];
 
       if (!sourceUrl) {
         return;
       }
 
       source.setAttribute('src', sourceUrl);
-      source.removeAttribute('data-src');
-
       video.load();
+
       this.heroVideoLoaded = true;
     }
 
+    if (video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) {
+      this.playVideo(video);
+      return;
+    }
+
+    video.addEventListener(
+      'canplay',
+      () => {
+        this.playVideo(video);
+      },
+      { once: true }
+    );
+  }
+
+  private playVideo(
+    video: HTMLVideoElement
+  ): void {
     void video.play().catch(() => {
-      video.pause();
+      video.muted = true;
+
+      void video.play().catch(() => {
+        // Le poster reste visible si l'autoplay est bloqué.
+      });
     });
   }
 
@@ -220,35 +228,25 @@ export class AccueilComponent
     }
 
     video.pause();
-    video.currentTime = 0;
 
-    /*
-     * Si la vidéo n'a pas encore été chargée,
-     * on garde data-src pour permettre son chargement
-     * lors d'un passage vers Desktop.
-     */
+    try {
+      video.currentTime = 0;
+    } catch {
+      // La vidéo n'est peut-être pas encore chargée.
+    }
+
     if (!this.heroVideoLoaded) {
       return;
     }
 
     const source =
-      video.querySelector<HTMLSourceElement>(
-        'source'
-      );
+      video.querySelector<HTMLSourceElement>('source');
 
     if (!source) {
       return;
     }
 
-    const currentSource =
-      source.getAttribute('src');
-
-    if (currentSource) {
-      source.dataset['src'] = currentSource;
-    }
-
     source.removeAttribute('src');
-    video.removeAttribute('src');
     video.load();
 
     this.heroVideoLoaded = false;
@@ -262,12 +260,9 @@ export class AccueilComponent
     }
 
     video.pause();
-    video.removeAttribute('src');
 
     const source =
-      video.querySelector<HTMLSourceElement>(
-        'source'
-      );
+      video.querySelector<HTMLSourceElement>('source');
 
     source?.removeAttribute('src');
     video.load();
