@@ -1253,6 +1253,14 @@ h2 {
   .sr {
     transition: none;
   }
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 30px;
+    line-height: 1.05;
+  }
+}
+
 }
 
 /* =========================
