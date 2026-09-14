@@ -65,9 +65,17 @@ export class ContactNousComponent implements OnInit, AfterViewInit, OnDestroy {
 
  this.service.ajouterUser(this.addForm.value as any).subscribe({
   next: () => {
-    this.addForm.reset();
-    this.errorMessage1 = 'Votre message a été envoyé.';
-  },
+  const metaPixel = (window as any).fbq;
+
+  if (typeof metaPixel === 'function') {
+    metaPixel('track', 'Lead', {
+      content_name: 'Contact form'
+    });
+  }
+
+  this.addForm.reset();
+  this.errorMessage1 = 'Votre message a été envoyé.';
+},
   error: (err) => {
     console.log('Erreur API:', err);
 
