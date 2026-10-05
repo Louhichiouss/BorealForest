@@ -359,7 +359,61 @@ payMarketingReminder(id: any) {
 
 
 
+// ================================
+// RFID
+// ================================
 
+rfidLookup(uid: string) {
+  return this.http.get<any>(
+    this.baseUrl + 'rfidLookup.php?uid=' + encodeURIComponent(uid)
+  );
+}
+
+rfidValidateSession(cardUid: string) {
+  return this.http.post<any>(
+    this.baseUrl + 'rfidValidateSession.php',
+    { card_uid: cardUid }
+  );
+}
+
+rfidAssociate(patientId: number, cardUid: string) {
+  return this.http.post<any>(
+    this.baseUrl + 'rfidAssociate.php',
+    {
+      patient_id: patientId,
+      card_uid: cardUid
+    }
+  );
+}
+
+rfidRenewPack(cardUid: string, sessions: number, amount: number) {
+  return this.http.post<any>(
+    this.baseUrl + 'rfidRenewPack.php',
+    {
+      card_uid: cardUid,
+      sessions: sessions,
+      amount: amount
+    }
+  );
+}
+rfidDisable(cardUid: string) {
+  return this.http.post<any>(
+    this.baseUrl + 'rfidDisable.php',
+    {
+      card_uid: cardUid
+    }
+  );
+}
+
+rfidReplace(patientId: number, newCardUid: string) {
+  return this.http.post<any>(
+    this.baseUrl + 'rfidReplace.php',
+    {
+      patient_id: patientId,
+      new_card_uid: newCardUid
+    }
+  );
+}
 
 
 }

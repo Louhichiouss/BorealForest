@@ -1,0 +1,1104 @@
+<div class="bf-app-shell">
+
+  <button
+    class="mobile-menu-btn"
+    type="button"
+    (click)="toggleMobileMenu()">
+    ☰
+  </button>
+
+  <div
+    class="mobile-overlay"
+    *ngIf="mobileMenuOpen"
+    (click)="closeMobileMenu()">
+  </div>
+
+  <aside
+    class="bf-sidebar"
+    [class.mobile-open]="mobileMenuOpen">
+
+    <div class="bf-sidebar-header">
+
+      <div class="bf-logo-block">
+
+        <div class="bf-logo-icon">
+          <img *ngIf="logo" [src]="logo" alt="Logo">
+          <span *ngIf="!logo">🌊</span>
+        </div>
+
+        <div>
+          <div class="bf-logo-title">BorealForest</div>
+          <div class="bf-logo-sub">ADMIN OHB</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <nav class="bf-sidebar-nav">
+
+      <a
+        routerLink="/admin"
+        class="bf-nav-item"
+        (click)="closeMobileMenu()">
+        <span>🏠</span>
+        <span>Tableau de bord</span>
+      </a>
+
+      <a
+        routerLink="/patient"
+        class="bf-nav-item"
+        (click)="closeMobileMenu()">
+        <span>👥</span>
+        <span>Patients</span>
+      </a>
+
+      <a
+        routerLink="/rendezvous"
+        class="bf-nav-item"
+        (click)="closeMobileMenu()">
+        <span>📅</span>
+        <span>Rendez-vous</span>
+      </a>
+
+      <a
+        routerLink="/facture"
+        class="bf-nav-item"
+        (click)="closeMobileMenu()">
+        <span>🧾</span>
+        <span>Factures patients</span>
+      </a>
+
+      <a
+        routerLink="/depense"
+        class="bf-nav-item"
+        (click)="closeMobileMenu()">
+        <span>🏢</span>
+        <span>Dépenses centres</span>
+      </a>
+
+      <a
+        routerLink="/recette"
+        class="bf-nav-item"
+        (click)="closeMobileMenu()">
+        <span>💳</span>
+        <span>Recettes centres</span>
+      </a>
+
+      <a
+        routerLink="/marketing"
+        class="bf-nav-item"
+        (click)="closeMobileMenu()">
+        <span>📣</span>
+        <span>Marketing</span>
+      </a>
+
+      <a
+        routerLink="/rfid"
+        class="bf-nav-item active"
+        (click)="closeMobileMenu()">
+        <span>💳</span>
+        <span>Cartes RFID</span>
+      </a>
+
+      <a
+        routerLink="/parametre"
+        class="bf-nav-item"
+        (click)="closeMobileMenu()">
+        <span>⚙️</span>
+        <span>Paramètres</span>
+      </a>
+
+    </nav>
+
+    <div class="bf-sidebar-footer">
+
+      <div class="bf-admin-mini">
+
+        <div class="bf-admin-avatar">
+          <img *ngIf="photo" [src]="photo" alt="Admin">
+          <span *ngIf="!photo">BF</span>
+        </div>
+
+        <div>
+          <div class="bf-admin-name">BorealForest</div>
+          <div class="bf-admin-role">Administrateur</div>
+        </div>
+
+      </div>
+
+      <a
+        routerLink="/accueil"
+        class="bf-logout">
+        🚪 Déconnexion
+      </a>
+
+    </div>
+
+  </aside>
+
+  <section class="bf-main">
+
+    <header class="bf-topbar">
+
+      <div>
+
+        <div class="bf-topbar-title">
+          Cartes RFID
+        </div>
+
+        <div class="bf-topbar-sub">
+          Gestion des cartes et des séances patients
+        </div>
+
+      </div>
+
+      <div class="bf-topbar-right">
+
+        <div class="bf-date-pill">
+          {{ formatHeaderDate() }}
+        </div>
+
+        <strong>BorealForest</strong>
+
+      </div>
+
+    </header>
+
+    <main class="bf-page-content rfid-page">
+
+      <section class="rfid-toolbar">
+
+        <div class="toolbar-title">
+
+          <div class="toolbar-icon">
+            💳
+          </div>
+
+          <div>
+            <h2>Scanner une carte</h2>
+            <p>Approchez la carte du lecteur RFID</p>
+          </div>
+
+        </div>
+
+        <div class="scanner-inline">
+
+          <span class="scan-dot"></span>
+
+          <input
+            #rfidInput
+            class="rfid-input-compact"
+            type="text"
+            [(ngModel)]="uid"
+            (keyup.enter)="scanCard()"
+            autocomplete="off"
+            placeholder="En attente de la carte...">
+
+          <span class="scanner-status">
+            {{ loading ? 'Recherche...' : 'Lecteur prêt' }}
+          </span>
+
+        </div>
+
+      </section>
+
+      <div
+        class="rfid-alert error"
+        *ngIf="errorMessage">
+        ⚠ {{ errorMessage }}
+      </div>
+
+      <div
+        class="rfid-alert success"
+        *ngIf="successMessage">
+        ✓ {{ successMessage }}
+      </div>
+
+      <section
+        class="rfid-empty"
+        *ngIf="!patient && !loading && !associationPopupOpen">
+
+        <div>💳</div>
+
+        <strong>Aucune carte scannée</strong>
+
+        <span>
+          Scannez une carte RFID pour afficher le patient.
+        </span>
+
+      </section>
+
+      <section
+        class="rfid-table-card"
+        *ngIf="patient">
+
+        <div class="table-headline">
+
+          <div>
+            <h3>Carte détectée</h3>
+            <span>1 patient</span>
+          </div>
+
+          <button
+            type="button"
+            class="secondary-btn"
+            (click)="reset()">
+            Scanner une autre carte
+          </button>
+
+        </div>
+
+        <div class="table-scroll">
+
+          <table class="rfid-table">
+
+            <thead>
+              <tr>
+                <th>Patient</th>
+                <th>Centre</th>
+                <th>UID carte</th>
+                <th>Pack</th>
+                <th>Effectuées</th>
+                <th>Restantes</th>
+                <th>Statut</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+
+                <td>
+
+                  <button
+                    type="button"
+                    class="patient-link"
+                    (click)="openPatient()">
+
+                    <span class="patient-avatar">
+                      {{ patient.P_prenom?.charAt(0) }}
+                      {{ patient.P_nom?.charAt(0) }}
+                    </span>
+
+                    <span>
+
+                      <strong>
+                        {{ patient.P_prenom }}
+                        {{ patient.P_nom }}
+                      </strong>
+
+                      <small>
+                        {{ patient.P_tel }}
+                      </small>
+
+                    </span>
+
+                  </button>
+
+                </td>
+
+                <td>
+                  <strong>
+                    {{ patient.P_region || '-' }}
+                  </strong>
+                </td>
+
+                <td>
+                  <span class="uid-chip">
+                    {{ patient.card_uid }}
+                  </span>
+                </td>
+
+                <td>
+                  <strong>{{ patient.P_n }}</strong>
+                </td>
+
+                <td>
+                  <strong>{{ patient.P_nbs }}</strong>
+                </td>
+
+                <td>
+
+                  <span
+                    class="remaining-badge"
+                    [class.low]="patient.remaining_sessions <= 2">
+
+                    {{ patient.remaining_sessions }}
+
+                  </span>
+
+                </td>
+
+                <td>
+                  <span class="active-badge">
+                    ● Active
+                  </span>
+                </td>
+
+                <td>
+
+                  <div class="row-actions">
+
+                    <button
+                      type="button"
+                      class="mini-btn validate"
+                      [disabled]="
+                        validating ||
+                        patient.remaining_sessions <= 0
+                      "
+                      (click)="validateSession()">
+
+                      {{
+                        validating
+                          ? '...'
+                          : '✓ Valider'
+                      }}
+
+                    </button>
+
+                    <button
+                      type="button"
+                      class="mini-btn edit"
+                      (click)="openReplace()">
+                      ✎ Modifier
+                    </button>
+
+                    <button
+                      type="button"
+                      class="mini-btn"
+                      (click)="openPatient()">
+                      Voir
+                    </button>
+
+                  </div>
+
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </section>
+
+
+  <!-- ===================================================== -->
+  <!-- PATIENT POPUP -->
+  <!-- ===================================================== -->
+
+  <div
+    class="modal-backdrop"
+    *ngIf="patientPopupOpen && patient"
+    (click)="closePatient()">
+
+    <div
+      class="patient-modal"
+      (click)="$event.stopPropagation()">
+
+      <div class="modal-header">
+
+        <div class="modal-patient">
+
+          <div class="modal-avatar">
+            {{ patient.P_prenom?.charAt(0) }}
+            {{ patient.P_nom?.charAt(0) }}
+          </div>
+
+          <div>
+
+            <h2>
+              {{ patient.P_prenom }}
+              {{ patient.P_nom }}
+            </h2>
+
+            <p>
+              {{ patient.P_region }}
+              •
+              {{ patient.P_tel }}
+            </p>
+
+          </div>
+
+        </div>
+
+        <button
+          type="button"
+          class="modal-close"
+          (click)="closePatient()">
+          ×
+        </button>
+
+      </div>
+
+      <div class="modal-body">
+
+        <div class="card-summary">
+
+          <div>
+            <span>UID CARTE</span>
+            <strong>{{ patient.card_uid }}</strong>
+          </div>
+
+          <div>
+            <span>STATUT</span>
+            <strong class="green-text">
+              ● Active
+            </strong>
+          </div>
+
+          <div>
+            <span>CARTE ATTRIBUÉE</span>
+            <strong>
+              {{ patient.assigned_at }}
+            </strong>
+          </div>
+
+        </div>
+
+        <div class="modal-stats">
+
+          <div>
+            <span>Pack</span>
+            <strong>{{ patient.P_n }}</strong>
+            <small>séances</small>
+          </div>
+
+          <div>
+            <span>Effectuées</span>
+            <strong>{{ patient.P_nbs }}</strong>
+            <small>séances</small>
+          </div>
+
+          <div class="modal-stat-green">
+            <span>Restantes</span>
+            <strong>
+              {{ patient.remaining_sessions }}
+            </strong>
+            <small>séances</small>
+          </div>
+
+          <div>
+            <span>Total payé</span>
+            <strong>
+              {{ patient.P_pt || 0 }}
+            </strong>
+            <small>DT</small>
+          </div>
+
+        </div>
+
+        <div class="modal-actions">
+
+          <button
+            type="button"
+            class="action-btn validate"
+            [disabled]="
+              validating ||
+              patient.remaining_sessions <= 0
+            "
+            (click)="validateSession()">
+
+            {{
+              validating
+                ? 'Validation...'
+                : '✓ Valider séance'
+            }}
+
+          </button>
+
+          <button
+            type="button"
+            class="action-btn renew"
+            (click)="openRenew()">
+            + Renouveler pack
+          </button>
+
+          <button
+            type="button"
+            class="action-btn replace"
+            (click)="openReplace()">
+            ✎ Modifier carte
+          </button>
+
+        </div>
+
+        <div class="patient-details">
+
+          <div>
+            <span>Type / Motif</span>
+            <strong>
+              {{ patient.P_c || '-' }}
+            </strong>
+          </div>
+
+          <div>
+            <span>Email</span>
+            <strong>
+              {{ patient.P_email || '-' }}
+            </strong>
+          </div>
+
+        </div>
+
+        <div class="modal-history">
+
+          <div class="history-title">
+
+            <h3>Historique RFID</h3>
+
+            <span>
+              {{ history.length }} événement(s)
+            </span>
+
+          </div>
+
+          <div
+            class="history-empty"
+            *ngIf="!history.length">
+            Aucun historique.
+          </div>
+
+          <div
+            class="history-item"
+            *ngFor="let item of history">
+
+            <div
+              class="history-event-icon"
+              [class.session]="
+                item.event_type === 'session_validated'
+              "
+              [class.pack]="
+                item.event_type === 'pack_renewed'
+              "
+              [class.disabled]="
+                item.event_type === 'card_disabled'
+              "
+              [class.replaced]="
+                item.event_type === 'card_replaced'
+              ">
+
+              {{
+                item.event_type === 'session_validated'
+                  ? '✓'
+                  : item.event_type === 'pack_renewed'
+                  ? '+'
+                  : item.event_type === 'card_disabled'
+                  ? '×'
+                  : item.event_type === 'card_replaced'
+                  ? '↻'
+                  : '💳'
+              }}
+
+            </div>
+
+            <div class="history-content">
+
+              <strong>
+                {{ eventLabel(item.event_type) }}
+              </strong>
+
+              <small>
+                {{ item.centre || '-' }}
+              </small>
+
+            </div>
+
+            <div class="history-extra">
+
+              <span
+                *ngIf="
+                  item.event_type === 'session_validated'
+                ">
+                {{ item.sessions_before }}
+                →
+                {{ item.sessions_after }}
+              </span>
+
+              <span *ngIf="item.amount">
+                {{ item.amount }} DT
+              </span>
+
+              <small>
+                {{ item.created_at }}
+              </small>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="card-management">
+
+          <div>
+
+            <strong>
+              Gestion de la carte
+            </strong>
+
+            <span>
+              Remplacer ou désactiver la carte RFID.
+            </span>
+
+          </div>
+
+          <div class="management-actions">
+
+            <button
+              type="button"
+              class="edit-card-btn"
+              (click)="openReplace()">
+              ✎ Modifier carte
+            </button>
+
+            <button
+              type="button"
+              class="disable-card-btn"
+              [disabled]="disabling"
+              (click)="disableCard()">
+
+              {{
+                disabling
+                  ? 'Désactivation...'
+                  : 'Désactiver carte'
+              }}
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- RENEW POPUP -->
+  <!-- ===================================================== -->
+
+  <div
+    class="small-modal-backdrop"
+    *ngIf="renewPopupOpen"
+    (click)="closeRenew()">
+
+    <div
+      class="small-modal"
+      (click)="$event.stopPropagation()">
+
+      <div class="small-modal-header">
+
+        <div>
+
+          <h3>
+            Renouveler le pack
+          </h3>
+
+          <p *ngIf="patient">
+            {{ patient.P_prenom }}
+            {{ patient.P_nom }}
+          </p>
+
+        </div>
+
+        <button
+          type="button"
+          class="modal-close"
+          (click)="closeRenew()">
+          ×
+        </button>
+
+      </div>
+
+      <div class="small-modal-body">
+
+        <label>
+
+          Nombre de séances
+
+          <input
+            type="number"
+            min="1"
+            [(ngModel)]="renewSessions">
+
+        </label>
+
+        <label>
+
+          Montant payé (DT)
+
+          <input
+            type="number"
+            min="0"
+            step="0.001"
+            [(ngModel)]="renewAmount">
+
+        </label>
+
+        <div class="small-modal-actions">
+
+          <button
+            type="button"
+            class="cancel-btn"
+            (click)="closeRenew()">
+            Annuler
+          </button>
+
+          <button
+            type="button"
+            class="confirm-btn"
+            [disabled]="renewing"
+            (click)="renewPack()">
+
+            {{
+              renewing
+                ? 'Enregistrement...'
+                : 'Confirmer'
+            }}
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- REPLACE CARD POPUP -->
+  <!-- ===================================================== -->
+
+  <div
+    class="small-modal-backdrop"
+    *ngIf="replacePopupOpen"
+    (click)="closeReplace()">
+
+    <div
+      class="small-modal replace-modal"
+      (click)="$event.stopPropagation()">
+
+      <div class="small-modal-header">
+
+        <div>
+
+          <h3>
+            Modifier la carte RFID
+          </h3>
+
+          <p *ngIf="patient">
+            {{ patient.P_prenom }}
+            {{ patient.P_nom }}
+          </p>
+
+        </div>
+
+        <button
+          type="button"
+          class="modal-close"
+          (click)="closeReplace()">
+          ×
+        </button>
+
+      </div>
+
+      <div class="small-modal-body">
+
+        <div class="old-card">
+
+          <span>
+            Carte actuelle
+          </span>
+
+          <strong>
+            {{ patient?.card_uid }}
+          </strong>
+
+        </div>
+
+        <label>
+          Scanner la nouvelle carte
+        </label>
+
+        <div class="replace-scanner">
+
+          <span class="scan-dot"></span>
+
+          <input
+            #replaceRfidInput
+            type="text"
+            [(ngModel)]="replaceUid"
+            (keyup.enter)="replaceCard()"
+            autocomplete="off"
+            placeholder="Approchez la nouvelle carte...">
+
+        </div>
+
+        <p class="scan-help">
+          Approchez la nouvelle carte du lecteur.
+          Le numéro sera détecté automatiquement.
+        </p>
+
+        <div class="small-modal-actions">
+
+          <button
+            type="button"
+            class="cancel-btn"
+            (click)="closeReplace()">
+            Annuler
+          </button>
+
+          <button
+            type="button"
+            class="confirm-btn"
+            [disabled]="
+              replacing ||
+              !replaceUid
+            "
+            (click)="replaceCard()">
+
+            {{
+              replacing
+                ? 'Modification...'
+                : 'Modifier la carte'
+            }}
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- ASSOCIATION NOUVELLE CARTE -->
+  <!-- ===================================================== -->
+
+  <div
+    class="small-modal-backdrop"
+    *ngIf="associationPopupOpen"
+    (click)="closeAssociation()">
+
+    <div
+      class="small-modal association-modal"
+      (click)="$event.stopPropagation()">
+
+      <div class="small-modal-header">
+
+        <div>
+
+          <h3>
+            Nouvelle carte RFID
+          </h3>
+
+          <p>
+            Associer cette carte à un patient
+          </p>
+
+        </div>
+
+        <button
+          type="button"
+          class="modal-close"
+          (click)="closeAssociation()">
+          ×
+        </button>
+
+      </div>
+
+      <div class="small-modal-body">
+
+        <div class="old-card">
+
+          <span>
+            UID détecté
+          </span>
+
+          <strong>
+            {{ unknownCardUid }}
+          </strong>
+
+        </div>
+
+        <label>
+          Rechercher un patient
+        </label>
+
+        <input
+          type="text"
+          [(ngModel)]="patientSearch"
+          (input)="searchPatients()"
+          autocomplete="off"
+          placeholder="Nom, prénom ou téléphone...">
+
+        <p
+          class="scan-help"
+          *ngIf="searchingPatients">
+          Recherche...
+        </p>
+
+        <div
+          *ngIf="
+            !searchingPatients &&
+            patientSearch.length >= 2 &&
+            !patientResults.length
+          "
+          style="
+            margin-top: 12px;
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            background: #f8fafc;
+            font-size: 13px;
+          ">
+          Aucun patient trouvé.
+        </div>
+
+        <div
+          *ngIf="patientResults.length"
+          style="
+            max-height: 260px;
+            overflow-y: auto;
+            margin-top: 12px;
+          ">
+
+          <button
+            type="button"
+            *ngFor="let p of patientResults"
+            (click)="selectPatientForCard(p)"
+            [style.border]="
+              selectedPatient?.P_id === p.P_id
+                ? '2px solid #1d4ed8'
+                : '1px solid #e5e7eb'
+            "
+            [style.background]="
+              selectedPatient?.P_id === p.P_id
+                ? '#eff6ff'
+                : '#ffffff'
+            "
+            style="
+              display: block;
+              width: 100%;
+              text-align: left;
+              padding: 12px 14px;
+              margin-bottom: 8px;
+              border-radius: 10px;
+              cursor: pointer;
+            ">
+
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 10px;
+              ">
+
+              <div>
+
+                <strong>
+                  {{ p.P_prenom }}
+                  {{ p.P_nom }}
+                </strong>
+
+                <div
+                  style="
+                    font-size: 12px;
+                    margin-top: 4px;
+                    opacity: .75;
+                  ">
+
+                  {{ p.P_tel || '-' }}
+
+                  •
+
+                  {{ p.P_region || '-' }}
+
+                </div>
+
+              </div>
+
+              <span
+                *ngIf="
+                  selectedPatient?.P_id === p.P_id
+                ">
+                ✓
+              </span>
+
+            </div>
+
+          </button>
+
+        </div>
+
+        <div
+          class="old-card"
+          *ngIf="selectedPatient"
+          style="margin-top: 15px;">
+
+          <span>
+            Patient sélectionné
+          </span>
+
+          <strong>
+            {{ selectedPatient.P_prenom }}
+            {{ selectedPatient.P_nom }}
+          </strong>
+
+        </div>
+
+        <div class="small-modal-actions">
+
+          <button
+            type="button"
+            class="cancel-btn"
+            [disabled]="associating"
+            (click)="closeAssociation()">
+            Annuler
+          </button>
+
+          <button
+            type="button"
+            class="confirm-btn"
+            [disabled]="
+              associating ||
+              !selectedPatient ||
+              !unknownCardUid
+            "
+            (click)="associateCard()">
+
+            {{
+              associating
+                ? 'Association...'
+                : 'Associer la carte'
+            }}
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

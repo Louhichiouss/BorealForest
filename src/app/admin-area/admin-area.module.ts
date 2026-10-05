@@ -19,6 +19,7 @@ import { NotificationComponent } from '../notification/notification.component';
 import { DepenseComponent } from '../depense/depense.component';
 import { MarketingComponent } from '../marketing/marketing.component';
 import { FactureComponent } from '../facture/facture.component';
+import { RfidComponent } from '../rfid/rfid.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminComponent },
@@ -42,6 +43,7 @@ const routes: Routes = [
   { path: 'depense', component: DepenseComponent },
   { path: 'depense/:id', component: DepenseComponent },
   { path: 'marketing', component: MarketingComponent },
+  { path: 'rfid', component: RfidComponent },
   { path: 'facture', component: FactureComponent }
 ];
 
@@ -60,7 +62,8 @@ const routes: Routes = [
     NotificationComponent,
     DepenseComponent,
     MarketingComponent,
-    FactureComponent
+    FactureComponent,
+    RfidComponent
   ],
   imports: [
     CommonModule,
